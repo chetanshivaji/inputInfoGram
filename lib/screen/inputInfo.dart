@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:inputgram/consts.dart';
+import 'package:inputgram/util.dart';
 
 class inputInfo extends StatefulWidget {
   static String id = "inputscreen";
@@ -107,7 +110,7 @@ class _inputInfoState extends State<inputInfo> {
                   if (value == null || value.isEmpty) {
                     return 'Please enter water tax amount';
                   }
-                  houseTax = int.parse(value);
+                  waterTax = int.parse(value);
                   return null;
                 },
               ),
@@ -128,20 +131,22 @@ class _inputInfoState extends State<inputInfo> {
                           content: Text('Processing Data'),
                         ),
                       );
-                      /*
-                    FirebaseFirestore.instance.collection("inExtra").add(
-                      {
-                        'reason': reason,
-                        'amount': amount,
-                        'date': DateTime.now().toString(),
-                        'user': userMail,
-                      },
-                    );
-                    updateFormulaValues(amount.toString(),
-                        "in"); //fetch exisiting value from formula and update new value.
-                    showAlertDialog(
-                        context, titleSuccess, subtitleSuccess, getRightIcon());
-                  */
+                      FirebaseFirestore.instance
+                          .collection(dbCollectionName)
+                          .doc(mobile.toString())
+                          .set(
+                        {
+                          'house': houseTax,
+                          'houseGiven': false,
+                          'mobile': mobile,
+                          'name': name,
+                          'water': waterTax,
+                          'waterGiven': false,
+                        },
+                      );
+
+                      showAlertDialog(context, titleSuccess, subtitleSuccess,
+                          getRightIcon());
                     }
                   },
                   child: const Text(

@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'screen/inputInfo.dart';
+import 'package:firebase_core/firebase_core.dart';
 
 void main() async {
-  /*
   try {
-    
     WidgetsFlutterBinding.ensureInitialized();
     await Firebase.initializeApp(
       // Replace with actual values
@@ -18,7 +17,6 @@ void main() async {
   } catch (e) {
     print(e);
   }
-  */
 
   runApp(const input());
 }
