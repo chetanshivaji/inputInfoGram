@@ -132,22 +132,43 @@ class _inputInfoState extends State<inputInfo> {
                           content: Text('Processing Data'),
                         ),
                       );
-                      FirebaseFirestore.instance
-                          .collection(dbYear)
-                          .doc(mobile.toString())
-                          .set(
-                        {
-                          'house': houseTax,
-                          'houseGiven': false,
-                          'mobile': mobile,
-                          'name': name,
-                          'water': waterTax,
-                          'waterGiven': false,
-                        },
-                      );
 
-                      showAlertDialog(context, titleSuccess, subtitleSuccess,
-                          getRightIcon());
+                      var usersRef = await FirebaseFirestore.instance
+                          .collection(dbYear)
+                          .doc(mobile.toString());
+
+                      usersRef.get().then(
+                            (docSnapshot) => {
+                              if (docSnapshot.exists)
+                                {
+                                  //if allready present
+                                  showAlertDialog(
+                                      context,
+                                      "PRESENT",
+                                      "Entry already present, can not add",
+                                      Icon(Icons.person_search_rounded))
+                                }
+                              else
+                                {
+                                  //if entry not present in db then add
+                                  FirebaseFirestore.instance
+                                      .collection(dbYear)
+                                      .doc(mobile.toString())
+                                      .set(
+                                    {
+                                      'house': houseTax,
+                                      'houseGiven': false,
+                                      'mobile': mobile,
+                                      'name': name,
+                                      'water': waterTax,
+                                      'waterGiven': false,
+                                    },
+                                  ),
+                                  showAlertDialog(context, titleSuccess,
+                                      subtitleSuccess, getRightIcon())
+                                }
+                            },
+                          );
                     }
                   },
                   child: const Text(
