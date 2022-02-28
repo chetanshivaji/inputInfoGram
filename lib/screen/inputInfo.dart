@@ -25,8 +25,8 @@ class _inputInfoState extends State<inputInfo> {
     return Scaffold(
       appBar: AppBar(
         title: Text("Add New Person to GramDB"),
+        backgroundColor: clrGreen,
       ),
-      backgroundColor: clrGreen,
       body: Form(
         key: _formKeyInputForm,
         child: Column(

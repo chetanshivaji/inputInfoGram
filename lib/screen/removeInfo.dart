@@ -31,8 +31,8 @@ class _removeInfoState extends State<removeInfo> {
     return Scaffold(
       appBar: AppBar(
         title: Text("Remove New Person to GramDB"),
+        backgroundColor: clrRed,
       ),
-      backgroundColor: clrRed,
       body: Form(
         key: _formKeyremoveForm,
         child: Column(
