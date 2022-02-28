@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:inputgram/screen/removeInfo.dart';
 import 'screen/inputInfo.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'myApp.dart';
 
 void main() async {
   try {
@@ -18,23 +20,16 @@ void main() async {
     print(e);
   }
 
-  runApp(const input());
-}
-
-class input extends StatefulWidget {
-  const input({Key? key}) : super(key: key);
-
-  @override
-  _inputState createState() => _inputState();
-}
-
-class _inputState extends State<input> {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
+  runApp(
+    MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: "input info GramPanchayat",
-      home: inputInfo(),
-    );
-  }
+      title: "Admin",
+      initialRoute: MyApp.id,
+      routes: {
+        MyApp.id: (context) => MyApp(),
+        inputInfo.id: (context) => inputInfo(),
+        removeInfo.id: (context) => removeInfo(),
+      },
+    ),
+  );
 }

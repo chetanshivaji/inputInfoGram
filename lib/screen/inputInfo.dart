@@ -1,3 +1,4 @@
+import 'package:firebase_database_platform_interface/firebase_database_platform_interface.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:inputgram/consts.dart';
@@ -132,7 +133,7 @@ class _inputInfoState extends State<inputInfo> {
                         ),
                       );
                       FirebaseFirestore.instance
-                          .collection(dbCollectionName)
+                          .collection(dbYear)
                           .doc(mobile.toString())
                           .set(
                         {

@@ -1,0 +1,81 @@
+import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:inputgram/screen/inputInfo.dart';
+import 'package:inputgram/screen/removeInfo.dart';
+import 'consts.dart';
+
+class MyApp extends StatelessWidget {
+  static String id = "myappscreen";
+  MyApp({Key? key}) : super(key: key);
+  final _auth = FirebaseAuth.instance;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('in/remove Entry'),
+      ),
+      body: Center(
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            const SizedBox(
+              width: 20.0,
+              height: 100.0,
+            ),
+            const Text(
+              '',
+              style: TextStyle(fontSize: 43.0),
+            ),
+            const SizedBox(
+              width: 20.0,
+              height: 100.0,
+            ),
+          ],
+        ),
+      ),
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: <Widget>[
+            DrawerHeader(
+              decoration: BoxDecoration(
+                color: Colors.blue,
+              ),
+              child: Stack(
+                children: <Widget>[
+                  Text(
+                    'Admin in/remove entry',
+                    style: TextStyle(
+                      fontSize: 30,
+                      color: Colors.yellow,
+                    ),
+                  ), //gree
+                ],
+              ),
+            ),
+            ListTile(
+              leading: Icon(Icons.add_box),
+              title: Text('addEntry'),
+              tileColor: clrGreen, //green
+              trailing: Icon(Icons.arrow_forward_ios),
+              onTap: () {
+                Navigator.pushNamed(context, inputInfo.id);
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.outbond_outlined),
+              title: Text('removeEntry'),
+              tileColor: clrRed, //red
+              trailing: Icon(Icons.arrow_forward_ios),
+              onTap: () {
+                Navigator.pushNamed(context, removeInfo.id);
+              },
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
