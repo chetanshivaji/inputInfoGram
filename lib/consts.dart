@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-String dbYear = "mainDb2021";
+String dbYear = "mainDb";
 String titleSuccess = "Success";
 String subtitleSuccess = "Submitted!";
 
@@ -11,3 +11,18 @@ Color clrRed = Color(0xffef9a9a); //out
 Color clrAmber = Color(0xFFF7E5B4); //pending
 
 Color clrBlue = Color(0xFF7E57E2); //report indigo;
+
+String dropdownvalue = "2021";
+var items = [
+  "2012",
+  "2013",
+  "2014",
+  "2015",
+  "2016",
+  "2017",
+  "2018",
+  "2019",
+  "2020",
+  "2021",
+  "2022",
+];

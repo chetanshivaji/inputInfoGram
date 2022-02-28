@@ -30,14 +30,56 @@ class _removeInfoState extends State<removeInfo> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Add New Person Gram"),
+        title: Text("Remove New Person to GramDB"),
       ),
-      backgroundColor: Colors.white,
+      backgroundColor: clrRed,
       body: Form(
         key: _formKeyremoveForm,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
+            Padding(
+              padding: EdgeInsets.only(top: 20),
+            ),
+            ListTile(
+              leading: Icon(Icons.date_range),
+              title: Text(
+                "Year",
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+              trailing: DropdownButton(
+                borderRadius: BorderRadius.circular(12.0),
+                dropdownColor: clrRed,
+
+                alignment: Alignment.topLeft,
+
+                // Initial Value
+                value: dropdownvalue,
+                // Down Arrow Icon
+                icon: Icon(
+                  Icons.sort,
+                  color: Colors.red,
+                ),
+                // Array list of items
+                items: items.map(
+                  (String items) {
+                    return DropdownMenuItem(
+                      value: items,
+                      child: Text(items),
+                    );
+                  },
+                ).toList(),
+                // After selecting the desired option,it will
+                // change button value to selected value
+                onChanged: (String? newValue) {
+                  setState(
+                    () {
+                      dropdownvalue = newValue!;
+                    },
+                  );
+                },
+              ),
+            ),
             Padding(
               padding: EdgeInsets.only(top: 20),
             ),
@@ -47,7 +89,7 @@ class _removeInfoState extends State<removeInfo> {
                   if (text.length == 10) {
                     try {
                       nameEntry = await FirebaseFirestore.instance
-                          .collection(dbYear)
+                          .collection(dbYear + dropdownvalue)
                           .doc(text)
                           .get()
                           .then(
@@ -130,8 +172,8 @@ class _removeInfoState extends State<removeInfo> {
                           content: Text('Processing Data'),
                         ),
                       );
-                      var collection =
-                          FirebaseFirestore.instance.collection(dbYear);
+                      var collection = FirebaseFirestore.instance
+                          .collection(dbYear + dropdownvalue);
                       await collection.doc(mobile.toString()).delete();
 
                       showAlertDialog(context, titleSuccess, subtitleSuccess,

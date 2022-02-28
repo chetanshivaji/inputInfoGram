@@ -1,4 +1,3 @@
-import 'package:firebase_database_platform_interface/firebase_database_platform_interface.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:inputgram/consts.dart';
@@ -25,14 +24,56 @@ class _inputInfoState extends State<inputInfo> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Add New Person Gram"),
+        title: Text("Add New Person to GramDB"),
       ),
-      backgroundColor: Colors.white,
+      backgroundColor: clrGreen,
       body: Form(
         key: _formKeyInputForm,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
+            Padding(
+              padding: EdgeInsets.only(top: 20),
+            ),
+            ListTile(
+              leading: Icon(Icons.date_range),
+              title: Text(
+                "Year",
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+              trailing: DropdownButton(
+                borderRadius: BorderRadius.circular(12.0),
+                dropdownColor: clrGreen,
+
+                alignment: Alignment.topLeft,
+
+                // Initial Value
+                value: dropdownvalue,
+                // Down Arrow Icon
+                icon: Icon(
+                  Icons.sort,
+                  color: Colors.green,
+                ),
+                // Array list of items
+                items: items.map(
+                  (String items) {
+                    return DropdownMenuItem(
+                      value: items,
+                      child: Text(items),
+                    );
+                  },
+                ).toList(),
+                // After selecting the desired option,it will
+                // change button value to selected value
+                onChanged: (String? newValue) {
+                  setState(
+                    () {
+                      dropdownvalue = newValue!;
+                    },
+                  );
+                },
+              ),
+            ),
             Padding(
               padding: EdgeInsets.only(top: 20),
             ),
@@ -134,7 +175,7 @@ class _inputInfoState extends State<inputInfo> {
                       );
 
                       var usersRef = await FirebaseFirestore.instance
-                          .collection(dbYear)
+                          .collection(dbYear + dropdownvalue)
                           .doc(mobile.toString());
 
                       usersRef.get().then(
@@ -152,7 +193,7 @@ class _inputInfoState extends State<inputInfo> {
                                 {
                                   //if entry not present in db then add
                                   FirebaseFirestore.instance
-                                      .collection(dbYear)
+                                      .collection(dbYear + dropdownvalue)
                                       .doc(mobile.toString())
                                       .set(
                                     {
