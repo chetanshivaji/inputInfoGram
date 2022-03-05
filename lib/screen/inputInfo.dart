@@ -14,6 +14,7 @@ class inputInfo extends StatefulWidget {
 class _inputInfoState extends State<inputInfo> {
   final _formKeyInputForm = GlobalKey<FormState>();
   String name = "";
+  String email = "";
   int mobile = 0;
   int houseTax = 0;
   int waterTax = 0;
@@ -90,6 +91,26 @@ class _inputInfoState extends State<inputInfo> {
                     return 'Please enter name';
                   }
                   name = value;
+                  return null;
+                },
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.only(top: 20),
+            ),
+            Expanded(
+              child: TextFormField(
+                keyboardType: TextInputType.emailAddress,
+                decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                    icon: Icon(Icons.person),
+                    hintText: "Enter email Id",
+                    labelText: "mail *"),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please mail ID';
+                  }
+                  email = value;
                   return null;
                 },
               ),
@@ -199,6 +220,7 @@ class _inputInfoState extends State<inputInfo> {
                                     {
                                       'house': houseTax,
                                       'houseGiven': false,
+                                      'email': email,
                                       'mobile': mobile,
                                       'name': name,
                                       'water': waterTax,
