@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:inputgram/screen/approve.dart';
 import 'package:inputgram/screen/inputInfo.dart';
+import 'package:inputgram/screen/registerInfo.dart';
 import 'package:inputgram/screen/removeInfo.dart';
 import 'consts.dart';
 
@@ -46,7 +47,7 @@ class MyApp extends StatelessWidget {
               child: Stack(
                 children: <Widget>[
                   Text(
-                    'Admin in/remove entry',
+                    'Admin',
                     style: TextStyle(
                       fontSize: 30,
                       color: Colors.yellow,
@@ -65,12 +66,30 @@ class MyApp extends StatelessWidget {
               },
             ),
             ListTile(
-              leading: Icon(Icons.outbond_outlined),
+              leading: Icon(Icons.add_box),
               title: Text('removeEntry'),
-              tileColor: clrRed, //red
+              tileColor: clrRed, //green
               trailing: Icon(Icons.arrow_forward_ios),
               onTap: () {
                 Navigator.pushNamed(context, removeInfo.id);
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.app_registration),
+              title: Text('RegisterVillage'),
+              tileColor: clrAmber, //red
+              trailing: Icon(Icons.arrow_forward_ios),
+              onTap: () {
+                Navigator.pushNamed(context, registerInfo.id);
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.approval),
+              title: Text('Approve'),
+              tileColor: clrGreen, //red
+              trailing: Icon(Icons.arrow_forward_ios),
+              onTap: () {
+                Navigator.pushNamed(context, approve.id);
               },
             ),
           ],
