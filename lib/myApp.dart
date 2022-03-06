@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('in/remove Entry'),
+        title: const Text('Admin, Register, approve, make db'),
       ),
       body: Center(
         child: Row(

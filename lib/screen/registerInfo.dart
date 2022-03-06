@@ -40,6 +40,66 @@ class _registerInfoState extends State<registerInfo> {
                 decoration: InputDecoration(
                     border: OutlineInputBorder(),
                     icon: Icon(Icons.person),
+                    hintText: "Enter admin mail",
+                    labelText: "admin mail *"),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter mail';
+                  }
+                  village = value;
+                  return null;
+                },
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.only(top: 20),
+            ),
+            Expanded(
+              child: TextFormField(
+                keyboardType: TextInputType.text,
+                decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                    icon: Icon(Icons.person),
+                    hintText: "Enter mobile",
+                    labelText: "admin mobile*"),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter mail';
+                  }
+                  village = value;
+                  return null;
+                },
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.only(top: 20),
+            ),
+            Expanded(
+              child: TextFormField(
+                keyboardType: TextInputType.text,
+                decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                    icon: Icon(Icons.person),
+                    hintText: "Enter village name",
+                    labelText: "Village *"),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter name';
+                  }
+                  village = value;
+                  return null;
+                },
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.only(top: 20),
+            ),
+            Expanded(
+              child: TextFormField(
+                keyboardType: TextInputType.text,
+                decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                    icon: Icon(Icons.person),
                     hintText: "Enter village name",
                     labelText: "Village *"),
                 validator: (value) {
