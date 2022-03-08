@@ -242,6 +242,48 @@ class _inputInfoState extends State<inputInfo> {
                                 }
                             },
                           );
+
+                      //START create Formula in each year once
+                      var formulaRef = await FirebaseFirestore.instance
+                          .collection(ls[0] + ls[1])
+                          .doc(mainDb)
+                          .collection('formula')
+                          .doc('calculation');
+
+                      formulaRef.get().then(
+                            (docSnapshot) => {
+                              if (docSnapshot.exists)
+                                {
+                                  /*
+                                  //if allready present
+                                  showAlertDialog(
+                                      context,
+                                      "PRESENT",
+                                      "Entry already present, can not add",
+                                      Icon(Icons.person_search_rounded))
+                                      */
+                                }
+                              else
+                                {
+                                  //if entry not present in db then add
+                                  FirebaseFirestore.instance
+                                      .collection(ls[0] + ls[1])
+                                      .doc(mainDb)
+                                      .collection('formula')
+                                      .doc('calculation')
+                                      .set(
+                                    {
+                                      'totalBalance': 0,
+                                      'totalIn': 0,
+                                      'totalOut': 0,
+                                    },
+                                  ),
+                                  showAlertDialog(context, titleSuccess,
+                                      subtitleSuccess, getRightIcon())
+                                }
+                            },
+                          );
+                      //END create Formula in each year once
                     }
                   },
                   child: const Text(
