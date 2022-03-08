@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:inputgram/consts.dart';
@@ -194,9 +195,16 @@ class _inputInfoState extends State<inputInfo> {
                           content: Text('Processing Data'),
                         ),
                       );
+                      //get admin mail
+                      //from users, get admin village and pin
 
+                      //read villagePin-> mainDb-> mainDb2020=> add
+
+                      var ls = await getLoggedInUserVillagePin();
                       var usersRef = await FirebaseFirestore.instance
-                          .collection(dbYear + dropdownvalue)
+                          .collection(ls[0] + ls[1])
+                          .doc(mainDb)
+                          .collection(mainDb + dropdownvalue)
                           .doc(mobile.toString());
 
                       usersRef.get().then(
@@ -214,7 +222,9 @@ class _inputInfoState extends State<inputInfo> {
                                 {
                                   //if entry not present in db then add
                                   FirebaseFirestore.instance
-                                      .collection(dbYear + dropdownvalue)
+                                      .collection(ls[0] + ls[1])
+                                      .doc(mainDb)
+                                      .collection(mainDb + dropdownvalue)
                                       .doc(mobile.toString())
                                       .set(
                                     {

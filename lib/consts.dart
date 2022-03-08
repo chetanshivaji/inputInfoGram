@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 
-String dbYear = "mainDb";
+String mainDb = "mainDb";
 String titleSuccess = "Success";
 String subtitleSuccess = "Submitted!";
+
+String kTitleSuccess = "Login/registeration failed";
+String kSubtitleSuccess = "Try again with correct username & password";
 
 Color clrGreen = Color(0xFFc8e6c9); //in
 

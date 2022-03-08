@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:inputgram/consts.dart';
 import 'package:inputgram/util.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class removeInfo extends StatefulWidget {
   static String id = "removescreen";
@@ -88,8 +89,11 @@ class _removeInfoState extends State<removeInfo> {
                 onChanged: (text) async {
                   if (text.length == 10) {
                     try {
-                      nameEntry = await FirebaseFirestore.instance
-                          .collection(dbYear + dropdownvalue)
+                      var ls = await getLoggedInUserVillagePin();
+                      await FirebaseFirestore.instance
+                          .collection(ls[0] + ls[1])
+                          .doc(mainDb)
+                          .collection(mainDb + dropdownvalue)
                           .doc(text)
                           .get()
                           .then(
@@ -97,7 +101,6 @@ class _removeInfoState extends State<removeInfo> {
                           var y = value.data();
                           nameEntry = y!["name"];
                           amountEntry = y["house"];
-                          return y["name"];
                         },
                       );
                     } catch (e) {
@@ -172,8 +175,11 @@ class _removeInfoState extends State<removeInfo> {
                           content: Text('Processing Data'),
                         ),
                       );
+                      var ls = await getLoggedInUserVillagePin();
                       var collection = FirebaseFirestore.instance
-                          .collection(dbYear + dropdownvalue);
+                          .collection(ls[0] + ls[1])
+                          .doc(mainDb)
+                          .collection(mainDb + dropdownvalue);
                       await collection.doc(mobile.toString()).delete();
 
                       showAlertDialog(context, titleSuccess, subtitleSuccess,

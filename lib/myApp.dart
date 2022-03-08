@@ -16,6 +16,18 @@ class MyApp extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Admin, Register, approve, make db'),
+        actions: <Widget>[
+          IconButton(
+            tooltip: "Log out",
+            onPressed: () {
+              //logout
+              _auth.signOut();
+              Navigator.pop(context);
+              Navigator.pop(context);
+            },
+            icon: Icon(Icons.power_settings_new),
+          ),
+        ],
       ),
       body: Center(
         child: Row(
@@ -72,15 +84,6 @@ class MyApp extends StatelessWidget {
               trailing: Icon(Icons.arrow_forward_ios),
               onTap: () {
                 Navigator.pushNamed(context, removeInfo.id);
-              },
-            ),
-            ListTile(
-              leading: Icon(Icons.app_registration),
-              title: Text('RegisterVillage'),
-              tileColor: clrAmber, //red
-              trailing: Icon(Icons.arrow_forward_ios),
-              onTap: () {
-                Navigator.pushNamed(context, registerInfo.id);
               },
             ),
             ListTile(

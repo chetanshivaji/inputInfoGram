@@ -2,6 +2,8 @@
 This is first app which should register a village and admin, add/remove new entry in database yearwise.
 # Tracker
 #TODO:
+1. Make all await statements in try catch
+2. Remove all print statement and put pop up message.
 1. Get admin on board.
 2. Get village registerd, with it's info like, village name,taluka, district, state, pin.
 3. Access allow section which will onboard other members to login. once registered through main app.
