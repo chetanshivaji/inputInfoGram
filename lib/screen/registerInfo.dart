@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+
 import 'package:inputgram/consts.dart';
-import 'package:inputgram/util.dart';
 
 class registerInfo extends StatefulWidget {
   static String id = "registerscreen";

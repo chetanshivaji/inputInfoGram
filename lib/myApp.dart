@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:inputgram/screen/approve.dart';
 import 'package:inputgram/screen/inputInfo.dart';
-import 'package:inputgram/screen/registerInfo.dart';
 import 'package:inputgram/screen/removeInfo.dart';
 import 'consts.dart';
 

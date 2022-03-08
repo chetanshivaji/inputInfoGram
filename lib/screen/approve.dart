@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:inputgram/consts.dart';
-import 'package:inputgram/util.dart';
+
 import 'package:inputgram/approvalList.dart';
+import 'package:inputgram/consts.dart';
 
 class approve extends StatefulWidget {
   static String id = "approvescreen";
@@ -17,19 +16,29 @@ class _approveState extends State<approve> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      color: Colors.grey[350],
-      alignment: Alignment.topLeft,
-      child: Column(
-        children: [
-          Padding(
-            padding: EdgeInsets.only(top: 20),
-          ),
-          Expanded(
-            child: approvalList(),
-          ),
-        ],
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Approve/Remove"),
+      ),
+      backgroundColor: clrAmber,
+      body: Container(
+        width: double.infinity,
+        color: Colors.grey[350],
+        alignment: Alignment.topLeft,
+        child: Column(
+          children: [
+            Padding(
+              padding: EdgeInsets.only(top: 20),
+            ),
+            Text("Please approve or remove clicking toggle icon"),
+            Padding(
+              padding: EdgeInsets.only(top: 20),
+            ),
+            Expanded(
+              child: approvalList(),
+            ),
+          ],
+        ),
       ),
     );
   }

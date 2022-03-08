@@ -1,9 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:inputgram/util.dart';
-import 'package:inputgram/consts.dart';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'dart:io';
 
 class approvalList extends StatefulWidget {
   const approvalList({Key? key}) : super(key: key);

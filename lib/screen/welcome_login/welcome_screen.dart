@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'login_screen.dart';
 import 'registration_screen.dart';
-import 'package:inputgram/util.dart';
 
 class WelcomeScreen extends StatefulWidget {
   static String id = "welcomescreen";
@@ -23,7 +22,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
             Row(
               children: <Widget>[
                 Text(
-                  'Grampanchyat Admin',
+                  'Gram Admin',
                   style: TextStyle(
                     fontSize: 45.0,
                     fontWeight: FontWeight.w900,

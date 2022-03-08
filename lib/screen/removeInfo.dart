@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:inputgram/consts.dart';
 import 'package:inputgram/util.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 
 class removeInfo extends StatefulWidget {
   static String id = "removescreen";
