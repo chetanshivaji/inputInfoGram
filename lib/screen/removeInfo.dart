@@ -16,10 +16,10 @@ class _removeInfoState extends State<removeInfo> {
   final _formKeyremoveForm = GlobalKey<FormState>();
 
   String name = "";
-  int amount = 0;
+  String email = "";
 
   String nameEntry = "";
-  int amountEntry = 0;
+  String emailEntry = "";
 
   int mobile = 0;
   int houseTax = 0;
@@ -100,7 +100,7 @@ class _removeInfoState extends State<removeInfo> {
                         (value) {
                           var y = value.data();
                           nameEntry = y!["name"];
-                          amountEntry = y["house"];
+                          emailEntry = y["email"];
                         },
                       );
                     } catch (e) {
@@ -110,7 +110,7 @@ class _removeInfoState extends State<removeInfo> {
                     setState(
                       () {
                         name = nameEntry;
-                        amount = amountEntry;
+                        email = emailEntry;
                       },
                     );
                   }
@@ -154,7 +154,7 @@ class _removeInfoState extends State<removeInfo> {
               child: ListTile(
                 leading: Icon(Icons.attach_money),
                 title: Text(
-                  "Amount = $amount",
+                  "Email = $email",
                   style: TextStyle(
                     fontSize: 20.0,
                     fontWeight: FontWeight.bold,
