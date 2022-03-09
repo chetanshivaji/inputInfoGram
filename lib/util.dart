@@ -48,6 +48,42 @@ Future<List<String>> getLoggedInUserVillagePin() async {
   return lsVillagePin;
 }
 
+void popLogOutAlert(
+    BuildContext context, String title, String subtitle, Widget imgRightWrong) {
+  //shows alert dialog
+  //paramaters, title, subtitle, imgRightWrong:image with right or wrong icon, popCount: how many times navigate back
+  Widget cancelButton = TextButton(
+    child: Text("cancel"),
+    onPressed: () {
+      Navigator.pop(context);
+    },
+  );
+
+  Widget okButton = TextButton(
+    child: Text("OK"),
+    onPressed: () {
+      FirebaseAuth.instance.signOut();
+      Navigator.pop(context);
+      Navigator.pop(context);
+    },
+  );
+
+  AlertDialog alert = AlertDialog(
+    content: submitPop(title, subtitle, imgRightWrong),
+    actions: [
+      cancelButton,
+      okButton, //pops twice returns to home page
+    ],
+  );
+
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return alert;
+    },
+  );
+}
+
 TextStyle getStyle(String type) {
   if (type == "IN") {
     return TextStyle(

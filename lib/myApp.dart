@@ -4,6 +4,7 @@ import 'package:inputgram/screen/approve.dart';
 import 'package:inputgram/screen/inputInfo.dart';
 import 'package:inputgram/screen/removeInfo.dart';
 import 'consts.dart';
+import 'package:inputgram/util.dart';
 
 class MyApp extends StatelessWidget {
   static String id = "myappscreen";
@@ -20,9 +21,8 @@ class MyApp extends StatelessWidget {
             tooltip: "Log out",
             onPressed: () {
               //logout
-              _auth.signOut();
-              Navigator.pop(context);
-              Navigator.pop(context);
+              popLogOutAlert(context, "SignOut", "Do you want to log out?",
+                  Icon(Icons.power_settings_new));
             },
             icon: Icon(Icons.power_settings_new),
           ),
