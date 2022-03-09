@@ -30,7 +30,7 @@ class _removeInfoState extends State<removeInfo> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Remove New Person to GramDB"),
+        title: Text("Remove Person from GramDB"),
         backgroundColor: clrRed,
       ),
       body: Form(
@@ -174,15 +174,37 @@ class _removeInfoState extends State<removeInfo> {
                           content: Text('Processing Data'),
                         ),
                       );
+                      /*
                       var ls = await getLoggedInUserVillagePin();
                       var collection = FirebaseFirestore.instance
                           .collection(ls[0] + ls[1])
                           .doc(mainDb)
                           .collection(mainDb + dropdownvalue);
                       await collection.doc(mobile.toString()).delete();
+*/
 
-                      showAlertDialog(context, titleSuccess, subtitleSuccess,
-                          getRightIcon());
+                      var ls = await getLoggedInUserVillagePin();
+                      var collection = FirebaseFirestore.instance
+                          .collection(ls[0] + ls[1])
+                          .doc(mainDb)
+                          .collection(mainDb + dropdownvalue);
+                      await collection.doc(mobile.toString()).get().then(
+                        (value) {
+                          if (value.exists) {
+                            FirebaseFirestore.instance
+                                .collection(ls[0] + ls[1])
+                                .doc(mainDb)
+                                .collection(mainDb + dropdownvalue)
+                                .doc(mobile.toString())
+                                .delete();
+                            popAlert(context, titleSuccess, subtitleSuccess,
+                                getRightIcon(), 2);
+                          } else {
+                            popAlert(context, "Allready Removed", "",
+                                getWrongIcon(), 2);
+                          }
+                        },
+                      );
                     }
                   },
                   child: const Text(

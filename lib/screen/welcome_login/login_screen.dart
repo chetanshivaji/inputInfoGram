@@ -125,19 +125,18 @@ class _LoginScreenState extends State<LoginScreen> {
                           if (newUser != null) {
                             userMail = email;
                             Navigator.pushNamed(context, MyApp.id);
-                            //showRegLoginAlertDialogSuccess(context,
-                            //  kTitleLoginSuccess, kSubTitleLoginSuccess);
                           }
                         } catch (e) {
                           print(e);
                         }
                       } else {
-                        showRegLoginAlertDialogFail(context, kTitleFail,
-                            "admin only can login in here");
+                        popAlert(context, kTitleFail, kSubTitleOnlyAdmin,
+                            getWrongIcon(), 2);
                       }
                     } catch (e) {
-                      showRegLoginAlertDialogFail(
-                          context, kTitleFail, e.toString());
+                      popAlert(
+                          context, kTitleFail, e.toString(), getWrongIcon(), 2);
+                      return;
                     }
                   },
                   minWidth: 200.0,

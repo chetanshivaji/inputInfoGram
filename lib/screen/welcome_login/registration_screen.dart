@@ -187,11 +187,12 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 child: MaterialButton(
                   onPressed: () async {
                     if (password != reEnterPassword) {
-                      String title = "Password mismatch";
-                      String subtitle =
-                          "password and re entered password should match";
-                      showRegLoginAlertDialogFail(context, title, subtitle);
-                      //TODO: return if mismatch passwords.
+                      popAlert(
+                          context,
+                          titlePasswordMismatch,
+                          subtitlePasswordMismatch,
+                          getWrongIcon(),
+                          1); //one time pop navigation
                       return;
                     }
                     //Implement registration functionality.
@@ -212,11 +213,13 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                                 if (docSnapshot.exists)
                                   {
                                     //if allready present
-                                    showAlertDialog(
-                                        context,
-                                        "PRESENT",
-                                        "Entry already present, can not add",
-                                        Icon(Icons.person_search_rounded))
+                                    popAlert(
+                                      context,
+                                      "PRESENT",
+                                      "Entry already present, can not add",
+                                      Icon(Icons.person_search_rounded),
+                                      1,
+                                    )
                                   }
                                 else
                                   {
@@ -235,9 +238,6 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                                             .toString(),
                                       },
                                     ),
-
-                                    //showAlertDialog(context, registerSuccess,
-                                    //  registerSubtitleSuccess, getRightIcon())
                                   }
                               },
                             );
@@ -261,16 +261,16 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                             'mail': email,
                           },
                         );
-
                         //*********END create village+pin colection and admin */
+
                         Navigator.pushNamed(context, MyApp.id);
-                        showRegLoginAlertDialogSuccess(
-                            context, registerSuccess, kSubTitleLoginSuccess);
+                        popAlert(context, registerSuccess,
+                            kSubTitleLoginSuccess, getRightIcon(), 1);
                       }
                     } catch (e) {
-                      showRegLoginAlertDialogFail(
-                          context, kTitleFail, e.toString());
-                      //treat exception caught
+                      popAlert(
+                          context, kTitleFail, e.toString(), getWrongIcon(), 2);
+                      return;
                     }
                   },
                   minWidth: 200.0,

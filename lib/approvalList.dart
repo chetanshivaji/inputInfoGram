@@ -37,7 +37,6 @@ class _approvalListState extends State<approvalList> {
               bool statusApproved = l.get("approved");
               if (statusApproved == false) {
                 await FirebaseFirestore.instance
-                    //.collection(adminVillage + adminPin)
                     .collection(ls[0] + ls[1])
                     .doc("pendingApproval")
                     .collection("pending")
@@ -45,7 +44,6 @@ class _approvalListState extends State<approvalList> {
                     .update({'approved': true});
               } else {
                 await FirebaseFirestore.instance
-                    //.collection(adminVillage + adminPin)
                     .collection(ls[0] + ls[1])
                     .doc("pendingApproval")
                     .collection("pending")

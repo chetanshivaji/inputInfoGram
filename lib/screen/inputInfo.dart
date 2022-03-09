@@ -211,11 +211,12 @@ class _inputInfoState extends State<inputInfo> {
                               if (docSnapshot.exists)
                                 {
                                   //if allready present
-                                  showAlertDialog(
+                                  popAlert(
                                       context,
                                       "PRESENT",
                                       "Entry already present, can not add",
-                                      Icon(Icons.person_search_rounded))
+                                      Icon(Icons.person_search_rounded),
+                                      1)
                                 }
                               else
                                 {
@@ -236,8 +237,8 @@ class _inputInfoState extends State<inputInfo> {
                                       'waterGiven': false,
                                     },
                                   ),
-                                  showAlertDialog(context, titleSuccess,
-                                      subtitleSuccess, getRightIcon())
+                                  popAlert(context, titleSuccess,
+                                      subtitleSuccess, getRightIcon(), 1)
                                 }
                             },
                           );
@@ -277,8 +278,8 @@ class _inputInfoState extends State<inputInfo> {
                                       'totalOut': 0,
                                     },
                                   ),
-                                  showAlertDialog(context, titleSuccess,
-                                      subtitleSuccess, getRightIcon())
+                                  popAlert(context, titleSuccess,
+                                      subtitleSuccess, getRightIcon(), 1)
                                 }
                             },
                           );
