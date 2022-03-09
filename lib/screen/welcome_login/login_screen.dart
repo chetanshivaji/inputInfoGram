@@ -88,32 +88,53 @@ class _LoginScreenState extends State<LoginScreen> {
                 elevation: 5.0,
                 child: MaterialButton(
                   onPressed: () async {
+                    String adminMail = "";
                     //Implement registration functionality.
                     try {
-                      final newUser = await _auth.signInWithEmailAndPassword(
-                          email: email, password: password);
-                      if (newUser != null) {
-                        userMail = email;
+                      try {
+                        //check if email trying to login is admin.
+                        await FirebaseFirestore.instance
+                            .collection("users")
+                            .doc(email)
+                            .get()
+                            .then(
+                          (value) {
+                            var y = value.data();
+                            adminVillage = y!["village"];
+                            adminPin = y["pin"];
+                          },
+                        );
+                        adminMail = await FirebaseFirestore.instance
+                            .collection(adminVillage + adminPin)
+                            .doc("admin")
+                            .get()
+                            .then(
+                          (value) {
+                            var y = value.data();
+                            return y!["adminMail"];
+                          },
+                        );
+                      } catch (e) {
+                        print(e);
+                      }
+                      if (adminMail == email) {
                         try {
-                          await FirebaseFirestore.instance
-                              .collection("users")
-                              .doc(email)
-                              .get()
-                              .then(
-                            (value) {
-                              var y = value.data();
-                              adminVillage = y!["village"];
-                              adminPin = y["pin"];
-                              return y["name"];
-                            },
-                          );
+                          final newUser =
+                              await _auth.signInWithEmailAndPassword(
+                                  email: email, password: password);
+                          if (newUser != null) {
+                            userMail = email;
+                            Navigator.pushNamed(context, MyApp.id);
+                            //showRegLoginAlertDialogSuccess(context,
+                            //  kTitleLoginSuccess, kSubTitleLoginSuccess);
+                          }
                         } catch (e) {
                           print(e);
                         }
-                        Navigator.pushNamed(context, MyApp.id);
+                      } else {
+                        showRegLoginAlertDialogFail(context, kTitleFail,
+                            "admin only can login in here");
                       }
-                      showRegLoginAlertDialogSuccess(
-                          context, kTitleLoginSuccess, kSubTitleLoginSuccess);
                     } catch (e) {
                       showRegLoginAlertDialogFail(
                           context, kTitleFail, e.toString());

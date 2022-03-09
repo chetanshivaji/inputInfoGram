@@ -26,16 +26,19 @@ Future<List<String>> getLoggedInUserVillagePin() async {
   String? email = FirebaseAuth.instance.currentUser!.email;
   String village = "";
   String pin = "";
-
-  await FirebaseFirestore.instance.collection('users').doc(email).get().then(
-    (value) {
-      var y = value.data();
-      village = y!['village'];
-      pin = y['pin'];
-      lsVillagePin.add(village);
-      lsVillagePin.add(pin);
-    },
-  );
+  try {
+    await FirebaseFirestore.instance.collection('users').doc(email).get().then(
+      (value) {
+        var y = value.data();
+        village = y!['village'];
+        pin = y['pin'];
+        lsVillagePin.add(village);
+        lsVillagePin.add(pin);
+      },
+    );
+  } catch (e) {
+    print(e);
+  }
   return lsVillagePin;
 }
 
