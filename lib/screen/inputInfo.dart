@@ -23,6 +23,7 @@ class _inputInfoState extends State<inputInfo> {
 
   @override
   Widget build(BuildContext context) {
+    bool pressed = false;
     return Scaffold(
       appBar: AppBar(
         title: Text("Add New Person to GramDB"),
@@ -187,7 +188,9 @@ class _inputInfoState extends State<inputInfo> {
                   onPressed: () async {
                     var formulaRef;
                     // Validate returns true if the form is valid, or false otherwise.
-                    if (_formKeyInputForm.currentState!.validate()) {
+                    if (_formKeyInputForm.currentState!.validate() &&
+                        pressed == false) {
+                      pressed = true;
                       // If the form is valid, display a snackbar. In the real world,
                       // you'd often call a server or save the information in a database.
                       ScaffoldMessenger.of(context).showSnackBar(

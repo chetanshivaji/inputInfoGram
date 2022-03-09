@@ -28,6 +28,7 @@ class _removeInfoState extends State<removeInfo> {
 
   @override
   Widget build(BuildContext context) {
+    bool pressed = false;
     return Scaffold(
       appBar: AppBar(
         title: Text("Remove Person from GramDB"),
@@ -166,7 +167,9 @@ class _removeInfoState extends State<removeInfo> {
                 child: ElevatedButton(
                   onPressed: () async {
                     // Validate returns true if the form is valid, or false otherwise.
-                    if (_formKeyremoveForm.currentState!.validate()) {
+                    if (_formKeyremoveForm.currentState!.validate() &&
+                        pressed == false) {
+                      pressed = true;
                       // If the form is valid, display a snackbar. In the real world,
                       // you'd often call a server or save the information in a database.
                       ScaffoldMessenger.of(context).showSnackBar(
