@@ -185,6 +185,7 @@ class _inputInfoState extends State<inputInfo> {
               child: Center(
                 child: ElevatedButton(
                   onPressed: () async {
+                    var formulaRef;
                     // Validate returns true if the form is valid, or false otherwise.
                     if (_formKeyInputForm.currentState!.validate()) {
                       // If the form is valid, display a snackbar. In the real world,
@@ -237,24 +238,18 @@ class _inputInfoState extends State<inputInfo> {
                                       'waterGiven': false,
                                     },
                                   ),
-                                  popAlert(context, titleSuccess,
-                                      subtitleSuccess, getRightIcon(), 1)
-                                }
-                            },
-                          );
+                                  //START create Formula in each year once
+                                  formulaRef = FirebaseFirestore.instance
+                                      .collection(ls[0] + ls[1])
+                                      .doc(mainDb)
+                                      .collection('formula')
+                                      .doc('calculation'),
 
-                      //START create Formula in each year once
-                      var formulaRef = await FirebaseFirestore.instance
-                          .collection(ls[0] + ls[1])
-                          .doc(mainDb)
-                          .collection('formula')
-                          .doc('calculation');
-
-                      formulaRef.get().then(
-                            (docSnapshot) => {
-                              if (docSnapshot.exists)
-                                {
-                                  /*
+                                  formulaRef.get().then(
+                                        (docSnapshot) => {
+                                          if (docSnapshot.exists)
+                                            {
+                                              /*
                                   //if allready present
                                   showAlertDialog(
                                       context,
@@ -262,28 +257,31 @@ class _inputInfoState extends State<inputInfo> {
                                       "Entry already present, can not add",
                                       Icon(Icons.person_search_rounded))
                                       */
-                                }
-                              else
-                                {
-                                  //if entry not present in db then add
-                                  FirebaseFirestore.instance
-                                      .collection(ls[0] + ls[1])
-                                      .doc(mainDb)
-                                      .collection('formula')
-                                      .doc('calculation')
-                                      .set(
-                                    {
-                                      'totalBalance': 0,
-                                      'totalIn': 0,
-                                      'totalOut': 0,
-                                    },
-                                  ),
+                                            }
+                                          else
+                                            {
+                                              //if entry not present in db then add
+                                              FirebaseFirestore.instance
+                                                  .collection(ls[0] + ls[1])
+                                                  .doc(mainDb)
+                                                  .collection('formula')
+                                                  .doc('calculation')
+                                                  .set(
+                                                {
+                                                  'totalBalance': 0,
+                                                  'totalIn': 0,
+                                                  'totalOut': 0,
+                                                },
+                                              ),
+                                            }
+                                        },
+                                      ),
+                                  //END create Formula in each year once
                                   popAlert(context, titleSuccess,
-                                      subtitleSuccess, getRightIcon(), 1)
+                                      subtitleSuccess, getRightIcon(), 2)
                                 }
                             },
                           );
-                      //END create Formula in each year once
                     }
                   },
                   child: const Text(
