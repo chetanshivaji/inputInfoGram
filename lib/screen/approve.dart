@@ -19,8 +19,8 @@ class _approveState extends State<approve> {
     return Scaffold(
       appBar: AppBar(
         title: Text("Approve/Remove"),
+        backgroundColor: clrAmber,
       ),
-      backgroundColor: clrAmber,
       body: Container(
         width: double.infinity,
         color: Colors.grey[350],

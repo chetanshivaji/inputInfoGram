@@ -190,8 +190,9 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                       String title = "Password mismatch";
                       String subtitle =
                           "password and re entered password should match";
-                      showAlertDialog(context, title, subtitle, getWrongIcon());
+                      showRegLoginAlertDialogFail(context, title, subtitle);
                       //TODO: return if mismatch passwords.
+                      return;
                     }
                     //Implement registration functionality.
                     try {
