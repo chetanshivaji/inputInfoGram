@@ -111,6 +111,9 @@ class _inputInfoState extends State<inputInfo> {
                   if (value == null || value.isEmpty) {
                     return 'Please mail ID';
                   }
+                  if (!isNumeric(value)) {
+                    return 'Please nubmers only';
+                  }
                   email = value;
                   return null;
                 },
@@ -154,6 +157,9 @@ class _inputInfoState extends State<inputInfo> {
                   if (value == null || value.isEmpty) {
                     return 'Please enter house tax amount';
                   }
+                  if (!isNumeric(value)) {
+                    return 'Please nubmers only';
+                  }
                   houseTax = int.parse(value);
                   return null;
                 },
@@ -173,6 +179,9 @@ class _inputInfoState extends State<inputInfo> {
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Please enter water tax amount';
+                  }
+                  if (!isNumeric(value)) {
+                    return 'Please nubmers only';
                   }
                   waterTax = int.parse(value);
                   return null;

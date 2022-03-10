@@ -48,6 +48,13 @@ Future<List<String>> getLoggedInUserVillagePin() async {
   return lsVillagePin;
 }
 
+bool isNumeric(String s) {
+  if (s == null) {
+    return false;
+  }
+  return double.tryParse(s) != null;
+}
+
 void popLogOutAlert(
     BuildContext context, String title, String subtitle, Widget imgRightWrong) {
   //shows alert dialog

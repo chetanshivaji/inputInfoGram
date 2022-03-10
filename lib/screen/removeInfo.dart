@@ -128,6 +128,9 @@ class _removeInfoState extends State<removeInfo> {
                   if (value.length != 10) {
                     return "Please enter 10 digits!";
                   }
+                  if (!isNumeric(value)) {
+                    return 'Please nubmers only';
+                  }
                   mobile = int.parse(value);
                   return null;
                 },

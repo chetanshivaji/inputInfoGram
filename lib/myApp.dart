@@ -10,7 +10,8 @@ class MyApp extends StatelessWidget {
   static String id = "myappscreen";
   MyApp({Key? key}) : super(key: key);
   final _auth = FirebaseAuth.instance;
-
+  String welcomeString =
+      "Welcome Admin! $userMail\n$access From $adminVillage $adminPin";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,24 +29,16 @@ class MyApp extends StatelessWidget {
           ),
         ],
       ),
-      body: Center(
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            const SizedBox(
-              width: 20.0,
-              height: 100.0,
-            ),
-            const Text(
-              '',
-              style: TextStyle(fontSize: 43.0),
-            ),
-            const SizedBox(
-              width: 20.0,
-              height: 100.0,
-            ),
-          ],
-        ),
+      body: Row(
+        children: <Widget>[
+          Text(
+            welcomeString,
+          ),
+          const SizedBox(
+            width: 20.0,
+            height: 100.0,
+          ),
+        ],
       ),
       drawer: Drawer(
         child: ListView(
