@@ -258,9 +258,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                             {'village': village, "pin": pin},
                           );
                           FirebaseFirestore.instance
-                              .collection(village + pin)
-                              .doc("pendingApproval")
-                              .collection("pending")
+                              .collection('users')
                               .doc(email)
                               .set(
                             {

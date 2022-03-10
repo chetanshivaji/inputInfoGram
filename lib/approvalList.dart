@@ -55,22 +55,12 @@ class _approvalListState extends State<approvalList> {
             onChanged: (String? newAccessValue) async {
               if (newAccessValue != access) {
                 //START update the access level in Db
-                var ls = await getLoggedInUserVillagePin();
+
                 await FirebaseFirestore.instance
-                    .collection(ls[0] + ls[1])
-                    .doc("pendingApproval")
-                    .collection("pending")
+                    .collection('users')
                     .doc(l.get("mail"))
                     .update({'accessLevel': newAccessValue});
                 //END update the access level in Db
-                /*
-                setState(
-                  () {
-                    //set access to new selected level
-                    //access = newAccessValue!;
-                  },
-                );
-                */
               }
             },
           ),
@@ -91,21 +81,16 @@ class _approvalListState extends State<approvalList> {
           IconButton(
             onPressed: () async {
               //approve Status.
-              var ls = await getLoggedInUserVillagePin();
               String mail = l.get("mail");
               bool statusApproved = l.get("approved");
               if (statusApproved == false) {
                 await FirebaseFirestore.instance
-                    .collection(ls[0] + ls[1])
-                    .doc("pendingApproval")
-                    .collection("pending")
+                    .collection('users')
                     .doc(mail)
                     .update({'approved': true});
               } else {
                 await FirebaseFirestore.instance
-                    .collection(ls[0] + ls[1])
-                    .doc("pendingApproval")
-                    .collection("pending")
+                    .collection('users')
                     .doc(mail)
                     .update({'approved': false});
               }
@@ -186,11 +171,7 @@ class _approvalListState extends State<approvalList> {
 
     String? email = FirebaseAuth.instance.currentUser!.email;
 
-    stm = FirebaseFirestore.instance
-        .collection(adminVillage + adminPin)
-        .doc("pendingApproval")
-        .collection("pending")
-        .snapshots();
+    stm = FirebaseFirestore.instance.collection('users').snapshots();
 
     return StreamBuilder<QuerySnapshot>(
       stream: stm,
