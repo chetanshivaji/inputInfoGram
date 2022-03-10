@@ -18,6 +18,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
+    bool pressed = false;
     return Scaffold(
       backgroundColor: Colors.white,
       body: Padding(
@@ -87,63 +88,66 @@ class _LoginScreenState extends State<LoginScreen> {
                 borderRadius: BorderRadius.all(Radius.circular(30.0)),
                 elevation: 5.0,
                 child: MaterialButton(
-                  onPressed: () async {
-                    String adminMail = "";
-                    //Implement registration functionality.
-                    try {
-                      try {
-                        //check if email trying to login is admin.
-                        await FirebaseFirestore.instance
-                            .collection("users")
-                            .doc(email)
-                            .get()
-                            .then(
-                          (value) {
-                            var y = value.data();
-                            adminVillage = y!["village"];
-                            adminPin = y["pin"];
-                          },
-                        );
-                        adminMail = await FirebaseFirestore.instance
-                            .collection(adminVillage + adminPin)
-                            .doc("admin")
-                            .get()
-                            .then(
-                          (value) {
-                            var y = value.data();
-                            return y!["adminMail"];
-                          },
-                        );
-                      } catch (e) {
-                        print(e);
-                      }
-                      if (adminMail == email) {
-                        try {
-                          final newUser =
-                              await _auth.signInWithEmailAndPassword(
-                                  email: email, password: password);
-                          if (newUser != null) {
-                            userMail = email;
-                            Navigator.pushNamed(context, MyApp.id);
-                          }
-                        } catch (e) {
-                          print(e);
-                        }
-                      } else {
-                        popAlert(context, kTitleFail, kSubTitleOnlyAdmin,
-                            getWrongIcon(), 2);
-                      }
-                    } catch (e) {
-                      popAlert(
-                          context, kTitleFail, e.toString(), getWrongIcon(), 2);
-                      return;
-                    }
-                  },
                   minWidth: 200.0,
                   height: 42.0,
                   child: Text(
                     'Log In',
                   ),
+                  onPressed: () async {
+                    if (pressed == false) {
+                      pressed = true;
+                      String adminMail = "";
+                      //Implement registration functionality.
+                      try {
+                        try {
+                          //check if email trying to login is admin.
+                          await FirebaseFirestore.instance
+                              .collection("users")
+                              .doc(email)
+                              .get()
+                              .then(
+                            (value) {
+                              var y = value.data();
+                              adminVillage = y!["village"];
+                              adminPin = y["pin"];
+                            },
+                          );
+                          adminMail = await FirebaseFirestore.instance
+                              .collection(adminVillage + adminPin)
+                              .doc("admin")
+                              .get()
+                              .then(
+                            (value) {
+                              var y = value.data();
+                              return y!["adminMail"];
+                            },
+                          );
+                        } catch (e) {
+                          print(e);
+                        }
+                        if (adminMail == email) {
+                          try {
+                            final newUser =
+                                await _auth.signInWithEmailAndPassword(
+                                    email: email, password: password);
+                            if (newUser != null) {
+                              userMail = email;
+                              Navigator.pushNamed(context, MyApp.id);
+                            }
+                          } catch (e) {
+                            print(e);
+                          }
+                        } else {
+                          popAlert(context, kTitleFail, kSubTitleOnlyAdmin,
+                              getWrongIcon(), 2);
+                        }
+                      } catch (e) {
+                        popAlert(context, kTitleFail, e.toString(),
+                            getWrongIcon(), 2);
+                        return;
+                      }
+                    }
+                  },
                 ),
               ),
             ),
