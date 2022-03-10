@@ -29,3 +29,18 @@ var items = [
   "2021",
   "2022",
 ];
+
+enum accessLevel {
+  zeroAccess,
+  viewer,
+  collector,
+  superUser,
+}
+String access = "select";
+var accessItems = [
+  "select",
+  "Viewer",
+  "Collector",
+  "Spender",
+  "SuperUser",
+];

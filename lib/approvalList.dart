@@ -1,7 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:inputgram/consts.dart';
 import 'package:inputgram/util.dart';
-
+import 'package:inputgram/consts.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class approvalList extends StatefulWidget {
@@ -24,7 +25,65 @@ class _approvalListState extends State<approvalList> {
       List<DataCell> ldataCell = [];
 
       ldataCell.add(DataCell(Text(l.get("mail"))));
-      ldataCell.add(DataCell(Text(l.get("accessLevel").toString())));
+
+      ldataCell.add(
+        DataCell(
+          DropdownButton(
+            borderRadius: BorderRadius.circular(12.0),
+            dropdownColor: clrAmber,
+
+            alignment: Alignment.topLeft,
+
+            // Initial Value
+            value: access,
+            // Down Arrow Icon
+            icon: Icon(
+              Icons.sort,
+              color: clrAmber,
+            ),
+            // Array list of items
+            items: accessItems.map(
+              (String accessItems) {
+                return DropdownMenuItem(
+                  value: accessItems,
+                  child: Text(accessItems),
+                );
+              },
+            ).toList(),
+            // After selecting the desired option,it will
+            // change button value to selected value
+            onChanged: (String? newAccessValue) async {
+              if (newAccessValue != access) {
+                //START update the access level in Db
+                var ls = await getLoggedInUserVillagePin();
+                await FirebaseFirestore.instance
+                    .collection(ls[0] + ls[1])
+                    .doc("pendingApproval")
+                    .collection("pending")
+                    .doc(l.get("mail"))
+                    .update({'accessLevel': newAccessValue});
+                //END update the access level in Db
+                /*
+                setState(
+                  () {
+                    //set access to new selected level
+                    //access = newAccessValue!;
+                  },
+                );
+                */
+              }
+            },
+          ),
+        ),
+      );
+      ldataCell.add(
+        DataCell(
+          Text(
+            l.get("accessLevel"),
+            style: TextStyle(color: Colors.blue, fontWeight: FontWeight.bold),
+          ),
+        ),
+      );
       ldataCell.add(DataCell(Text(l.get("approved").toString())));
 
       ldataCell.add(
@@ -56,7 +115,7 @@ class _approvalListState extends State<approvalList> {
               color: Colors.black,
             ),
             splashColor: Colors.blue,
-            tooltip: "Send notification to Pay",
+            tooltip: "Toggle to approve/disapprove user",
           ),
         ),
       );
@@ -92,13 +151,19 @@ class _approvalListState extends State<approvalList> {
             ),
             DataColumn(
               label: Text(
-                'AccessLevel',
+                '',
                 style: getStyle("PENDING"),
               ),
             ),
             DataColumn(
               label: Text(
                 'Status',
+                style: getStyle("PENDING"),
+              ),
+            ),
+            DataColumn(
+              label: Text(
+                'Access',
                 style: getStyle("PENDING"),
               ),
             ),

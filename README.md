@@ -2,6 +2,8 @@
 This is first app which should register a village and admin, add/remove new entry in database yearwise.
 # Tracker
 #TODO:
+1. Role play, field study, types of users on field, existing software study.
+2. Report generation.
 1. Make all await statements in try catch
 2. Remove all print statement and put pop up message.
 1. Get admin on board.
