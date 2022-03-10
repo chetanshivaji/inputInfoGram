@@ -211,48 +211,45 @@ class _inputInfoState extends State<inputInfo> {
                           .doc(mobile.toString());
 
                       usersRef.get().then(
-                            (docSnapshot) => {
-                              if (docSnapshot.exists)
-                                {
-                                  //if allready present
-                                  popAlert(
-                                      context,
-                                      "PRESENT",
-                                      "Entry already present, can not add",
-                                      Icon(Icons.person_search_rounded),
-                                      1)
-                                }
-                              else
-                                {
-                                  //if entry not present in db then add
-                                  FirebaseFirestore.instance
-                                      .collection(ls[0] + ls[1])
-                                      .doc(mainDb)
-                                      .collection(mainDb + dropdownvalue)
-                                      .doc(mobile.toString())
-                                      .set(
-                                    {
-                                      'house': houseTax,
-                                      'houseGiven': false,
-                                      'email': email,
-                                      'mobile': mobile,
-                                      'name': name,
-                                      'water': waterTax,
-                                      'waterGiven': false,
-                                    },
-                                  ),
-                                  //START create Formula in each year once
-                                  formulaRef = FirebaseFirestore.instance
-                                      .collection(ls[0] + ls[1])
-                                      .doc(mainDb)
-                                      .collection('formula')
-                                      .doc('calculation'),
+                        (docSnapshot) async {
+                          if (docSnapshot.exists) {
+                            //if allready present
+                            popAlert(
+                                context,
+                                "PRESENT",
+                                "Entry already present, can not add",
+                                Icon(Icons.person_search_rounded),
+                                1);
+                          } else {
+                            //if entry not present in db then add
+                            await FirebaseFirestore.instance
+                                .collection(ls[0] + ls[1])
+                                .doc(mainDb)
+                                .collection(mainDb + dropdownvalue)
+                                .doc(mobile.toString())
+                                .set(
+                              {
+                                'house': houseTax,
+                                'houseGiven': false,
+                                'email': email,
+                                'mobile': mobile,
+                                'name': name,
+                                'water': waterTax,
+                                'waterGiven': false,
+                              },
+                            );
+                            //START create Formula in each year once
+                            formulaRef = FirebaseFirestore.instance
+                                .collection(ls[0] + ls[1])
+                                .doc(mainDb)
+                                .collection('formula')
+                                .doc('calculation');
 
-                                  formulaRef.get().then(
-                                        (docSnapshot) => {
-                                          if (docSnapshot.exists)
-                                            {
-                                              /*
+                            formulaRef.get().then(
+                                  (docSnapshot) => {
+                                    if (docSnapshot.exists)
+                                      {
+                                        /*
                                   //if allready present
                                   showAlertDialog(
                                       context,
@@ -260,31 +257,31 @@ class _inputInfoState extends State<inputInfo> {
                                       "Entry already present, can not add",
                                       Icon(Icons.person_search_rounded))
                                       */
-                                            }
-                                          else
-                                            {
-                                              //if entry not present in db then add
-                                              FirebaseFirestore.instance
-                                                  .collection(ls[0] + ls[1])
-                                                  .doc(mainDb)
-                                                  .collection('formula')
-                                                  .doc('calculation')
-                                                  .set(
-                                                {
-                                                  'totalBalance': 0,
-                                                  'totalIn': 0,
-                                                  'totalOut': 0,
-                                                },
-                                              ),
-                                            }
-                                        },
-                                      ),
-                                  //END create Formula in each year once
-                                  popAlert(context, titleSuccess,
-                                      subtitleSuccess, getRightIcon(), 2)
-                                }
-                            },
-                          );
+                                      }
+                                    else
+                                      {
+                                        //if entry not present in db then add
+                                        FirebaseFirestore.instance
+                                            .collection(ls[0] + ls[1])
+                                            .doc(mainDb)
+                                            .collection('formula')
+                                            .doc('calculation')
+                                            .set(
+                                          {
+                                            'totalBalance': 0,
+                                            'totalIn': 0,
+                                            'totalOut': 0,
+                                          },
+                                        ),
+                                      }
+                                  },
+                                );
+                            //END create Formula in each year once
+                            popAlert(context, titleSuccess, subtitleSuccess,
+                                getRightIcon(), 2);
+                          }
+                        },
+                      );
                     }
                   },
                   child: const Text(

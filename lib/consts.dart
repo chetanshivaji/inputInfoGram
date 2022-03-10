@@ -31,6 +31,13 @@ var items = [
 ];
 
 String access = "select";
+enum accessLevel {
+  select,
+  Viewer,
+  Collector,
+  Spender,
+  SuperUser,
+}
 var accessItems = [
   "select",
   "Viewer",

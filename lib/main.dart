@@ -3,7 +3,7 @@ import 'package:inputgram/screen/removeInfo.dart';
 import 'screen/inputInfo.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'myApp.dart';
-import 'screen/registerInfo.dart';
+
 import 'screen/approve.dart';
 import 'screen/welcome_login/login_screen.dart';
 import 'screen/welcome_login/registration_screen.dart';
@@ -34,7 +34,6 @@ void main() async {
         MyApp.id: (context) => MyApp(),
         inputInfo.id: (context) => inputInfo(),
         removeInfo.id: (context) => removeInfo(),
-        registerInfo.id: (context) => registerInfo(),
         approve.id: (context) => approve(),
         WelcomeScreen.id: (context) => WelcomeScreen(),
         LoginScreen.id: (context) => LoginScreen(),

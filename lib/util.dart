@@ -63,8 +63,9 @@ void popLogOutAlert(
     child: Text("OK"),
     onPressed: () {
       FirebaseAuth.instance.signOut();
-      Navigator.pop(context);
-      Navigator.pop(context);
+      Navigator.pop(context); //main screen of app
+      Navigator.pop(context); //login or registeration screen
+      Navigator.pop(context); //welcome screen
     },
   );
 
