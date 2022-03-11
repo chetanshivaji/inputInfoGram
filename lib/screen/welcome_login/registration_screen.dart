@@ -23,29 +23,32 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
 
   Future<void> setAdminUserInfoInDb(
       String village, String pin, String address, String email) async {
+    adminVillage = village;
+    adminPin = pin;
+    access = accessItems[accessLevel.SuperUser.index];
     await FirebaseFirestore.instance
         .collection(village + pin)
-        .doc("villageInfo")
+        .doc(docVillageInfo)
         .set(
       {
-        'village': village,
-        'pin': pin,
-        'address': address,
-        'adminMail': email,
+        keyVillage: village,
+        keyPin: pin,
+        keyAddress: address,
+        keyAdminMail: email,
       },
     );
 
     //Add entry of new user to users
-    await FirebaseFirestore.instance.collection("users").doc(email).set(
+    await FirebaseFirestore.instance.collection(collUsers).doc(email).set(
       {
-        'village': village,
-        "pin": pin,
+        keyVillage: village,
+        keyPin: pin,
         //by default approved for admin
-        'approved': true,
+        keyApproved: true,
         //access level set by admin decided type of use, eg .viewer, collector, admin, spender
-        'accessLevel': accessItems[accessLevel.SuperUser.index],
-        'mail': email,
-        'isAdmin': true,
+        keyAccessLevel: accessItems[accessLevel.SuperUser.index],
+        keyMail: email,
+        keyIsAdmin: true,
       },
     );
     return;
@@ -72,15 +75,15 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   keyboardType: TextInputType.emailAddress,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
-                      return 'Please enter email';
+                      return msgEnterEmail;
                     }
                     email = value;
                     return null;
                   },
                   decoration: InputDecoration(
                     icon: Icon(Icons.email),
-                    labelText: "AdminEmail *",
-                    hintText: 'Enter admin email',
+                    labelText: labelAdminEmail,
+                    hintText: msgEnterEmail,
                     contentPadding:
                         EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
                     border: OutlineInputBorder(
@@ -108,15 +111,15 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   obscureText: true,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
-                      return 'Please enter minimum 6 digit password';
+                      return msgEnterPassword;
                     }
                     password = value;
                     return null;
                   },
                   decoration: InputDecoration(
                     icon: Icon(Icons.password),
-                    labelText: "AdminPassword *",
-                    hintText: 'Enter admin password',
+                    labelText: labelAdminPassword,
+                    hintText: msgEnterPassword,
                     contentPadding:
                         EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
                     border: OutlineInputBorder(
@@ -144,15 +147,15 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   obscureText: true,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
-                      return 'Please enter minimum 6 digit password';
+                      return msgReEnterPassword;
                     }
                     reEnterPassword = value;
                     return null;
                   },
                   decoration: InputDecoration(
                     icon: Icon(Icons.password),
-                    labelText: "AdminPassword *",
-                    hintText: 'Re enter admin password again',
+                    labelText: labelAdminPassword,
+                    hintText: msgReEnterPassword,
                     contentPadding:
                         EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
                     border: OutlineInputBorder(
@@ -179,15 +182,15 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   keyboardType: TextInputType.text,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
-                      return 'Please enter village name';
+                      return msgEnterVillageName;
                     }
                     village = value;
                     return null;
                   },
                   decoration: InputDecoration(
                     icon: Icon(Icons.holiday_village),
-                    labelText: "Village *",
-                    hintText: 'Enter village name',
+                    labelText: labelVillage,
+                    hintText: msgEnterVillageName,
                     contentPadding:
                         EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
                     border: OutlineInputBorder(
@@ -214,10 +217,10 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   keyboardType: TextInputType.number,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
-                      return 'Please enter village pin';
+                      return msgEnterVillagePin;
                     }
                     if (!isNumeric(value)) {
-                      return 'Please nubmers only';
+                      return msgOnlyNumber;
                     }
 
                     pin = value;
@@ -225,8 +228,8 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   },
                   decoration: InputDecoration(
                     icon: Icon(Icons.pin),
-                    labelText: "Pin *",
-                    hintText: 'Enter pin',
+                    labelText: labelPin,
+                    hintText: msgEnterVillagePin,
                     contentPadding:
                         EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
                     border: OutlineInputBorder(
@@ -253,15 +256,15 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   keyboardType: TextInputType.text,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
-                      return 'Please enter village address';
+                      return msgEnterVillageAddress;
                     }
                     address = value;
                     return null;
                   },
                   decoration: InputDecoration(
                     icon: Icon(Icons.holiday_village),
-                    labelText: "VillageAddress *",
-                    hintText: 'Enter village address',
+                    labelText: labelVillageAddress,
+                    hintText: msgEnterVillageAddress,
                     contentPadding:
                         EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
                     border: OutlineInputBorder(
@@ -293,7 +296,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                     minWidth: 200.0,
                     height: 42.0,
                     child: Text(
-                      'Register',
+                      labelRegister,
                       style: TextStyle(color: Colors.white),
                     ),
                     onPressed: pressed

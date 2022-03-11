@@ -18,7 +18,7 @@ class _approveState extends State<approve> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Approve/Remove"),
+        title: Text(appBarHeadingApproveRemove),
         backgroundColor: clrAmber,
       ),
       body: Container(
@@ -30,7 +30,7 @@ class _approveState extends State<approve> {
             Padding(
               padding: EdgeInsets.only(top: 20),
             ),
-            Text("Please approve or remove clicking toggle icon"),
+            Text(scafBeginInfoApproveRemove),
             Padding(
               padding: EdgeInsets.only(top: 20),
             ),

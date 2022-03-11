@@ -31,7 +31,7 @@ class _removeInfoState extends State<removeInfo> {
     bool pressed = false;
     return Scaffold(
       appBar: AppBar(
-        title: Text("Remove Person from GramDB"),
+        title: Text(appBarHeadingRemoveInfo),
         backgroundColor: clrRed,
       ),
       body: Form(
@@ -45,7 +45,7 @@ class _removeInfoState extends State<removeInfo> {
             ListTile(
               leading: Icon(Icons.date_range),
               title: Text(
-                "Year",
+                labelYear,
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),
               trailing: DropdownButton(
@@ -99,8 +99,8 @@ class _removeInfoState extends State<removeInfo> {
                           .then(
                         (value) {
                           var y = value.data();
-                          nameEntry = y!["name"];
-                          emailEntry = y["email"];
+                          nameEntry = y![keyName];
+                          emailEntry = y[keyEmail];
                         },
                       );
                     } catch (e) {
@@ -119,17 +119,17 @@ class _removeInfoState extends State<removeInfo> {
                 decoration: InputDecoration(
                     border: OutlineInputBorder(),
                     icon: Icon(Icons.mobile_friendly),
-                    hintText: "Enter mobile Number",
-                    labelText: "number *"),
+                    hintText: msgEnterMobileNumber,
+                    labelText: labelMobile),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
-                    return 'Please enter number';
+                    return msgEnterMobileNumber;
                   }
                   if (value.length != 10) {
-                    return "Please enter 10 digits!";
+                    return msgTenDigitNumber;
                   }
                   if (!isNumeric(value)) {
-                    return 'Please nubmers only';
+                    return msgOnlyNumber;
                   }
                   mobile = int.parse(value);
                   return null;
@@ -143,7 +143,7 @@ class _removeInfoState extends State<removeInfo> {
               child: ListTile(
                   leading: Icon(Icons.person),
                   title: Text(
-                    "Name = $name",
+                    "$labelName = $name",
                     style: TextStyle(
                       fontSize: 20.0,
                       fontWeight: FontWeight.bold,
@@ -157,7 +157,7 @@ class _removeInfoState extends State<removeInfo> {
               child: ListTile(
                 leading: Icon(Icons.attach_money),
                 title: Text(
-                  "Email = $email",
+                  "$labelEmail = $email",
                   style: TextStyle(
                     fontSize: 20.0,
                     fontWeight: FontWeight.bold,
@@ -176,8 +176,8 @@ class _removeInfoState extends State<removeInfo> {
                       // If the form is valid, display a snackbar. In the real world,
                       // you'd often call a server or save the information in a database.
                       ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          content: Text('Processing Data'),
+                        SnackBar(
+                          content: Text(msgProcessingData),
                         ),
                       );
                       /*
@@ -206,15 +206,15 @@ class _removeInfoState extends State<removeInfo> {
                             popAlert(context, titleSuccess, subtitleSuccess,
                                 getRightIcon(), 2);
                           } else {
-                            popAlert(context, "Allready Removed", "",
+                            popAlert(context, msgAlreadyRemoved, "",
                                 getWrongIcon(), 2);
                           }
                         },
                       );
                     }
                   },
-                  child: const Text(
-                    'Submit',
+                  child: Text(
+                    bLabelSubmit,
                   ),
                 ),
               ),

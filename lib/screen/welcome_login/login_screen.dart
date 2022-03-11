@@ -38,15 +38,15 @@ class _LoginScreenState extends State<LoginScreen> {
                   keyboardType: TextInputType.emailAddress,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
-                      return 'Please enter email';
+                      return msgEnterEmail;
                     }
                     email = value;
                     return null;
                   },
                   decoration: InputDecoration(
                     icon: Icon(Icons.email),
-                    labelText: "Email *",
-                    hintText: 'Enter your email',
+                    labelText: labelAdminEmail,
+                    hintText: msgEnterEmail,
                     contentPadding:
                         EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
                     border: OutlineInputBorder(
@@ -74,15 +74,15 @@ class _LoginScreenState extends State<LoginScreen> {
                   keyboardType: TextInputType.text,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
-                      return 'Please enter password minimum 6 character';
+                      return msgEnterPassword;
                     }
                     password = value;
                     return null;
                   },
                   decoration: InputDecoration(
                     icon: Icon(Icons.password),
-                    labelText: "Password *",
-                    hintText: 'Enter your password.',
+                    labelText: labelAdminPassword,
+                    hintText: msgEnterPassword,
                     contentPadding:
                         EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
                     border: OutlineInputBorder(
@@ -114,7 +114,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     minWidth: 200.0,
                     height: 42.0,
                     child: Text(
-                      'Log In',
+                      labelLogin,
                     ),
                     onPressed: pressed
                         ? () async {
@@ -124,7 +124,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               try {
                                 //Only admin should login
                                 adminMail = await FirebaseFirestore.instance
-                                    .collection("users")
+                                    .collection(collUsers)
                                     .doc(email)
                                     .get()
                                     .then(
@@ -133,22 +133,22 @@ class _LoginScreenState extends State<LoginScreen> {
                                       //if allready present
                                       popAlert(
                                         context,
-                                        "No Present",
-                                        "Email not present",
+                                        kTitleNotPresent,
+                                        kSubTitleEmailPresent,
                                         getWrongIcon(),
                                         2,
                                       );
                                       return "";
                                     } else {
                                       var y = value.data();
-                                      adminVillage = y!["village"];
-                                      adminPin = y["pin"];
-                                      access = y["access"];
+                                      adminVillage = y![keyVillage];
+                                      adminPin = y[keyPin];
+                                      access = y[keyAccess];
 
-                                      if (y["isAdmin"]) {
-                                        return y["mail"];
+                                      if (y[keyIsAdmin]) {
+                                        return y[keyMail];
                                       } else {
-                                        return "notAdmin";
+                                        return msgNotAdmin;
                                       }
                                     }
                                   },

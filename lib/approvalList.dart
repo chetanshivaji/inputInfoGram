@@ -2,7 +2,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:inputgram/consts.dart';
 import 'package:inputgram/util.dart';
-import 'package:inputgram/consts.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class approvalList extends StatefulWidget {
@@ -24,7 +23,7 @@ class _approvalListState extends State<approvalList> {
     for (var l in docSnapshot) {
       List<DataCell> ldataCell = [];
 
-      ldataCell.add(DataCell(Text(l.get("mail"))));
+      ldataCell.add(DataCell(Text(l.get(keyMail))));
 
       ldataCell.add(
         DataCell(
@@ -57,9 +56,9 @@ class _approvalListState extends State<approvalList> {
                 //START update the access level in Db
 
                 await FirebaseFirestore.instance
-                    .collection('users')
-                    .doc(l.get("mail"))
-                    .update({'accessLevel': newAccessValue});
+                    .collection(collUsers)
+                    .doc(l.get(keyMail))
+                    .update({keyAccessLevel: newAccessValue});
                 //END update the access level in Db
               }
             },
@@ -69,30 +68,30 @@ class _approvalListState extends State<approvalList> {
       ldataCell.add(
         DataCell(
           Text(
-            l.get("accessLevel"),
+            l.get(keyAccessLevel),
             style: TextStyle(color: Colors.blue, fontWeight: FontWeight.bold),
           ),
         ),
       );
-      ldataCell.add(DataCell(Text(l.get("approved").toString())));
+      ldataCell.add(DataCell(Text(l.get(keyApproved).toString())));
 
       ldataCell.add(
         DataCell(
           IconButton(
             onPressed: () async {
               //approve Status.
-              String mail = l.get("mail");
-              bool statusApproved = l.get("approved");
+              String mail = l.get(keyMail);
+              bool statusApproved = l.get(keyApproved);
               if (statusApproved == false) {
                 await FirebaseFirestore.instance
-                    .collection('users')
+                    .collection(collUsers)
                     .doc(mail)
-                    .update({'approved': true});
+                    .update({keyApproved: true});
               } else {
                 await FirebaseFirestore.instance
-                    .collection('users')
+                    .collection(collUsers)
                     .doc(mail)
-                    .update({'approved': false});
+                    .update({keyApproved: false});
               }
             },
             icon: Icon(
@@ -100,7 +99,7 @@ class _approvalListState extends State<approvalList> {
               color: Colors.black,
             ),
             splashColor: Colors.blue,
-            tooltip: "Toggle to approve/disapprove user",
+            tooltip: msgToogleToApproveDis,
           ),
         ),
       );
@@ -130,32 +129,32 @@ class _approvalListState extends State<approvalList> {
           columns: <DataColumn>[
             DataColumn(
               label: Text(
-                'Email',
-                style: getStyle("PENDING"),
+                tableHeadingEmail,
+                style: getStyle(actPending),
               ),
             ),
             DataColumn(
               label: Text(
                 '',
-                style: getStyle("PENDING"),
+                style: getStyle(actPending),
               ),
             ),
             DataColumn(
               label: Text(
-                'Status',
-                style: getStyle("PENDING"),
+                tableHeadingStatus,
+                style: getStyle(actPending),
               ),
             ),
             DataColumn(
               label: Text(
-                'Access',
-                style: getStyle("PENDING"),
+                tableHeadingAccess,
+                style: getStyle(actPending),
               ),
             ),
             DataColumn(
               label: Text(
-                'ChangeStatus',
-                style: getStyle("PENDING"),
+                tableHeadingChangeStatus,
+                style: getStyle(actPending),
               ),
             ),
           ],
@@ -171,18 +170,18 @@ class _approvalListState extends State<approvalList> {
 
     String? email = FirebaseAuth.instance.currentUser!.email;
 
-    stm = FirebaseFirestore.instance.collection('users').snapshots();
+    stm = FirebaseFirestore.instance.collection(collUsers).snapshots();
 
     return StreamBuilder<QuerySnapshot>(
       stream: stm,
       //Async snapshot.data-> query snapshot.docs -> docuemnt snapshot,.data["key"]
       builder: (context, snapshot) {
         if (!snapshot.hasData) {
-          return Text("There is no expense");
+          return Text(msgNoExpense);
         }
 
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return Text("loading");
+          return Text(msgLoading);
         }
 
         return getApprovalTable(context, snapshot);

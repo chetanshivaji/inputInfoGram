@@ -1,21 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:inputgram/consts.dart';
 
 String userMail = "";
-String registerSubtitleSuccess = "Register success!";
-String registerSuccess = "Admin and village regsitered successfully";
-String kTitleFail = "Login/registeration failed";
-String kSubtitleFail = "Try again with correct username & password";
-String kTitleLoginSuccess = "login success";
-String kSubTitleLoginSuccess = "login success";
-String kSubTitleOnlyAdmin = "Only Admin allowed";
-String titlePasswordMismatch = "Password mismatch";
-String subtitlePasswordMismatch =
-    "password and re entered password should match";
-
-String kTitleEntryRemoved = "Entry Removed";
-
 String adminVillage = "";
 String adminPin = "";
 
@@ -23,7 +11,7 @@ TextStyle getTableHeadingTextStyle() {
   return TextStyle(
     fontSize: 15,
     fontWeight: FontWeight.bold,
-    fontFamily: "RobotoMono",
+    fontFamily: tableHeadingFontFamily,
   );
 }
 
@@ -33,11 +21,15 @@ Future<List<String>> getLoggedInUserVillagePin() async {
   String village = "";
   String pin = "";
   try {
-    await FirebaseFirestore.instance.collection('users').doc(email).get().then(
+    await FirebaseFirestore.instance
+        .collection(collUsers)
+        .doc(email)
+        .get()
+        .then(
       (value) {
         var y = value.data();
-        village = y!['village'];
-        pin = y['pin'];
+        village = y![keyVillage];
+        pin = y[keyPin];
         lsVillagePin.add(village);
         lsVillagePin.add(pin);
       },
@@ -60,14 +52,14 @@ void popLogOutAlert(
   //shows alert dialog
   //paramaters, title, subtitle, imgRightWrong:image with right or wrong icon, popCount: how many times navigate back
   Widget cancelButton = TextButton(
-    child: Text("cancel"),
+    child: Text(optCancel),
     onPressed: () {
       Navigator.pop(context);
     },
   );
 
   Widget okButton = TextButton(
-    child: Text("OK"),
+    child: Text(optOk),
     onPressed: () {
       FirebaseAuth.instance.signOut();
       Navigator.pop(context); //main screen of app
@@ -93,11 +85,11 @@ void popLogOutAlert(
 }
 
 TextStyle getStyle(String type) {
-  if (type == "IN") {
+  if (type == actIn) {
     return TextStyle(
       color: Colors.green[900],
     );
-  } else if (type == "PENDING") {
+  } else if (type == actPending) {
     return TextStyle(
       color: Colors.amber[900],
     );
@@ -138,7 +130,7 @@ void popAlert(BuildContext context, String title, String subtitle,
   //paramaters, title, subtitle, imgRightWrong:image with right or wrong icon, popCount: how many times navigate back
 
   Widget okButton = TextButton(
-    child: Text("OK"),
+    child: Text(optOk),
     onPressed: () {
       for (int i = 0; i < popCount; i++) {
         Navigator.pop(context);

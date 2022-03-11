@@ -5,25 +5,24 @@ import 'package:inputgram/screen/inputInfo.dart';
 import 'package:inputgram/screen/removeInfo.dart';
 import 'consts.dart';
 import 'package:inputgram/util.dart';
+import 'package:inputgram/consts.dart';
 
 class MyApp extends StatelessWidget {
   static String id = "myappscreen";
   MyApp({Key? key}) : super(key: key);
   final _auth = FirebaseAuth.instance;
-  String welcomeString =
-      "Welcome Admin! $userMail\n$access From $adminVillage $adminPin";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Admin, Register, approve, make db'),
+        title: Text(appBarMainAppInfo),
         actions: <Widget>[
           IconButton(
-            tooltip: "Log out",
+            tooltip: kTitleSignOut,
             onPressed: () {
               //logout
-              popLogOutAlert(context, "SignOut", "Do you want to log out?",
-                  Icon(Icons.power_settings_new));
+              popLogOutAlert(context, kTitleSignOut,
+                  kSubtitleLogOutConfirmation, Icon(Icons.power_settings_new));
             },
             icon: Icon(Icons.power_settings_new),
           ),
@@ -32,7 +31,7 @@ class MyApp extends StatelessWidget {
       body: Row(
         children: <Widget>[
           Text(
-            welcomeString,
+            msgWelcomeAdmin,
           ),
           const SizedBox(
             width: 20.0,
@@ -51,7 +50,7 @@ class MyApp extends StatelessWidget {
               child: Stack(
                 children: <Widget>[
                   Text(
-                    'Admin',
+                    dHeading,
                     style: TextStyle(
                       fontSize: 30,
                       color: Colors.yellow,
@@ -62,7 +61,7 @@ class MyApp extends StatelessWidget {
             ),
             ListTile(
               leading: Icon(Icons.add_box),
-              title: Text('addEntry'),
+              title: Text(dAddEntry),
               tileColor: clrGreen, //green
               trailing: Icon(Icons.arrow_forward_ios),
               onTap: () {
@@ -71,7 +70,7 @@ class MyApp extends StatelessWidget {
             ),
             ListTile(
               leading: Icon(Icons.add_box),
-              title: Text('removeEntry'),
+              title: Text(dRemoveEntry),
               tileColor: clrRed, //green
               trailing: Icon(Icons.arrow_forward_ios),
               onTap: () {
@@ -80,7 +79,7 @@ class MyApp extends StatelessWidget {
             ),
             ListTile(
               leading: Icon(Icons.approval),
-              title: Text('Approve'),
+              title: Text(dApprove),
               tileColor: clrAmber, //red
               trailing: Icon(Icons.arrow_forward_ios),
               onTap: () {

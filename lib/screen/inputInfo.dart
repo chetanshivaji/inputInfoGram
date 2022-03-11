@@ -26,7 +26,7 @@ class _inputInfoState extends State<inputInfo> {
     bool pressed = false;
     return Scaffold(
       appBar: AppBar(
-        title: Text("Add New Person to GramDB"),
+        title: Text(appBarHeadingInputInfo),
         backgroundColor: clrGreen,
       ),
       body: Form(
@@ -40,7 +40,7 @@ class _inputInfoState extends State<inputInfo> {
             ListTile(
               leading: Icon(Icons.date_range),
               title: Text(
-                "Year",
+                labelYear,
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),
               trailing: DropdownButton(
@@ -85,11 +85,11 @@ class _inputInfoState extends State<inputInfo> {
                 decoration: InputDecoration(
                     border: OutlineInputBorder(),
                     icon: Icon(Icons.person),
-                    hintText: "Enter Full Name",
-                    labelText: "Name *"),
+                    hintText: msgEnterFullName,
+                    labelText: labelName),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
-                    return 'Please enter name';
+                    return msgEnterFullName;
                   }
                   name = value;
                   return null;
@@ -105,15 +105,13 @@ class _inputInfoState extends State<inputInfo> {
                 decoration: InputDecoration(
                     border: OutlineInputBorder(),
                     icon: Icon(Icons.person),
-                    hintText: "Enter email Id",
-                    labelText: "mail *"),
+                    hintText: msgEnterUserMail,
+                    labelText: labelEmail),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
-                    return 'Please mail ID';
+                    return msgEnterUserMail;
                   }
-                  if (!isNumeric(value)) {
-                    return 'Please nubmers only';
-                  }
+
                   email = value;
                   return null;
                 },
@@ -128,14 +126,17 @@ class _inputInfoState extends State<inputInfo> {
                 decoration: InputDecoration(
                     border: OutlineInputBorder(),
                     icon: Icon(Icons.mobile_friendly),
-                    hintText: "Enter mobile Number",
-                    labelText: "number *"),
+                    hintText: msgEnterMobileNumber,
+                    labelText: labelMobile),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
-                    return 'Please enter number';
+                    return msgEnterMobileNumber;
                   }
                   if (value.length != 10) {
-                    return "Please enter 10 digits!";
+                    return msgTenDigitNumber;
+                  }
+                  if (!isNumeric(value)) {
+                    return msgOnlyNumber;
                   }
                   mobile = int.parse(value);
                   return null;
@@ -151,14 +152,14 @@ class _inputInfoState extends State<inputInfo> {
                 decoration: InputDecoration(
                     border: OutlineInputBorder(),
                     icon: Icon(Icons.house),
-                    hintText: "Enter House tax",
-                    labelText: "House Tax *"),
+                    hintText: msgEnterHouseTax,
+                    labelText: labelHouseTax),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
-                    return 'Please enter house tax amount';
+                    return msgHouseTaxAmount;
                   }
                   if (!isNumeric(value)) {
-                    return 'Please nubmers only';
+                    return msgOnlyNumber;
                   }
                   houseTax = int.parse(value);
                   return null;
@@ -174,14 +175,14 @@ class _inputInfoState extends State<inputInfo> {
                 decoration: InputDecoration(
                     border: OutlineInputBorder(),
                     icon: Icon(Icons.water),
-                    hintText: "Enter Water tax",
-                    labelText: "Water Tax *"),
+                    hintText: msgWaterTax,
+                    labelText: labelWaterTax),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
-                    return 'Please enter water tax amount';
+                    return msgWaterTax;
                   }
                   if (!isNumeric(value)) {
-                    return 'Please nubmers only';
+                    return msgOnlyNumber;
                   }
                   waterTax = int.parse(value);
                   return null;
@@ -203,8 +204,8 @@ class _inputInfoState extends State<inputInfo> {
                       // If the form is valid, display a snackbar. In the real world,
                       // you'd often call a server or save the information in a database.
                       ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          content: Text('Processing Data'),
+                        SnackBar(
+                          content: Text(msgProcessingData),
                         ),
                       );
                       //get admin mail
@@ -225,8 +226,8 @@ class _inputInfoState extends State<inputInfo> {
                             //if allready present
                             popAlert(
                                 context,
-                                "PRESENT",
-                                "Entry already present, can not add",
+                                kTitlePresent,
+                                kSubTitleEntryAlreadyPresent,
                                 Icon(Icons.person_search_rounded),
                                 1);
                           } else {
@@ -238,21 +239,21 @@ class _inputInfoState extends State<inputInfo> {
                                 .doc(mobile.toString())
                                 .set(
                               {
-                                'house': houseTax,
-                                'houseGiven': false,
-                                'email': email,
-                                'mobile': mobile,
-                                'name': name,
-                                'water': waterTax,
-                                'waterGiven': false,
+                                keyHouse: houseTax,
+                                keyHouseGiven: false,
+                                keyEmail: email,
+                                keyMobile: mobile,
+                                keyName: name,
+                                keyWater: waterTax,
+                                keyWaterGiven: false,
                               },
                             );
                             //START create Formula in each year once
                             formulaRef = FirebaseFirestore.instance
                                 .collection(ls[0] + ls[1])
                                 .doc(mainDb)
-                                .collection('formula')
-                                .doc('calculation');
+                                .collection(collFormula)
+                                .doc(docCalcultion);
 
                             formulaRef.get().then(
                                   (docSnapshot) => {
@@ -262,8 +263,8 @@ class _inputInfoState extends State<inputInfo> {
                                   //if allready present
                                   showAlertDialog(
                                       context,
-                                      "PRESENT",
-                                      "Entry already present, can not add",
+                                      kTitlePresent,
+                                      kSubTitleEntryAlreadyPresent,
                                       Icon(Icons.person_search_rounded))
                                       */
                                       }
@@ -273,13 +274,13 @@ class _inputInfoState extends State<inputInfo> {
                                         FirebaseFirestore.instance
                                             .collection(ls[0] + ls[1])
                                             .doc(mainDb)
-                                            .collection('formula')
-                                            .doc('calculation')
+                                            .collection(collFormula)
+                                            .doc(docCalcultion)
                                             .set(
                                           {
-                                            'totalBalance': 0,
-                                            'totalIn': 0,
-                                            'totalOut': 0,
+                                            keyTotalBalance: 0,
+                                            keyTotalIn: 0,
+                                            keyTotalOut: 0,
                                           },
                                         ),
                                       }
@@ -293,8 +294,8 @@ class _inputInfoState extends State<inputInfo> {
                       );
                     }
                   },
-                  child: const Text(
-                    'Submit',
+                  child: Text(
+                    bLabelSubmit,
                   ),
                 ),
               ),
