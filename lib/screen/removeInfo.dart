@@ -211,7 +211,7 @@ class _removeInfoState extends State<removeInfo> {
                       } catch (e) {
                         onPressedRemoveInfo = false;
                         popAlert(context, kTitleTryCatchFail, e.toString(),
-                            getWrongIcon(), 2);
+                            getWrongIcon(), 1);
                       }
                     }
                   },
