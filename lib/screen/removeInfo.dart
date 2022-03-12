@@ -31,7 +31,12 @@ class _removeInfoState extends State<removeInfo> {
     bool pressed = false;
     return Scaffold(
       appBar: AppBar(
-        title: Text(appBarHeadingRemoveInfo),
+        title: Text(
+          appBarHeadingRemoveInfo,
+          style: TextStyle(
+            color: Colors.black,
+          ),
+        ),
         backgroundColor: clrRed,
       ),
       body: Form(

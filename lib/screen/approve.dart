@@ -18,7 +18,12 @@ class _approveState extends State<approve> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(appBarHeadingApproveRemove),
+        title: Text(
+          appBarHeadingApproveRemove,
+          style: TextStyle(
+            color: Colors.black,
+          ),
+        ),
         backgroundColor: clrAmber,
       ),
       body: Container(

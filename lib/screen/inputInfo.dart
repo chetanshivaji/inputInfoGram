@@ -26,7 +26,12 @@ class _inputInfoState extends State<inputInfo> {
     bool pressed = false;
     return Scaffold(
       appBar: AppBar(
-        title: Text(appBarHeadingInputInfo),
+        title: Text(
+          appBarHeadingInputInfo,
+          style: TextStyle(
+            color: Colors.black,
+          ),
+        ),
         backgroundColor: clrGreen,
       ),
       body: Form(
