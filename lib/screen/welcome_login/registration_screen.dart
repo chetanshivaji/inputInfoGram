@@ -20,6 +20,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
   String village = "";
   String pin = "";
   String address = "";
+  bool onPressedRegister = false;
 
   Future<void> setAdminUserInfoInDb(
       String village, String pin, String address, String email) async {
@@ -56,7 +57,6 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
 
   @override
   Widget build(BuildContext context) {
-    bool pressed = true;
     return Scaffold(
       backgroundColor: Colors.white,
       body: Padding(
@@ -299,60 +299,62 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                       labelRegister,
                       style: TextStyle(color: Colors.white),
                     ),
-                    onPressed: pressed
-                        ? () async {
-                            if (_formRegKey.currentState!.validate()) {
-                              if (password != reEnterPassword) {
-                                popAlert(
-                                  context,
-                                  titlePasswordMismatch,
-                                  subtitlePasswordMismatch,
-                                  getWrongIcon(),
-                                  1,
-                                ); //one time pop navigation
-                                return;
-                              }
-                              //Implement registration functionality.
-                              try {
-                                final newUser =
-                                    await _auth.createUserWithEmailAndPassword(
-                                  email: email,
-                                  password: password,
-                                );
+                    onPressed: () async {
+                      if (_formRegKey.currentState!.validate() &&
+                          onPressedRegister == false) {
+                        onPressedRegister = true;
 
-                                if (newUser != null) {
-                                  userMail = email;
+                        if (password != reEnterPassword) {
+                          onPressedRegister = false;
+                          popAlert(
+                            context,
+                            titlePasswordMismatch,
+                            subtitlePasswordMismatch,
+                            getWrongIcon(),
+                            1,
+                          ); //one time pop navigation
+                          return;
+                        }
+                        //Implement registration functionality.
+                        try {
+                          final newUser =
+                              await _auth.createUserWithEmailAndPassword(
+                            email: email,
+                            password: password,
+                          );
 
-                                  await setAdminUserInfoInDb(
-                                    village,
-                                    pin,
-                                    address,
-                                    email,
-                                  );
+                          if (newUser != null) {
+                            userMail = email;
 
-                                  Navigator.pushNamed(context, MyApp.id);
-                                  popAlert(
-                                    context,
-                                    registerSuccess,
-                                    '',
-                                    getRightIcon(),
-                                    1,
-                                  );
-                                }
-                              } catch (e) {
-                                popAlert(
-                                  context,
-                                  kTitleFail,
-                                  e.toString(),
-                                  getWrongIcon(),
-                                  1,
-                                );
-                                return;
-                              }
-                              pressed = false;
-                            }
+                            await setAdminUserInfoInDb(
+                              village,
+                              pin,
+                              address,
+                              email,
+                            );
+
+                            Navigator.pushNamed(context, MyApp.id);
+                            popAlert(
+                              context,
+                              registerSuccess,
+                              '',
+                              getRightIcon(),
+                              1,
+                            );
                           }
-                        : null,
+                        } catch (e) {
+                          onPressedRegister = false;
+                          popAlert(
+                            context,
+                            kTitleFail,
+                            e.toString(),
+                            getWrongIcon(),
+                            1,
+                          );
+                          return;
+                        }
+                      }
+                    },
                   ),
                 ),
               ),

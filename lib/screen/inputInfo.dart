@@ -20,10 +20,10 @@ class _inputInfoState extends State<inputInfo> {
   int waterTax = 0;
   bool houseGiven = false;
   bool waterGiven = false;
+  bool onPressedInputInfo = false;
 
   @override
   Widget build(BuildContext context) {
-    bool pressed = false;
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -204,67 +204,69 @@ class _inputInfoState extends State<inputInfo> {
                     var formulaRef;
                     // Validate returns true if the form is valid, or false otherwise.
                     if (_formKeyInputForm.currentState!.validate() &&
-                        pressed == false) {
-                      pressed = true;
-                      // If the form is valid, display a snackbar. In the real world,
-                      // you'd often call a server or save the information in a database.
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          content: Text(msgProcessingData),
-                        ),
-                      );
-                      //get admin mail
-                      //from users, get admin village and pin
+                        onPressedInputInfo == false) {
+                      try {
+                        onPressedInputInfo = true;
+                        // If the form is valid, display a snackbar. In the real world,
+                        // you'd often call a server or save the information in a database.
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text(msgProcessingData),
+                          ),
+                        );
+                        //get admin mail
+                        //from users, get admin village and pin
 
-                      //read villagePin-> mainDb-> mainDb2020=> add
+                        //read villagePin-> mainDb-> mainDb2020=> add
 
-                      var ls = await getLoggedInUserVillagePin();
-                      var usersRef = await FirebaseFirestore.instance
-                          .collection(ls[0] + ls[1])
-                          .doc(mainDb)
-                          .collection(mainDb + dropdownvalue)
-                          .doc(mobile.toString());
+                        var usersRef = await FirebaseFirestore.instance
+                            .collection(adminVillage + adminPin)
+                            .doc(mainDb)
+                            .collection(mainDb + dropdownvalue)
+                            .doc(mobile.toString());
 
-                      usersRef.get().then(
-                        (docSnapshot) async {
-                          if (docSnapshot.exists) {
-                            //if allready present
-                            popAlert(
+                        usersRef.get().then(
+                          (docSnapshot) async {
+                            if (docSnapshot.exists) {
+                              //if allready present
+                              onPressedInputInfo = false;
+                              popAlert(
                                 context,
                                 kTitlePresent,
                                 kSubTitleEntryAlreadyPresent,
                                 Icon(Icons.person_search_rounded),
-                                1);
-                          } else {
-                            //if entry not present in db then add
-                            await FirebaseFirestore.instance
-                                .collection(ls[0] + ls[1])
-                                .doc(mainDb)
-                                .collection(mainDb + dropdownvalue)
-                                .doc(mobile.toString())
-                                .set(
-                              {
-                                keyHouse: houseTax,
-                                keyHouseGiven: false,
-                                keyEmail: email,
-                                keyMobile: mobile,
-                                keyName: name,
-                                keyWater: waterTax,
-                                keyWaterGiven: false,
-                              },
-                            );
-                            //START create Formula in each year once
-                            formulaRef = FirebaseFirestore.instance
-                                .collection(ls[0] + ls[1])
-                                .doc(mainDb)
-                                .collection(collFormula)
-                                .doc(docCalcultion);
+                                1,
+                              );
+                              return;
+                            } else {
+                              //if entry not present in db then add
+                              await FirebaseFirestore.instance
+                                  .collection(adminVillage + adminPin)
+                                  .doc(mainDb)
+                                  .collection(mainDb + dropdownvalue)
+                                  .doc(mobile.toString())
+                                  .set(
+                                {
+                                  keyHouse: houseTax,
+                                  keyHouseGiven: false,
+                                  keyEmail: email,
+                                  keyMobile: mobile,
+                                  keyName: name,
+                                  keyWater: waterTax,
+                                  keyWaterGiven: false,
+                                },
+                              );
+                              //START create Formula in each year once
+                              formulaRef = await FirebaseFirestore.instance
+                                  .collection(adminVillage + adminPin)
+                                  .doc(mainDb)
+                                  .collection(collFormula)
+                                  .doc(docCalcultion);
 
-                            formulaRef.get().then(
-                                  (docSnapshot) => {
-                                    if (docSnapshot.exists)
-                                      {
-                                        /*
+                              formulaRef.get().then(
+                                (docSnapshot) async {
+                                  if (docSnapshot.exists) {
+                                    /*
                                   //if allready present
                                   showAlertDialog(
                                       context,
@@ -272,31 +274,34 @@ class _inputInfoState extends State<inputInfo> {
                                       kSubTitleEntryAlreadyPresent,
                                       Icon(Icons.person_search_rounded))
                                       */
-                                      }
-                                    else
+                                  } else {
+                                    //if entry not present in db then add
+                                    await FirebaseFirestore.instance
+                                        .collection(adminVillage + adminPin)
+                                        .doc(mainDb)
+                                        .collection(collFormula)
+                                        .doc(docCalcultion)
+                                        .set(
                                       {
-                                        //if entry not present in db then add
-                                        FirebaseFirestore.instance
-                                            .collection(ls[0] + ls[1])
-                                            .doc(mainDb)
-                                            .collection(collFormula)
-                                            .doc(docCalcultion)
-                                            .set(
-                                          {
-                                            keyTotalBalance: 0,
-                                            keyTotalIn: 0,
-                                            keyTotalOut: 0,
-                                          },
-                                        ),
-                                      }
-                                  },
-                                );
-                            //END create Formula in each year once
-                            popAlert(context, titleSuccess, subtitleSuccess,
-                                getRightIcon(), 2);
-                          }
-                        },
-                      );
+                                        keyTotalBalance: 0,
+                                        keyTotalIn: 0,
+                                        keyTotalOut: 0,
+                                      },
+                                    );
+                                  }
+                                },
+                              );
+                              //END create Formula in each year once
+                              popAlert(context, titleSuccess, subtitleSuccess,
+                                  getRightIcon(), 2);
+                            }
+                          },
+                        );
+                      } catch (e) {
+                        onPressedInputInfo = false;
+                        popAlert(context, kTitleTryCatchFail, e.toString(),
+                            getWrongIcon(), 2);
+                      }
                     }
                   },
                   child: Text(

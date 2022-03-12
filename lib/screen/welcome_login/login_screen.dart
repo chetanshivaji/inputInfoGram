@@ -16,6 +16,7 @@ class _LoginScreenState extends State<LoginScreen> {
   final _auth = FirebaseAuth.instance;
   String email = "";
   String password = "";
+  bool onPressedLogin = false;
 
   @override
   Widget build(BuildContext context) {
@@ -118,8 +119,10 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                     onPressed: pressed
                         ? () async {
-                            if (_formLoginKey.currentState!.validate()) {
+                            if (_formLoginKey.currentState!.validate() &&
+                                onPressedLogin == false) {
                               String adminMail = "";
+                              onPressedLogin = true;
                               //Implement registration functionality.
                               try {
                                 //Only admin should login
@@ -131,6 +134,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                   (value) async {
                                     if (!value.exists) {
                                       //if allready present
+                                      onPressedLogin = false;
                                       popAlert(
                                         context,
                                         kTitleNotPresent,
@@ -169,6 +173,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                     );
                                   }
                                 } else {
+                                  onPressedLogin = false;
                                   popAlert(
                                     context,
                                     kTitleFail,
@@ -178,6 +183,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                   );
                                 }
                               } catch (e) {
+                                onPressedLogin = false;
                                 popAlert(
                                   context,
                                   kTitleFail,

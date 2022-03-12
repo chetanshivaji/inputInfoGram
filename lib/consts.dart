@@ -121,6 +121,8 @@ String scafBeginInfoApproveRemove =
 String registerSubtitleSuccess = "Register success!";
 String registerSuccess = "Admin and village regsitered successfully";
 String kTitleFail = "Login/registeration failed";
+String kTitleTryCatchFail =
+    "Fail"; //dont know reason. some failure in try catch
 String kSubtitleFail = "Try again with correct username & password";
 String kTitleLoginSuccess = "login success";
 

@@ -28,7 +28,7 @@ class _removeInfoState extends State<removeInfo> {
 
   @override
   Widget build(BuildContext context) {
-    bool pressed = false;
+    bool onPressedRemoveInfo = false;
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -94,9 +94,8 @@ class _removeInfoState extends State<removeInfo> {
                 onChanged: (text) async {
                   if (text.length == 10) {
                     try {
-                      var ls = await getLoggedInUserVillagePin();
                       await FirebaseFirestore.instance
-                          .collection(ls[0] + ls[1])
+                          .collection(adminVillage + adminPin)
                           .doc(mainDb)
                           .collection(mainDb + dropdownvalue)
                           .doc(text)
@@ -176,46 +175,44 @@ class _removeInfoState extends State<removeInfo> {
                   onPressed: () async {
                     // Validate returns true if the form is valid, or false otherwise.
                     if (_formKeyremoveForm.currentState!.validate() &&
-                        pressed == false) {
-                      pressed = true;
-                      // If the form is valid, display a snackbar. In the real world,
-                      // you'd often call a server or save the information in a database.
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          content: Text(msgProcessingData),
-                        ),
-                      );
-                      /*
-                      var ls = await getLoggedInUserVillagePin();
-                      var collection = FirebaseFirestore.instance
-                          .collection(ls[0] + ls[1])
-                          .doc(mainDb)
-                          .collection(mainDb + dropdownvalue);
-                      await collection.doc(mobile.toString()).delete();
-*/
+                        onPressedRemoveInfo == false) {
+                      try {
+                        onPressedRemoveInfo = true;
+                        // If the form is valid, display a snackbar. In the real world,
+                        // you'd often call a server or save the information in a database.
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text(msgProcessingData),
+                          ),
+                        );
 
-                      var ls = await getLoggedInUserVillagePin();
-                      var collection = FirebaseFirestore.instance
-                          .collection(ls[0] + ls[1])
-                          .doc(mainDb)
-                          .collection(mainDb + dropdownvalue);
-                      await collection.doc(mobile.toString()).get().then(
-                        (value) {
-                          if (value.exists) {
-                            FirebaseFirestore.instance
-                                .collection(ls[0] + ls[1])
-                                .doc(mainDb)
-                                .collection(mainDb + dropdownvalue)
-                                .doc(mobile.toString())
-                                .delete();
-                            popAlert(context, titleSuccess, subtitleSuccess,
-                                getRightIcon(), 2);
-                          } else {
-                            popAlert(context, msgAlreadyRemoved, "",
-                                getWrongIcon(), 2);
-                          }
-                        },
-                      );
+                        var collection = FirebaseFirestore.instance
+                            .collection(adminVillage + adminPin)
+                            .doc(mainDb)
+                            .collection(mainDb + dropdownvalue);
+                        await collection.doc(mobile.toString()).get().then(
+                          (value) {
+                            if (value.exists) {
+                              FirebaseFirestore.instance
+                                  .collection(adminVillage + adminPin)
+                                  .doc(mainDb)
+                                  .collection(mainDb + dropdownvalue)
+                                  .doc(mobile.toString())
+                                  .delete();
+                              popAlert(context, titleSuccess, subtitleSuccess,
+                                  getRightIcon(), 2);
+                            } else {
+                              onPressedRemoveInfo = false;
+                              popAlert(context, msgAlreadyRemoved, "",
+                                  getWrongIcon(), 2);
+                            }
+                          },
+                        );
+                      } catch (e) {
+                        onPressedRemoveInfo = false;
+                        popAlert(context, kTitleTryCatchFail, e.toString(),
+                            getWrongIcon(), 2);
+                      }
                     }
                   },
                   child: Text(
