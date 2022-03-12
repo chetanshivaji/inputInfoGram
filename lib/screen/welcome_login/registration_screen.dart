@@ -25,7 +25,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
       String village, String pin, String address, String email) async {
     adminVillage = village;
     adminPin = pin;
-    access = accessItems[accessLevel.SuperUser.index];
+    //access = accessItems[accessLevel.SuperUser.index];
     await FirebaseFirestore.instance
         .collection(village + pin)
         .doc(docVillageInfo)
@@ -334,7 +334,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                                   popAlert(
                                     context,
                                     registerSuccess,
-                                    kSubTitleLoginSuccess,
+                                    '',
                                     getRightIcon(),
                                     1,
                                   );

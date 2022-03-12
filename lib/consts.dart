@@ -33,8 +33,7 @@ String msgAlreadyRemoved = "Allready Removed";
 String msgToogleToApproveDis = "Toggle to approve/disapprove user";
 String msgNoExpense = "There is no expense";
 String msgLoading = "loading";
-String msgWelcomeAdmin =
-    "Welcome Admin! $userMail\n$access From $adminVillage $adminPin";
+
 String msgNotAdmin = "notAdmin";
 //button Labels
 String bLabelAdminlogin = 'Admin Log In';
@@ -99,7 +98,7 @@ String keyApproved = 'approved';
 String keyAccessLevel = 'accessLevel';
 String keyMail = 'mail';
 String keyIsAdmin = 'isAdmin';
-String keyAccess = "access";
+String keyAccess = "accessLevel";
 String keyAddress = 'address';
 String keyAdminMail = 'adminMail';
 String keyHouse = 'house';
@@ -124,7 +123,7 @@ String registerSuccess = "Admin and village regsitered successfully";
 String kTitleFail = "Login/registeration failed";
 String kSubtitleFail = "Try again with correct username & password";
 String kTitleLoginSuccess = "login success";
-String kSubTitleLoginSuccess = "login success";
+
 String kSubTitleOnlyAdmin = "Only Admin allowed";
 String titlePasswordMismatch = "Password mismatch";
 String subtitlePasswordMismatch =

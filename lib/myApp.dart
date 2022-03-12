@@ -9,6 +9,7 @@ import 'package:inputgram/consts.dart';
 
 class MyApp extends StatelessWidget {
   static String id = "myappscreen";
+
   MyApp({Key? key}) : super(key: key);
   final _auth = FirebaseAuth.instance;
   @override
@@ -25,17 +26,6 @@ class MyApp extends StatelessWidget {
                   kSubtitleLogOutConfirmation, Icon(Icons.power_settings_new));
             },
             icon: Icon(Icons.power_settings_new),
-          ),
-        ],
-      ),
-      body: Row(
-        children: <Widget>[
-          Text(
-            msgWelcomeAdmin,
-          ),
-          const SizedBox(
-            width: 20.0,
-            height: 100.0,
           ),
         ],
       ),

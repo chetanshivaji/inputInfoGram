@@ -143,7 +143,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                       var y = value.data();
                                       adminVillage = y![keyVillage];
                                       adminPin = y[keyPin];
-                                      access = y[keyAccess];
+                                      //access = y[keyAccess];
 
                                       if (y[keyIsAdmin]) {
                                         return y[keyMail];
