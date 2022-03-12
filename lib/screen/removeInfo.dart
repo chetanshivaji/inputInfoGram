@@ -145,14 +145,15 @@ class _removeInfoState extends State<removeInfo> {
             ),
             Expanded(
               child: ListTile(
-                  leading: Icon(Icons.person),
-                  title: Text(
-                    "$labelName = $name",
-                    style: TextStyle(
-                      fontSize: 20.0,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  )),
+                leading: Icon(Icons.person),
+                title: Text(
+                  "$labelName = $name",
+                  style: TextStyle(
+                    fontSize: 20.0,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
             ),
             Padding(
               padding: EdgeInsets.only(top: 20),
