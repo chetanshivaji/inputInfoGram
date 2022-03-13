@@ -19,6 +19,8 @@ class MyApp extends StatelessWidget {
         title: Text(appBarMainAppInfo),
         actions: <Widget>[
           IconButton(
+            splashColor: clrIconSpalsh,
+            splashRadius: iconSplashRadius,
             tooltip: kTitleSignOut,
             onPressed: () {
               //logout

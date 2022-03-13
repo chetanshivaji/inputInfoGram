@@ -81,6 +81,8 @@ class _approvalListState extends State<approvalList> {
         ldataCell.add(
           DataCell(
             IconButton(
+              splashColor: clrIconSpalsh,
+              splashRadius: iconSplashRadius,
               onPressed: () async {
                 //approve Status.
                 String mail = l.get(keyMail);
