@@ -103,7 +103,6 @@ class _approvalListState extends State<approvalList> {
                 Icons.change_circle_outlined,
                 color: Colors.black,
               ),
-              splashColor: Colors.blue,
               tooltip: msgToogleToApproveDis,
             ),
           ),
