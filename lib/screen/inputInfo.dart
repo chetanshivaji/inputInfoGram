@@ -39,48 +39,7 @@ class _inputInfoState extends State<inputInfo> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Padding(
-              padding: EdgeInsets.only(top: 20),
-            ),
-            ListTile(
-              leading: Icon(Icons.date_range),
-              title: Text(
-                labelYear,
-                style: TextStyle(fontWeight: FontWeight.bold),
-              ),
-              trailing: DropdownButton(
-                borderRadius: BorderRadius.circular(12.0),
-                dropdownColor: clrGreen,
-
-                alignment: Alignment.topLeft,
-
-                // Initial Value
-                value: dropdownvalue,
-                // Down Arrow Icon
-                icon: Icon(
-                  Icons.sort,
-                  color: Colors.green,
-                ),
-                // Array list of items
-                items: items.map(
-                  (String items) {
-                    return DropdownMenuItem(
-                      value: items,
-                      child: Text(items),
-                    );
-                  },
-                ).toList(),
-                // After selecting the desired option,it will
-                // change button value to selected value
-                onChanged: (String? newValue) {
-                  setState(
-                    () {
-                      dropdownvalue = newValue!;
-                    },
-                  );
-                },
-              ),
-            ),
+            yearTile(clr: clrGreen),
             Padding(
               padding: EdgeInsets.only(top: 20),
             ),
@@ -222,7 +181,7 @@ class _inputInfoState extends State<inputInfo> {
                         var usersRef = await FirebaseFirestore.instance
                             .collection(adminVillage + adminPin)
                             .doc(mainDb)
-                            .collection(mainDb + dropdownvalue)
+                            .collection(mainDb + dropdownValueYear)
                             .doc(mobile.toString());
 
                         usersRef.get().then(
@@ -243,7 +202,7 @@ class _inputInfoState extends State<inputInfo> {
                               await FirebaseFirestore.instance
                                   .collection(adminVillage + adminPin)
                                   .doc(mainDb)
-                                  .collection(mainDb + dropdownvalue)
+                                  .collection(mainDb + dropdownValueYear)
                                   .doc(mobile.toString())
                                   .set(
                                 {

@@ -44,48 +44,7 @@ class _removeInfoState extends State<removeInfo> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Padding(
-              padding: EdgeInsets.only(top: 20),
-            ),
-            ListTile(
-              leading: Icon(Icons.date_range),
-              title: Text(
-                labelYear,
-                style: TextStyle(fontWeight: FontWeight.bold),
-              ),
-              trailing: DropdownButton(
-                borderRadius: BorderRadius.circular(12.0),
-                dropdownColor: clrRed,
-
-                alignment: Alignment.topLeft,
-
-                // Initial Value
-                value: dropdownvalue,
-                // Down Arrow Icon
-                icon: Icon(
-                  Icons.sort,
-                  color: Colors.red,
-                ),
-                // Array list of items
-                items: items.map(
-                  (String items) {
-                    return DropdownMenuItem(
-                      value: items,
-                      child: Text(items),
-                    );
-                  },
-                ).toList(),
-                // After selecting the desired option,it will
-                // change button value to selected value
-                onChanged: (String? newValue) {
-                  setState(
-                    () {
-                      dropdownvalue = newValue!;
-                    },
-                  );
-                },
-              ),
-            ),
+            yearTile(clr: clrRed),
             Padding(
               padding: EdgeInsets.only(top: 20),
             ),
@@ -97,7 +56,7 @@ class _removeInfoState extends State<removeInfo> {
                       await FirebaseFirestore.instance
                           .collection(adminVillage + adminPin)
                           .doc(mainDb)
-                          .collection(mainDb + dropdownvalue)
+                          .collection(mainDb + dropdownValueYear)
                           .doc(text)
                           .get()
                           .then(
@@ -190,14 +149,14 @@ class _removeInfoState extends State<removeInfo> {
                         var collection = FirebaseFirestore.instance
                             .collection(adminVillage + adminPin)
                             .doc(mainDb)
-                            .collection(mainDb + dropdownvalue);
+                            .collection(mainDb + dropdownValueYear);
                         await collection.doc(mobile.toString()).get().then(
                           (value) {
                             if (value.exists) {
                               FirebaseFirestore.instance
                                   .collection(adminVillage + adminPin)
                                   .doc(mainDb)
-                                  .collection(mainDb + dropdownvalue)
+                                  .collection(mainDb + dropdownValueYear)
                                   .doc(mobile.toString())
                                   .delete();
                               popAlert(context, titleSuccess, subtitleSuccess,

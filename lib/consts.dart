@@ -149,7 +149,55 @@ Color clrBSplash = Colors.purple;
 Color clrIconSpalsh = Colors.orange;
 double iconSplashRadius = 20.0;
 
-String dropdownvalue = "2021";
+class yearTile extends StatefulWidget {
+  Color clr = Colors.blue;
+  yearTile({Key? key, this.clr = Colors.blue}) : super(key: key);
+
+  @override
+  _yearTileState createState() => _yearTileState();
+}
+
+class _yearTileState extends State<yearTile> {
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+      trailing: DropdownButton(
+        borderRadius: BorderRadius.circular(12.0),
+        dropdownColor: widget.clr,
+
+        alignment: Alignment.topLeft,
+
+        // Initial Value
+        value: dropdownValueYear,
+        // Down Arrow Icon
+        icon: Icon(
+          Icons.date_range,
+          color: widget.clr,
+        ),
+        // Array list of items
+        items: items.map(
+          (String items) {
+            return DropdownMenuItem(
+              value: items,
+              child: Text(items),
+            );
+          },
+        ).toList(),
+        // After selecting the desired option,it will
+        // change button value to selected value
+        onChanged: (String? newValue) {
+          setState(
+            () {
+              dropdownValueYear = newValue!;
+            },
+          );
+        },
+      ),
+    );
+  }
+}
+
+String dropdownValueYear = "2021";
 var items = [
   "2012",
   "2013",

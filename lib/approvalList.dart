@@ -14,7 +14,7 @@ class approvalList extends StatefulWidget {
 class _approvalListState extends State<approvalList> {
   String pendingType = "";
   String orderType = "";
-  String yearDropDownValue = "";
+  String yeardropdownValueYear = "";
 
   List<DataRow> _buildList(
       BuildContext context, List<DocumentSnapshot> docSnapshot) {
@@ -30,52 +30,54 @@ class _approvalListState extends State<approvalList> {
 
         ldataCell.add(
           DataCell(
-            DropdownButton(
-              borderRadius: BorderRadius.circular(12.0),
-              dropdownColor: clrAmber,
+            Row(
+              children: <Widget>[
+                DropdownButton(
+                  borderRadius: BorderRadius.circular(12.0),
+                  dropdownColor: clrAmber,
 
-              alignment: Alignment.topLeft,
+                  alignment: Alignment.topRight,
 
-              // Initial Value
-              value: access,
-              // Down Arrow Icon
-              icon: Icon(
-                Icons.sort,
-                color: clrAmber,
-              ),
-              // Array list of items
-              items: accessItems.map(
-                (String accessItems) {
-                  return DropdownMenuItem(
-                    value: accessItems,
-                    child: Text(accessItems),
-                  );
-                },
-              ).toList(),
-              // After selecting the desired option,it will
-              // change button value to selected value
-              onChanged: (String? newAccessValue) async {
-                if (newAccessValue != access) {
-                  //START update the access level in Db
+                  // Initial Value
+                  value: access,
+                  // Down Arrow Icon
+                  icon: Icon(
+                    Icons.sort,
+                    color: clrAmber,
+                  ),
+                  // Array list of items
+                  items: accessItems.map(
+                    (String accessItems) {
+                      return DropdownMenuItem(
+                        value: accessItems,
+                        child: Text(accessItems),
+                      );
+                    },
+                  ).toList(),
+                  // After selecting the desired option,it will
+                  // change button value to selected value
+                  onChanged: (String? newAccessValue) async {
+                    if (newAccessValue != access) {
+                      //START update the access level in Db
 
-                  await FirebaseFirestore.instance
-                      .collection(collUsers)
-                      .doc(l.get(keyMail))
-                      .update({keyAccessLevel: newAccessValue});
-                  //END update the access level in Db
-                }
-              },
+                      await FirebaseFirestore.instance
+                          .collection(collUsers)
+                          .doc(l.get(keyMail))
+                          .update({keyAccessLevel: newAccessValue});
+                      //END update the access level in Db
+                    }
+                  },
+                ),
+                Text(
+                  l.get(keyAccessLevel),
+                  style: TextStyle(
+                      color: Colors.blue, fontWeight: FontWeight.bold),
+                ),
+              ],
             ),
           ),
         );
-        ldataCell.add(
-          DataCell(
-            Text(
-              l.get(keyAccessLevel),
-              style: TextStyle(color: Colors.blue, fontWeight: FontWeight.bold),
-            ),
-          ),
-        );
+
         ldataCell.add(DataCell(Text(l.get(keyApproved).toString())));
 
         ldataCell.add(
@@ -121,7 +123,6 @@ class _approvalListState extends State<approvalList> {
         scrollDirection: Axis.horizontal,
         child: DataTable(
           headingTextStyle: getTableHeadingTextStyle(),
-          columnSpacing: 5.0,
           border: TableBorder(
             horizontalInside: BorderSide(
               width: 1.5,
@@ -135,12 +136,6 @@ class _approvalListState extends State<approvalList> {
             DataColumn(
               label: Text(
                 tableHeadingEmail,
-                style: getStyle(actPending),
-              ),
-            ),
-            DataColumn(
-              label: Text(
-                '',
                 style: getStyle(actPending),
               ),
             ),
