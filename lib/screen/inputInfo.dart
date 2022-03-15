@@ -21,6 +21,53 @@ class _inputInfoState extends State<inputInfo> {
   bool houseGiven = false;
   bool waterGiven = false;
   bool onPressedInputInfo = false;
+  var _textController_name = TextEditingController();
+  var _textController_mail = TextEditingController();
+  var _textController_mobile = TextEditingController();
+  var _textController_houseTax = TextEditingController();
+  var _textController_waterTax = TextEditingController();
+
+  ListTile getYearTile(Color clr) {
+    return ListTile(
+      trailing: DropdownButton(
+        borderRadius: BorderRadius.circular(12.0),
+        dropdownColor: clr,
+
+        alignment: Alignment.topLeft,
+
+        // Initial Value
+        value: dropdownValueYear,
+        // Down Arrow Icon
+        icon: Icon(
+          Icons.date_range,
+          color: clr,
+        ),
+        // Array list of items
+        items: items.map(
+          (String items) {
+            return DropdownMenuItem(
+              value: items,
+              child: Text(items),
+            );
+          },
+        ).toList(),
+        // After selecting the desired option,it will
+        // change button value to selected value
+        onChanged: (String? newValue) {
+          setState(
+            () {
+              dropdownValueYear = newValue!;
+              _textController_name.clear();
+              _textController_mail.clear();
+              _textController_mobile.clear();
+              _textController_houseTax.clear();
+              _textController_waterTax.clear();
+            },
+          );
+        },
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,12 +86,13 @@ class _inputInfoState extends State<inputInfo> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            yearTile(clr: clrGreen),
+            getYearTile(clrGreen),
             Padding(
               padding: EdgeInsets.only(top: 20),
             ),
             Expanded(
               child: TextFormField(
+                controller: _textController_name,
                 keyboardType: TextInputType.text,
                 decoration: InputDecoration(
                     border: OutlineInputBorder(),
@@ -65,6 +113,7 @@ class _inputInfoState extends State<inputInfo> {
             ),
             Expanded(
               child: TextFormField(
+                controller: _textController_mail,
                 keyboardType: TextInputType.emailAddress,
                 decoration: InputDecoration(
                     border: OutlineInputBorder(),
@@ -86,6 +135,7 @@ class _inputInfoState extends State<inputInfo> {
             ),
             Expanded(
               child: TextFormField(
+                controller: _textController_mobile,
                 keyboardType: TextInputType.number,
                 decoration: InputDecoration(
                     border: OutlineInputBorder(),
@@ -112,6 +162,7 @@ class _inputInfoState extends State<inputInfo> {
             ),
             Expanded(
               child: TextFormField(
+                controller: _textController_houseTax,
                 keyboardType: TextInputType.number,
                 decoration: InputDecoration(
                     border: OutlineInputBorder(),
@@ -135,6 +186,7 @@ class _inputInfoState extends State<inputInfo> {
             ),
             Expanded(
               child: TextFormField(
+                controller: _textController_waterTax,
                 keyboardType: TextInputType.number,
                 decoration: InputDecoration(
                     border: OutlineInputBorder(),

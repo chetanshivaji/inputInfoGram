@@ -25,6 +25,46 @@ class _removeInfoState extends State<removeInfo> {
   int waterTax = 0;
   bool houseGiven = false;
   bool waterGiven = false;
+  var _textController_mobile = TextEditingController();
+  ListTile getYearTile(Color clr) {
+    return ListTile(
+      trailing: DropdownButton(
+        borderRadius: BorderRadius.circular(12.0),
+        dropdownColor: clr,
+
+        alignment: Alignment.topLeft,
+
+        // Initial Value
+        value: dropdownValueYear,
+        // Down Arrow Icon
+        icon: Icon(
+          Icons.date_range,
+          color: clr,
+        ),
+        // Array list of items
+        items: items.map(
+          (String items) {
+            return DropdownMenuItem(
+              value: items,
+              child: Text(items),
+            );
+          },
+        ).toList(),
+        // After selecting the desired option,it will
+        // change button value to selected value
+        onChanged: (String? newValue) {
+          setState(
+            () {
+              dropdownValueYear = newValue!;
+              name = "";
+              email = "";
+              _textController_mobile.clear();
+            },
+          );
+        },
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -44,12 +84,13 @@ class _removeInfoState extends State<removeInfo> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            yearTile(clr: clrRed),
+            getYearTile(clrRed),
             Padding(
               padding: EdgeInsets.only(top: 20),
             ),
             Expanded(
               child: TextFormField(
+                controller: _textController_mobile,
                 onChanged: (text) async {
                   if (text.length == 10) {
                     try {
