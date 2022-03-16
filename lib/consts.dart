@@ -42,8 +42,8 @@ String bLabelAdminRegiter = 'Admin Register';
 String bLabelSubmit = 'Submit';
 
 //Drawer sections
-String dAddEntry = 'addEntry';
-String dRemoveEntry = 'removeEntry';
+String dAddPerson = 'AddPersonTax';
+String dRemovePerson = 'RemovePersonTax';
 String dApprove = 'Approve';
 String dHeading = 'Admin';
 

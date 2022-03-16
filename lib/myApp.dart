@@ -53,7 +53,7 @@ class MyApp extends StatelessWidget {
             ),
             ListTile(
               leading: Icon(Icons.add_box),
-              title: Text(dAddEntry),
+              title: Text(dAddPerson),
               tileColor: clrGreen, //green
               trailing: Icon(Icons.arrow_forward_ios),
               onTap: () {
@@ -62,7 +62,7 @@ class MyApp extends StatelessWidget {
             ),
             ListTile(
               leading: Icon(Icons.add_box),
-              title: Text(dRemoveEntry),
+              title: Text(dRemovePerson),
               tileColor: clrRed, //green
               trailing: Icon(Icons.arrow_forward_ios),
               onTap: () {
