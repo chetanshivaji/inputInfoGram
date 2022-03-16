@@ -3,6 +3,9 @@ This is first app which should register a village and admin, add/remove new/old 
 
 
 #TODO:
+1. No need of two approvals, giving access rights itself can work as approving.
+2. app permissions.
+1. add Person remove person replcing add entry remove entry
 1. register welcome message
 1. Role play, field study, types of users on field, existing software study.
 2. Report generation.

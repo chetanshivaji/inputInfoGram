@@ -25,7 +25,7 @@ class _approvalListState extends State<approvalList> {
       String userVillagePin = l.get(keyVillage) + l.get(keyPin);
       if (adminVillagePin == userVillagePin) {
         List<DataCell> ldataCell = [];
-
+        ldataCell.add(DataCell(Text(l.get(keyRegisteredName))));
         ldataCell.add(DataCell(Text(l.get(keyMail))));
 
         ldataCell.add(
@@ -133,6 +133,12 @@ class _approvalListState extends State<approvalList> {
             color: Colors.indigoAccent,
           ),
           columns: <DataColumn>[
+            DataColumn(
+              label: Text(
+                tableHeadingRegisteredName,
+                style: getStyle(actPending),
+              ),
+            ),
             DataColumn(
               label: Text(
                 tableHeadingEmail,

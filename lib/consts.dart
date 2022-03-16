@@ -16,6 +16,7 @@ String kSubtitleLogOutConfirmation = "Do you want to log out?";
 //Msgs
 String msgOnlyNumber = "Please enter only numbers";
 String msgEnterEmail = "Please Enter admin email";
+String msgEnterUser = "Enter your name";
 String msgEnterUserMail = "Enter email";
 String msgEnterPassword = "Please Enter min 6 char Password";
 String msgReEnterPassword = "Please re enter password";
@@ -58,6 +59,7 @@ String actIn = "IN";
 
 //Table data column heading
 String tableHeadingEmail = 'Email';
+String tableHeadingRegisteredName = 'Name';
 String tableHeadingStatus = 'Status';
 String tableHeadingAccess = 'Access';
 String tableHeadingChangeStatus = 'ChangeStatus';
@@ -92,6 +94,7 @@ String appBarHeadingRemoveInfo = "Remove Person from GramDB";
 String appBarMainAppInfo = 'Admin, Register, approve, make db';
 
 //keys
+String keyRegisteredName = 'registeredName';
 String keyVillage = 'village';
 String keyPin = 'pin';
 String keyApproved = 'approved';

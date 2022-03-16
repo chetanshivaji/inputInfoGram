@@ -21,9 +21,10 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
   String pin = "";
   String address = "";
   bool onPressedRegister = false;
+  String registeredName = "";
 
-  Future<void> setAdminUserInfoInDb(
-      String village, String pin, String address, String email) async {
+  Future<void> setAdminUserInfoInDb(String village, String pin, String address,
+      String email, String registeredName) async {
     adminVillage = village;
     adminPin = pin;
     //access = accessItems[accessLevel.SuperUser.index];
@@ -36,6 +37,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
         keyPin: pin,
         keyAddress: address,
         keyAdminMail: email,
+        keyRegisteredName: registeredName
       },
     );
 
@@ -50,6 +52,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
         keyAccessLevel: accessItems[accessLevel.SuperUser.index],
         keyMail: email,
         keyIsAdmin: true,
+        keyRegisteredName: registeredName
       },
     );
     return;
@@ -69,6 +72,47 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
             children: <Widget>[
               Padding(
                 padding: EdgeInsets.only(top: 60),
+              ),
+              Expanded(
+                child: TextFormField(
+                  keyboardType: TextInputType.text,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return msgEnterUser;
+                    }
+                    registeredName = value;
+                    return null;
+                  },
+                  decoration: InputDecoration(
+                    icon: Icon(Icons.person),
+                    labelText: labelName,
+                    hintText: msgEnterUser,
+                    contentPadding:
+                        EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(32.0),
+                      ),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderSide:
+                          BorderSide(color: Colors.blueAccent, width: 1.0),
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(32.0),
+                      ),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide:
+                          BorderSide(color: Colors.blueAccent, width: 2.0),
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(32.0),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 8.0,
               ),
               Expanded(
                 child: TextFormField(
@@ -368,6 +412,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                               pin,
                               address,
                               email,
+                              registeredName,
                             );
 
                             Navigator.pushNamed(context, MyApp.id);

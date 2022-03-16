@@ -6,7 +6,7 @@ import 'package:inputgram/consts.dart';
 String userMail = "";
 String adminVillage = "";
 String adminPin = "";
-
+String registerdName = "";
 TextStyle getTableHeadingTextStyle() {
   return TextStyle(
     fontSize: 15,
