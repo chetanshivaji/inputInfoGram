@@ -7,6 +7,11 @@ String userMail = "";
 String adminVillage = "";
 String adminPin = "";
 String registerdName = "";
+
+bool onPressedDrawerAddPerson = false;
+bool onPressedDrawerRemovePerson = false;
+bool onPressedDrawerApprove = false;
+
 TextStyle getTableHeadingTextStyle() {
   return TextStyle(
     fontSize: 15,

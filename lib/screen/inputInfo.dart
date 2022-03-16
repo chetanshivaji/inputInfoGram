@@ -71,6 +71,7 @@ class _inputInfoState extends State<inputInfo> {
 
   @override
   Widget build(BuildContext context) {
+    onPressedDrawerAddPerson = false;
     return Scaffold(
       appBar: AppBar(
         title: Text(

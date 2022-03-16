@@ -57,7 +57,10 @@ class MyApp extends StatelessWidget {
               tileColor: clrGreen, //green
               trailing: Icon(Icons.arrow_forward_ios),
               onTap: () {
-                Navigator.pushNamed(context, inputInfo.id);
+                if (onPressedDrawerAddPerson == false) {
+                  onPressedDrawerAddPerson = true;
+                  Navigator.pushNamed(context, inputInfo.id);
+                }
               },
             ),
             ListTile(
@@ -66,7 +69,10 @@ class MyApp extends StatelessWidget {
               tileColor: clrRed, //green
               trailing: Icon(Icons.arrow_forward_ios),
               onTap: () {
-                Navigator.pushNamed(context, removeInfo.id);
+                if (onPressedDrawerRemovePerson == false) {
+                  onPressedDrawerRemovePerson = true;
+                  Navigator.pushNamed(context, removeInfo.id);
+                }
               },
             ),
             ListTile(
@@ -75,7 +81,10 @@ class MyApp extends StatelessWidget {
               tileColor: clrAmber, //red
               trailing: Icon(Icons.arrow_forward_ios),
               onTap: () {
-                Navigator.pushNamed(context, approve.id);
+                if (onPressedDrawerApprove == false) {
+                  onPressedDrawerApprove = true;
+                  Navigator.pushNamed(context, approve.id);
+                }
               },
             ),
           ],

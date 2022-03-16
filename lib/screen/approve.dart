@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:inputgram/approvalList.dart';
 import 'package:inputgram/consts.dart';
+import 'package:inputgram/util.dart';
 
 class approve extends StatefulWidget {
   static String id = "approvescreen";
@@ -16,6 +17,7 @@ class _approveState extends State<approve> {
 
   @override
   Widget build(BuildContext context) {
+    onPressedDrawerApprove = false;
     return Scaffold(
       appBar: AppBar(
         title: Text(

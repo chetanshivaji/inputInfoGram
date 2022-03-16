@@ -68,6 +68,7 @@ class _removeInfoState extends State<removeInfo> {
 
   @override
   Widget build(BuildContext context) {
+    onPressedDrawerRemovePerson = false;
     bool onPressedRemoveInfo = false;
     return Scaffold(
       appBar: AppBar(
