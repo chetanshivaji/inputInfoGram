@@ -20,7 +20,6 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
-    bool pressed = true;
     return Scaffold(
       backgroundColor: Colors.white,
       body: Padding(
@@ -132,88 +131,84 @@ class _LoginScreenState extends State<LoginScreen> {
                     child: Text(
                       labelLogin,
                     ),
-                    onPressed: pressed
-                        ? () async {
-                            if (_formLoginKey.currentState!.validate() &&
-                                onPressedLogin == false) {
-                              String adminMail = "";
-                              onPressedLogin = true;
-                              //Implement registration functionality.
-                              try {
-                                //Only admin should login
-                                adminMail = await FirebaseFirestore.instance
-                                    .collection(collUsers)
-                                    .doc(email)
-                                    .get()
-                                    .then(
-                                  (value) async {
-                                    if (!value.exists) {
-                                      //if allready present
-                                      onPressedLogin = false;
-                                      popAlert(
-                                        context,
-                                        kTitleNotPresent,
-                                        kSubTitleEmailPresent,
-                                        getWrongIcon(),
-                                        2,
-                                      );
-                                      return "";
-                                    } else {
-                                      var y = value.data();
-                                      adminVillage = y![keyVillage];
-                                      adminPin = y[keyPin];
-
-                                      registerdName = y[keyRegisteredName];
-
-                                      if (y[keyIsAdmin]) {
-                                        return y[keyMail];
-                                      } else {
-                                        return msgNotAdmin;
-                                      }
-                                    }
-                                  },
-                                );
-                                if (adminMail == "") return;
-
-                                if (adminMail == email) {
-                                  final newUser =
-                                      await _auth.signInWithEmailAndPassword(
-                                    email: email,
-                                    password: password,
-                                  );
-                                  if (newUser != null) {
-                                    userMail = email;
-                                    Navigator.pushNamed(
-                                      context,
-                                      MyApp.id,
-                                    );
-                                  }
-                                } else {
-                                  onPressedLogin = false;
-                                  popAlert(
-                                    context,
-                                    kTitleFail,
-                                    kSubTitleOnlyAdmin,
-                                    getWrongIcon(),
-                                    2,
-                                  );
-                                }
-                              } catch (e) {
+                    onPressed: () async {
+                      if (_formLoginKey.currentState!.validate() &&
+                          onPressedLogin == false) {
+                        String adminMail = "";
+                        onPressedLogin = true;
+                        //Implement registration functionality.
+                        try {
+                          //Only admin should login
+                          adminMail = await FirebaseFirestore.instance
+                              .collection(collUsers)
+                              .doc(email)
+                              .get()
+                              .then(
+                            (value) async {
+                              if (!value.exists) {
+                                //if allready present
                                 onPressedLogin = false;
                                 popAlert(
                                   context,
-                                  kTitleFail,
-                                  e.toString(),
+                                  kTitleNotPresent,
+                                  kSubTitleEmailPresent,
                                   getWrongIcon(),
                                   2,
                                 );
-                                return;
-                              }
+                                return "";
+                              } else {
+                                var y = value.data();
+                                adminVillage = y![keyVillage];
+                                adminPin = y[keyPin];
 
-                              pressed = false;
+                                registerdName = y[keyRegisteredName];
+
+                                if (y[keyIsAdmin]) {
+                                  return y[keyMail];
+                                } else {
+                                  return msgNotAdmin;
+                                }
+                              }
+                            },
+                          );
+                          if (adminMail == "") return;
+
+                          if (adminMail == email) {
+                            final newUser =
+                                await _auth.signInWithEmailAndPassword(
+                              email: email,
+                              password: password,
+                            );
+                            if (newUser != null) {
+                              userMail = email;
+                              Navigator.pushNamed(
+                                context,
+                                MyApp.id,
+                              );
                             }
+                          } else {
+                            onPressedLogin = false;
+                            popAlert(
+                              context,
+                              kTitleFail,
+                              kSubTitleOnlyAdmin,
+                              getWrongIcon(),
+                              2,
+                            );
                           }
-                        : null,
+                        } catch (e) {
+                          onPressedLogin = false;
+                          popAlert(
+                            context,
+                            kTitleFail,
+                            e.toString(),
+                            getWrongIcon(),
+                            2,
+                          );
+                          return;
+                        }
+                      }
+                    },
                   ),
                 ),
               ),
