@@ -46,8 +46,6 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
       {
         keyVillage: village,
         keyPin: pin,
-        //by default approved for admin
-        keyApproved: true,
         //access level set by admin decided type of use, eg .viewer, collector, admin, spender
         keyAccessLevel: accessItems[accessLevel.SuperUser.index],
         keyMail: email,

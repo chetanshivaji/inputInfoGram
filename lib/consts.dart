@@ -61,8 +61,8 @@ String actIn = "IN";
 String tableHeadingEmail = 'Email';
 String tableHeadingRegisteredName = 'Name';
 String tableHeadingStatus = 'Status';
-String tableHeadingAccess = 'Access';
-String tableHeadingChangeStatus = 'ChangeStatus';
+//String tableHeadingAccess = 'Access';
+//String tableHeadingChangeStatus = 'ChangeStatus';
 //String tableHeading = "";
 
 //Form field Lable
@@ -97,7 +97,7 @@ String appBarMainAppInfo = 'Admin, Register, approve, make db';
 String keyRegisteredName = 'registeredName';
 String keyVillage = 'village';
 String keyPin = 'pin';
-String keyApproved = 'approved';
+//String keyApproved = 'approved';
 String keyAccessLevel = 'accessLevel';
 String keyMail = 'mail';
 String keyIsAdmin = 'isAdmin';
@@ -118,7 +118,7 @@ String keyTotalOut = 'totalOut';
 //String key = "";
 
 String scafBeginInfoApproveRemove =
-    "Please approve or remove clicking toggle icon";
+    "Please approve/Disapprove selecting status";
 
 //From util oldies
 String registerSubtitleSuccess = "Register success!";
@@ -217,6 +217,7 @@ enum accessLevel {
   Collector,
   Spender,
   SuperUser,
+  No,
 }
 var accessItems = [
   "select",
@@ -224,4 +225,5 @@ var accessItems = [
   "Collector",
   "Spender",
   "SuperUser",
+  "No",
 ];

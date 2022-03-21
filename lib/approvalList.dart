@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/painting.dart';
 import 'package:inputgram/consts.dart';
 import 'package:inputgram/util.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -36,7 +37,7 @@ class _approvalListState extends State<approvalList> {
                   borderRadius: BorderRadius.circular(12.0),
                   dropdownColor: clrAmber,
 
-                  alignment: Alignment.topRight,
+                  //alignment: Alignment.topRight,
 
                   // Initial Value
                   value: access,
@@ -78,37 +79,6 @@ class _approvalListState extends State<approvalList> {
           ),
         );
 
-        ldataCell.add(DataCell(Text(l.get(keyApproved).toString())));
-
-        ldataCell.add(
-          DataCell(
-            IconButton(
-              splashColor: clrIconSpalsh,
-              splashRadius: iconSplashRadius,
-              onPressed: () async {
-                //approve Status.
-                String mail = l.get(keyMail);
-                bool statusApproved = l.get(keyApproved);
-                if (statusApproved == false) {
-                  await FirebaseFirestore.instance
-                      .collection(collUsers)
-                      .doc(mail)
-                      .update({keyApproved: true});
-                } else {
-                  await FirebaseFirestore.instance
-                      .collection(collUsers)
-                      .doc(mail)
-                      .update({keyApproved: false});
-                }
-              },
-              icon: Icon(
-                Icons.change_circle_outlined,
-                color: Colors.black,
-              ),
-              tooltip: msgToogleToApproveDis,
-            ),
-          ),
-        );
         ldataRow.add(DataRow(cells: ldataCell));
       }
     }
@@ -148,18 +118,6 @@ class _approvalListState extends State<approvalList> {
             DataColumn(
               label: Text(
                 tableHeadingStatus,
-                style: getStyle(actPending),
-              ),
-            ),
-            DataColumn(
-              label: Text(
-                tableHeadingAccess,
-                style: getStyle(actPending),
-              ),
-            ),
-            DataColumn(
-              label: Text(
-                tableHeadingChangeStatus,
                 style: getStyle(actPending),
               ),
             ),
