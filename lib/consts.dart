@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:inputgram/util.dart';
+
 
 String mainDb = "mainDb";
 String titleSuccess = "Success";
@@ -31,7 +31,7 @@ String msgHouseTaxAmount = 'Please enter house tax amount';
 String msgWaterTax = "Enter Water tax";
 String msgProcessingData = 'Processing Data';
 String msgAlreadyRemoved = "Allready Removed";
-String msgToogleToApproveDis = "Toggle to approve/disapprove user";
+
 String msgNoExpense = "There is no expense";
 String msgLoading = "loading";
 
@@ -97,7 +97,7 @@ String appBarMainAppInfo = 'Admin, Register, approve, make db';
 String keyRegisteredName = 'registeredName';
 String keyVillage = 'village';
 String keyPin = 'pin';
-//String keyApproved = 'approved';
+
 String keyAccessLevel = 'accessLevel';
 String keyMail = 'mail';
 String keyIsAdmin = 'isAdmin';
