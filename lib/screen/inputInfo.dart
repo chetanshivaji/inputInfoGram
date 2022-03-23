@@ -93,6 +93,60 @@ class _inputInfoState extends State<inputInfo> {
             ),
             Expanded(
               child: TextFormField(
+                controller: _textController_mobile,
+                keyboardType: TextInputType.number,
+                decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                    icon: Icon(Icons.mobile_friendly),
+                    hintText: msgEnterMobileNumber,
+                    labelText: labelMobile),
+                onChanged: (value) async {
+                  if (value.length < 10) {
+                    _textController_name.text = "";
+                    _textController_mail.text = "";
+                  }
+                  if (value.length == 10) {
+                    //fetch data and assign it to controller.
+                    try {
+                      await FirebaseFirestore.instance
+                          .collection(adminVillage + adminPin)
+                          .doc(mainDb)
+                          .collection(mainDb +
+                              (int.parse(dropdownValueYear) - 1).toString())
+                          .doc(value.toString())
+                          .get()
+                          .then(
+                        (value) {
+                          var y = value.data();
+                          _textController_name.text = y![keyName];
+                          _textController_mail.text = y[keyEmail];
+                        },
+                      );
+                    } catch (e) {
+                      print(e);
+                    }
+                  }
+                },
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return msgEnterMobileNumber;
+                  }
+                  if (value.length != 10) {
+                    return msgTenDigitNumber;
+                  }
+                  if (!isNumeric(value)) {
+                    return msgOnlyNumber;
+                  }
+                  mobile = int.parse(value);
+                  return null;
+                },
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.only(top: 20),
+            ),
+            Expanded(
+              child: TextFormField(
                 controller: _textController_name,
                 keyboardType: TextInputType.text,
                 decoration: InputDecoration(
@@ -127,33 +181,6 @@ class _inputInfoState extends State<inputInfo> {
                   }
 
                   email = value;
-                  return null;
-                },
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.only(top: 20),
-            ),
-            Expanded(
-              child: TextFormField(
-                controller: _textController_mobile,
-                keyboardType: TextInputType.number,
-                decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    icon: Icon(Icons.mobile_friendly),
-                    hintText: msgEnterMobileNumber,
-                    labelText: labelMobile),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return msgEnterMobileNumber;
-                  }
-                  if (value.length != 10) {
-                    return msgTenDigitNumber;
-                  }
-                  if (!isNumeric(value)) {
-                    return msgOnlyNumber;
-                  }
-                  mobile = int.parse(value);
                   return null;
                 },
               ),
