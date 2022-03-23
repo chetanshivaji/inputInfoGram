@@ -130,6 +130,16 @@ class _updateInfoState extends State<updateInfo> {
               child: TextFormField(
                 controller: _textController_mobile,
                 onChanged: (text) async {
+                  if (text.length < 10) {
+                    setState(
+                      () {
+                        name = "";
+                        email = "";
+                        nameEntry = "";
+                        emailEntry = "";
+                      },
+                    );
+                  }
                   if (text.length == 10) {
                     try {
                       await FirebaseFirestore.instance
@@ -146,7 +156,16 @@ class _updateInfoState extends State<updateInfo> {
                         },
                       );
                     } catch (e) {
-                      print(e);
+                      popAlert(
+                        context,
+                        txtTitleMobileNotPresent,
+                        "",
+                        getWrongIcon(),
+                        1,
+                      );
+                      _textController_newMobile.clear();
+                      _textController_newEmail.clear();
+                      return;
                     }
 
                     setState(
