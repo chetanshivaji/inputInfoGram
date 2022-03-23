@@ -104,6 +104,8 @@ class _inputInfoState extends State<inputInfo> {
                   if (value.length < 10) {
                     _textController_name.text = "";
                     _textController_mail.text = "";
+                    _textController_houseTax.text = "";
+                    _textController_waterTax.text = "";
                   }
                   if (value.length == 10) {
                     //fetch data and assign it to controller.
@@ -120,6 +122,10 @@ class _inputInfoState extends State<inputInfo> {
                           var y = value.data();
                           _textController_name.text = y![keyName];
                           _textController_mail.text = y[keyEmail];
+                          _textController_houseTax.text =
+                              y[keyHouse].toString();
+                          _textController_waterTax.text =
+                              y[keyWater].toString();
                         },
                       );
                     } catch (e) {

@@ -158,7 +158,7 @@ class _updateInfoState extends State<updateInfo> {
                     } catch (e) {
                       popAlert(
                         context,
-                        txtTitleMobileNotPresent,
+                        kTitleMobileNotPresent,
                         "",
                         getWrongIcon(),
                         1,

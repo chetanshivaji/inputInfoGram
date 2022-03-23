@@ -93,6 +93,16 @@ class _removeInfoState extends State<removeInfo> {
               child: TextFormField(
                 controller: _textController_mobile,
                 onChanged: (text) async {
+                  if (text.length < 10) {
+                    setState(
+                      () {
+                        name = "";
+                        email = "";
+                        nameEntry = "";
+                        emailEntry = "";
+                      },
+                    );
+                  }
                   if (text.length == 10) {
                     try {
                       await FirebaseFirestore.instance
@@ -205,7 +215,7 @@ class _removeInfoState extends State<removeInfo> {
                                   getRightIcon(), 2);
                             } else {
                               onPressedRemoveInfo = false;
-                              popAlert(context, msgAlreadyRemoved, "",
+                              popAlert(context, kTitleMobileNotPresent, "",
                                   getWrongIcon(), 2);
                             }
                           },
