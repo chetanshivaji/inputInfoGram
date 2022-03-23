@@ -257,78 +257,71 @@ class _updateInfoState extends State<updateInfo> {
                             content: Text(msgProcessingData),
                           ),
                         );
-                        //START create new entry with copying field from old entry with new mobile and mail.
-                        String newEntry_email = "";
-                        int newEntry_mobile = 0;
-                        String newEntry_name = "";
-                        int newEntry_house = 0;
-                        bool newEntry_houseGiven = false;
-                        int newEntry_water = 0;
-                        bool newEntry_waterGiven = false;
+                        for (var yr in items) {
+                          String newEntry_email = "";
+                          int newEntry_mobile = 0;
+                          String newEntry_name = "";
+                          int newEntry_house = 0;
+                          bool newEntry_houseGiven = false;
+                          int newEntry_water = 0;
+                          bool newEntry_waterGiven = false;
 
-                        await FirebaseFirestore.instance
-                            .collection(adminVillage + adminPin)
-                            .doc(mainDb)
-                            .collection(mainDb + dropdownValueYear)
-                            .doc(mobile.toString())
-                            .get()
-                            .then(
-                          (value) {
-                            var y = value.data();
-                            newEntry_name = y![keyName];
-                            newEntry_email = y[keyEmail];
-                            newEntry_house = y[keyHouse];
-                            newEntry_houseGiven = y[keyHouseGiven];
-                            newEntry_water = y[keyWater];
-                            newEntry_waterGiven = y[keyWaterGiven];
-                            newEntry_mobile = newMobile;
-                          },
-                        );
-                        //END create new entry with copying field from old entry with new mobile and mail.
+                          //START remove old entry
+                          var collection = FirebaseFirestore.instance
+                              .collection(adminVillage + adminPin)
+                              .doc(mainDb)
+                              .collection(mainDb + yr);
+                          await collection.doc(mobile.toString()).get().then(
+                            (value) async {
+                              if (value.exists) {
+                                //START create new entry with copying field from old entry with new mobile and mail.
+                                var y = value.data();
+                                newEntry_name = y![keyName];
+                                newEntry_email = y[keyEmail];
+                                newEntry_house = y[keyHouse];
+                                newEntry_houseGiven = y[keyHouseGiven];
+                                newEntry_water = y[keyWater];
+                                newEntry_waterGiven = y[keyWaterGiven];
+                                newEntry_mobile = newMobile;
+                                //END create new entry with copying field from old entry with new mobile and mail.
 
-                        //START remove old entry
-                        var collection = FirebaseFirestore.instance
-                            .collection(adminVillage + adminPin)
-                            .doc(mainDb)
-                            .collection(mainDb + dropdownValueYear);
-                        await collection.doc(mobile.toString()).get().then(
-                          (value) {
-                            if (value.exists) {
-                              FirebaseFirestore.instance
-                                  .collection(adminVillage + adminPin)
-                                  .doc(mainDb)
-                                  .collection(mainDb + dropdownValueYear)
-                                  .doc(mobile.toString())
-                                  .delete();
-                              popAlert(context, titleSuccess, subtitleSuccess,
-                                  getRightIcon(), 2);
-                            } else {
-                              onPressedUpdateInfo = false;
-                              popAlert(context, "TODO: xyz as of now", "",
-                                  getWrongIcon(), 2);
-                            }
-                          },
-                        );
-                        //END remove old entry
+                                //START delete old entry to replace
+                                FirebaseFirestore.instance
+                                    .collection(adminVillage + adminPin)
+                                    .doc(mainDb)
+                                    .collection(mainDb + yr)
+                                    .doc(mobile.toString())
+                                    .delete();
 
-                        //START create new Entry
-                        await FirebaseFirestore.instance
-                            .collection(adminVillage + adminPin)
-                            .doc(mainDb)
-                            .collection(mainDb + dropdownValueYear)
-                            .doc(newMobile.toString())
-                            .set(
-                          {
-                            keyHouse: newEntry_house,
-                            keyHouseGiven: newEntry_houseGiven,
-                            keyEmail: email,
-                            keyMobile: newMobile,
-                            keyName: newEntry_name,
-                            keyWater: newEntry_water,
-                            keyWaterGiven: newEntry_waterGiven,
-                          },
-                        );
-                        //END create new Entry
+                                //After deleting entry create new entry
+                                //END delete old entry to replace
+
+                                //START create new Entry
+                                await FirebaseFirestore.instance
+                                    .collection(adminVillage + adminPin)
+                                    .doc(mainDb)
+                                    .collection(mainDb + yr)
+                                    .doc(newMobile.toString())
+                                    .set(
+                                  {
+                                    keyHouse: newEntry_house,
+                                    keyHouseGiven: newEntry_houseGiven,
+                                    keyEmail: email,
+                                    keyMobile: newMobile,
+                                    keyName: newEntry_name,
+                                    keyWater: newEntry_water,
+                                    keyWaterGiven: newEntry_waterGiven,
+                                  },
+                                );
+                                //END create new Entry
+                                popAlert(context, titleSuccess, subtitleSuccess,
+                                    getRightIcon(), 2);
+                              }
+                            },
+                          );
+                          //END remove old entry
+
+                        }
                       } catch (e) {
                         onPressedUpdateInfo = false;
                         popAlert(context, kTitleTryCatchFail, e.toString(),
