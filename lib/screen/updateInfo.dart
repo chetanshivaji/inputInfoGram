@@ -22,12 +22,14 @@ class _updateInfoState extends State<updateInfo> {
 
   int mobile = 0;
   int newMobile = 0;
+  String newEmail = "";
   int houseTax = 0;
   int waterTax = 0;
   bool houseGiven = false;
   bool waterGiven = false;
   var _textController_mobile = TextEditingController();
   var _textController_newMobile = TextEditingController();
+  var _textController_newEmail = TextEditingController();
 
   ListTile getYearTile(Color clr) {
     return ListTile(
@@ -63,6 +65,7 @@ class _updateInfoState extends State<updateInfo> {
               email = "";
               _textController_mobile.clear();
               _textController_newMobile.clear();
+              _textController_newEmail.clear();
             },
           );
         },
@@ -240,6 +243,28 @@ class _updateInfoState extends State<updateInfo> {
                 },
               ),
             ),
+            Padding(
+              padding: EdgeInsets.only(top: 20),
+            ),
+            Expanded(
+              child: TextFormField(
+                controller: _textController_newEmail,
+                keyboardType: TextInputType.emailAddress,
+                decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                    icon: Icon(Icons.mail_outline),
+                    hintText: msgEnterUserNewMail,
+                    labelText: labelNewEmail),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    newEmail = "";
+                    return null;
+                  }
+                  newEmail = value;
+                  return null;
+                },
+              ),
+            ),
             Expanded(
               child: Center(
                 child: ElevatedButton(
@@ -276,12 +301,17 @@ class _updateInfoState extends State<updateInfo> {
                                 //START create new entry with copying field from old entry with new mobile and mail.
                                 var y = value.data();
                                 newEntry_name = y![keyName];
-                                newEntry_email = y[keyEmail];
+
                                 newEntry_house = y[keyHouse];
                                 newEntry_houseGiven = y[keyHouseGiven];
                                 newEntry_water = y[keyWater];
                                 newEntry_waterGiven = y[keyWaterGiven];
                                 newEntry_mobile = newMobile;
+                                if (newEmail == "") {
+                                  newEntry_email = y[keyEmail];
+                                } else {
+                                  newEntry_email = newEmail;
+                                }
                                 //END create new entry with copying field from old entry with new mobile and mail.
 
                                 //START delete old entry to replace
@@ -305,7 +335,7 @@ class _updateInfoState extends State<updateInfo> {
                                   {
                                     keyHouse: newEntry_house,
                                     keyHouseGiven: newEntry_houseGiven,
-                                    keyEmail: email,
+                                    keyEmail: newEntry_email,
                                     keyMobile: newMobile,
                                     keyName: newEntry_name,
                                     keyWater: newEntry_water,
