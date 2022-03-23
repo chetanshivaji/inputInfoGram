@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-
 String mainDb = "mainDb";
 String titleSuccess = "Success";
 String subtitleSuccess = "Submitted!";
@@ -24,6 +23,7 @@ String msgEnterVillageName = 'Please enter village name';
 String msgEnterVillagePin = 'Please enter village pin';
 String msgEnterVillageAddress = 'Please enter village address';
 String msgEnterMobileNumber = "Enter mobile Number";
+String msgEnterNewMobileNumber = "Enter new mobile Number";
 String msgTenDigitNumber = "Please enter 10 digits!";
 String msgEnterFullName = "Enter Full Name";
 String msgEnterHouseTax = "Enter House tax";
@@ -45,6 +45,7 @@ String bLabelSubmit = 'Submit';
 String dAddPerson = 'AddPersonTax';
 String dRemovePerson = 'RemovePersonTax';
 String dApprove = 'Approve';
+String dUpdatePerson = 'UpdatePerson';
 String dHeading = 'Admin';
 
 //options pop up
@@ -68,6 +69,7 @@ String tableHeadingStatus = 'Status';
 //Form field Lable
 String labelWaterTax = "Water Tax *";
 String labelMobile = "Mobile *";
+String labelNewMobile = "New Mobile *";
 String labelAdminEmail = "AdminEmail *";
 String labelEmail = "Mail * ";
 String labelAdminPassword = "AdminPassword *";
@@ -89,9 +91,10 @@ String collFormula = 'formula';
 
 //app bar heading
 String appBarHeadingApproveRemove = "Approve/Remove";
-String appBarHeadingInputInfo = "Add New Person to GramDB";
-String appBarHeadingRemoveInfo = "Remove Person from GramDB";
+String appBarHeadingInputInfo = "Add New Person Gram";
+String appBarHeadingRemoveInfo = "Remove Person Gram";
 String appBarMainAppInfo = 'Admin, Register, approve, make db';
+String appBarHeadingUpdateInfo = 'Update Info in Gram';
 
 //keys
 String keyRegisteredName = 'registeredName';

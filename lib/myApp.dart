@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:inputgram/screen/approve.dart';
 import 'package:inputgram/screen/inputInfo.dart';
 import 'package:inputgram/screen/removeInfo.dart';
+import 'package:inputgram/screen/updateInfo.dart';
 import 'consts.dart';
 import 'package:inputgram/util.dart';
 import 'package:inputgram/consts.dart';
@@ -74,7 +75,7 @@ class MyApp extends StatelessWidget {
                 ),
               ),
               ListTile(
-                leading: Icon(Icons.add_box),
+                leading: Icon(Icons.person_add),
                 title: Text(dAddPerson),
                 tileColor: clrGreen, //green
                 trailing: Icon(Icons.arrow_forward_ios),
@@ -86,7 +87,7 @@ class MyApp extends StatelessWidget {
                 },
               ),
               ListTile(
-                leading: Icon(Icons.add_box),
+                leading: Icon(Icons.person_remove),
                 title: Text(dRemovePerson),
                 tileColor: clrRed, //green
                 trailing: Icon(Icons.arrow_forward_ios),
@@ -106,6 +107,18 @@ class MyApp extends StatelessWidget {
                   if (onPressedDrawerApprove == false) {
                     onPressedDrawerApprove = true;
                     Navigator.pushNamed(context, approve.id);
+                  }
+                },
+              ),
+              ListTile(
+                leading: Icon(Icons.update),
+                title: Text(dUpdatePerson),
+                tileColor: clrBlue, //red
+                trailing: Icon(Icons.arrow_forward_ios),
+                onTap: () {
+                  if (onPressedDrawerUpdatePerson == false) {
+                    onPressedDrawerUpdatePerson = true;
+                    Navigator.pushNamed(context, updateInfo.id);
                   }
                 },
               ),

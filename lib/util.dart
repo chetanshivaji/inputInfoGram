@@ -10,7 +10,9 @@ String registerdName = "";
 
 bool onPressedDrawerAddPerson = false;
 bool onPressedDrawerRemovePerson = false;
+bool onPressedDrawerUpdatePerson = false;
 bool onPressedDrawerApprove = false;
+bool onPressedDrawerUpdate = false;
 
 TextStyle getTableHeadingTextStyle() {
   return TextStyle(
