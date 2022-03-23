@@ -120,7 +120,6 @@ class _updateInfoState extends State<updateInfo> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            getYearTile(clrBlue),
             Padding(
               padding: EdgeInsets.only(top: 20),
             ),
@@ -315,7 +314,7 @@ class _updateInfoState extends State<updateInfo> {
                                 );
                                 //END create new Entry
                                 popAlert(context, titleSuccess, subtitleSuccess,
-                                    getRightIcon(), 2);
+                                    getRightIcon(), 3);
                               }
                             },
                           );
