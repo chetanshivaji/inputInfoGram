@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:inputgram/screen/removeInfo.dart';
 import 'screen/inputInfo.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'myApp.dart';
@@ -34,7 +33,6 @@ void main() async {
       routes: {
         MyApp.id: (context) => MyApp(),
         inputInfo.id: (context) => inputInfo(),
-        removeInfo.id: (context) => removeInfo(),
         updateInfo.id: (context) => updateInfo(),
         approve.id: (context) => approve(),
         WelcomeScreen.id: (context) => WelcomeScreen(),

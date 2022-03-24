@@ -3,12 +3,9 @@ This is first app which should register a village and admin, add/remove new/old 
 
 
 #TODO:
-1. No need of two approvals, giving access rights itself can work as approving.
 2. app permissions.
-1. add Person remove person replcing add entry remove entry
 1. register welcome message
 1. Role play, field study, types of users on field, existing software study.
-2. Report generation.
 1. Make all await statements in try catch
 2. Remove all print statement and put pop up message.
 
@@ -16,6 +13,10 @@ This is first app which should register a village and admin, add/remove new/old 
 
 
 #DONE
+1. remove remove person functionality , can be misused
+2. Report generation.
+1. add Person remove person replcing add entry remove entry
+1. No need of two approvals, giving access rights itself can work as approving.
 1. Addition of entry to 2021 db.
 2.  Todo multi year addition/deletion of entry support.
 3. Check if entry for that phone number allready present.
