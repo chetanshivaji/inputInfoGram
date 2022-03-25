@@ -69,6 +69,97 @@ class _inputInfoState extends State<inputInfo> {
     );
   }
 
+  void createTotalFormula() async {
+    var formulaRef;
+    //START create Formula in each year once
+    formulaRef = await FirebaseFirestore.instance
+        .collection(adminVillage + adminPin)
+        .doc(mainDb)
+        .collection(collFormula)
+        .doc(docCalcultion);
+
+    formulaRef.get().then(
+      (docSnapshot) async {
+        if (docSnapshot.exists) {
+          /*
+                                  //if allready present
+                                  showAlertDialog(
+                                      context,
+                                      kTitlePresent,
+                                      kSubTitleEntryAlreadyPresent,
+                                      Icon(Icons.person_search_rounded))
+                                      */
+        } else {
+          //if entry not present in db then add
+          await FirebaseFirestore.instance
+              .collection(adminVillage + adminPin)
+              .doc(mainDb)
+              .collection(collFormula)
+              .doc(docCalcultion)
+              .set(
+            {
+              keyTotalBalance: 0,
+              keyTotalIn: 0,
+              keyTotalOut: 0,
+            },
+          );
+        }
+      },
+    );
+  }
+
+  void updateYearWiseFormula(int houseTax, int waterTax) async {
+    var formulaRef;
+    //START create Formula in each year once
+    formulaRef = await FirebaseFirestore.instance
+        .collection(adminVillage + adminPin)
+        .doc(mainDb)
+        .collection(collFormula + dropdownValueYear)
+        .doc(docCalcultion);
+
+    formulaRef.get().then(
+      (value) async {
+        if (value.exists) {
+          //if already present get and update.
+          int pendingHouse, totalHouse, pendingWater, totalWater;
+          pendingHouse = totalHouse = pendingWater = totalWater = 0;
+
+          var y = value.data();
+          totalHouse = y![keyYfTotalHouse];
+          pendingHouse = y![keyYfPendingHouse];
+          totalWater = y![keyYfTotalWater];
+          pendingWater = y![keyYfPendingWater];
+
+          await formulaRef.update(
+            {
+              keyYfTotalHouse: totalHouse + houseTax,
+              keyYfPendingHouse: pendingHouse + houseTax,
+              keyYfTotalWater: totalWater + waterTax,
+              keyYfPendingWater: pendingWater + waterTax,
+            },
+          );
+        } else {
+          //if entry not present in db then add
+          await FirebaseFirestore.instance
+              .collection(adminVillage + adminPin)
+              .doc(mainDb)
+              .collection(collFormula + dropdownValueYear)
+              .doc(docCalcultion)
+              .set(
+            {
+              keyYfTotalHouse: houseTax,
+              keyYfCollectedHouse: 0,
+              keyYfPendingHouse: houseTax,
+              keyYfTotalWater: waterTax,
+              keyYfCollectedWater: 0,
+              keyYfPendingWater: waterTax,
+            },
+          );
+        }
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     onPressedDrawerAddPerson = false;
@@ -246,7 +337,6 @@ class _inputInfoState extends State<inputInfo> {
               child: Center(
                 child: ElevatedButton(
                   onPressed: () async {
-                    var formulaRef;
                     // Validate returns true if the form is valid, or false otherwise.
                     if (_formKeyInputForm.currentState!.validate() &&
                         onPressedInputInfo == false) {
@@ -301,41 +391,8 @@ class _inputInfoState extends State<inputInfo> {
                                   keyWaterGiven: false,
                                 },
                               );
-                              //START create Formula in each year once
-                              formulaRef = await FirebaseFirestore.instance
-                                  .collection(adminVillage + adminPin)
-                                  .doc(mainDb)
-                                  .collection(collFormula)
-                                  .doc(docCalcultion);
-
-                              formulaRef.get().then(
-                                (docSnapshot) async {
-                                  if (docSnapshot.exists) {
-                                    /*
-                                  //if allready present
-                                  showAlertDialog(
-                                      context,
-                                      kTitlePresent,
-                                      kSubTitleEntryAlreadyPresent,
-                                      Icon(Icons.person_search_rounded))
-                                      */
-                                  } else {
-                                    //if entry not present in db then add
-                                    await FirebaseFirestore.instance
-                                        .collection(adminVillage + adminPin)
-                                        .doc(mainDb)
-                                        .collection(collFormula)
-                                        .doc(docCalcultion)
-                                        .set(
-                                      {
-                                        keyTotalBalance: 0,
-                                        keyTotalIn: 0,
-                                        keyTotalOut: 0,
-                                      },
-                                    );
-                                  }
-                                },
-                              );
+                              createTotalFormula();
+                              updateYearWiseFormula(houseTax, waterTax);
                               //END create Formula in each year once
                               popAlert(context, titleSuccess, subtitleSuccess,
                                   getRightIcon(), 2);

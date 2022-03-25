@@ -5,6 +5,7 @@ import 'myApp.dart';
 
 import 'screen/approve.dart';
 import 'screen/updateInfo.dart';
+import 'screen/reportInfo.dart';
 import 'screen/welcome_login/login_screen.dart';
 import 'screen/welcome_login/registration_screen.dart';
 import 'screen/welcome_login/welcome_screen.dart';
@@ -34,6 +35,7 @@ void main() async {
         MyApp.id: (context) => MyApp(),
         inputInfo.id: (context) => inputInfo(),
         updateInfo.id: (context) => updateInfo(),
+        reportInfo.id: (context) => reportInfo(),
         approve.id: (context) => approve(),
         WelcomeScreen.id: (context) => WelcomeScreen(),
         LoginScreen.id: (context) => LoginScreen(),

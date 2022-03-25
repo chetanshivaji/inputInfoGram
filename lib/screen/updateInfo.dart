@@ -31,48 +31,6 @@ class _updateInfoState extends State<updateInfo> {
   var _textController_newMobile = TextEditingController();
   var _textController_newEmail = TextEditingController();
 
-  ListTile getYearTile(Color clr) {
-    return ListTile(
-      trailing: DropdownButton(
-        borderRadius: BorderRadius.circular(12.0),
-        dropdownColor: clr,
-
-        alignment: Alignment.topLeft,
-
-        // Initial Value
-        value: dropdownValueYear,
-        // Down Arrow Icon
-        icon: Icon(
-          Icons.date_range,
-          color: clr,
-        ),
-        // Array list of items
-        items: items.map(
-          (String items) {
-            return DropdownMenuItem(
-              value: items,
-              child: Text(items),
-            );
-          },
-        ).toList(),
-        // After selecting the desired option,it will
-        // change button value to selected value
-        onChanged: (String? newValue) {
-          setState(
-            () {
-              dropdownValueYear = newValue!;
-              name = "";
-              email = "";
-              _textController_mobile.clear();
-              _textController_newMobile.clear();
-              _textController_newEmail.clear();
-            },
-          );
-        },
-      ),
-    );
-  }
-
   Future<bool> mobileAlreadyUsed(String text) async {
     try {
       await FirebaseFirestore.instance

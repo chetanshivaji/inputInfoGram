@@ -9,10 +9,12 @@ String adminPin = "";
 String registerdName = "";
 
 bool onPressedDrawerAddPerson = false;
-bool onPressedDrawerRemovePerson = false;
+bool onPressedDrawerReportPerson = false;
 bool onPressedDrawerUpdatePerson = false;
+
 bool onPressedDrawerApprove = false;
 bool onPressedDrawerUpdate = false;
+bool onPressedDrawerReport = false;
 
 TextStyle getTableHeadingTextStyle() {
   return TextStyle(

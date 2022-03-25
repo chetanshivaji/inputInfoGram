@@ -42,11 +42,13 @@ String msgNotAdmin = "notAdmin";
 String bLabelAdminlogin = 'Admin Log In';
 String bLabelAdminRegiter = 'Admin Register';
 String bLabelSubmit = 'Submit';
+String bLabelSubmitRefresh = 'Submit/Refresh';
 
 //Drawer sections
 String dAddPerson = 'AddPersonTax';
 String dRemovePerson = 'RemovePersonTax';
 String dApprove = 'Approve';
+String dReport = 'Report';
 String dUpdatePerson = 'UpdatePerson';
 String dHeading = 'Admin';
 
@@ -64,9 +66,15 @@ String actIn = "IN";
 String tableHeadingEmail = 'Email';
 String tableHeadingRegisteredName = 'Name';
 String tableHeadingStatus = 'Status';
-//String tableHeadingAccess = 'Access';
-//String tableHeadingChangeStatus = 'ChangeStatus';
+
 //String tableHeading = "";
+String tableHeading_year = "Year";
+String tableHeading_totalHouse = "tHouse";
+String tableHeading_pendingHouse = "pHouse";
+String tableHeading_collectedHouse = "cHouse";
+String tableHeading_totalWater = "tWater";
+String tableHeading_pendingWater = "pWater";
+String tableHeading_collectedWater = "cWater";
 
 //Form field Lable
 String labelWaterTax = "Water Tax *";
@@ -98,6 +106,11 @@ String appBarHeadingInputInfo = "Add New Person Gram";
 String appBarHeadingRemoveInfo = "Remove Person Gram";
 String appBarMainAppInfo = 'Admin, Register, approve, make db';
 String appBarHeadingUpdateInfo = 'Update Info in Gram';
+String appBarHeadingReportInfo = 'Report Info in Gram';
+
+String tableHeadingDate = 'Date';
+String txtHtoL = "H to L";
+String txtLtoH = "L to H";
 
 //keys
 String keyRegisteredName = 'registeredName';
@@ -120,6 +133,14 @@ String keyEmail = "email";
 String keyTotalBalance = 'totalBalance';
 String keyTotalIn = 'totalIn';
 String keyTotalOut = 'totalOut';
+
+String keyYfTotalHouse = 'yfTotalHouse';
+String keyYfCollectedHouse = 'yfCollectedHouse';
+String keyYfPendingHouse = 'yfPendingHouse';
+
+String keyYfTotalWater = 'yfTotalWater';
+String keyYfCollectedWater = 'yfCollectedWater';
+String keyYfPendingWater = 'yfPendingWater';
 
 //String key = "";
 
@@ -214,6 +235,21 @@ var items = [
   "2021",
   "2022",
   "2023",
+];
+
+var formulaYears = [
+  "2019",
+  "2020",
+  "2021",
+  "2022",
+  "2023",
+  "2024",
+  "2025",
+  "2026",
+  "2027",
+  "2028",
+  "2029",
+  "2030",
 ];
 
 String access = "select";
