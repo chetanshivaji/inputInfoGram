@@ -112,9 +112,9 @@ class _reportInfoState extends State<reportInfo> {
                   Text(
                     collectedHouse.toString() +
                         " " +
-                        "(%" +
+                        " (" +
                         (intPCH).toString() +
-                        ")",
+                        "%)",
                   ),
                 ),
               );
@@ -126,9 +126,9 @@ class _reportInfoState extends State<reportInfo> {
                   Text(
                     collectedWater.toString() +
                         " " +
-                        "(%" +
+                        " (" +
                         (intPCW).toString() +
-                        ")",
+                        "%)",
                   ),
                 ),
               );

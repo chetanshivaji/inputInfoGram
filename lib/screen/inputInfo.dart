@@ -16,6 +16,7 @@ class _inputInfoState extends State<inputInfo> {
   String name = "";
   String email = "";
   int mobile = 0;
+  int uid = 0;
   int houseTax = 0;
   int waterTax = 0;
   bool houseGiven = false;
@@ -24,6 +25,7 @@ class _inputInfoState extends State<inputInfo> {
   var _textController_name = TextEditingController();
   var _textController_mail = TextEditingController();
   var _textController_mobile = TextEditingController();
+  var _textController_uid = TextEditingController();
   var _textController_houseTax = TextEditingController();
   var _textController_waterTax = TextEditingController();
 
@@ -62,6 +64,7 @@ class _inputInfoState extends State<inputInfo> {
               _textController_mobile.clear();
               _textController_houseTax.clear();
               _textController_waterTax.clear();
+              _textController_uid.clear();
             },
           );
         },
@@ -197,6 +200,7 @@ class _inputInfoState extends State<inputInfo> {
                     _textController_mail.text = "";
                     _textController_houseTax.text = "";
                     _textController_waterTax.text = "";
+                    _textController_uid.text = "";
                   }
                   if (value.length == 10) {
                     //fetch data and assign it to controller.
@@ -217,6 +221,7 @@ class _inputInfoState extends State<inputInfo> {
                               y[keyHouse].toString();
                           _textController_waterTax.text =
                               y[keyWater].toString();
+                          _textController_uid.text = y[keyUid].toString();
                         },
                       );
                     } catch (e) {
@@ -235,6 +240,28 @@ class _inputInfoState extends State<inputInfo> {
                     return msgOnlyNumber;
                   }
                   mobile = int.parse(value);
+                  return null;
+                },
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.only(top: 20),
+            ),
+            Expanded(
+              child: TextFormField(
+                controller: _textController_uid,
+                keyboardType: TextInputType.number,
+                decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                    icon: Icon(Icons.wb_incandescent_outlined),
+                    hintText: msgEnterUid,
+                    labelText: labelUid),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return msgEnterUid;
+                  }
+
+                  uid = int.parse(value);
                   return null;
                 },
               ),
@@ -389,6 +416,7 @@ class _inputInfoState extends State<inputInfo> {
                                   keyName: name,
                                   keyWater: waterTax,
                                   keyWaterGiven: false,
+                                  keyUid: uid,
                                 },
                               );
                               createTotalFormula();

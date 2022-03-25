@@ -1,3 +1,4 @@
+import 'package:firebase_storage_platform_interface/firebase_storage_platform_interface.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:inputgram/consts.dart';
@@ -19,12 +20,18 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
   String reEnterPassword = "";
   String village = "";
   String pin = "";
-  String address = "";
+
   bool onPressedRegister = false;
   String registeredName = "";
 
-  Future<void> setAdminUserInfoInDb(String village, String pin, String address,
-      String email, String registeredName) async {
+  Future<void> setAdminUserInfoInDb(
+      String village,
+      String pin,
+      String email,
+      String registeredName,
+      String state,
+      String district,
+      String taluka) async {
     adminVillage = village;
     adminPin = pin;
     //access = accessItems[accessLevel.SuperUser.index];
@@ -35,9 +42,11 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
       {
         keyVillage: village,
         keyPin: pin,
-        keyAddress: address,
         keyAdminMail: email,
-        keyRegisteredName: registeredName
+        keyRegisteredName: registeredName,
+        keyState: state,
+        keyDistrict: district,
+        keyTaluka: taluka,
       },
     );
 
@@ -50,11 +59,40 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
         keyAccessLevel: accessItems[accessLevel.SuperUser.index],
         keyMail: email,
         keyIsAdmin: true,
-        keyRegisteredName: registeredName
+        keyRegisteredName: registeredName,
+        keyState: state,
+        keyDistrict: district,
+        keyTaluka: taluka,
+      },
+    );
+    //Add village name in hierarchy, state-> district->taluka->villages
+
+    await FirebaseFirestore.instance.collection(state).doc(district).get().then(
+      (value) async {
+        if (value.exists) {
+          await FirebaseFirestore.instance
+              .collection(state)
+              .doc(district)
+              .update(
+            {
+              taluka: FieldValue.arrayUnion([village])
+            },
+          );
+        } else {
+          await FirebaseFirestore.instance.collection(state).doc(district).set(
+            {
+              taluka: FieldValue.arrayUnion([village])
+            },
+          );
+        }
       },
     );
     return;
   }
+
+  String state = "";
+  String dist = "";
+  String tal = "";
 
   @override
   Widget build(BuildContext context) {
@@ -324,41 +362,165 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 height: 8.0,
               ),
               Expanded(
-                child: TextFormField(
-                  keyboardType: TextInputType.text,
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return msgEnterVillageAddress;
-                    }
-                    address = value;
-                    return null;
-                  },
-                  decoration: InputDecoration(
-                    icon: Icon(Icons.holiday_village),
-                    labelText: labelVillageAddress,
-                    hintText: msgEnterVillageAddress,
-                    contentPadding:
-                        EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(32.0),
-                      ),
+                child: Row(
+                  children: <Widget>[
+                    Text(
+                      "State - ",
+                      style: TextStyle(
+                          color: Colors.blue, fontWeight: FontWeight.bold),
                     ),
-                    enabledBorder: OutlineInputBorder(
-                      borderSide:
-                          BorderSide(color: Colors.blueAccent, width: 1.0),
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(32.0),
+                    DropdownButton(
+                      borderRadius: BorderRadius.circular(12.0),
+                      dropdownColor: clrBlue,
+
+                      //alignment: Alignment.topRight,
+
+                      // Initial Value
+                      value: sState,
+                      // Down Arrow Icon
+                      icon: Icon(
+                        Icons.sort,
+                        color: clrBlue,
                       ),
+                      // Array list of items
+                      items: states.map(
+                        (String states) {
+                          return DropdownMenuItem(
+                            value: states,
+                            child: Text(states),
+                          );
+                        },
+                      ).toList(),
+                      // After selecting the desired option,it will
+                      // change button value to selected value
+                      onChanged: (String? newAccessValue) async {
+                        if (newAccessValue != access) {
+                          setState(
+                            () {
+                              sState = newAccessValue.toString();
+                            },
+                          );
+                        }
+                      },
                     ),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide:
-                          BorderSide(color: Colors.blueAccent, width: 2.0),
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(32.0),
+                    /*
+                    Text(
+                      state,
+                      style: TextStyle(
+                          color: Colors.blue, fontWeight: FontWeight.bold),
+                    ),
+                    */
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: 8.0,
+              ),
+              Expanded(
+                child: Row(
+                  children: <Widget>[
+                    Text(
+                      "District - ",
+                      style: TextStyle(
+                          color: Colors.blue, fontWeight: FontWeight.bold),
+                    ),
+                    DropdownButton(
+                      borderRadius: BorderRadius.circular(12.0),
+                      dropdownColor: clrBlue,
+
+                      //alignment: Alignment.topRight,
+
+                      // Initial Value
+                      value: sDistrict,
+                      // Down Arrow Icon
+                      icon: Icon(
+                        Icons.sort,
+                        color: clrBlue,
                       ),
+                      // Array list of items
+                      items: districts.map(
+                        (String districts) {
+                          return DropdownMenuItem(
+                            value: districts,
+                            child: Text(districts),
+                          );
+                        },
+                      ).toList(),
+                      // After selecting the desired option,it will
+                      // change button value to selected value
+                      onChanged: (String? newAccessValue) async {
+                        if (newAccessValue != access) {
+                          setState(
+                            () {
+                              sDistrict = newAccessValue.toString();
+                            },
+                          );
+                        }
+                      },
                     ),
-                  ),
+                    /*
+                    Text(
+                      dist,
+                      style: TextStyle(
+                          color: Colors.blue, fontWeight: FontWeight.bold),
+                    ),
+                    */
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: 8.0,
+              ),
+              Expanded(
+                child: Row(
+                  children: <Widget>[
+                    Text(
+                      "Taluka - ",
+                      style: TextStyle(
+                          color: Colors.blue, fontWeight: FontWeight.bold),
+                    ),
+                    DropdownButton(
+                      borderRadius: BorderRadius.circular(12.0),
+                      dropdownColor: clrBlue,
+
+                      //alignment: Alignment.topRight,
+
+                      // Initial Value
+                      value: sTaluka,
+                      // Down Arrow Icon
+                      icon: Icon(
+                        Icons.sort,
+                        color: clrBlue,
+                      ),
+                      // Array list of items
+                      items: talukas.map(
+                        (String talukas) {
+                          return DropdownMenuItem(
+                            value: talukas,
+                            child: Text(talukas),
+                          );
+                        },
+                      ).toList(),
+                      // After selecting the desired option,it will
+                      // change button value to selected value
+                      onChanged: (String? newAccessValue) async {
+                        if (newAccessValue != access) {
+                          setState(
+                            () {
+                              sTaluka = newAccessValue.toString();
+                            },
+                          );
+                        }
+                      },
+                    ),
+                    /*
+                    Text(
+                      tal,
+                      style: TextStyle(
+                          color: Colors.blue, fontWeight: FontWeight.bold),
+                    ),
+                    */
+                  ],
                 ),
               ),
               SizedBox(
@@ -405,13 +567,8 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                           if (newUser != null) {
                             userMail = email;
 
-                            await setAdminUserInfoInDb(
-                              village,
-                              pin,
-                              address,
-                              email,
-                              registeredName,
-                            );
+                            await setAdminUserInfoInDb(village, pin, email,
+                                registeredName, sState, sDistrict, sTaluka);
 
                             Navigator.pushNamed(context, MyApp.id);
                             popAlert(

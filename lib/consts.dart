@@ -23,8 +23,9 @@ String msgEnterPassword = "Please Enter min 6 char Password";
 String msgReEnterPassword = "Please re enter password";
 String msgEnterVillageName = 'Please enter village name';
 String msgEnterVillagePin = 'Please enter village pin';
-String msgEnterVillageAddress = 'Please enter village address';
+
 String msgEnterMobileNumber = "Enter mobile Number";
+String msgEnterUid = "Enter Number Unique/House/Serial";
 String msgEnterNewMobileNumber = "Enter new mobile Number";
 String msgTenDigitNumber = "Please enter 10 digits!";
 String msgEnterFullName = "Enter Full Name";
@@ -79,6 +80,7 @@ String tableHeading_collectedWater = "cWater";
 //Form field Lable
 String labelWaterTax = "Water Tax *";
 String labelMobile = "Mobile *";
+String labelUid = "Uid *";
 String labelNewMobile = "New Mobile *";
 String labelNewEmail = "New Email";
 String labelAdminEmail = "AdminEmail *";
@@ -86,7 +88,7 @@ String labelEmail = "Mail * ";
 String labelAdminPassword = "AdminPassword *";
 String labelVillage = "Village *";
 String labelPin = "Pin *";
-String labelVillageAddress = "VillageAddress *";
+
 String labelRegister = 'Register';
 String labelLogin = 'Log In';
 String labelName = "Name *";
@@ -115,18 +117,22 @@ String txtLtoH = "L to H";
 //keys
 String keyRegisteredName = 'registeredName';
 String keyVillage = 'village';
+String keyState = 'state';
+String keyDistrict = 'district';
+String keyTaluka = 'taluka';
 String keyPin = 'pin';
 
 String keyAccessLevel = 'accessLevel';
 String keyMail = 'mail';
 String keyIsAdmin = 'isAdmin';
 String keyAccess = "accessLevel";
-String keyAddress = 'address';
+
 String keyAdminMail = 'adminMail';
 String keyHouse = 'house';
 String keyHouseGiven = 'houseGiven';
 String keyWater = 'water';
 String keyWaterGiven = 'waterGiven';
+String keyUid = "uid";
 String keyMobile = "mobile";
 String keyName = "name";
 String keyEmail = "email";
@@ -268,4 +274,23 @@ var accessItems = [
   "Spender",
   "SuperUser",
   "No",
+];
+String sState = "Maharashtra";
+String sDistrict = "Kolhapur";
+String sTaluka = "Gadhinglaj";
+
+var states = [
+  "Maharashtra",
+  "Karnataka",
+];
+var districts = [
+  "Kolhapur",
+  "Sangali",
+  "Satara",
+];
+
+var talukas = [
+  "Gadhinglaj",
+  "Ajara",
+  "Chandgad",
 ];

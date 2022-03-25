@@ -265,6 +265,7 @@ class _updateInfoState extends State<updateInfo> {
                           int newEntry_house = 0;
                           bool newEntry_houseGiven = false;
                           int newEntry_water = 0;
+                          int newEntry_uid = 0;
                           bool newEntry_waterGiven = false;
 
                           //START remove old entry
@@ -283,6 +284,7 @@ class _updateInfoState extends State<updateInfo> {
                                 newEntry_houseGiven = y[keyHouseGiven];
                                 newEntry_water = y[keyWater];
                                 newEntry_waterGiven = y[keyWaterGiven];
+                                newEntry_uid = y[keyUid];
                                 newEntry_mobile = newMobile;
                                 if (newEmail == "") {
                                   newEntry_email = y[keyEmail];
@@ -317,6 +319,7 @@ class _updateInfoState extends State<updateInfo> {
                                     keyName: newEntry_name,
                                     keyWater: newEntry_water,
                                     keyWaterGiven: newEntry_waterGiven,
+                                    keyUid: newEntry_uid
                                   },
                                 );
                                 //END create new Entry
