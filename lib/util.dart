@@ -109,6 +109,101 @@ TextStyle getStyle(String type) {
   }
 }
 
+/*
+Future<List<String>> getMobileUidMapping(String mobile) async {
+  //START create mobile -> multi UID mapping
+  await FirebaseFirestore.instance
+      .collection(adminVillage + adminPin)
+      .doc(docMobileUidMap)
+      .get()
+      .then(
+    (value) async {
+      if (value.exists) {
+        var y = value.data();
+        if (y!.containsKey(value)) {
+          return y[value];
+        }
+      }
+    },
+  );
+  //END create mobile -> multi UID mapping
+  List<String> s = []; //dummy
+  return s;
+}
+*/
+Future<void> deleteMobileUidMapping(int mobile, String uid) async {
+  //START create mobile -> multi UID mapping
+  await FirebaseFirestore.instance
+      .collection(adminVillage + adminPin)
+      .doc(docMobileUidMap)
+      .get()
+      .then(
+    (value) async {
+      if (value.exists) {
+        await FirebaseFirestore.instance
+            .collection(adminVillage + adminPin)
+            .doc(docMobileUidMap)
+            .update(
+          {
+            mobile.toString(): FieldValue.arrayRemove([uid])
+          },
+        );
+      }
+    },
+  );
+  await FirebaseFirestore.instance
+      .collection(adminVillage + adminPin)
+      .doc(docMobileUidMap)
+      .get()
+      .then(
+    (value) async {
+      if (value.exists) {
+        var y = value.data();
+        if (y!.containsKey(mobile.toString())) {
+          if (y[mobile.toString()].length == 0) {
+            y.remove(mobile.toString()); //removes key if no value present.
+          }
+        }
+      }
+    },
+  );
+  //END create mobile -> multi UID mapping
+  return;
+}
+
+Future<void> createMobileUidMapping(int mobile, String uid) async {
+  //START create mobile -> multi UID mapping
+  await FirebaseFirestore.instance
+      .collection(adminVillage + adminPin)
+      .doc(docMobileUidMap)
+      .get()
+      .then(
+    (value) async {
+      if (value.exists) {
+        await FirebaseFirestore.instance
+            .collection(adminVillage + adminPin)
+            .doc(docMobileUidMap)
+            .update(
+          {
+            mobile.toString(): FieldValue.arrayUnion([uid])
+          },
+        );
+      } else {
+        await FirebaseFirestore.instance
+            .collection(adminVillage + adminPin)
+            .doc(docMobileUidMap)
+            .set(
+          {
+            mobile.toString(): FieldValue.arrayUnion([uid])
+          },
+        );
+      }
+    },
+  );
+  //END create mobile -> multi UID mapping
+  return;
+}
+
 Icon getWrongIcon() {
   return Icon(
     Icons.cancel,

@@ -17,11 +17,14 @@ class _updateInfoState extends State<updateInfo> {
   String name = "";
   String email = "";
 
+  var mobileUids;
+  String uidList = "";
   String nameEntry = "";
   String emailEntry = "";
-
+  bool uidTextField = false;
   int mobile = 0;
   int newMobile = 0;
+  String uid = "";
   String newEmail = "";
   int houseTax = 0;
   int waterTax = 0;
@@ -29,7 +32,10 @@ class _updateInfoState extends State<updateInfo> {
   bool waterGiven = false;
   var _textController_mobile = TextEditingController();
   var _textController_newMobile = TextEditingController();
+  var _textController_Uid = TextEditingController();
   var _textController_newEmail = TextEditingController();
+
+  String uidHintText = msgEnterUid;
 
   Future<bool> mobileAlreadyUsed(String text) async {
     try {
@@ -62,6 +68,108 @@ class _updateInfoState extends State<updateInfo> {
     return false;
   }
 
+  void setNameEmail(String uid) async {
+    //fecth and display user info on screen
+
+    await FirebaseFirestore.instance
+        .collection(adminVillage + adminPin)
+        .doc(mainDb)
+        .collection(mainDb + dropdownValueYear)
+        .doc(mobile.toString() + uid)
+        .get()
+        .then(
+      (value) {
+        if (value.exists) {
+          var y = value.data();
+          nameEntry = y![keyName];
+          emailEntry = y[keyEmail];
+        }
+        setState(
+          () {
+            name = nameEntry;
+            email = emailEntry;
+          },
+        );
+      },
+    );
+  }
+
+  Future<void> checkMobileUid(mobValue) async {
+    String uids = "";
+    mobile = int.parse(
+        mobValue); //set here, otherewise this will be set in validator after click on submit.
+    try {
+      await FirebaseFirestore.instance
+          .collection(adminVillage + adminPin)
+          .doc(docMobileUidMap)
+          .get()
+          .then(
+        (value) {
+          if (value.exists) {
+            var y = value.data();
+            if (!y!.containsKey(mobValue)) {
+              //mobile uid mapping not present.
+              popAlert(
+                context,
+                kTitleMobileNotPresent,
+                "",
+                getWrongIcon(),
+                1,
+              );
+              return;
+            }
+            mobileUids = y[mobValue];
+            //get all uids. if only one directly display
+            if (mobileUids.length == 1) {
+              uids = mobileUids[0];
+              setState(
+                () {
+                  uidTextField =
+                      true; //disale to edit , make enable false or read only true. check it.
+                  _textController_Uid.text = mobileUids[0];
+                },
+              );
+              setNameEmail(mobileUids[0]);
+            } else {
+              //display all uids and choose one.
+              for (var id in mobileUids) {
+                uids = uids + ", " + id;
+              }
+              //pop up message with all uids and setup hint text with uids.
+              popAlert(
+                context,
+                kTitleMultiUids,
+                uids,
+                getWrongIcon(),
+                1,
+              );
+
+              setState(
+                () {
+                  uidTextField =
+                      false; //disale to edit , make enable false or read only true. check it.
+                  uidList = uids;
+                  uidHintText = uidList;
+                },
+              );
+            }
+          }
+        },
+      );
+    } catch (e) {
+      popAlert(
+        context,
+        kTitleMobileNotPresent,
+        "",
+        getWrongIcon(),
+        1,
+      );
+      _textController_newMobile.clear();
+      _textController_newEmail.clear();
+    }
+    return;
+  }
+
   @override
   Widget build(BuildContext context) {
     onPressedDrawerUpdatePerson = false;
@@ -87,8 +195,9 @@ class _updateInfoState extends State<updateInfo> {
             Expanded(
               child: TextFormField(
                 controller: _textController_mobile,
-                onChanged: (text) async {
-                  if (text.length < 10) {
+                onChanged: (mobValue) async {
+                  if (mobValue.length < 10) {
+                    _textController_Uid.clear();
                     setState(
                       () {
                         name = "";
@@ -98,21 +207,11 @@ class _updateInfoState extends State<updateInfo> {
                       },
                     );
                   }
-                  if (text.length == 10) {
+                  if (mobValue.length == 10) {
                     try {
-                      await FirebaseFirestore.instance
-                          .collection(adminVillage + adminPin)
-                          .doc(mainDb)
-                          .collection(mainDb + dropdownValueYear)
-                          .doc(text)
-                          .get()
-                          .then(
-                        (value) {
-                          var y = value.data();
-                          nameEntry = y![keyName];
-                          emailEntry = y[keyEmail];
-                        },
-                      );
+                      checkMobileUid(mobValue);
+                      uidTextField =
+                          true; //after 10 digits make, uid text field enable to write.
                     } catch (e) {
                       popAlert(
                         context,
@@ -125,13 +224,6 @@ class _updateInfoState extends State<updateInfo> {
                       _textController_newEmail.clear();
                       return;
                     }
-
-                    setState(
-                      () {
-                        name = nameEntry;
-                        email = emailEntry;
-                      },
-                    );
                   }
                 },
                 keyboardType: TextInputType.number,
@@ -151,6 +243,55 @@ class _updateInfoState extends State<updateInfo> {
                     return msgOnlyNumber;
                   }
                   mobile = int.parse(value);
+                  return null;
+                },
+              ),
+            ),
+            Expanded(
+              child: Text(
+                "UIDs Found = $uidList",
+                style: TextStyle(
+                  fontSize: 20.0,
+                  color: Colors.orange,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.only(top: 20),
+            ),
+            Expanded(
+              child: TextFormField(
+                readOnly:
+                    uidTextField, //make read only according to 1. waiting for user to type uid in multiple uid case,OR 2. single uid per mobile, disable pop & disable case.
+                controller: _textController_Uid,
+                onChanged: (uidValue) async {
+                  //search mobile+uid and display.//we calling this function for each value typed//check what is
+                  setNameEmail(uidValue);
+                },
+                onEditingComplete: () {
+                  print("on editing compeleted");
+                },
+                onFieldSubmitted: (String s) {
+                  print("on field sub");
+                },
+                onSaved: (String? s) {
+                  print("on field sub");
+                },
+                keyboardType: TextInputType.number,
+                decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                    icon: Icon(Icons.person_search_rounded),
+                    hintText: uidHintText,
+                    labelText: labelUid),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return msgEnterUid;
+                  }
+                  if (!isNumeric(value)) {
+                    return msgOnlyNumber;
+                  }
+                  uid = value;
                   return null;
                 },
               ),
@@ -265,7 +406,7 @@ class _updateInfoState extends State<updateInfo> {
                           int newEntry_house = 0;
                           bool newEntry_houseGiven = false;
                           int newEntry_water = 0;
-                          int newEntry_uid = 0;
+                          String newEntry_uid = "";
                           bool newEntry_waterGiven = false;
 
                           //START remove old entry
@@ -273,13 +414,15 @@ class _updateInfoState extends State<updateInfo> {
                               .collection(adminVillage + adminPin)
                               .doc(mainDb)
                               .collection(mainDb + yr);
-                          await collection.doc(mobile.toString()).get().then(
+                          await collection
+                              .doc(mobile.toString() + uid)
+                              .get()
+                              .then(
                             (value) async {
                               if (value.exists) {
                                 //START create new entry with copying field from old entry with new mobile and mail.
                                 var y = value.data();
                                 newEntry_name = y![keyName];
-
                                 newEntry_house = y[keyHouse];
                                 newEntry_houseGiven = y[keyHouseGiven];
                                 newEntry_water = y[keyWater];
@@ -294,11 +437,11 @@ class _updateInfoState extends State<updateInfo> {
                                 //END create new entry with copying field from old entry with new mobile and mail.
 
                                 //START delete old entry to replace
-                                FirebaseFirestore.instance
+                                await FirebaseFirestore.instance
                                     .collection(adminVillage + adminPin)
                                     .doc(mainDb)
                                     .collection(mainDb + yr)
-                                    .doc(mobile.toString())
+                                    .doc(mobile.toString() + uid)
                                     .delete();
 
                                 //After deleting entry create new entry
@@ -309,7 +452,7 @@ class _updateInfoState extends State<updateInfo> {
                                     .collection(adminVillage + adminPin)
                                     .doc(mainDb)
                                     .collection(mainDb + yr)
-                                    .doc(newMobile.toString())
+                                    .doc(newMobile.toString() + uid)
                                     .set(
                                   {
                                     keyHouse: newEntry_house,
@@ -323,14 +466,20 @@ class _updateInfoState extends State<updateInfo> {
                                   },
                                 );
                                 //END create new Entry
-                                popAlert(context, titleSuccess, subtitleSuccess,
-                                    getRightIcon(), 3);
+
                               }
                             },
                           );
                           //END remove old entry
 
                         }
+
+                        //remove uid from mobile to uids map
+                        deleteMobileUidMapping(mobile, uid);
+                        //create new mapping.
+                        createMobileUidMapping(newMobile, uid);
+                        popAlert(context, titleSuccess, subtitleSuccess,
+                            getRightIcon(), 3);
                       } catch (e) {
                         onPressedUpdateInfo = false;
                         popAlert(context, kTitleTryCatchFail, e.toString(),

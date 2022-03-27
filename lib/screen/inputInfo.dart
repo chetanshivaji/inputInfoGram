@@ -16,7 +16,7 @@ class _inputInfoState extends State<inputInfo> {
   String name = "";
   String email = "";
   int mobile = 0;
-  int uid = 0;
+  String uid = "";
   int houseTax = 0;
   int waterTax = 0;
   bool houseGiven = false;
@@ -163,6 +163,7 @@ class _inputInfoState extends State<inputInfo> {
     );
   }
 
+  String uidHintText = msgEnterUid;
   @override
   Widget build(BuildContext context) {
     onPressedDrawerAddPerson = false;
@@ -205,25 +206,75 @@ class _inputInfoState extends State<inputInfo> {
                   if (value.length == 10) {
                     //fetch data and assign it to controller.
                     try {
+                      mobile = int.parse(value);
+
                       await FirebaseFirestore.instance
                           .collection(adminVillage + adminPin)
-                          .doc(mainDb)
-                          .collection(mainDb +
-                              (int.parse(dropdownValueYear) - 1).toString())
-                          .doc(value.toString())
+                          .doc(docMobileUidMap)
                           .get()
                           .then(
-                        (value) {
-                          var y = value.data();
-                          _textController_name.text = y![keyName];
-                          _textController_mail.text = y[keyEmail];
-                          _textController_houseTax.text =
-                              y[keyHouse].toString();
-                          _textController_waterTax.text =
-                              y[keyWater].toString();
-                          _textController_uid.text = y[keyUid].toString();
+                        (mapMobUid) async {
+                          if (mapMobUid.exists) {
+                            var y = mapMobUid.data();
+                            if (y!.containsKey(value)) {
+                              var uids = y[value];
+                              if (uids.length == 1) {
+                                //one uid in last year
+
+                                _textController_uid.text =
+                                    uids[0]; //fill up uid value.
+                                //fetch info from last year
+                                await FirebaseFirestore.instance
+                                    .collection(adminVillage + adminPin)
+                                    .doc(mainDb)
+                                    .collection(mainDb +
+                                        (int.parse(dropdownValueYear) - 1)
+                                            .toString())
+                                    .doc(value.toString() + uids[0])
+                                    .get()
+                                    .then(
+                                  (person) {
+                                    var y = person.data();
+                                    _textController_name.text = y![keyName];
+                                    _textController_mail.text = y[keyEmail];
+                                    _textController_houseTax.text =
+                                        y[keyHouse].toString();
+                                    _textController_waterTax.text =
+                                        y[keyWater].toString();
+                                    _textController_uid.text =
+                                        y[keyUid].toString();
+                                  },
+                                );
+                              }
+                              if (uids.length > 1) {
+                                //multi uid found in last year
+                                //pop up
+                                //display all uids and choose one.
+
+                                String strUids = "";
+                                for (var id in uids) {
+                                  strUids = strUids + ", " + id;
+                                }
+                                popAlert(
+                                  context,
+                                  kTitleMultiUids_AddPerson,
+                                  strUids,
+                                  Icon(Icons.person_search_rounded),
+                                  1,
+                                );
+                                setState(
+                                  () {
+                                    uidHintText = strUids;
+                                  },
+                                );
+                              }
+                            }
+                          }
                         },
                       );
+
+                      //var lsUids = getMobileUidMapping(value);
+
                     } catch (e) {
                       print(e);
                     }
@@ -254,16 +305,49 @@ class _inputInfoState extends State<inputInfo> {
                 decoration: InputDecoration(
                     border: OutlineInputBorder(),
                     icon: Icon(Icons.wb_incandescent_outlined),
-                    hintText: msgEnterUid,
+                    hintText: uidHintText,
                     labelText: labelUid),
+                onFieldSubmitted: (val) {
+                  uid = val;
+                },
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return msgEnterUid;
                   }
 
-                  uid = int.parse(value);
+                  uid = value;
                   return null;
                 },
+              ),
+            ),
+            Center(
+              child: ElevatedButton(
+                onPressed: () async {
+                  //after add button press fill up info by fetching mob+uid from last year.
+
+                  await FirebaseFirestore.instance
+                      .collection(adminVillage + adminPin)
+                      .doc(mainDb)
+                      .collection(mainDb +
+                          (int.parse(dropdownValueYear) - 1).toString())
+                      .doc(mobile.toString() + _textController_uid.text)
+                      .get()
+                      .then(
+                    (person) {
+                      if (person.exists) {
+                        var y = person.data();
+                        _textController_name.text = y![keyName];
+                        _textController_mail.text = y[keyEmail];
+                        _textController_houseTax.text = y[keyHouse].toString();
+                        _textController_waterTax.text = y[keyWater].toString();
+                        _textController_uid.text = y[keyUid].toString();
+                      }
+                    },
+                  );
+                },
+                child: Text(
+                  bLabelAdd,
+                ),
               ),
             ),
             Padding(
@@ -378,14 +462,12 @@ class _inputInfoState extends State<inputInfo> {
                         );
                         //get admin mail
                         //from users, get admin village and pin
-
                         //read villagePin-> mainDb-> mainDb2020=> add
-
                         var usersRef = await FirebaseFirestore.instance
                             .collection(adminVillage + adminPin)
                             .doc(mainDb)
                             .collection(mainDb + dropdownValueYear)
-                            .doc(mobile.toString());
+                            .doc(mobile.toString() + uid.toString());
 
                         usersRef.get().then(
                           (docSnapshot) async {
@@ -401,22 +483,24 @@ class _inputInfoState extends State<inputInfo> {
                               );
                               return;
                             } else {
+                              createMobileUidMapping(mobile, uid);
+
                               //if entry not present in db then add
                               await FirebaseFirestore.instance
                                   .collection(adminVillage + adminPin)
                                   .doc(mainDb)
                                   .collection(mainDb + dropdownValueYear)
-                                  .doc(mobile.toString())
+                                  .doc(mobile.toString() + uid.toString())
                                   .set(
                                 {
                                   keyHouse: houseTax,
                                   keyHouseGiven: false,
                                   keyEmail: email,
                                   keyMobile: mobile,
+                                  keyUid: uid,
                                   keyName: name,
                                   keyWater: waterTax,
                                   keyWaterGiven: false,
-                                  keyUid: uid,
                                 },
                               );
                               createTotalFormula();

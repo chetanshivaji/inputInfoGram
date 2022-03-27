@@ -6,10 +6,14 @@ String subtitleSuccess = "Submitted!";
 
 String kTitleSuccess = "Login/registeration failed";
 String kSubtitleSuccess = "Try again with correct username & password";
-String kSubTitleEntryAlreadyPresent = "Entry already present, can not add";
+String kSubTitleEntryAlreadyPresent =
+    "Entry mobile/uid present, Use new mobile/uid";
 String kTitlePresent = "PRESENT";
 String kTitleNotPresent = "No Present";
 String kTitleMobileNotPresent = "Mobile not Present";
+String kTitleMultiUids = "Multiple Uids for mobile, please enter one";
+String kTitleMultiUids_AddPerson =
+    "Multi UIDs found last Year, Enter one Or create new one, Press SUBMIT";
 String kSubTitleEmailPresent = "Email not present";
 String kTitleSignOut = "SignOut";
 String kSubtitleLogOutConfirmation = "Do you want to log out?";
@@ -43,6 +47,7 @@ String msgNotAdmin = "notAdmin";
 String bLabelAdminlogin = 'Admin Log In';
 String bLabelAdminRegiter = 'Admin Register';
 String bLabelSubmit = 'Submit';
+String bLabelAdd = 'Add';
 String bLabelSubmitRefresh = 'Submit/Refresh';
 
 //Drawer sections
@@ -97,6 +102,7 @@ String labelHouseTax = "House Tax *";
 //doc strings
 String docVillageInfo = "villageInfo";
 String docCalcultion = 'calculation';
+String docMobileUidMap = 'mobileUidMap';
 
 //collection strings
 String collUsers = 'users';
