@@ -380,7 +380,7 @@ class _inputInfoState extends State<inputInfo> {
                 keyboardType: TextInputType.emailAddress,
                 decoration: InputDecoration(
                     border: OutlineInputBorder(),
-                    icon: Icon(Icons.person),
+                    icon: Icon(Icons.email),
                     hintText: msgEnterUserMail,
                     labelText: labelEmail),
                 validator: (value) {

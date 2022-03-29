@@ -20,12 +20,17 @@ class _approvalListState extends State<approvalList> {
   List<DataRow> _buildList(
       BuildContext context, List<DocumentSnapshot> docSnapshot) {
     List<DataRow> ldataRow = [];
-
+    int srNo = 0;
     for (var l in docSnapshot) {
       String adminVillagePin = adminVillage + adminPin;
       String userVillagePin = l.get(keyVillage) + l.get(keyPin);
       if (adminVillagePin == userVillagePin) {
         List<DataCell> ldataCell = [];
+        srNo = srNo + 1;
+        ldataCell.add(DataCell(Text(
+          srNo.toString(),
+          style: getTableFirstColStyle(),
+        )));
         ldataCell.add(DataCell(Text(l.get(keyRegisteredName))));
         ldataCell.add(DataCell(Text(l.get(keyMail))));
 
@@ -93,16 +98,17 @@ class _approvalListState extends State<approvalList> {
         scrollDirection: Axis.horizontal,
         child: DataTable(
           headingTextStyle: getTableHeadingTextStyle(),
-          border: TableBorder(
-            horizontalInside: BorderSide(
-              width: 1.5,
-              color: Colors.black,
-            ),
-          ),
+          border: getTableBorder(),
           dataTextStyle: TextStyle(
             color: Colors.indigoAccent,
           ),
           columns: <DataColumn>[
+            DataColumn(
+              label: Text(
+                tableHeading_srNum,
+                style: getStyle(actPending),
+              ),
+            ),
             DataColumn(
               label: Text(
                 tableHeadingRegisteredName,
