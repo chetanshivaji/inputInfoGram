@@ -228,7 +228,7 @@ class _updateInfoState extends State<updateInfo> {
               child: TextFormField(
                 controller: _textController_mobile,
                 onChanged: (mobValue) async {
-                  if (mobValue.length < 10) {
+                  if ((mobValue.length < 10) || (mobValue.length > 10)) {
                     _textController_newMobile.clear();
                     _textController_newEmail.clear();
                     multiUidsTextSpan.clear();
@@ -296,7 +296,7 @@ class _updateInfoState extends State<updateInfo> {
             ),
             Expanded(
               child: ListTile(
-                leading: Icon(Icons.person),
+                leading: Icon(Icons.wb_incandescent_outlined),
                 title: getPrefilledListTile(labelUid, uid),
               ),
             ),

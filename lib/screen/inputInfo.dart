@@ -201,7 +201,7 @@ class _inputInfoState extends State<inputInfo> {
                     hintText: msgEnterMobileNumber,
                     labelText: labelMobile),
                 onChanged: (value) async {
-                  if (value.length < 10) {
+                  if ((value.length < 10) || (value.length > 10)) {
                     _textController_name.text = "";
                     _textController_mail.text = "";
                     _textController_houseTax.text = "";
@@ -380,38 +380,6 @@ class _inputInfoState extends State<inputInfo> {
                 },
               ),
             ),
-            /*
-            Center(
-              child: ElevatedButton(
-                onPressed: () async {
-                  //after add button press fill up info by fetching mob+uid from last year.
-
-                  await FirebaseFirestore.instance
-                      .collection(adminVillage + adminPin)
-                      .doc(mainDb)
-                      .collection(mainDb +
-                          (int.parse(dropdownValueYear) - 1).toString())
-                      .doc(mobile.toString() + _textController_uid.text)
-                      .get()
-                      .then(
-                    (person) {
-                      if (person.exists) {
-                        var y = person.data();
-                        _textController_name.text = y![keyName];
-                        _textController_mail.text = y[keyEmail];
-                        _textController_houseTax.text = y[keyHouse].toString();
-                        _textController_waterTax.text = y[keyWater].toString();
-                        _textController_uid.text = y[keyUid].toString();
-                      }
-                    },
-                  );
-                },
-                child: Text(
-                  bLabelAdd,
-                ),
-              ),
-            ),
-            */
             Padding(
               padding: EdgeInsets.only(top: 20),
             ),
