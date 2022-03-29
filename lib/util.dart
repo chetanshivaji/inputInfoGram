@@ -204,11 +204,32 @@ Future<void> createMobileUidMapping(int mobile, String uid) async {
   return;
 }
 
+TableBorder getTableBorder() {
+  return TableBorder(
+    horizontalInside: BorderSide(
+      width: 1,
+      color: clrTableHorizontalBorder,
+    ),
+    verticalInside: BorderSide(
+      width: 1,
+      color: clrTableVerticleBorder,
+    ),
+  );
+}
+
 Icon getWrongIcon() {
   return Icon(
     Icons.cancel,
     size: 50.0,
     color: Colors.red,
+  );
+}
+
+Icon getMultiUidIcon(double iconSize) {
+  return Icon(
+    Icons.multiple_stop,
+    size: iconSize,
+    color: Colors.blue,
   );
 }
 

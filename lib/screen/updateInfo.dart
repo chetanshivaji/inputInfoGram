@@ -140,7 +140,7 @@ class _updateInfoState extends State<updateInfo> {
                 context,
                 kTitleMultiUids,
                 uids,
-                getWrongIcon(),
+                getMultiUidIcon(50),
                 1,
               );
 
@@ -247,14 +247,12 @@ class _updateInfoState extends State<updateInfo> {
                 },
               ),
             ),
-            Expanded(
-              child: Text(
-                "UIDs Found = $uidList",
-                style: TextStyle(
-                  fontSize: 20.0,
-                  color: Colors.orange,
-                  fontWeight: FontWeight.bold,
-                ),
+            Text(
+              "UIDs Found = $uidList",
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                color: Colors.orange,
+                fontWeight: FontWeight.bold,
               ),
             ),
             Padding(

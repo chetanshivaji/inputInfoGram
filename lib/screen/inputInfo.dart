@@ -259,7 +259,7 @@ class _inputInfoState extends State<inputInfo> {
                                   context,
                                   kTitleMultiUids_AddPerson,
                                   strUids,
-                                  Icon(Icons.person_search_rounded),
+                                  getMultiUidIcon(50),
                                   1,
                                 );
                                 setState(

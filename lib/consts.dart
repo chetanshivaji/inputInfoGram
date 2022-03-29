@@ -75,12 +75,12 @@ String tableHeadingStatus = 'Status';
 
 //String tableHeading = "";
 String tableHeading_year = "Year";
-String tableHeading_totalHouse = "tHouse";
-String tableHeading_pendingHouse = "pHouse";
-String tableHeading_collectedHouse = "cHouse";
-String tableHeading_totalWater = "tWater";
-String tableHeading_pendingWater = "pWater";
-String tableHeading_collectedWater = "cWater";
+String tableHeading_totalHouse = "TotalHouse";
+String tableHeading_pendingHouse = "PendingHouse";
+String tableHeading_collectedHouse = "CollectedHouse";
+String tableHeading_totalWater = "TotalWater";
+String tableHeading_pendingWater = "PendingWater";
+String tableHeading_collectedWater = "CollectedWater";
 
 //Form field Lable
 String labelWaterTax = "Water Tax *";
@@ -180,6 +180,8 @@ String labelYear = "Year";
 
 //Colors.
 Color clrGreen = Color(0xFFc8e6c9); //in
+Color clrTableVerticleBorder = Colors.blue; //Color(0xFFB3E5FC); //light blue.
+Color clrTableHorizontalBorder = Colors.blue; //Color(0xFFB3E5FC); //in
 
 Color clrRed = Color(0xffef9a9a); //out
 
