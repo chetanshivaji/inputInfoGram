@@ -74,6 +74,8 @@ String tableHeadingRegisteredName = 'Name';
 String tableHeadingStatus = 'Status';
 
 //String tableHeading = "";
+String tableHeading_srNum = "SrNum.";
+
 String tableHeading_year = "Year";
 String tableHeading_totalHouse = "TotalHouse";
 String tableHeading_pendingHouse = "PendingHouse";

@@ -204,6 +204,13 @@ Future<void> createMobileUidMapping(int mobile, String uid) async {
   return;
 }
 
+TextStyle getTableFirstColStyle() {
+  return TextStyle(
+    fontSize: 15,
+    fontWeight: FontWeight.bold,
+  );
+}
+
 TableBorder getTableBorder() {
   return TableBorder(
     horizontalInside: BorderSide(

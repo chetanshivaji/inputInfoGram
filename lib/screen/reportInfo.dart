@@ -60,7 +60,7 @@ class _reportInfoState extends State<reportInfo> {
 
   Future<List<DataRow>> _buildList() async {
     List<DataRow> ldataRow = [];
-
+    int srNo = 0;
     for (var yr in formulaYears) {
       List<DataCell> ldataCell = [];
       //get formula+yr from list of data cell put in dataRow.
@@ -103,8 +103,20 @@ class _reportInfoState extends State<reportInfo> {
               double percentCollectedWater = 0.0;
               percentCollectedWater = (100 * collectedWater) / totalWater;
               int intPCW = percentCollectedWater.floor();
+              srNo = srNo + 1;
+              ldataCell.add(DataCell(Text(
+                srNo.toString(),
+                style: getTableFirstColStyle(),
+              )));
 
-              ldataCell.add(DataCell(Text(yr)));
+              ldataCell.add(
+                DataCell(
+                  Text(
+                    yr,
+                    style: getTableFirstColStyle(),
+                  ),
+                ),
+              );
               ldataCell.add(DataCell(Text(totalHouse.toString())));
               ldataCell.add(DataCell(Text(pendingHouse.toString())));
               ldataCell.add(
@@ -214,6 +226,12 @@ class _reportInfoState extends State<reportInfo> {
                       color: Colors.indigoAccent,
                     ),
                     columns: <DataColumn>[
+                      DataColumn(
+                        label: Text(
+                          tableHeading_srNum,
+                          style: getStyle(actIn),
+                        ),
+                      ),
                       DataColumn(
                         label: Text(
                           tableHeading_year,
