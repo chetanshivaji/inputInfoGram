@@ -72,30 +72,37 @@ class _updateInfoState extends State<updateInfo> {
 
   void setNameEmail(String uid) async {
     //fecth and display user info on screen
-
-    await FirebaseFirestore.instance
-        .collection(adminVillage + adminPin)
-        .doc(mainDb)
-        .collection(mainDb + dropdownValueYear)
-        .doc(mobile.toString() + uid)
-        .get()
-        .then(
-      (value) {
-        if (value.exists) {
-          var y = value.data();
-          nameEntry = y![keyName];
-          emailEntry = y[keyEmail];
-          uidEntry = y[keyUid];
-        }
-        setState(
-          () {
-            name = nameEntry;
-            email = emailEntry;
-            uid = uidEntry;
-          },
-        );
-      },
-    );
+    bool found = false;
+    for (var yr in items) {
+      await FirebaseFirestore.instance
+          .collection(adminVillage + adminPin)
+          .doc(mainDb)
+          .collection(mainDb + yr)
+          .doc(mobile.toString() + uid)
+          .get()
+          .then(
+        (value) {
+          if (value.exists) {
+            found = true;
+            var y = value.data();
+            nameEntry = y![keyName];
+            emailEntry = y[keyEmail];
+            uidEntry = y[keyUid];
+            setState(
+              () {
+                name = nameEntry;
+                email = emailEntry;
+                uid = uidEntry;
+              },
+            );
+            return;
+          }
+        },
+      );
+      if (found) {
+        break;
+      }
+    }
   }
 
   Future<void> checkMobileUid(mobValue) async {
