@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:inputgram/consts.dart';
 import 'package:inputgram/util.dart';
+import 'package:flutter/gestures.dart';
 
 class inputInfo extends StatefulWidget {
   static String id = "inputscreen";
@@ -12,11 +13,15 @@ class inputInfo extends StatefulWidget {
 }
 
 class _inputInfoState extends State<inputInfo> {
+  List<TextSpan> multiUidsTextSpan = [];
+  List<TextSpan> multiUids = [];
+  String uid = "";
+
   final _formKeyInputForm = GlobalKey<FormState>();
   String name = "";
   String email = "";
   int mobile = 0;
-  String uid = "";
+
   int houseTax = 0;
   int waterTax = 0;
   bool houseGiven = false;
@@ -25,9 +30,9 @@ class _inputInfoState extends State<inputInfo> {
   var _textController_name = TextEditingController();
   var _textController_mail = TextEditingController();
   var _textController_mobile = TextEditingController();
-  var _textController_uid = TextEditingController();
   var _textController_houseTax = TextEditingController();
   var _textController_waterTax = TextEditingController();
+  var _textController_uid = TextEditingController();
 
   ListTile getYearTile(Color clr) {
     return ListTile(
@@ -65,6 +70,7 @@ class _inputInfoState extends State<inputInfo> {
               _textController_houseTax.clear();
               _textController_waterTax.clear();
               _textController_uid.clear();
+              multiUids = [TextSpan()];
             },
           );
         },
@@ -163,7 +169,6 @@ class _inputInfoState extends State<inputInfo> {
     );
   }
 
-  String uidHintText = msgEnterUid;
   @override
   Widget build(BuildContext context) {
     onPressedDrawerAddPerson = false;
@@ -202,6 +207,12 @@ class _inputInfoState extends State<inputInfo> {
                     _textController_houseTax.text = "";
                     _textController_waterTax.text = "";
                     _textController_uid.text = "";
+                    multiUidsTextSpan.clear();
+
+                    setState(() {
+                      uid = "";
+                      multiUids = [TextSpan()];
+                    });
                   }
                   if (value.length == 10) {
                     //fetch data and assign it to controller.
@@ -220,9 +231,7 @@ class _inputInfoState extends State<inputInfo> {
                               var uids = y[value];
                               if (uids.length == 1) {
                                 //one uid in last year
-
-                                _textController_uid.text =
-                                    uids[0]; //fill up uid value.
+                                uid = uids[0];
                                 //fetch info from last year
                                 await FirebaseFirestore.instance
                                     .collection(adminVillage + adminPin)
@@ -235,7 +244,8 @@ class _inputInfoState extends State<inputInfo> {
                                     .then(
                                   (person) {
                                     var y = person.data();
-                                    _textController_name.text = y![keyName];
+                                    uid = y![keyUid].toString();
+                                    _textController_name.text = y[keyName];
                                     _textController_mail.text = y[keyEmail];
                                     _textController_houseTax.text =
                                         y[keyHouse].toString();
@@ -249,12 +259,59 @@ class _inputInfoState extends State<inputInfo> {
                               if (uids.length > 1) {
                                 //multi uid found in last year
                                 //pop up
-                                //display all uids and choose one.
-
+                                //display all uids and click one.
                                 String strUids = "";
                                 for (var id in uids) {
                                   strUids = strUids + ", " + id;
+                                  multiUidsTextSpan.add(
+                                    TextSpan(
+                                      text: id + " , ",
+                                      style: TextStyle(
+                                        color: Colors.red[300],
+                                        backgroundColor: Colors.yellow,
+                                        fontSize: 25,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                      recognizer: TapGestureRecognizer()
+                                        ..onTap = () async {
+                                          //make use of Id which has go tapped.
+                                          uid = id;
+                                          await FirebaseFirestore.instance
+                                              .collection(
+                                                  adminVillage + adminPin)
+                                              .doc(mainDb)
+                                              .collection(mainDb +
+                                                  (int.parse(dropdownValueYear) -
+                                                          1)
+                                                      .toString())
+                                              .doc(mobile.toString() + id)
+                                              .get()
+                                              .then(
+                                            (person) {
+                                              if (person.exists) {
+                                                var y = person.data();
+                                                _textController_name.text =
+                                                    y![keyName];
+                                                _textController_mail.text =
+                                                    y[keyEmail];
+                                                _textController_houseTax.text =
+                                                    y[keyHouse].toString();
+                                                _textController_waterTax.text =
+                                                    y[keyWater].toString();
+                                                _textController_uid.text =
+                                                    y[keyUid].toString();
+                                              }
+                                            },
+                                          );
+                                        },
+                                    ),
+                                  );
                                 }
+                                setState(
+                                  () {
+                                    multiUids = multiUidsTextSpan;
+                                  },
+                                );
                                 popAlert(
                                   context,
                                   kTitleMultiUids_AddPerson,
@@ -262,12 +319,8 @@ class _inputInfoState extends State<inputInfo> {
                                   getMultiUidIcon(50),
                                   1,
                                 );
-                                setState(
-                                  () {
-                                    uidHintText = strUids;
-                                  },
-                                );
                               }
+                              uids = "";
                             }
                           }
                         },
@@ -295,6 +348,13 @@ class _inputInfoState extends State<inputInfo> {
                 },
               ),
             ),
+            Center(
+              child: RichText(
+                text: TextSpan(
+                  children: multiUids,
+                ),
+              ),
+            ),
             Padding(
               padding: EdgeInsets.only(top: 20),
             ),
@@ -305,7 +365,7 @@ class _inputInfoState extends State<inputInfo> {
                 decoration: InputDecoration(
                     border: OutlineInputBorder(),
                     icon: Icon(Icons.wb_incandescent_outlined),
-                    hintText: uidHintText,
+                    hintText: msgEnterUid,
                     labelText: labelUid),
                 onFieldSubmitted: (val) {
                   uid = val;
@@ -320,6 +380,7 @@ class _inputInfoState extends State<inputInfo> {
                 },
               ),
             ),
+            /*
             Center(
               child: ElevatedButton(
                 onPressed: () async {
@@ -350,6 +411,7 @@ class _inputInfoState extends State<inputInfo> {
                 ),
               ),
             ),
+            */
             Padding(
               padding: EdgeInsets.only(top: 20),
             ),

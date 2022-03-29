@@ -171,6 +171,35 @@ Future<void> deleteMobileUidMapping(int mobile, String uid) async {
   return;
 }
 
+Widget getPrefilledListTile(String LHS, String RHS) {
+  return Expanded(
+    child: Row(
+      children: [
+        Expanded(
+          child: Text(
+            "$LHS = ",
+            style: TextStyle(
+              fontSize: 20.0,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ),
+        Expanded(
+          child: Text(
+            "$RHS",
+            textAlign: TextAlign.left,
+            style: TextStyle(
+              fontSize: 20.0,
+              fontWeight: FontWeight.bold,
+              color: Colors.blue,
+            ),
+          ),
+        ),
+      ],
+    ),
+  );
+}
+
 Future<void> createMobileUidMapping(int mobile, String uid) async {
   //START create mobile -> multi UID mapping
   await FirebaseFirestore.instance

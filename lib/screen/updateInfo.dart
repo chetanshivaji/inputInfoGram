@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:inputgram/consts.dart';
 import 'package:inputgram/util.dart';
+import 'package:flutter/gestures.dart';
 
 class updateInfo extends StatefulWidget {
   static String id = "updatescreen";
@@ -16,15 +17,17 @@ class _updateInfoState extends State<updateInfo> {
 
   String name = "";
   String email = "";
+  List<TextSpan> multiUidsTextSpan = [];
+  List<TextSpan> multiUids = [];
+  String uid = "";
 
   var mobileUids;
-  String uidList = "";
   String nameEntry = "";
+  String uidEntry = "";
   String emailEntry = "";
-  bool uidTextField = false;
   int mobile = 0;
   int newMobile = 0;
-  String uid = "";
+
   String newEmail = "";
   int houseTax = 0;
   int waterTax = 0;
@@ -32,10 +35,8 @@ class _updateInfoState extends State<updateInfo> {
   bool waterGiven = false;
   var _textController_mobile = TextEditingController();
   var _textController_newMobile = TextEditingController();
-  var _textController_Uid = TextEditingController();
-  var _textController_newEmail = TextEditingController();
 
-  String uidHintText = msgEnterUid;
+  var _textController_newEmail = TextEditingController();
 
   Future<bool> mobileAlreadyUsed(String text) async {
     try {
@@ -50,12 +51,13 @@ class _updateInfoState extends State<updateInfo> {
           var y = value.data();
           nameEntry = y![keyName];
           emailEntry = y[keyEmail];
+          uidEntry = y[keyUid];
           //pop aler allready used by someone else.
           _textController_newMobile.clear();
           popAlert(
             context,
             kTitlePresent,
-            "Already Used for $nameEntry $emailEntry, use another number",
+            "Already Used for $nameEntry $emailEntry $uidEntry , use another number",
             Icon(Icons.no_accounts),
             1,
           );
@@ -83,11 +85,13 @@ class _updateInfoState extends State<updateInfo> {
           var y = value.data();
           nameEntry = y![keyName];
           emailEntry = y[keyEmail];
+          uidEntry = y[keyUid];
         }
         setState(
           () {
             name = nameEntry;
             email = emailEntry;
+            uid = uidEntry;
           },
         );
       },
@@ -124,17 +128,33 @@ class _updateInfoState extends State<updateInfo> {
               uids = mobileUids[0];
               setState(
                 () {
-                  uidTextField =
-                      true; //disale to edit , make enable false or read only true. check it.
-                  _textController_Uid.text = mobileUids[0];
+                  uid = mobileUids[0];
                 },
               );
               setNameEmail(mobileUids[0]);
-            } else {
+            } else if (mobileUids.length > 1) {
               //display all uids and choose one.
               for (var id in mobileUids) {
                 uids = uids + ", " + id;
+                multiUidsTextSpan.add(
+                  TextSpan(
+                    text: id + " , ",
+                    style: TextStyle(
+                      color: Colors.red[300],
+                      backgroundColor: Colors.yellow,
+                      fontSize: 25,
+                      fontWeight: FontWeight.bold,
+                    ),
+                    recognizer: TapGestureRecognizer()
+                      ..onTap = () {
+                        //make use of Id which has go tapped.
+                        setNameEmail(id);
+                        uid = id;
+                      },
+                  ),
+                );
               }
+
               //pop up message with all uids and setup hint text with uids.
               popAlert(
                 context,
@@ -146,11 +166,16 @@ class _updateInfoState extends State<updateInfo> {
 
               setState(
                 () {
-                  uidTextField =
-                      false; //disale to edit , make enable false or read only true. check it.
-                  uidList = uids;
-                  uidHintText = uidList;
+                  multiUids = multiUidsTextSpan;
                 },
+              );
+            } else if (mobileUids.length == 0) {
+              popAlert(
+                context,
+                kTitleMobileNotPresent,
+                "",
+                getWrongIcon(),
+                1,
               );
             }
           }
@@ -197,21 +222,25 @@ class _updateInfoState extends State<updateInfo> {
                 controller: _textController_mobile,
                 onChanged: (mobValue) async {
                   if (mobValue.length < 10) {
-                    _textController_Uid.clear();
+                    _textController_newMobile.clear();
+                    _textController_newEmail.clear();
+                    multiUidsTextSpan.clear();
+
                     setState(
                       () {
+                        multiUids = [TextSpan()];
                         name = "";
                         email = "";
+                        uid = "";
                         nameEntry = "";
                         emailEntry = "";
+                        uidEntry = "";
                       },
                     );
                   }
                   if (mobValue.length == 10) {
                     try {
                       checkMobileUid(mobValue);
-                      uidTextField =
-                          true; //after 10 digits make, uid text field enable to write.
                     } catch (e) {
                       popAlert(
                         context,
@@ -222,6 +251,7 @@ class _updateInfoState extends State<updateInfo> {
                       );
                       _textController_newMobile.clear();
                       _textController_newEmail.clear();
+                      multiUidsTextSpan.clear();
                       return;
                     }
                   }
@@ -247,51 +277,11 @@ class _updateInfoState extends State<updateInfo> {
                 },
               ),
             ),
-            Text(
-              "UIDs Found = $uidList",
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                color: Colors.orange,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.only(top: 20),
-            ),
-            Expanded(
-              child: TextFormField(
-                readOnly:
-                    uidTextField, //make read only according to 1. waiting for user to type uid in multiple uid case,OR 2. single uid per mobile, disable pop & disable case.
-                controller: _textController_Uid,
-                onChanged: (uidValue) async {
-                  //search mobile+uid and display.//we calling this function for each value typed//check what is
-                  setNameEmail(uidValue);
-                },
-                onEditingComplete: () {
-                  print("on editing compeleted");
-                },
-                onFieldSubmitted: (String s) {
-                  print("on field sub");
-                },
-                onSaved: (String? s) {
-                  print("on field sub");
-                },
-                keyboardType: TextInputType.number,
-                decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    icon: Icon(Icons.person_search_rounded),
-                    hintText: uidHintText,
-                    labelText: labelUid),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return msgEnterUid;
-                  }
-                  if (!isNumeric(value)) {
-                    return msgOnlyNumber;
-                  }
-                  uid = value;
-                  return null;
-                },
+            Center(
+              child: RichText(
+                text: TextSpan(
+                  children: multiUids,
+                ),
               ),
             ),
             Padding(
@@ -300,13 +290,16 @@ class _updateInfoState extends State<updateInfo> {
             Expanded(
               child: ListTile(
                 leading: Icon(Icons.person),
-                title: Text(
-                  "$labelName = $name",
-                  style: TextStyle(
-                    fontSize: 20.0,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
+                title: getPrefilledListTile(labelUid, uid),
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.only(top: 20),
+            ),
+            Expanded(
+              child: ListTile(
+                leading: Icon(Icons.person),
+                title: getPrefilledListTile(labelName, name),
               ),
             ),
             Padding(
@@ -315,13 +308,7 @@ class _updateInfoState extends State<updateInfo> {
             Expanded(
               child: ListTile(
                 leading: Icon(Icons.attach_money),
-                title: Text(
-                  "$labelEmail = $email",
-                  style: TextStyle(
-                    fontSize: 20.0,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
+                title: getPrefilledListTile(labelEmail, email),
               ),
             ),
             Padding(
@@ -464,14 +451,11 @@ class _updateInfoState extends State<updateInfo> {
                                   },
                                 );
                                 //END create new Entry
-
                               }
                             },
                           );
                           //END remove old entry
-
                         }
-
                         //remove uid from mobile to uids map
                         deleteMobileUidMapping(mobile, uid);
                         //create new mapping.
@@ -490,9 +474,6 @@ class _updateInfoState extends State<updateInfo> {
                   ),
                 ),
               ),
-            ),
-            Padding(
-              padding: EdgeInsets.only(top: 20),
             ),
           ],
         ),

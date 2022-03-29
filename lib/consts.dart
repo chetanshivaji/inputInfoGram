@@ -29,7 +29,6 @@ String msgEnterVillageName = 'Please enter village name';
 String msgEnterVillagePin = 'Please enter village pin';
 
 String msgEnterMobileNumber = "Enter mobile Number";
-String msgEnterUid = "Enter Number Unique/House/Serial";
 String msgEnterNewMobileNumber = "Enter new mobile Number";
 String msgTenDigitNumber = "Please enter 10 digits!";
 String msgEnterFullName = "Enter Full Name";
@@ -99,6 +98,7 @@ String labelPin = "Pin *";
 String labelRegister = 'Register';
 String labelLogin = 'Log In';
 String labelName = "Name *";
+
 String labelHouseTax = "House Tax *";
 
 //doc strings
@@ -121,6 +121,7 @@ String appBarHeadingReportInfo = 'Report Info in Gram';
 String tableHeadingDate = 'Date';
 String txtHtoL = "H to L";
 String txtLtoH = "L to H";
+String msgEnterUid = "Enter UID";
 
 //keys
 String keyRegisteredName = 'registeredName';
