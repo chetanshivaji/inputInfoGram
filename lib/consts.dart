@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 String mainDb = "mainDb";
+
 String titleSuccess = "Success";
 String subtitleSuccess = "Submitted!";
 
@@ -105,6 +106,7 @@ String labelHouseTax = "House Tax *";
 String docVillageInfo = "villageInfo";
 String docCalcultion = 'calculation';
 String docMobileUidMap = 'mobileUidMap';
+String docUids = "uids";
 
 //collection strings
 String collUsers = 'users';
@@ -129,6 +131,7 @@ String keyVillage = 'village';
 String keyState = 'state';
 String keyDistrict = 'district';
 String keyTaluka = 'taluka';
+String keyUids = 'villageUids';
 String keyPin = 'pin';
 
 String keyAccessLevel = 'accessLevel';

@@ -391,6 +391,7 @@ class _updateInfoState extends State<updateInfo> {
                             content: Text(msgProcessingData),
                           ),
                         );
+                        bool mobileFound = false;
                         for (var yr in items) {
                           String newEntry_email = "";
                           int newEntry_mobile = 0;
@@ -412,6 +413,7 @@ class _updateInfoState extends State<updateInfo> {
                               .then(
                             (value) async {
                               if (value.exists) {
+                                mobileFound = true;
                                 //START create new entry with copying field from old entry with new mobile and mail.
                                 var y = value.data();
                                 newEntry_name = y![keyName];
@@ -463,12 +465,23 @@ class _updateInfoState extends State<updateInfo> {
                           );
                           //END remove old entry
                         }
-                        //remove uid from mobile to uids map
-                        deleteMobileUidMapping(mobile, uid);
-                        //create new mapping.
-                        createMobileUidMapping(newMobile, uid);
-                        popAlert(context, titleSuccess, subtitleSuccess,
-                            getRightIcon(), 3);
+                        if (mobileFound) {
+                          //remove uid from mobile to uids map
+                          deleteMobileUidMapping(mobile, uid);
+                          //create new mapping.
+                          createMobileUidMapping(newMobile, uid);
+                          popAlert(context, titleSuccess, subtitleSuccess,
+                              getRightIcon(), 3);
+                        } else {
+                          onPressedUpdateInfo = false;
+                          popAlert(
+                            context,
+                            kTitleMobileNotPresent,
+                            "",
+                            getWrongIcon(),
+                            1,
+                          );
+                        }
                       } catch (e) {
                         onPressedUpdateInfo = false;
                         popAlert(context, kTitleTryCatchFail, e.toString(),

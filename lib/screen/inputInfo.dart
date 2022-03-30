@@ -169,6 +169,77 @@ class _inputInfoState extends State<inputInfo> {
     );
   }
 
+  //check if already present.
+  //if no add
+  //if yes check for same mobile it is present
+  //if yes add.
+  //if no failure out.
+  Future<bool> checkIfUidPresent(String mobile, String uid) async {
+    bool present = false;
+    await FirebaseFirestore.instance
+        .collection(adminVillage + adminPin)
+        .doc(docUids)
+        .get()
+        .then(
+      (uidDoc) async {
+        if (uidDoc.exists) {
+          var y = uidDoc.data();
+          if (y!.containsKey(keyUids + dropdownValueYear)) {
+            //key present
+            var arr = y[keyUids + dropdownValueYear];
+            if (arr.contains(uid)) {
+              //present pop
+              onPressedInputInfo = false;
+              popAlert(
+                  context,
+                  kTitleTryCatchFail,
+                  "Use different uid, Uid allready present in your village for this year",
+                  getWrongIcon(),
+                  1);
+              present = true;
+              return;
+            } else {
+              //create key.
+              await FirebaseFirestore.instance
+                  .collection(adminVillage + adminPin)
+                  .doc(docUids)
+                  .update(
+                {
+                  keyUids + dropdownValueYear: FieldValue.arrayUnion([uid]),
+                },
+              );
+            }
+          } else {
+            await FirebaseFirestore.instance
+                .collection(adminVillage + adminPin)
+                .doc(docUids)
+                .update(
+              {
+                keyUids + dropdownValueYear: FieldValue.arrayUnion([uid]),
+              },
+            );
+          }
+        } else {
+          //doc village uids not present
+          //as well as key in doc villageUids not present.
+          //create doc and create key.
+          await FirebaseFirestore.instance
+              .collection(adminVillage + adminPin)
+              .doc(docUids)
+              .set(
+            {
+              keyUids + dropdownValueYear: FieldValue.arrayUnion([uid]),
+            },
+          );
+        }
+      },
+    );
+    return present;
+
+//we want to know if that uid allready used in village for that year in village.
+//make year wise lists.
+  }
+
   @override
   Widget build(BuildContext context) {
     onPressedDrawerAddPerson = false;
@@ -513,31 +584,41 @@ class _inputInfoState extends State<inputInfo> {
                               );
                               return;
                             } else {
-                              createMobileUidMapping(mobile, uid);
+                              //check if already present.
+                              //if no add
+                              //if yes check for same mobile it is present
+                              //if yes add.
+                              //if no failure out.
+                              var present = await checkIfUidPresent(
+                                  mobile.toString(), uid);
+                              if (present == false) {
+                                //if uid absent in village do further
+                                createMobileUidMapping(mobile, uid);
 
-                              //if entry not present in db then add
-                              await FirebaseFirestore.instance
-                                  .collection(adminVillage + adminPin)
-                                  .doc(mainDb)
-                                  .collection(mainDb + dropdownValueYear)
-                                  .doc(mobile.toString() + uid.toString())
-                                  .set(
-                                {
-                                  keyHouse: houseTax,
-                                  keyHouseGiven: false,
-                                  keyEmail: email,
-                                  keyMobile: mobile,
-                                  keyUid: uid,
-                                  keyName: name,
-                                  keyWater: waterTax,
-                                  keyWaterGiven: false,
-                                },
-                              );
-                              createTotalFormula();
-                              updateYearWiseFormula(houseTax, waterTax);
-                              //END create Formula in each year once
-                              popAlert(context, titleSuccess, subtitleSuccess,
-                                  getRightIcon(), 2);
+                                //if entry not present in db then add
+                                await FirebaseFirestore.instance
+                                    .collection(adminVillage + adminPin)
+                                    .doc(mainDb)
+                                    .collection(mainDb + dropdownValueYear)
+                                    .doc(mobile.toString() + uid.toString())
+                                    .set(
+                                  {
+                                    keyHouse: houseTax,
+                                    keyHouseGiven: false,
+                                    keyEmail: email,
+                                    keyMobile: mobile,
+                                    keyUid: uid,
+                                    keyName: name,
+                                    keyWater: waterTax,
+                                    keyWaterGiven: false,
+                                  },
+                                );
+                                createTotalFormula();
+                                updateYearWiseFormula(houseTax, waterTax);
+                                //END create Formula in each year once
+                                popAlert(context, titleSuccess, subtitleSuccess,
+                                    getRightIcon(), 2);
+                              }
                             }
                           },
                         );
