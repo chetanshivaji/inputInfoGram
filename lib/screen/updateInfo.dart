@@ -17,6 +17,7 @@ class _updateInfoState extends State<updateInfo> {
 
   String name = "";
   String email = "";
+  String extraInfo = "";
   List<TextSpan> multiUidsTextSpan = [];
   List<TextSpan> multiUids = [];
   String uid = "";
@@ -25,10 +26,12 @@ class _updateInfoState extends State<updateInfo> {
   String nameEntry = "";
   String uidEntry = "";
   String emailEntry = "";
+  String extraInfoEntry = "";
   int mobile = 0;
   int newMobile = 0;
 
   String newEmail = "";
+  String newExtraInfo = "";
   int houseTax = 0;
   int waterTax = 0;
   bool houseGiven = false;
@@ -37,6 +40,7 @@ class _updateInfoState extends State<updateInfo> {
   var _textController_newMobile = TextEditingController();
 
   var _textController_newEmail = TextEditingController();
+  var _textController_extraInfo = TextEditingController();
 
   Future<bool> mobileAlreadyUsed(String text) async {
     try {
@@ -51,6 +55,7 @@ class _updateInfoState extends State<updateInfo> {
           var y = value.data();
           nameEntry = y![keyName];
           emailEntry = y[keyEmail];
+          extraInfoEntry = y[keyExtraInfo];
           uidEntry = y[keyUid];
           //pop aler allready used by someone else.
           _textController_newMobile.clear();
@@ -87,11 +92,13 @@ class _updateInfoState extends State<updateInfo> {
             var y = value.data();
             nameEntry = y![keyName];
             emailEntry = y[keyEmail];
+            extraInfoEntry = y[keyExtraInfo];
             uidEntry = y[keyUid];
             setState(
               () {
                 name = nameEntry;
                 email = emailEntry;
+                extraInfo = extraInfoEntry;
                 uid = uidEntry;
               },
             );
@@ -198,6 +205,7 @@ class _updateInfoState extends State<updateInfo> {
       );
       _textController_newMobile.clear();
       _textController_newEmail.clear();
+      _textController_extraInfo.clear();
     }
     return;
   }
@@ -231,6 +239,7 @@ class _updateInfoState extends State<updateInfo> {
                   if ((mobValue.length < 10) || (mobValue.length > 10)) {
                     _textController_newMobile.clear();
                     _textController_newEmail.clear();
+                    _textController_extraInfo.clear();
                     multiUidsTextSpan.clear();
 
                     setState(
@@ -238,9 +247,11 @@ class _updateInfoState extends State<updateInfo> {
                         multiUids = [TextSpan()];
                         name = "";
                         email = "";
+                        extraInfo = "";
                         uid = "";
                         nameEntry = "";
                         emailEntry = "";
+                        extraInfoEntry = "";
                         uidEntry = "";
                       },
                     );
@@ -258,6 +269,7 @@ class _updateInfoState extends State<updateInfo> {
                       );
                       _textController_newMobile.clear();
                       _textController_newEmail.clear();
+                      _textController_extraInfo.clear();
                       multiUidsTextSpan.clear();
                       return;
                     }
@@ -322,6 +334,15 @@ class _updateInfoState extends State<updateInfo> {
               padding: EdgeInsets.only(top: 20),
             ),
             Expanded(
+              child: ListTile(
+                leading: Icon(Icons.holiday_village),
+                title: getPrefilledListTile(labelExtraInfo, extraInfo),
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.only(top: 20),
+            ),
+            Expanded(
               child: TextFormField(
                 controller: _textController_newMobile,
                 onChanged: (text) async {
@@ -375,6 +396,27 @@ class _updateInfoState extends State<updateInfo> {
                 },
               ),
             ),
+            Padding(
+              padding: EdgeInsets.only(top: 20),
+            ),
+            Expanded(
+              child: TextFormField(
+                controller: _textController_extraInfo,
+                decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                    icon: Icon(Icons.holiday_village),
+                    hintText: msgExtraInfo,
+                    labelText: labelExtraInfo),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    newExtraInfo = "";
+                    return null;
+                  }
+                  newExtraInfo = value;
+                  return null;
+                },
+              ),
+            ),
             Expanded(
               child: Center(
                 child: ElevatedButton(
@@ -394,6 +436,7 @@ class _updateInfoState extends State<updateInfo> {
                         bool mobileFound = false;
                         for (var yr in items) {
                           String newEntry_email = "";
+                          String newEntry_extraInfo = "";
                           int newEntry_mobile = 0;
                           String newEntry_name = "";
                           int newEntry_house = 0;
@@ -428,6 +471,12 @@ class _updateInfoState extends State<updateInfo> {
                                 } else {
                                   newEntry_email = newEmail;
                                 }
+                                if (newExtraInfo == "") {
+                                  newEntry_extraInfo = y[keyExtraInfo];
+                                } else {
+                                  newEntry_extraInfo = newExtraInfo;
+                                }
+
                                 //END create new entry with copying field from old entry with new mobile and mail.
 
                                 //START delete old entry to replace
@@ -452,6 +501,7 @@ class _updateInfoState extends State<updateInfo> {
                                     keyHouse: newEntry_house,
                                     keyHouseGiven: newEntry_houseGiven,
                                     keyEmail: newEntry_email,
+                                    keyExtraInfo: newEntry_extraInfo,
                                     keyMobile: newMobile,
                                     keyName: newEntry_name,
                                     keyWater: newEntry_water,

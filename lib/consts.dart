@@ -36,6 +36,7 @@ String msgEnterFullName = "Enter Full Name";
 String msgEnterHouseTax = "Enter House tax";
 String msgHouseTaxAmount = 'Please enter house tax amount';
 String msgWaterTax = "Enter Water tax";
+String msgExtraInfo = "Enter Extra Information";
 String msgProcessingData = 'Processing Data';
 String msgAlreadyRemoved = "Allready Removed";
 
@@ -72,6 +73,7 @@ String actIn = "IN";
 String tableHeadingEmail = 'Email';
 String tableHeadingRegisteredName = 'Name';
 String tableHeadingStatus = 'Status';
+String tableHeadingExtraInfo = 'ExtraInfo';
 
 //String tableHeading = "";
 String tableHeading_srNum = "SrNum.";
@@ -85,6 +87,7 @@ String tableHeading_pendingWater = "PendingWater";
 String tableHeading_collectedWater = "CollectedWater";
 
 //Form field Lable
+String labelExtraInfo = "Extra information";
 String labelWaterTax = "Water Tax *";
 String labelMobile = "Mobile *";
 String labelUid = "Uid *";
@@ -123,9 +126,11 @@ String appBarHeadingReportInfo = 'Report Info in Gram';
 String tableHeadingDate = 'Date';
 String txtHtoL = "H to L";
 String txtLtoH = "L to H";
+String txtTaxTypeExtraIncome = "ExtraIn";
 String msgEnterUid = "Enter UID";
 
 //keys
+String keyExtraInfo = "extraInfo";
 String keyRegisteredName = 'registeredName';
 String keyVillage = 'village';
 String keyState = 'state';

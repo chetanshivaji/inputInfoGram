@@ -24,6 +24,7 @@ class _inputInfoState extends State<inputInfo> {
 
   int houseTax = 0;
   int waterTax = 0;
+  String extraInfo = "";
   bool houseGiven = false;
   bool waterGiven = false;
   bool onPressedInputInfo = false;
@@ -33,6 +34,7 @@ class _inputInfoState extends State<inputInfo> {
   var _textController_houseTax = TextEditingController();
   var _textController_waterTax = TextEditingController();
   var _textController_uid = TextEditingController();
+  var _textController_extraInfo = TextEditingController();
 
   ListTile getYearTile(Color clr) {
     return ListTile(
@@ -70,6 +72,7 @@ class _inputInfoState extends State<inputInfo> {
               _textController_houseTax.clear();
               _textController_waterTax.clear();
               _textController_uid.clear();
+              _textController_extraInfo.clear();
               multiUids = [TextSpan()];
             },
           );
@@ -278,6 +281,7 @@ class _inputInfoState extends State<inputInfo> {
                     _textController_houseTax.text = "";
                     _textController_waterTax.text = "";
                     _textController_uid.text = "";
+                    _textController_extraInfo.text = "";
                     multiUidsTextSpan.clear();
 
                     setState(() {
@@ -324,6 +328,8 @@ class _inputInfoState extends State<inputInfo> {
                                         y[keyWater].toString();
                                     _textController_uid.text =
                                         y[keyUid].toString();
+                                    _textController_extraInfo.text =
+                                        y[keyExtraInfo].toString();
                                   },
                                 );
                               }
@@ -371,6 +377,8 @@ class _inputInfoState extends State<inputInfo> {
                                                     y[keyWater].toString();
                                                 _textController_uid.text =
                                                     y[keyUid].toString();
+                                                _textController_extraInfo.text =
+                                                    y[keyExtraInfo].toString();
                                               }
                                             },
                                           );
@@ -546,6 +554,26 @@ class _inputInfoState extends State<inputInfo> {
               padding: EdgeInsets.only(top: 20),
             ),
             Expanded(
+              child: TextFormField(
+                controller: _textController_extraInfo,
+                decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                    icon: Icon(Icons.holiday_village),
+                    hintText: msgExtraInfo,
+                    labelText: labelExtraInfo),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return msgExtraInfo;
+                  }
+                  extraInfo = value;
+                  return null;
+                },
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.only(top: 20),
+            ),
+            Expanded(
               child: Center(
                 child: ElevatedButton(
                   onPressed: () async {
@@ -611,6 +639,7 @@ class _inputInfoState extends State<inputInfo> {
                                     keyName: name,
                                     keyWater: waterTax,
                                     keyWaterGiven: false,
+                                    keyExtraInfo: extraInfo,
                                   },
                                 );
                                 createTotalFormula();
