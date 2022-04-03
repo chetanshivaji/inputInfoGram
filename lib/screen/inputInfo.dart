@@ -440,7 +440,6 @@ class _inputInfoState extends State<inputInfo> {
             Expanded(
               child: TextFormField(
                 controller: _textController_uid,
-                keyboardType: TextInputType.number,
                 decoration: InputDecoration(
                     border: OutlineInputBorder(),
                     icon: Icon(Icons.wb_incandescent_outlined),
@@ -596,7 +595,7 @@ class _inputInfoState extends State<inputInfo> {
                             .collection(adminVillage + adminPin)
                             .doc(mainDb)
                             .collection(mainDb + dropdownValueYear)
-                            .doc(mobile.toString() + uid.toString());
+                            .doc(mobile.toString() + uid);
 
                         usersRef.get().then(
                           (docSnapshot) async {
@@ -628,7 +627,7 @@ class _inputInfoState extends State<inputInfo> {
                                     .collection(adminVillage + adminPin)
                                     .doc(mainDb)
                                     .collection(mainDb + dropdownValueYear)
-                                    .doc(mobile.toString() + uid.toString())
+                                    .doc(mobile.toString() + uid)
                                     .set(
                                   {
                                     keyHouse: houseTax,
