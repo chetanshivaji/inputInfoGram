@@ -17,6 +17,8 @@ String kTitleMultiUids_AddPerson =
     "Multi UIDs found last Year, Enter one Or create new one, Press SUBMIT";
 String kSubTitleEmailPresent = "Email not present";
 String kTitleSignOut = "SignOut";
+String kTitleVillageAlreadyPresent =
+    "Vilage already present. Use different village";
 String kSubtitleLogOutConfirmation = "Do you want to log out?";
 //Msgs
 String msgOnlyNumber = "Please enter only numbers";

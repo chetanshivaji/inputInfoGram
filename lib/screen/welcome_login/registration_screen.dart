@@ -558,6 +558,33 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                         }
                         //Implement registration functionality.
                         try {
+                          //check if village pin already present then return;
+                          bool villagePresent = false;
+                          await FirebaseFirestore.instance
+                              .collection(village + pin)
+                              .doc(docVillageInfo)
+                              .get()
+                              .then(
+                            (docVillageInfo) async {
+                              if (docVillageInfo.exists) {
+                                //already present pop and return.
+                                onPressedRegister = false;
+                                popAlert(
+                                  context,
+                                  kTitleVillageAlreadyPresent,
+                                  "",
+                                  getWrongIcon(),
+                                  1,
+                                );
+                                villagePresent = true;
+                                return;
+                              }
+                            },
+                          );
+                          if (villagePresent == true) {
+                            return;
+                          }
+
                           final newUser =
                               await _auth.createUserWithEmailAndPassword(
                             email: email,
