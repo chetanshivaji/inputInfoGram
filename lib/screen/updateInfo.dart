@@ -224,328 +224,336 @@ class _updateInfoState extends State<updateInfo> {
         ),
         backgroundColor: clrBlue,
       ),
-      body: Form(
-        key: _formKeyupdateForm,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Padding(
-              padding: EdgeInsets.only(top: 20),
-            ),
-            Expanded(
-              child: TextFormField(
-                controller: _textController_mobile,
-                onChanged: (mobValue) async {
-                  if ((mobValue.length < 10) || (mobValue.length > 10)) {
-                    _textController_newMobile.clear();
-                    _textController_newEmail.clear();
-                    _textController_extraInfo.clear();
-                    multiUidsTextSpan.clear();
+      body: SingleChildScrollView(
+        child: ConstrainedBox(
+          constraints:
+              BoxConstraints(maxHeight: MediaQuery.of(context).size.height),
+          child: Container(
+            child: Form(
+              key: _formKeyupdateForm,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Padding(
+                    padding: EdgeInsets.only(top: 20),
+                  ),
+                  Expanded(
+                    child: TextFormField(
+                      controller: _textController_mobile,
+                      onChanged: (mobValue) async {
+                        if ((mobValue.length < 10) || (mobValue.length > 10)) {
+                          _textController_newMobile.clear();
+                          _textController_newEmail.clear();
+                          _textController_extraInfo.clear();
+                          multiUidsTextSpan.clear();
 
-                    setState(
-                      () {
-                        multiUids = [TextSpan()];
-                        name = "";
-                        email = "";
-                        extraInfo = "";
-                        uid = "";
-                        nameEntry = "";
-                        emailEntry = "";
-                        extraInfoEntry = "";
-                        uidEntry = "";
-                      },
-                    );
-                  }
-                  if (mobValue.length == 10) {
-                    try {
-                      checkMobileUid(mobValue);
-                    } catch (e) {
-                      popAlert(
-                        context,
-                        kTitleMobileNotPresent,
-                        "",
-                        getWrongIcon(),
-                        1,
-                      );
-                      _textController_newMobile.clear();
-                      _textController_newEmail.clear();
-                      _textController_extraInfo.clear();
-                      multiUidsTextSpan.clear();
-                      return;
-                    }
-                  }
-                },
-                keyboardType: TextInputType.number,
-                decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    icon: Icon(Icons.mobile_friendly),
-                    hintText: msgEnterMobileNumber,
-                    labelText: labelMobile),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return msgEnterMobileNumber;
-                  }
-                  if (value.length != 10) {
-                    return msgTenDigitNumber;
-                  }
-                  if (!isNumeric(value)) {
-                    return msgOnlyNumber;
-                  }
-                  mobile = int.parse(value);
-                  return null;
-                },
-              ),
-            ),
-            Center(
-              child: RichText(
-                text: TextSpan(
-                  children: multiUids,
-                ),
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.only(top: 20),
-            ),
-            Expanded(
-              child: ListTile(
-                leading: Icon(Icons.wb_incandescent_outlined),
-                title: getPrefilledListTile(labelUid, uid),
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.only(top: 20),
-            ),
-            Expanded(
-              child: ListTile(
-                leading: Icon(Icons.person),
-                title: getPrefilledListTile(labelName, name),
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.only(top: 20),
-            ),
-            Expanded(
-              child: ListTile(
-                leading: Icon(Icons.attach_money),
-                title: getPrefilledListTile(labelEmail, email),
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.only(top: 20),
-            ),
-            Expanded(
-              child: ListTile(
-                leading: Icon(Icons.holiday_village),
-                title: getPrefilledListTile(labelExtraInfo, extraInfo),
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.only(top: 20),
-            ),
-            Expanded(
-              child: TextFormField(
-                controller: _textController_newMobile,
-                onChanged: (text) async {
-                  if (text.length == 10) {
-                    var used = mobileAlreadyUsed(text);
-                    if (used == true) {
-                      return;
-                    }
-                  }
-                },
-                keyboardType: TextInputType.number,
-                decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    icon: Icon(Icons.mobile_friendly),
-                    hintText: msgEnterNewMobileNumber,
-                    labelText: labelNewMobile),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return msgEnterNewMobileNumber;
-                  }
-                  if (value.length != 10) {
-                    return msgTenDigitNumber;
-                  }
-                  if (!isNumeric(value)) {
-                    return msgOnlyNumber;
-                  }
-                  newMobile = int.parse(value);
-                  return null;
-                },
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.only(top: 20),
-            ),
-            Expanded(
-              child: TextFormField(
-                controller: _textController_newEmail,
-                keyboardType: TextInputType.emailAddress,
-                decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    icon: Icon(Icons.mail_outline),
-                    hintText: msgEnterUserNewMail,
-                    labelText: labelNewEmail),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    newEmail = "";
-                    return null;
-                  }
-                  newEmail = value;
-                  return null;
-                },
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.only(top: 20),
-            ),
-            Expanded(
-              child: TextFormField(
-                controller: _textController_extraInfo,
-                decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    icon: Icon(Icons.holiday_village),
-                    hintText: msgExtraInfo,
-                    labelText: labelExtraInfo),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    newExtraInfo = "";
-                    return null;
-                  }
-                  newExtraInfo = value;
-                  return null;
-                },
-              ),
-            ),
-            Expanded(
-              child: Center(
-                child: ElevatedButton(
-                  onPressed: () async {
-                    // Validate returns true if the form is valid, or false otherwise.
-                    if (_formKeyupdateForm.currentState!.validate() &&
-                        onPressedUpdateInfo == false) {
-                      try {
-                        onPressedUpdateInfo = true;
-                        // If the form is valid, display a snackbar. In the real world,
-                        // you'd often call a server or save the information in a database.
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
-                            content: Text(msgProcessingData),
-                          ),
-                        );
-                        bool mobileFound = false;
-                        for (var yr in items) {
-                          String newEntry_email = "";
-                          String newEntry_extraInfo = "";
-                          int newEntry_mobile = 0;
-                          String newEntry_name = "";
-                          int newEntry_house = 0;
-                          bool newEntry_houseGiven = false;
-                          int newEntry_water = 0;
-                          String newEntry_uid = "";
-                          bool newEntry_waterGiven = false;
-
-                          //START remove old entry
-                          var collection = FirebaseFirestore.instance
-                              .collection(adminVillage + adminPin)
-                              .doc(mainDb)
-                              .collection(mainDb + yr);
-                          await collection
-                              .doc(mobile.toString() + uid)
-                              .get()
-                              .then(
-                            (value) async {
-                              if (value.exists) {
-                                mobileFound = true;
-                                //START create new entry with copying field from old entry with new mobile and mail.
-                                var y = value.data();
-                                newEntry_name = y![keyName];
-                                newEntry_house = y[keyHouse];
-                                newEntry_houseGiven = y[keyHouseGiven];
-                                newEntry_water = y[keyWater];
-                                newEntry_waterGiven = y[keyWaterGiven];
-                                newEntry_uid = y[keyUid];
-                                newEntry_mobile = newMobile;
-                                if (newEmail == "") {
-                                  newEntry_email = y[keyEmail];
-                                } else {
-                                  newEntry_email = newEmail;
-                                }
-                                if (newExtraInfo == "") {
-                                  newEntry_extraInfo = y[keyExtraInfo];
-                                } else {
-                                  newEntry_extraInfo = newExtraInfo;
-                                }
-
-                                //END create new entry with copying field from old entry with new mobile and mail.
-
-                                //START delete old entry to replace
-                                await FirebaseFirestore.instance
-                                    .collection(adminVillage + adminPin)
-                                    .doc(mainDb)
-                                    .collection(mainDb + yr)
-                                    .doc(mobile.toString() + uid)
-                                    .delete();
-
-                                //After deleting entry create new entry
-                                //END delete old entry to replace
-
-                                //START create new Entry
-                                await FirebaseFirestore.instance
-                                    .collection(adminVillage + adminPin)
-                                    .doc(mainDb)
-                                    .collection(mainDb + yr)
-                                    .doc(newMobile.toString() + uid)
-                                    .set(
-                                  {
-                                    keyHouse: newEntry_house,
-                                    keyHouseGiven: newEntry_houseGiven,
-                                    keyEmail: newEntry_email,
-                                    keyExtraInfo: newEntry_extraInfo,
-                                    keyMobile: newMobile,
-                                    keyName: newEntry_name,
-                                    keyWater: newEntry_water,
-                                    keyWaterGiven: newEntry_waterGiven,
-                                    keyUid: newEntry_uid
-                                  },
-                                );
-                                //END create new Entry
-                              }
+                          setState(
+                            () {
+                              multiUids = [TextSpan()];
+                              name = "";
+                              email = "";
+                              extraInfo = "";
+                              uid = "";
+                              nameEntry = "";
+                              emailEntry = "";
+                              extraInfoEntry = "";
+                              uidEntry = "";
                             },
                           );
-                          //END remove old entry
                         }
-                        if (mobileFound) {
-                          //remove uid from mobile to uids map
-                          deleteMobileUidMapping(mobile, uid);
-                          //create new mapping.
-                          createMobileUidMapping(newMobile, uid);
-                          popAlert(context, titleSuccess, subtitleSuccess,
-                              getRightIcon(), 3);
-                        } else {
-                          onPressedUpdateInfo = false;
-                          popAlert(
-                            context,
-                            kTitleMobileNotPresent,
-                            "",
-                            getWrongIcon(),
-                            1,
-                          );
+                        if (mobValue.length == 10) {
+                          try {
+                            checkMobileUid(mobValue);
+                          } catch (e) {
+                            popAlert(
+                              context,
+                              kTitleMobileNotPresent,
+                              "",
+                              getWrongIcon(),
+                              1,
+                            );
+                            _textController_newMobile.clear();
+                            _textController_newEmail.clear();
+                            _textController_extraInfo.clear();
+                            multiUidsTextSpan.clear();
+                            return;
+                          }
                         }
-                      } catch (e) {
-                        onPressedUpdateInfo = false;
-                        popAlert(context, kTitleTryCatchFail, e.toString(),
-                            getWrongIcon(), 1);
-                      }
-                    }
-                  },
-                  child: Text(
-                    bLabelSubmit,
+                      },
+                      keyboardType: TextInputType.number,
+                      decoration: InputDecoration(
+                          border: OutlineInputBorder(),
+                          icon: Icon(Icons.mobile_friendly),
+                          hintText: msgEnterMobileNumber,
+                          labelText: labelMobile),
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return msgEnterMobileNumber;
+                        }
+                        if (value.length != 10) {
+                          return msgTenDigitNumber;
+                        }
+                        if (!isNumeric(value)) {
+                          return msgOnlyNumber;
+                        }
+                        mobile = int.parse(value);
+                        return null;
+                      },
+                    ),
                   ),
-                ),
+                  Center(
+                    child: RichText(
+                      text: TextSpan(
+                        children: multiUids,
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(top: 20),
+                  ),
+                  Expanded(
+                    child: ListTile(
+                      leading: Icon(Icons.wb_incandescent_outlined),
+                      title: getPrefilledListTile(labelUid, uid),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(top: 20),
+                  ),
+                  Expanded(
+                    child: ListTile(
+                      leading: Icon(Icons.person),
+                      title: getPrefilledListTile(labelName, name),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(top: 20),
+                  ),
+                  Expanded(
+                    child: ListTile(
+                      leading: Icon(Icons.attach_money),
+                      title: getPrefilledListTile(labelEmail, email),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(top: 20),
+                  ),
+                  Expanded(
+                    child: ListTile(
+                      leading: Icon(Icons.holiday_village),
+                      title: getPrefilledListTile(labelExtraInfo, extraInfo),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(top: 20),
+                  ),
+                  Expanded(
+                    child: TextFormField(
+                      controller: _textController_newMobile,
+                      onChanged: (text) async {
+                        if (text.length == 10) {
+                          var used = mobileAlreadyUsed(text);
+                          if (used == true) {
+                            return;
+                          }
+                        }
+                      },
+                      keyboardType: TextInputType.number,
+                      decoration: InputDecoration(
+                          border: OutlineInputBorder(),
+                          icon: Icon(Icons.mobile_friendly),
+                          hintText: msgEnterNewMobileNumber,
+                          labelText: labelNewMobile),
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return msgEnterNewMobileNumber;
+                        }
+                        if (value.length != 10) {
+                          return msgTenDigitNumber;
+                        }
+                        if (!isNumeric(value)) {
+                          return msgOnlyNumber;
+                        }
+                        newMobile = int.parse(value);
+                        return null;
+                      },
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(top: 20),
+                  ),
+                  Expanded(
+                    child: TextFormField(
+                      controller: _textController_newEmail,
+                      keyboardType: TextInputType.emailAddress,
+                      decoration: InputDecoration(
+                          border: OutlineInputBorder(),
+                          icon: Icon(Icons.mail_outline),
+                          hintText: msgEnterUserNewMail,
+                          labelText: labelNewEmail),
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          newEmail = "";
+                          return null;
+                        }
+                        newEmail = value;
+                        return null;
+                      },
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(top: 20),
+                  ),
+                  Expanded(
+                    child: TextFormField(
+                      controller: _textController_extraInfo,
+                      decoration: InputDecoration(
+                          border: OutlineInputBorder(),
+                          icon: Icon(Icons.holiday_village),
+                          hintText: msgExtraInfo,
+                          labelText: labelExtraInfo),
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          newExtraInfo = "";
+                          return null;
+                        }
+                        newExtraInfo = value;
+                        return null;
+                      },
+                    ),
+                  ),
+                  Expanded(
+                    child: Center(
+                      child: ElevatedButton(
+                        onPressed: () async {
+                          // Validate returns true if the form is valid, or false otherwise.
+                          if (_formKeyupdateForm.currentState!.validate() &&
+                              onPressedUpdateInfo == false) {
+                            try {
+                              onPressedUpdateInfo = true;
+                              // If the form is valid, display a snackbar. In the real world,
+                              // you'd often call a server or save the information in a database.
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content: Text(msgProcessingData),
+                                ),
+                              );
+                              bool mobileFound = false;
+                              for (var yr in items) {
+                                String newEntry_email = "";
+                                String newEntry_extraInfo = "";
+                                int newEntry_mobile = 0;
+                                String newEntry_name = "";
+                                int newEntry_house = 0;
+                                bool newEntry_houseGiven = false;
+                                int newEntry_water = 0;
+                                String newEntry_uid = "";
+                                bool newEntry_waterGiven = false;
+
+                                //START remove old entry
+                                var collection = FirebaseFirestore.instance
+                                    .collection(adminVillage + adminPin)
+                                    .doc(mainDb)
+                                    .collection(mainDb + yr);
+                                await collection
+                                    .doc(mobile.toString() + uid)
+                                    .get()
+                                    .then(
+                                  (value) async {
+                                    if (value.exists) {
+                                      mobileFound = true;
+                                      //START create new entry with copying field from old entry with new mobile and mail.
+                                      var y = value.data();
+                                      newEntry_name = y![keyName];
+                                      newEntry_house = y[keyHouse];
+                                      newEntry_houseGiven = y[keyHouseGiven];
+                                      newEntry_water = y[keyWater];
+                                      newEntry_waterGiven = y[keyWaterGiven];
+                                      newEntry_uid = y[keyUid];
+                                      newEntry_mobile = newMobile;
+                                      if (newEmail == "") {
+                                        newEntry_email = y[keyEmail];
+                                      } else {
+                                        newEntry_email = newEmail;
+                                      }
+                                      if (newExtraInfo == "") {
+                                        newEntry_extraInfo = y[keyExtraInfo];
+                                      } else {
+                                        newEntry_extraInfo = newExtraInfo;
+                                      }
+
+                                      //END create new entry with copying field from old entry with new mobile and mail.
+
+                                      //START delete old entry to replace
+                                      await FirebaseFirestore.instance
+                                          .collection(adminVillage + adminPin)
+                                          .doc(mainDb)
+                                          .collection(mainDb + yr)
+                                          .doc(mobile.toString() + uid)
+                                          .delete();
+
+                                      //After deleting entry create new entry
+                                      //END delete old entry to replace
+
+                                      //START create new Entry
+                                      await FirebaseFirestore.instance
+                                          .collection(adminVillage + adminPin)
+                                          .doc(mainDb)
+                                          .collection(mainDb + yr)
+                                          .doc(newMobile.toString() + uid)
+                                          .set(
+                                        {
+                                          keyHouse: newEntry_house,
+                                          keyHouseGiven: newEntry_houseGiven,
+                                          keyEmail: newEntry_email,
+                                          keyExtraInfo: newEntry_extraInfo,
+                                          keyMobile: newMobile,
+                                          keyName: newEntry_name,
+                                          keyWater: newEntry_water,
+                                          keyWaterGiven: newEntry_waterGiven,
+                                          keyUid: newEntry_uid
+                                        },
+                                      );
+                                      //END create new Entry
+                                    }
+                                  },
+                                );
+                                //END remove old entry
+                              }
+                              if (mobileFound) {
+                                //remove uid from mobile to uids map
+                                deleteMobileUidMapping(mobile, uid);
+                                //create new mapping.
+                                createMobileUidMapping(newMobile, uid);
+                                popAlert(context, titleSuccess, subtitleSuccess,
+                                    getRightIcon(), 3);
+                              } else {
+                                onPressedUpdateInfo = false;
+                                popAlert(
+                                  context,
+                                  kTitleMobileNotPresent,
+                                  "",
+                                  getWrongIcon(),
+                                  1,
+                                );
+                              }
+                            } catch (e) {
+                              onPressedUpdateInfo = false;
+                              popAlert(context, kTitleTryCatchFail,
+                                  e.toString(), getWrongIcon(), 1);
+                            }
+                          }
+                        },
+                        child: Text(
+                          bLabelSubmit,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
-          ],
+          ),
         ),
       ),
     );

@@ -179,107 +179,115 @@ class _reportInfoState extends State<reportInfo> {
           ),
           backgroundColor: clrRed,
         ),
-        body: Form(
-          key: _formKeyreportForm,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              //getYearTile(clrRed),
-              Padding(
-                padding: EdgeInsets.only(top: 20),
-              ),
-              Row(
-                children: <Widget>[
-                  Expanded(
-                    child: ElevatedButton(
-                      child: Text(
-                        bLabelSubmitRefresh,
-                      ),
-                      onPressed: pressed
-                          ? () async {
-                              var ldr = await _buildList();
-                              if (ldr.isEmpty) {
-                                gLdr = ldr;
-                                return;
-                              }
-                              setState(
-                                () {
-                                  gLdr = ldr;
-                                },
-                              );
-                              pressed = false;
-                            }
-                          : null,
+        body: SingleChildScrollView(
+          child: ConstrainedBox(
+            constraints:
+                BoxConstraints(maxHeight: MediaQuery.of(context).size.height),
+            child: Container(
+              child: Form(
+                key: _formKeyreportForm,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    //getYearTile(clrRed),
+                    Padding(
+                      padding: EdgeInsets.only(top: 20),
                     ),
-                  ),
-                ],
-              ),
-              Expanded(
-                  child: SingleChildScrollView(
-                scrollDirection: Axis.vertical,
-                child: SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: DataTable(
-                    headingTextStyle: getTableHeadingTextStyle(),
-                    border: getTableBorder(),
-                    dataTextStyle: TextStyle(
-                      color: Colors.indigoAccent,
+                    Row(
+                      children: <Widget>[
+                        Expanded(
+                          child: ElevatedButton(
+                            child: Text(
+                              bLabelSubmitRefresh,
+                            ),
+                            onPressed: pressed
+                                ? () async {
+                                    var ldr = await _buildList();
+                                    if (ldr.isEmpty) {
+                                      gLdr = ldr;
+                                      return;
+                                    }
+                                    setState(
+                                      () {
+                                        gLdr = ldr;
+                                      },
+                                    );
+                                    pressed = false;
+                                  }
+                                : null,
+                          ),
+                        ),
+                      ],
                     ),
-                    columns: <DataColumn>[
-                      DataColumn(
-                        label: Text(
-                          tableHeading_srNum,
-                          style: getStyle(actIn),
+                    Expanded(
+                        child: SingleChildScrollView(
+                      scrollDirection: Axis.vertical,
+                      child: SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        child: DataTable(
+                          headingTextStyle: getTableHeadingTextStyle(),
+                          border: getTableBorder(),
+                          dataTextStyle: TextStyle(
+                            color: Colors.indigoAccent,
+                          ),
+                          columns: <DataColumn>[
+                            DataColumn(
+                              label: Text(
+                                tableHeading_srNum,
+                                style: getStyle(actIn),
+                              ),
+                            ),
+                            DataColumn(
+                              label: Text(
+                                tableHeading_year,
+                                style: getStyle(actIn),
+                              ),
+                            ),
+                            DataColumn(
+                              label: Text(
+                                tableHeading_totalHouse,
+                                style: getStyle(actIn),
+                              ),
+                            ),
+                            DataColumn(
+                              label: Text(
+                                tableHeading_pendingHouse,
+                                style: getStyle(actIn),
+                              ),
+                            ),
+                            DataColumn(
+                              label: Text(
+                                tableHeading_collectedHouse,
+                                style: getStyle(actIn),
+                              ),
+                            ),
+                            DataColumn(
+                              label: Text(
+                                tableHeading_totalWater,
+                                style: getStyle(actIn),
+                              ),
+                            ),
+                            DataColumn(
+                              label: Text(
+                                tableHeading_pendingWater,
+                                style: getStyle(actIn),
+                              ),
+                            ),
+                            DataColumn(
+                              label: Text(
+                                tableHeading_collectedWater,
+                                style: getStyle(actIn),
+                              ),
+                            ),
+                          ],
+                          rows: gLdr,
                         ),
                       ),
-                      DataColumn(
-                        label: Text(
-                          tableHeading_year,
-                          style: getStyle(actIn),
-                        ),
-                      ),
-                      DataColumn(
-                        label: Text(
-                          tableHeading_totalHouse,
-                          style: getStyle(actIn),
-                        ),
-                      ),
-                      DataColumn(
-                        label: Text(
-                          tableHeading_pendingHouse,
-                          style: getStyle(actIn),
-                        ),
-                      ),
-                      DataColumn(
-                        label: Text(
-                          tableHeading_collectedHouse,
-                          style: getStyle(actIn),
-                        ),
-                      ),
-                      DataColumn(
-                        label: Text(
-                          tableHeading_totalWater,
-                          style: getStyle(actIn),
-                        ),
-                      ),
-                      DataColumn(
-                        label: Text(
-                          tableHeading_pendingWater,
-                          style: getStyle(actIn),
-                        ),
-                      ),
-                      DataColumn(
-                        label: Text(
-                          tableHeading_collectedWater,
-                          style: getStyle(actIn),
-                        ),
-                      ),
-                    ],
-                    rows: gLdr,
-                  ),
+                    ))
+                  ],
                 ),
-              ))
-            ],
+              ),
+            ),
           ),
         ),
       ),

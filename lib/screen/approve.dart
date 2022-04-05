@@ -28,23 +28,29 @@ class _approveState extends State<approve> {
         ),
         backgroundColor: clrAmber,
       ),
-      body: Container(
-        width: double.infinity,
-        color: Colors.grey[350],
-        alignment: Alignment.topLeft,
-        child: Column(
-          children: [
-            Padding(
-              padding: EdgeInsets.only(top: 20),
+      body: SingleChildScrollView(
+        child: ConstrainedBox(
+          constraints:
+              BoxConstraints(maxHeight: MediaQuery.of(context).size.height),
+          child: Container(
+            width: double.infinity,
+            color: Colors.grey[350],
+            alignment: Alignment.topLeft,
+            child: Column(
+              children: [
+                Padding(
+                  padding: EdgeInsets.only(top: 20),
+                ),
+                Text(scafBeginInfoApproveRemove),
+                Padding(
+                  padding: EdgeInsets.only(top: 20),
+                ),
+                Expanded(
+                  child: approvalList(),
+                ),
+              ],
             ),
-            Text(scafBeginInfoApproveRemove),
-            Padding(
-              padding: EdgeInsets.only(top: 20),
-            ),
-            Expanded(
-              child: approvalList(),
-            ),
-          ],
+          ),
         ),
       ),
     );
