@@ -267,9 +267,7 @@ class _inputInfoState extends State<inputInfo> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   getYearTile(clrGreen),
-                  Padding(
-                    padding: EdgeInsets.only(top: 20),
-                  ),
+                  //getPadding(),
                   Expanded(
                     child: TextFormField(
                       controller: _textController_mobile,
@@ -447,9 +445,7 @@ class _inputInfoState extends State<inputInfo> {
                       ),
                     ),
                   ),
-                  Padding(
-                    padding: EdgeInsets.only(top: 20),
-                  ),
+                  //getPadding(),
                   Expanded(
                     child: TextFormField(
                       controller: _textController_uid,
@@ -471,9 +467,7 @@ class _inputInfoState extends State<inputInfo> {
                       },
                     ),
                   ),
-                  Padding(
-                    padding: EdgeInsets.only(top: 20),
-                  ),
+                  //getPadding(),
                   Expanded(
                     child: TextFormField(
                       controller: _textController_name,
@@ -492,9 +486,7 @@ class _inputInfoState extends State<inputInfo> {
                       },
                     ),
                   ),
-                  Padding(
-                    padding: EdgeInsets.only(top: 20),
-                  ),
+                  //getPadding(),
                   Expanded(
                     child: TextFormField(
                       controller: _textController_mail,
@@ -514,9 +506,7 @@ class _inputInfoState extends State<inputInfo> {
                       },
                     ),
                   ),
-                  Padding(
-                    padding: EdgeInsets.only(top: 20),
-                  ),
+                  //getPadding(),
                   Expanded(
                     child: TextFormField(
                       controller: _textController_houseTax,
@@ -538,9 +528,7 @@ class _inputInfoState extends State<inputInfo> {
                       },
                     ),
                   ),
-                  Padding(
-                    padding: EdgeInsets.only(top: 20),
-                  ),
+                  //getPadding(),
                   Expanded(
                     child: TextFormField(
                       controller: _textController_waterTax,
@@ -562,9 +550,7 @@ class _inputInfoState extends State<inputInfo> {
                       },
                     ),
                   ),
-                  Padding(
-                    padding: EdgeInsets.only(top: 20),
-                  ),
+                  //getPadding(),
                   Expanded(
                     child: TextFormField(
                       controller: _textController_extraInfo,
@@ -582,9 +568,7 @@ class _inputInfoState extends State<inputInfo> {
                       },
                     ),
                   ),
-                  Padding(
-                    padding: EdgeInsets.only(top: 20),
-                  ),
+                  //getPadding(),
                   Expanded(
                     child: Center(
                       child: ElevatedButton(

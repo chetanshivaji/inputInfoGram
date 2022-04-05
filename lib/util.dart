@@ -179,6 +179,12 @@ ListTile getListTile(Icon leadingIcon, String lhs, String rhs) {
   );
 }
 
+Widget getPadding() {
+  return Padding(
+    padding: EdgeInsets.only(top: 20),
+  );
+}
+
 Widget getPrefilledListTile(String LHS, String RHS) {
   return Row(
     children: [
