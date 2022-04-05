@@ -58,7 +58,7 @@ packages:
     source: hosted
     version: "3.1.8"
   cloud_firestore_platform_interface:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: cloud_firestore_platform_interface
       url: "https://pub.dartlang.org"
@@ -71,13 +71,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.6.8"
-  cloud_functions_platform_interface:
-    dependency: "direct main"
-    description:
-      name: cloud_functions_platform_interface
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "5.0.21"
   collection:
     dependency: transitive
     description:
@@ -107,7 +100,7 @@ packages:
     source: hosted
     version: "3.3.7"
   firebase_auth_platform_interface:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: firebase_auth_platform_interface
       url: "https://pub.dartlang.org"
@@ -141,27 +134,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.6.0"
-  firebase_database_platform_interface:
-    dependency: "direct main"
-    description:
-      name: firebase_database_platform_interface
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.2.0+5"
-  firebase_messaging_platform_interface:
-    dependency: "direct main"
-    description:
-      name: firebase_messaging_platform_interface
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "3.1.6"
-  firebase_storage_platform_interface:
-    dependency: "direct main"
-    description:
-      name: firebase_storage_platform_interface
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "4.0.14"
   flutter:
     dependency: "direct main"
     description: flutter

@@ -312,37 +312,28 @@ class _updateInfoState extends State<updateInfo> {
                     padding: EdgeInsets.only(top: 20),
                   ),
                   Expanded(
-                    child: ListTile(
-                      leading: Icon(Icons.wb_incandescent_outlined),
-                      title: getPrefilledListTile(labelUid, uid),
-                    ),
+                    child: getListTile(
+                        Icon(Icons.wb_incandescent_outlined), labelUid, uid),
                   ),
                   Padding(
                     padding: EdgeInsets.only(top: 20),
                   ),
                   Expanded(
-                    child: ListTile(
-                      leading: Icon(Icons.person),
-                      title: getPrefilledListTile(labelName, name),
-                    ),
+                    child: getListTile(Icon(Icons.person), labelName, name),
                   ),
                   Padding(
                     padding: EdgeInsets.only(top: 20),
                   ),
                   Expanded(
-                    child: ListTile(
-                      leading: Icon(Icons.attach_money),
-                      title: getPrefilledListTile(labelEmail, email),
-                    ),
+                    child: getListTile(
+                        Icon(Icons.mail_outline), labelEmail, email),
                   ),
                   Padding(
                     padding: EdgeInsets.only(top: 20),
                   ),
                   Expanded(
-                    child: ListTile(
-                      leading: Icon(Icons.holiday_village),
-                      title: getPrefilledListTile(labelExtraInfo, extraInfo),
-                    ),
+                    child: getListTile(
+                        Icon(Icons.holiday_village), labelExtraInfo, extraInfo),
                   ),
                   Padding(
                     padding: EdgeInsets.only(top: 20),
