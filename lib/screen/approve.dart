@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:inputgram/approvalList.dart';
 import 'package:inputgram/consts.dart';
 import 'package:inputgram/util.dart';
