@@ -109,29 +109,7 @@ TextStyle getStyle(String type) {
   }
 }
 
-/*
-Future<List<String>> getMobileUidMapping(String mobile) async {
-  //START create mobile -> multi UID mapping
-  await FirebaseFirestore.instance
-      .collection(adminVillage + adminPin)
-      .doc(docMobileUidMap)
-      .get()
-      .then(
-    (value) async {
-      if (value.exists) {
-        var y = value.data();
-        if (y!.containsKey(value)) {
-          return y[value];
-        }
-      }
-    },
-  );
-  //END create mobile -> multi UID mapping
-  List<String> s = []; //dummy
-  return s;
-}
-*/
-Future<void> deleteMobileUidMapping(int mobile, String uid) async {
+Future<void> deleteMobileUidMapping(String mobile, String uid) async {
   //START create mobile -> multi UID mapping
   await FirebaseFirestore.instance
       .collection(adminVillage + adminPin)
@@ -145,7 +123,7 @@ Future<void> deleteMobileUidMapping(int mobile, String uid) async {
             .doc(docMobileUidMap)
             .update(
           {
-            mobile.toString(): FieldValue.arrayRemove([uid])
+            mobile: FieldValue.arrayRemove([uid])
           },
         );
       }
@@ -159,9 +137,9 @@ Future<void> deleteMobileUidMapping(int mobile, String uid) async {
     (value) async {
       if (value.exists) {
         var y = value.data();
-        if (y!.containsKey(mobile.toString())) {
-          if (y[mobile.toString()].length == 0) {
-            y.remove(mobile.toString()); //removes key if no value present.
+        if (y!.containsKey(mobile)) {
+          if (y[mobile].length == 0) {
+            y.remove(mobile); //removes key if no value present.
           }
         }
       }
@@ -207,7 +185,7 @@ Widget getPrefilledListTile(String LHS, String RHS) {
   );
 }
 
-Future<void> createMobileUidMapping(int mobile, String uid) async {
+Future<void> createMobileUidMapping(String mobile, String uid) async {
   //START create mobile -> multi UID mapping
   await FirebaseFirestore.instance
       .collection(adminVillage + adminPin)
@@ -221,7 +199,7 @@ Future<void> createMobileUidMapping(int mobile, String uid) async {
             .doc(docMobileUidMap)
             .update(
           {
-            mobile.toString(): FieldValue.arrayUnion([uid])
+            mobile: FieldValue.arrayUnion([uid])
           },
         );
       } else {
@@ -230,7 +208,7 @@ Future<void> createMobileUidMapping(int mobile, String uid) async {
             .doc(docMobileUidMap)
             .set(
           {
-            mobile.toString(): FieldValue.arrayUnion([uid])
+            mobile: FieldValue.arrayUnion([uid])
           },
         );
       }

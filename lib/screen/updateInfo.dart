@@ -27,8 +27,8 @@ class _updateInfoState extends State<updateInfo> {
   String uidEntry = "";
   String emailEntry = "";
   String extraInfoEntry = "";
-  int mobile = 0;
-  int newMobile = 0;
+  String mobile = "";
+  String newMobile = "";
 
   String newEmail = "";
   String newExtraInfo = "";
@@ -83,7 +83,7 @@ class _updateInfoState extends State<updateInfo> {
           .collection(adminVillage + adminPin)
           .doc(mainDb)
           .collection(mainDb + yr)
-          .doc(mobile.toString() + uid)
+          .doc(mobile + uid)
           .get()
           .then(
         (value) {
@@ -114,8 +114,8 @@ class _updateInfoState extends State<updateInfo> {
 
   Future<void> checkMobileUid(mobValue) async {
     String uids = "";
-    mobile = int.parse(
-        mobValue); //set here, otherewise this will be set in validator after click on submit.
+    mobile =
+        mobValue; //set here, otherewise this will be set in validator after click on submit.
     try {
       await FirebaseFirestore.instance
           .collection(adminVillage + adminPin)
@@ -293,7 +293,7 @@ class _updateInfoState extends State<updateInfo> {
                       if (!isNumeric(value)) {
                         return msgOnlyNumber;
                       }
-                      mobile = int.parse(value);
+                      mobile = value;
                       return null;
                     },
                   ),
@@ -342,7 +342,7 @@ class _updateInfoState extends State<updateInfo> {
                         if (!isNumeric(value)) {
                           return msgOnlyNumber;
                         }
-                        newMobile = int.parse(value);
+                        newMobile = value;
                         return null;
                       },
                     ),
@@ -405,7 +405,7 @@ class _updateInfoState extends State<updateInfo> {
                             for (var yr in items) {
                               String newEntry_email = "";
                               String newEntry_extraInfo = "";
-                              int newEntry_mobile = 0;
+                              String newEntry_mobile = "";
                               String newEntry_name = "";
                               int newEntry_house = 0;
                               bool newEntry_houseGiven = false;
@@ -418,10 +418,7 @@ class _updateInfoState extends State<updateInfo> {
                                   .collection(adminVillage + adminPin)
                                   .doc(mainDb)
                                   .collection(mainDb + yr);
-                              await collection
-                                  .doc(mobile.toString() + uid)
-                                  .get()
-                                  .then(
+                              await collection.doc(mobile + uid).get().then(
                                 (value) async {
                                   if (value.exists) {
                                     mobileFound = true;
@@ -452,7 +449,7 @@ class _updateInfoState extends State<updateInfo> {
                                         .collection(adminVillage + adminPin)
                                         .doc(mainDb)
                                         .collection(mainDb + yr)
-                                        .doc(mobile.toString() + uid)
+                                        .doc(mobile + uid)
                                         .delete();
 
                                     //After deleting entry create new entry
@@ -463,7 +460,7 @@ class _updateInfoState extends State<updateInfo> {
                                         .collection(adminVillage + adminPin)
                                         .doc(mainDb)
                                         .collection(mainDb + yr)
-                                        .doc(newMobile.toString() + uid)
+                                        .doc(newMobile + uid)
                                         .set(
                                       {
                                         keyHouse: newEntry_house,

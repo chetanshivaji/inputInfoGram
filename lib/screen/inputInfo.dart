@@ -20,7 +20,7 @@ class _inputInfoState extends State<inputInfo> {
   final _formKeyInputForm = GlobalKey<FormState>();
   String name = "";
   String email = "";
-  int mobile = 0;
+  String mobile = "";
 
   int houseTax = 0;
   int waterTax = 0;
@@ -295,7 +295,7 @@ class _inputInfoState extends State<inputInfo> {
                         if (value.length == 10) {
                           //fetch data and assign it to controller.
                           try {
-                            mobile = int.parse(value);
+                            mobile = value;
 
                             await FirebaseFirestore.instance
                                 .collection(adminVillage + adminPin)
@@ -366,7 +366,7 @@ class _inputInfoState extends State<inputInfo> {
                                                         (int.parse(dropdownValueYear) -
                                                                 1)
                                                             .toString())
-                                                    .doc(mobile.toString() + id)
+                                                    .doc(mobile + id)
                                                     .get()
                                                     .then(
                                                   (person) {
@@ -433,7 +433,7 @@ class _inputInfoState extends State<inputInfo> {
                         if (!isNumeric(value)) {
                           return msgOnlyNumber;
                         }
-                        mobile = int.parse(value);
+                        mobile = value;
                         return null;
                       },
                     ),
@@ -592,7 +592,7 @@ class _inputInfoState extends State<inputInfo> {
                                   .collection(adminVillage + adminPin)
                                   .doc(mainDb)
                                   .collection(mainDb + dropdownValueYear)
-                                  .doc(mobile.toString() + uid);
+                                  .doc(mobile + uid);
 
                               usersRef.get().then(
                                 (docSnapshot) async {
@@ -613,8 +613,8 @@ class _inputInfoState extends State<inputInfo> {
                                     //if yes check for same mobile it is present
                                     //if yes add.
                                     //if no failure out.
-                                    var present = await checkIfUidPresent(
-                                        mobile.toString(), uid);
+                                    var present =
+                                        await checkIfUidPresent(mobile, uid);
                                     if (present == false) {
                                       //if uid absent in village do further
                                       createMobileUidMapping(mobile, uid);
@@ -625,7 +625,7 @@ class _inputInfoState extends State<inputInfo> {
                                           .doc(mainDb)
                                           .collection(
                                               mainDb + dropdownValueYear)
-                                          .doc(mobile.toString() + uid)
+                                          .doc(mobile + uid)
                                           .set(
                                         {
                                           keyHouse: houseTax,
