@@ -322,7 +322,7 @@ class _inputInfoState extends State<inputInfo> {
                                           .then(
                                         (person) {
                                           var y = person.data();
-                                          uid = y![keyUid].toString();
+                                          uid = y![keyUid];
                                           _textController_name.text =
                                               y[keyName];
                                           _textController_mail.text =
@@ -331,10 +331,9 @@ class _inputInfoState extends State<inputInfo> {
                                               y[keyHouse].toString();
                                           _textController_waterTax.text =
                                               y[keyWater].toString();
-                                          _textController_uid.text =
-                                              y[keyUid].toString();
+                                          _textController_uid.text = y[keyUid];
                                           _textController_extraInfo.text =
-                                              y[keyExtraInfo].toString();
+                                              y[keyExtraInfo];
                                         },
                                       );
                                     }
@@ -385,11 +384,10 @@ class _inputInfoState extends State<inputInfo> {
                                                           y[keyWater]
                                                               .toString();
                                                       _textController_uid.text =
-                                                          y[keyUid].toString();
+                                                          y[keyUid];
                                                       _textController_extraInfo
                                                               .text =
-                                                          y[keyExtraInfo]
-                                                              .toString();
+                                                          y[keyExtraInfo];
                                                     }
                                                   },
                                                 );
