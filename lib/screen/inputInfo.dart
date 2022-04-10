@@ -431,6 +431,9 @@ class _inputInfoState extends State<inputInfo> {
                         if (!isNumeric(value)) {
                           return msgOnlyNumber;
                         }
+                        if (value.startsWith('0')) {
+                          return msgNoStartZero;
+                        }
                         mobile = value;
                         return null;
                       },

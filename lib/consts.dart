@@ -22,6 +22,7 @@ String kTitleVillageAlreadyPresent =
 String kSubtitleLogOutConfirmation = "Do you want to log out?";
 //Msgs
 String msgOnlyNumber = "Please enter only numbers";
+String msgNoStartZero = "Mobile not start with zero";
 String msgEnterEmail = "Please Enter admin email";
 String msgEnterUser = "Enter your name";
 String msgEnterUserMail = "Enter email";
