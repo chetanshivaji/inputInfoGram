@@ -9,6 +9,7 @@ import 'screen/reportInfo.dart';
 import 'screen/welcome_login/login_screen.dart';
 import 'screen/welcome_login/registration_screen.dart';
 import 'screen/welcome_login/welcome_screen.dart';
+import 'screen/welcome_login/forgotPassword.dart';
 
 void main() async {
   try {
@@ -40,6 +41,7 @@ void main() async {
         WelcomeScreen.id: (context) => WelcomeScreen(),
         LoginScreen.id: (context) => LoginScreen(),
         RegistrationScreen.id: (context) => RegistrationScreen(),
+        forgotPasswordScreen.id: (context) => forgotPasswordScreen(),
       },
     ),
   );

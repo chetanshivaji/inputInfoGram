@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:inputgram/screen/welcome_login/forgotPassword.dart';
 import 'login_screen.dart';
 import 'registration_screen.dart';
 import 'package:inputgram/consts.dart';
@@ -72,6 +73,15 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                     bLabelAdminRegiter,
                   ),
                 ),
+              ),
+            ),
+            InkWell(
+              onTap: () {
+                Navigator.pushNamed(context, forgotPasswordScreen.id);
+              },
+              child: Text(
+                labelForgotPassword,
+                style: TextStyle(color: Colors.blueGrey),
               ),
             ),
           ],

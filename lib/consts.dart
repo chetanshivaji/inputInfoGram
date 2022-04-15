@@ -20,6 +20,8 @@ String kTitleSignOut = "SignOut";
 String kTitleVillageAlreadyPresent =
     "Vilage already present. Use different village";
 String kSubtitleLogOutConfirmation = "Do you want to log out?";
+String kTitleForgotPasswordMailSent = "Mail sent to change password";
+String kSubTitleForgotPasswordMailSent = "Please check your login email inbox";
 //Msgs
 String msgOnlyNumber = "Please enter only numbers";
 String msgNoStartZero = "Mobile not start with zero";
@@ -104,6 +106,8 @@ String labelPin = "Pin *";
 
 String labelRegister = 'Register';
 String labelLogin = 'Log In';
+String labelForgotPassword = 'Forgot Password?';
+
 String labelName = "Name *";
 
 String labelHouseTax = "House Tax *";
