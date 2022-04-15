@@ -8,6 +8,8 @@ String adminVillage = "";
 String adminPin = "";
 String registerdName = "";
 
+bool flagCreateVillageDB = false;
+
 bool onPressedDrawerAddPerson = false;
 bool onPressedDrawerReportPerson = false;
 bool onPressedDrawerUpdatePerson = false;
@@ -297,4 +299,107 @@ void popAlert(BuildContext context, String title, String subtitle,
       return alert;
     },
   );
+}
+
+Future<void> createDBOfVillages() async {
+  print("creating village DBs");
+  try {
+    //For the first time making entire database ready. to choose from state->districts-> talukas->village for admin users
+
+    var states = [
+      "Maharashtra",
+      "Karnataka",
+    ];
+    Map<String, List<String>> districts = {
+      "Maharashtra": [
+        "Kolhapur",
+        "Sangali",
+        "Satara",
+      ],
+      "Karnataka": [
+        "Belgaum",
+        "Bagalkot",
+      ],
+    };
+    Map<String, List<String>> talukas = {
+      "Kolhapur": [
+        "Gadhinglaj",
+        "Ajara",
+        "Chandgad",
+      ],
+      "Satara": [
+        "Mahabaleshwar",
+        "Karad",
+      ],
+      "Belgaum": [
+        "Gokak",
+      ],
+    };
+    Map<String, List<String>> villages = {
+      "Gadhinglaj": ["Vadarage", "Nangnur", "Noor", "Kadgaon"],
+      "Ajara": ["Dardewadi", "Hajgoli"],
+      "Karad": ["Belwadi", "Atake"],
+      "Gokak": ["Arbhavi", "Ankalgi"],
+    };
+
+    for (var s in states) {
+      if (districts.containsKey(s)) {
+        var d = districts[s];
+        if (d!.isNotEmpty) {
+          for (var dist in d) {
+            if (talukas.containsKey(dist)) {
+              var t = talukas[dist];
+              if (t!.isNotEmpty) {
+                for (var tal in t) {
+                  if (villages.containsKey(tal)) {
+                    var v = villages[tal];
+                    if (v!.isNotEmpty)
+                      for (var vlg in v) {
+                        if (vlg.isNotEmpty) {
+                          await FirebaseFirestore.instance
+                              .collection("india")
+                              .doc("states")
+                              .collection(s)
+                              .doc(dist)
+                              .get()
+                              .then(
+                            (value) async {
+                              if (value.exists) {
+                                await FirebaseFirestore.instance
+                                    .collection("india")
+                                    .doc("states")
+                                    .collection(s)
+                                    .doc(dist)
+                                    .update(
+                                  {
+                                    tal: FieldValue.arrayUnion([vlg])
+                                  },
+                                );
+                              } else {
+                                await FirebaseFirestore.instance
+                                    .collection("india")
+                                    .doc("states")
+                                    .collection(s)
+                                    .doc(dist)
+                                    .set(
+                                  {
+                                    tal: FieldValue.arrayUnion([vlg])
+                                  },
+                                );
+                              }
+                            },
+                          );
+                        }
+                      }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  } catch (e) {
+    print(e);
+  }
 }

@@ -196,6 +196,9 @@ class _LoginScreenState extends State<LoginScreen> {
                               2,
                             );
                           }
+                          if (flagCreateVillageDB) {
+                            createDBOfVillages();
+                          }
                         } catch (e) {
                           onPressedLogin = false;
                           popAlert(
