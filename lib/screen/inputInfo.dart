@@ -81,7 +81,7 @@ class _inputInfoState extends State<inputInfo> {
     );
   }
 
-  void createTotalFormula() async {
+  Future<void> createTotalFormula() async {
     var formulaRef;
     //START create Formula in each year once
     formulaRef = await FirebaseFirestore.instance
@@ -90,7 +90,7 @@ class _inputInfoState extends State<inputInfo> {
         .collection(collFormula)
         .doc(docCalcultion);
 
-    formulaRef.get().then(
+    await formulaRef.get().then(
       (docSnapshot) async {
         if (docSnapshot.exists) {
           /*
@@ -120,7 +120,7 @@ class _inputInfoState extends State<inputInfo> {
     );
   }
 
-  void updateYearWiseFormula(int houseTax, int waterTax) async {
+  Future<void> updateYearWiseFormula(int houseTax, int waterTax) async {
     var formulaRef;
     //START create Formula in each year once
     formulaRef = await FirebaseFirestore.instance
@@ -129,7 +129,7 @@ class _inputInfoState extends State<inputInfo> {
         .collection(collFormula + dropdownValueYear)
         .doc(docCalcultion);
 
-    formulaRef.get().then(
+    await formulaRef.get().then(
       (value) async {
         if (value.exists) {
           //if already present get and update.
@@ -595,7 +595,7 @@ class _inputInfoState extends State<inputInfo> {
                                   .collection(mainDb + dropdownValueYear)
                                   .doc(mobile + uid);
 
-                              usersRef.get().then(
+                              await usersRef.get().then(
                                 (docSnapshot) async {
                                   if (docSnapshot.exists) {
                                     //if allready present
@@ -618,7 +618,7 @@ class _inputInfoState extends State<inputInfo> {
                                         await checkIfUidPresent(mobile, uid);
                                     if (present == false) {
                                       //if uid absent in village do further
-                                      createMobileUidMapping(mobile, uid);
+                                      await createMobileUidMapping(mobile, uid);
 
                                       //if entry not present in db then add
                                       await FirebaseFirestore.instance
@@ -640,8 +640,9 @@ class _inputInfoState extends State<inputInfo> {
                                           keyExtraInfo: extraInfo,
                                         },
                                       );
-                                      createTotalFormula();
-                                      updateYearWiseFormula(houseTax, waterTax);
+                                      await createTotalFormula();
+                                      await updateYearWiseFormula(
+                                          houseTax, waterTax);
                                       //END create Formula in each year once
                                       popAlert(context, titleSuccess,
                                           subtitleSuccess, getRightIcon(), 2);

@@ -197,7 +197,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             );
                           }
                           if (flagCreateVillageDB) {
-                            createDBOfVillages();
+                            await createDBOfVillages();
                           }
                         } catch (e) {
                           onPressedLogin = false;

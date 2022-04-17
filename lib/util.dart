@@ -26,31 +26,6 @@ TextStyle getTableHeadingTextStyle() {
   );
 }
 
-Future<List<String>> getLoggedInUserVillagePin() async {
-  List<String> lsVillagePin = [];
-  String? email = FirebaseAuth.instance.currentUser!.email;
-  String village = "";
-  String pin = "";
-  try {
-    await FirebaseFirestore.instance
-        .collection(collUsers)
-        .doc(email)
-        .get()
-        .then(
-      (value) {
-        var y = value.data();
-        village = y![keyVillage];
-        pin = y[keyPin];
-        lsVillagePin.add(village);
-        lsVillagePin.add(pin);
-      },
-    );
-  } catch (e) {
-    print(e);
-  }
-  return lsVillagePin;
-}
-
 bool isNumeric(String s) {
   if (s == null) {
     return false;
@@ -131,6 +106,7 @@ Future<void> deleteMobileUidMapping(String mobile, String uid) async {
       }
     },
   );
+  /*
   await FirebaseFirestore.instance
       .collection(adminVillage + adminPin)
       .doc(docMobileUidMap)
@@ -147,6 +123,7 @@ Future<void> deleteMobileUidMapping(String mobile, String uid) async {
       }
     },
   );
+  */
   //END create mobile -> multi UID mapping
   return;
 }
@@ -302,7 +279,6 @@ void popAlert(BuildContext context, String title, String subtitle,
 }
 
 Future<void> createDBOfVillages() async {
-  print("creating village DBs");
   try {
     //For the first time making entire database ready. to choose from state->districts-> talukas->village for admin users
 

@@ -90,7 +90,6 @@ class _forgotPasswordScreenState extends State<forgotPasswordScreen> {
                     onPressed: () async {
                       if (_formforgotPasswordKey.currentState!.validate() &&
                           onPressedforgotPassword == false) {
-                        String adminMail = "";
                         onPressedforgotPassword = true;
                         //Implement registration functionality.
                         try {

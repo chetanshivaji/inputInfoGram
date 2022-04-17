@@ -75,7 +75,7 @@ class _updateInfoState extends State<updateInfo> {
     return false;
   }
 
-  void setNameEmail(String uid) async {
+  Future<void> setNameEmail(String uid) async {
     //fecth and display user info on screen
     bool found = false;
     for (var yr in items) {
@@ -122,7 +122,7 @@ class _updateInfoState extends State<updateInfo> {
           .doc(docMobileUidMap)
           .get()
           .then(
-        (value) {
+        (value) async {
           if (value.exists) {
             var y = value.data();
             if (!y!.containsKey(mobValue)) {
@@ -145,7 +145,7 @@ class _updateInfoState extends State<updateInfo> {
                   uid = mobileUids[0];
                 },
               );
-              setNameEmail(mobileUids[0]);
+              await setNameEmail(mobileUids[0]);
             } else if (mobileUids.length > 1) {
               //display all uids and choose one.
               for (var id in mobileUids) {
@@ -160,9 +160,9 @@ class _updateInfoState extends State<updateInfo> {
                       fontWeight: FontWeight.bold,
                     ),
                     recognizer: TapGestureRecognizer()
-                      ..onTap = () {
+                      ..onTap = () async {
                         //make use of Id which has go tapped.
-                        setNameEmail(id);
+                        await setNameEmail(id);
                         uid = id;
                       },
                   ),
@@ -260,7 +260,7 @@ class _updateInfoState extends State<updateInfo> {
                       }
                       if (mobValue.length == 10) {
                         try {
-                          checkMobileUid(mobValue);
+                          await checkMobileUid(mobValue);
                         } catch (e) {
                           popAlert(
                             context,
@@ -320,7 +320,7 @@ class _updateInfoState extends State<updateInfo> {
                       controller: _textController_newMobile,
                       onChanged: (text) async {
                         if (text.length == 10) {
-                          var used = mobileAlreadyUsed(text);
+                          var used = await mobileAlreadyUsed(text);
                           if (used == true) {
                             return;
                           }
@@ -482,9 +482,9 @@ class _updateInfoState extends State<updateInfo> {
                             }
                             if (mobileFound) {
                               //remove uid from mobile to uids map
-                              deleteMobileUidMapping(mobile, uid);
+                              await deleteMobileUidMapping(mobile, uid);
                               //create new mapping.
-                              createMobileUidMapping(newMobile, uid);
+                              await createMobileUidMapping(newMobile, uid);
                               popAlert(context, titleSuccess, subtitleSuccess,
                                   getRightIcon(), 3);
                             } else {

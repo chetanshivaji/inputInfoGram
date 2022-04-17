@@ -395,28 +395,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                           ).toList(),
                           // After selecting the desired option,it will
                           // change button value to selected value
-                          /*
-                          onTap: () async {
-                            //fetch array from india-> state-> india
-                            //assign array to states
-                            //setState
-                            List<String> statesList = [];
-                            final db = FirebaseFirestore.instance;
-                            var result = await db.collection().get();
-                            result.docs.forEach((res) {
-                              print(res.id);
-                            });
 
-                            await FirebaseFirestore.instance
-                                .collection(state)
-                                .get()
-                                .then(
-                              (value) async {
-                                if (value) {}
-                              },
-                            );
-                          },
-                          */
                           onChanged: (String? newAccessValue) async {
                             if (newAccessValue != access) {
                               setState(
