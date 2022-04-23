@@ -398,9 +398,49 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
 
                           onChanged: (String? newAccessValue) async {
                             if (newAccessValue != access) {
+                              List<String> listDistricts = [];
+                              //fetch districts info from state and set to list of districts.
+                              var collection = await FirebaseFirestore.instance
+                                  .collection('india')
+                                  .doc("states")
+                                  .collection(newAccessValue.toString());
+                              var querySnapshots = await collection.get();
+                              for (var snapshot in querySnapshots.docs) {
+                                listDistricts
+                                    .add(snapshot.id); // <-- Document ID
+                              }
+                              //listDistricts.add("");
+                              districts = listDistricts;
+
+                              //fetch talukas first districts
+                              List<String> listTalukas = [];
+                              //fetch districts info from state and set to list of districts.
+                              var cl = await FirebaseFirestore.instance
+                                  .collection('india')
+                                  .doc("states")
+                                  .collection(newAccessValue.toString())
+                                  .doc(districts[0])
+                                  .get()
+                                  .then(
+                                (value) async {
+                                  if (value.exists) {
+                                    var ls = value.data()!.entries;
+                                    ls.forEach(
+                                      (element) {
+                                        listTalukas.add(element.key);
+                                      },
+                                    );
+                                  }
+                                },
+                              );
+                              //listTalukas.add("");
+                              talukas = listTalukas;
+
                               setState(
                                 () {
                                   sState = newAccessValue.toString();
+                                  sDistrict = districts[0];
+                                  sTaluka = talukas[0];
                                 },
                               );
                             }
@@ -453,12 +493,36 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                           // change button value to selected value
                           onChanged: (String? newAccessValue) async {
                             if (newAccessValue != access) {
-                              setState(
-                                () {
-                                  sDistrict = newAccessValue.toString();
+                              List<String> listTalukas = [];
+                              //fetch districts info from state and set to list of districts.
+                              var collection = await FirebaseFirestore.instance
+                                  .collection('india')
+                                  .doc("states")
+                                  .collection(sState)
+                                  .doc(newAccessValue.toString())
+                                  .get()
+                                  .then(
+                                (value) async {
+                                  if (value.exists) {
+                                    var ls = value.data()!.entries;
+                                    ls.forEach(
+                                      (element) {
+                                        listTalukas.add(element.key);
+                                      },
+                                    );
+                                  }
                                 },
                               );
+                              //listTalukas.add("");
+                              talukas = listTalukas;
                             }
+
+                            setState(
+                              () {
+                                sDistrict = newAccessValue.toString();
+                                sTaluka = talukas[0];
+                              },
+                            );
                           },
                         ),
                         /*
@@ -544,82 +608,99 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                           style: TextStyle(color: Colors.white),
                         ),
                         onPressed: () async {
-                          if (_formRegKey.currentState!.validate() &&
-                              onPressedRegister == false) {
-                            onPressedRegister = true;
+                          if (sState != "" &&
+                              sDistrict != "" &&
+                              sTaluka != "") {
+                            if (_formRegKey.currentState!.validate() &&
+                                onPressedRegister == false) {
+                              onPressedRegister = true;
 
-                            if (password != reEnterPassword) {
-                              onPressedRegister = false;
-                              popAlert(
-                                context,
-                                titlePasswordMismatch,
-                                subtitlePasswordMismatch,
-                                getWrongIcon(),
-                                1,
-                              ); //one time pop navigation
-                              return;
-                            }
-                            //Implement registration functionality.
-                            try {
-                              //check if village pin already present then return;
-                              bool villagePresent = false;
-                              await FirebaseFirestore.instance
-                                  .collection(village + pin)
-                                  .doc(docVillageInfo)
-                                  .get()
-                                  .then(
-                                (docVillageInfo) async {
-                                  if (docVillageInfo.exists) {
-                                    //already present pop and return.
-                                    onPressedRegister = false;
-                                    popAlert(
-                                      context,
-                                      kTitleVillageAlreadyPresent,
-                                      "",
-                                      getWrongIcon(),
-                                      1,
-                                    );
-                                    villagePresent = true;
-                                    return;
-                                  }
-                                },
-                              );
-                              if (villagePresent == true) {
-                                return;
-                              }
-
-                              final newUser =
-                                  await _auth.createUserWithEmailAndPassword(
-                                email: email,
-                                password: password,
-                              );
-
-                              if (newUser != null) {
-                                userMail = email;
-
-                                await setAdminUserInfoInDb(village, pin, email,
-                                    registeredName, sState, sDistrict, sTaluka);
-
-                                Navigator.pushNamed(context, MyApp.id);
+                              if (password != reEnterPassword) {
+                                onPressedRegister = false;
                                 popAlert(
                                   context,
-                                  registerSuccess,
-                                  '',
-                                  getRightIcon(),
+                                  titlePasswordMismatch,
+                                  subtitlePasswordMismatch,
+                                  getWrongIcon(),
+                                  1,
+                                ); //one time pop navigation
+                                return;
+                              }
+                              //Implement registration functionality.
+                              try {
+                                //check if village pin already present then return;
+                                bool villagePresent = false;
+                                await FirebaseFirestore.instance
+                                    .collection(village + pin)
+                                    .doc(docVillageInfo)
+                                    .get()
+                                    .then(
+                                  (docVillageInfo) async {
+                                    if (docVillageInfo.exists) {
+                                      //already present pop and return.
+                                      onPressedRegister = false;
+                                      popAlert(
+                                        context,
+                                        kTitleVillageAlreadyPresent,
+                                        "",
+                                        getWrongIcon(),
+                                        1,
+                                      );
+                                      villagePresent = true;
+                                      return;
+                                    }
+                                  },
+                                );
+                                if (villagePresent == true) {
+                                  return;
+                                }
+
+                                final newUser =
+                                    await _auth.createUserWithEmailAndPassword(
+                                  email: email,
+                                  password: password,
+                                );
+
+                                if (newUser != null) {
+                                  userMail = email;
+
+                                  await setAdminUserInfoInDb(
+                                      village,
+                                      pin,
+                                      email,
+                                      registeredName,
+                                      sState,
+                                      sDistrict,
+                                      sTaluka);
+
+                                  Navigator.pushNamed(context, MyApp.id);
+                                  popAlert(
+                                    context,
+                                    registerSuccess,
+                                    '',
+                                    getRightIcon(),
+                                    1,
+                                  );
+                                }
+                              } catch (e) {
+                                onPressedRegister = false;
+                                popAlert(
+                                  context,
+                                  kTitleFail,
+                                  e.toString(),
+                                  getWrongIcon(),
                                   1,
                                 );
+                                return;
                               }
-                            } catch (e) {
-                              onPressedRegister = false;
-                              popAlert(
-                                context,
-                                kTitleFail,
-                                e.toString(),
-                                getWrongIcon(),
-                                1,
-                              );
-                              return;
                             }
+                          } else {
+                            popAlert(
+                                context,
+                                "Empty fields",
+                                "State/District/Taluka should't be empty ",
+                                getWrongIcon(),
+                                1);
                           }
                         },
                       ),

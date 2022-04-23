@@ -15,7 +15,7 @@ String kTitleMobileNotPresent = "Mobile not Present";
 String kTitleMultiUids = "Multiple Uids for mobile, please enter one";
 String kTitleMultiUids_AddPerson =
     "Multi UIDs found last Year, Enter one Or create new one, Press SUBMIT";
-String kSubTitleEmailPresent = "Email not present";
+String kSubTitleEmailNotPresent = "Email not present";
 String kTitleSignOut = "SignOut";
 String kTitleVillageAlreadyPresent =
     "Vilage already present. Use different village";
@@ -311,12 +311,8 @@ var states = [
 ];
 var districts = [
   "Kolhapur",
-  "Sangali",
-  "Satara",
 ];
 
 var talukas = [
   "Gadhinglaj",
-  "Ajara",
-  "Chandgad",
 ];

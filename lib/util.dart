@@ -303,19 +303,27 @@ Future<void> createDBOfVillages() async {
         "Ajara",
         "Chandgad",
       ],
+      "Sangali": [
+        "Ashta",
+        "Vita",
+      ],
       "Satara": [
         "Mahabaleshwar",
         "Karad",
       ],
-      "Belgaum": [
-        "Gokak",
-      ],
+      "Belgaum": ["Gokak", "Hukkeri"],
+      "Bagalkot": ["Badami", "Mudhol"],
     };
     Map<String, List<String>> villages = {
       "Gadhinglaj": ["Vadarage", "Nangnur", "Noor", "Kadgaon"],
+      "Chandgad": ["Adkur", "Dholgarwadi"],
       "Ajara": ["Dardewadi", "Hajgoli"],
       "Karad": ["Belwadi", "Atake"],
+      "Mahabaleshwar": ["Ahire", "Danvali"],
       "Gokak": ["Arbhavi", "Ankalgi"],
+      "Hukkeri": ["Nipani", "Ammangi"],
+      "Badami": ["Adagal", "Gonal"],
+      "Mudhol": ["Saidapur", "Bisanal"],
     };
 
     for (var s in states) {

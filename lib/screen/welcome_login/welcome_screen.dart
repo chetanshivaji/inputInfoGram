@@ -3,6 +3,7 @@ import 'package:inputgram/screen/welcome_login/forgotPassword.dart';
 import 'login_screen.dart';
 import 'registration_screen.dart';
 import 'package:inputgram/consts.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class WelcomeScreen extends StatefulWidget {
   static String id = "welcomescreen";
@@ -63,7 +64,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                 elevation: 5.0,
                 child: MaterialButton(
                   splashColor: clrBSplash,
-                  onPressed: () {
+                  onPressed: () async {
                     //Go to registration screen.
                     Navigator.pushNamed(context, RegistrationScreen.id);
                   },

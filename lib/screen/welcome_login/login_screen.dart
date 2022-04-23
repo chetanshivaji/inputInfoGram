@@ -151,7 +151,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 popAlert(
                                   context,
                                   kTitleNotPresent,
-                                  kSubTitleEmailPresent,
+                                  kSubTitleEmailNotPresent,
                                   getWrongIcon(),
                                   2,
                                 );
