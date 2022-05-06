@@ -1,0 +1,333 @@
+{
+    "language":"English",
+    "@language":{
+        "description":"The current language"
+    },
+    "appMainLabel":"Grampanchayat",
+    "@appMainLabel":{
+        "description":"Main app bar"
+    },
+    
+    "dIn":"In",
+    "@dIn":{
+        "description":"In drawer"
+    },
+
+    "dOut":"Out",
+    "@dOut":{
+        "description":"Out drawer"
+    },
+    "dPending":"Pending",
+    "@dPending":{
+        "description":"Pending drawer"
+    },
+    
+    "dReport":"Report",
+    "@dReport":{
+        "description":"Report drawer"
+    },
+
+
+
+    "actIn":"IN",
+    "@actIn":{
+        "description":" Activity In drawer"
+    },
+
+    "actOut":"OUT",
+    "@actOut":{
+        "description":"Activity Out drawer"
+    },
+    "actPending":"PENDING",
+    "@actPending":{
+        "description":"Activity Pending drawer"
+    },
+    
+    "actReport":"REPORT",
+    "@actReport":{
+        "description":"Activity Report drawer"
+    },
+
+    "tableHeading_srNum":"SrNum",
+    "@tableHeading_srNum":{
+        "description":"SrNum"
+    },
+
+    "tableHeadingEmail":"Email",
+    "@tableHeadingEmail":{
+        "description":"Email"
+    },
+
+
+    "tableHeadingStatus":"Status",
+    "@tableHeadingStatus":{
+        "description":"Status"
+    },
+
+    "tableHeadingAccess":"Access",
+    "@tableHeadingAccess":{
+        "description":"Access"
+    },
+
+    "tableHeadingChangeStatus":"ChangeStatus",
+    "@tableHeadingChangeStatus":{
+        "description":"ChangeStatus"
+    },
+
+    "tableHeadingSrnum":"SrNum",
+    "@tableHeadingSrnum":{
+        "description":"SrNum"
+    },    
+
+    "tableHeadingName":"Name",
+    "@tableHeadingName":{
+        "description":"Name"
+    },    
+
+    "tableHeadingMobile":"Mobile",
+    "@tableHeadingMobile":{
+        "description":"Mobile"
+    },    
+    "tableHeadingUid":"Uid",
+    "@tableHeadingUid":{
+        "description":"Uid"
+    },    
+
+    "tableHeadingAmount":"Amount",
+    "@tableHeadingAmount":{
+        "description":"Amount"
+    },    
+
+
+    "tableHeadingDate":"Date",
+    "@tableHeadingDate":{
+        "description":"Date"
+    },    
+
+
+    "tableHeadingUser":"User",
+    "@tableHeadingUser":{
+        "description":"User"
+    },    
+
+    "tableHeadingReason":"Reason",
+    "@tableHeadingReason":{
+        "description":"Reason"
+    },    
+
+    "tableHeadingExtraInfo":"ExtraInfo",
+    "@tableHeadingExtraInfo":{
+        "description":"ExtraInfo"
+    },    
+
+    "tableHeadingNotify":"Notify",
+    "@tableHeadingNotify":{
+        "description":"Notify"
+    },    
+
+    "tableHeadingOnlinePayment":"OnlinePay",
+    "@tableHeadingOnlinePayment":{
+        "description":"OnlinePay"
+    },    
+
+    "tableHeadingYear":"Year",
+    "@tableHeadingYear":{
+        "description":"Year"
+    },    
+
+    "tableHeadingHouse":"House",
+    "@tableHeadingHouse":{
+        "description":"House"
+    },    
+
+    "tableHeadingWater":"Water",
+    "@tableHeadingWater":{
+        "description":"Water"
+    }, 
+
+    "txtLtoH":"L to H",
+    "@txtLtoH":{
+        "description":"L to H"
+    },  
+
+    "txtHtoL":"H to L",
+    "@txtHtoL":{
+        "description":"H to L"
+    },     
+    
+    "bLabelSearch":"Search",
+    "@bLabelSearch":{
+        "description":"Search"
+    },
+
+    "labelUid":"Uid *",
+    "@labelUid":{
+        "description":"Uid *"
+    },
+    
+    "labelExtraInfo":"Extra_information",
+    "@labelExtraInfo":{
+        "description":"Extra_information"
+    },
+
+    "labelMobile":"Mobile *",
+    "@labelMobile":{
+        "description":"Mobile *"
+    },
+
+    "labelName":"Name *",
+    "@labelName":{
+        "description":"Name *"
+    },
+
+    "labelAmount":"Amount *",
+    "@labelAmount":{
+        "description":"Amount *"
+    },
+
+    "labelEmail":"Mail *",
+    "@labelEmail":{
+        "description":"Mail *"
+    },
+
+    "labelReason":"Reason *",
+    "@labelReason":{
+        "description":"Reason *"
+    },
+
+    "msgExtraIncomeAmount":"Please enter Extra Income amount",
+    "@msgExtraIncomeAmount":{
+        "description":"Please enter Extra Income amount"
+    },
+
+    "msgExtraIncomeReasom":"'Please enter Extra Income reason'",
+    "@msgExtraIncomeReasom":{
+        "description":"'Please enter Extra Income reason'"
+    },
+
+    "msgEnterMobileNumber":"Enter mobile Number",
+    "@msgEnterMobileNumber":{
+        "description":"Enter mobile Number"
+    },
+
+    "msgEnterFullName":"Enter Full Name",
+    "@msgEnterFullName":{
+        "description":"Enter Full Name"
+    },
+
+    "msgMoneySpendingReason":"Reason for spending money",
+    "@msgMoneySpendingReason":{
+        "description":"Reason for spending money"
+    },
+
+    "msgMoneySpent":"Enter Money Spent",
+    "@msgMoneySpent":{
+        "description":"Enter Money Spent"
+    },
+
+    "txtFIn":"In",
+    "@txtFIn":{
+        "description":"In"
+    },
+
+    "txtFOut":"Out",
+    "@txtFOut":{
+        "description":"Out"
+    },
+
+    "txtFRemain":"Remain",
+    "@txtFRemain":{
+        "description":"Remain"
+    },
+
+    "txtStartDate":"S",
+    "@txtStartDate":{
+        "description":"S"
+    },
+
+    "txtEndDate":"E",
+    "@txtEndDate":{
+        "description":"E"
+    },
+    "optCancel":"cancel",
+    "@optCancel":{
+        "description":"cancel"
+    },
+
+    "optOk":"OK",
+    "@optOk":{
+        "description":"OK"
+    },
+    "kSubtitleLogOutConfirmation":"Do you want to log out?",
+    "@kSubtitleLogOutConfirmation":{
+        "description":"Do you want to log out?"
+    },
+
+    "kTitleSignOut":"SignOut",
+    "@kTitleSignOut":{
+        "description":"SignOut"
+    },
+
+    "bLabelSubmit":"Submit",
+    "@bLabelSubmit":{
+        "description":"Submit"
+    },
+    "kTitleMobileNotPresent":"Mobile not Present",
+    "@kTitleMobileNotPresent":{
+        "description":"Mobile not Present"
+    },
+    "paidMsg":"Paid already",
+    "@paidMsg":{
+        "description":"Paid already"
+    },
+    
+    "msgTenDigitNumber":"Please enter 10 digits!",
+    "@msgTenDigitNumber":{
+        "description":"Please enter 10 digits!"
+    },
+    
+    "dHeading":"Money Management!",
+    "@dHeading":{
+        "description":"Money Management!"
+    },
+
+
+
+
+    "dAddPerson":"AddPersonTax",
+    "@dAddPerson":{
+        "description":"AddPersonTax"
+    },
+
+    "dRemovePerson":"RemovePersonTax",
+    "@dRemovePerson":{
+        "description":"RemovePersonTax"
+    },
+
+    "dApprove":"Approve",
+    "@dApprove":{
+        "description":"Approve"
+    },
+   
+    "dUpdatePerson":"UpdatePerson",
+    "@dUpdatePerson":{
+        "description":"UpdatePerson"
+    },
+    "dHeading":"Admin",
+    "@dHeading":{
+        "description":"Admin"
+    },
+
+
+
+    "hello":"Hello {randomString}",
+    "@hello":{
+        "description":"heyoo",
+        "placeholders":{
+            "randomString":{
+                "type":"String"
+            }
+        }
+    }
+
+}

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:inputgram/util.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 String mainDb = "mainDb";
 
@@ -163,7 +165,7 @@ String keyEmail = "email";
 String keyTotalBalance = 'totalBalance';
 String keyTotalIn = 'totalIn';
 String keyTotalOut = 'totalOut';
-
+String keyAdminAppLanguage = 'userAppLanguage';
 String keyYfTotalHouse = 'yfTotalHouse';
 String keyYfCollectedHouse = 'yfCollectedHouse';
 String keyYfPendingHouse = 'yfPendingHouse';
@@ -222,6 +224,7 @@ class yearTile extends StatefulWidget {
 class _yearTileState extends State<yearTile> {
   @override
   Widget build(BuildContext context) {
+    gContext = context;
     return ListTile(
       trailing: DropdownButton(
         borderRadius: BorderRadius.circular(12.0),

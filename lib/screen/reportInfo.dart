@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:inputgram/consts.dart';
+import 'package:inputgram/constants.dart';
 import 'package:inputgram/util.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 List<DataRow> gLdr = [];
 
@@ -158,6 +159,7 @@ class _reportInfoState extends State<reportInfo> {
 
   @override
   Widget build(BuildContext context) {
+    gContext = context;
     onPressedDrawerReport = false;
     bool pressed = true;
 
@@ -233,7 +235,8 @@ class _reportInfoState extends State<reportInfo> {
                           columns: <DataColumn>[
                             DataColumn(
                               label: Text(
-                                tableHeading_srNum,
+                                AppLocalizations.of(gContext)!
+                                    .tableHeading_srNum,
                                 style: getStyle(actIn),
                               ),
                             ),

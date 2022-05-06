@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:inputgram/myApp.dart';
 import 'package:inputgram/util.dart';
-import 'package:inputgram/consts.dart';
+import 'package:inputgram/constants.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class LoginScreen extends StatefulWidget {
   static String id = "loginscreen";
@@ -20,6 +21,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
+    gContext = context;
     return Scaffold(
       backgroundColor: Colors.white,
       body: Padding(

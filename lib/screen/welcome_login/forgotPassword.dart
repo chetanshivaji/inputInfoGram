@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:inputgram/util.dart';
-import 'package:inputgram/consts.dart';
+import 'package:inputgram/constants.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class forgotPasswordScreen extends StatefulWidget {
   static String id = "forgotPasswordscreen";
@@ -18,6 +19,7 @@ class _forgotPasswordScreenState extends State<forgotPasswordScreen> {
 
   @override
   Widget build(BuildContext context) {
+    gContext = context;
     return Scaffold(
       backgroundColor: Colors.white,
       body: Padding(

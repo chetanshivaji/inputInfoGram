@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:inputgram/consts.dart';
+import 'package:inputgram/constants.dart';
 import 'package:inputgram/util.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class approvalList extends StatefulWidget {
   const approvalList({Key? key}) : super(key: key);
@@ -103,25 +104,25 @@ class _approvalListState extends State<approvalList> {
           columns: <DataColumn>[
             DataColumn(
               label: Text(
-                tableHeading_srNum,
+                AppLocalizations.of(gContext)!.tableHeading_srNum,
                 style: getStyle(actPending),
               ),
             ),
             DataColumn(
               label: Text(
-                tableHeadingRegisteredName,
+                AppLocalizations.of(gContext)!.tableHeadingName,
                 style: getStyle(actPending),
               ),
             ),
             DataColumn(
               label: Text(
-                tableHeadingEmail,
+                AppLocalizations.of(gContext)!.tableHeadingEmail,
                 style: getStyle(actPending),
               ),
             ),
             DataColumn(
               label: Text(
-                tableHeadingStatus,
+                AppLocalizations.of(gContext)!.tableHeadingStatus,
                 style: getStyle(actPending),
               ),
             ),
@@ -134,6 +135,7 @@ class _approvalListState extends State<approvalList> {
 
   @override
   Widget build(BuildContext context) {
+    gContext = context;
     Stream<QuerySnapshot<Object?>> stm;
 
     stm = FirebaseFirestore.instance.collection(collUsers).snapshots();

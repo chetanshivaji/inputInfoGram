@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:inputgram/screen/welcome_login/forgotPassword.dart';
 import 'login_screen.dart';
 import 'registration_screen.dart';
-import 'package:inputgram/consts.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:inputgram/constants.dart';
+import 'package:inputgram/util.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class WelcomeScreen extends StatefulWidget {
   static String id = "welcomescreen";
@@ -14,6 +15,7 @@ class WelcomeScreen extends StatefulWidget {
 class _WelcomeScreenState extends State<WelcomeScreen> {
   @override
   Widget build(BuildContext context) {
+    gContext = context;
     return Scaffold(
       backgroundColor: Colors.white,
       body: Padding(

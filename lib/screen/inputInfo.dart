@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:inputgram/consts.dart';
+import 'package:inputgram/constants.dart';
 import 'package:inputgram/util.dart';
 import 'package:flutter/gestures.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class inputInfo extends StatefulWidget {
   static String id = "inputscreen";
@@ -245,6 +246,7 @@ class _inputInfoState extends State<inputInfo> {
 
   @override
   Widget build(BuildContext context) {
+    gContext = context;
     onPressedDrawerAddPerson = false;
     return Scaffold(
       appBar: AppBar(
@@ -275,8 +277,10 @@ class _inputInfoState extends State<inputInfo> {
                       decoration: InputDecoration(
                           border: OutlineInputBorder(),
                           icon: Icon(Icons.mobile_friendly),
-                          hintText: msgEnterMobileNumber,
-                          labelText: labelMobile),
+                          hintText: AppLocalizations.of(gContext)!
+                              .msgEnterMobileNumber,
+                          labelText:
+                              AppLocalizations.of(gContext)!.labelMobile),
                       onChanged: (value) async {
                         if ((value.length < 10) || (value.length > 10)) {
                           _textController_name.text = "";
@@ -423,10 +427,12 @@ class _inputInfoState extends State<inputInfo> {
                       },
                       validator: (value) {
                         if (value == null || value.isEmpty) {
-                          return msgEnterMobileNumber;
+                          return AppLocalizations.of(gContext)!
+                              .msgEnterMobileNumber;
                         }
                         if (value.length != 10) {
-                          return msgTenDigitNumber;
+                          return AppLocalizations.of(gContext)!
+                              .msgTenDigitNumber;
                         }
                         if (!isNumeric(value)) {
                           return msgOnlyNumber;
@@ -454,7 +460,7 @@ class _inputInfoState extends State<inputInfo> {
                           border: OutlineInputBorder(),
                           icon: Icon(Icons.wb_incandescent_outlined),
                           hintText: msgEnterUid,
-                          labelText: labelUid),
+                          labelText: AppLocalizations.of(gContext)!.labelUid),
                       onFieldSubmitted: (val) {
                         uid = val;
                       },
@@ -477,7 +483,7 @@ class _inputInfoState extends State<inputInfo> {
                           border: OutlineInputBorder(),
                           icon: Icon(Icons.person),
                           hintText: msgEnterFullName,
-                          labelText: labelName),
+                          labelText: AppLocalizations.of(gContext)!.labelName),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return msgEnterFullName;
@@ -496,7 +502,7 @@ class _inputInfoState extends State<inputInfo> {
                           border: OutlineInputBorder(),
                           icon: Icon(Icons.email),
                           hintText: msgEnterUserMail,
-                          labelText: labelEmail),
+                          labelText: AppLocalizations.of(gContext)!.labelEmail),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return msgEnterUserMail;
@@ -559,7 +565,8 @@ class _inputInfoState extends State<inputInfo> {
                           border: OutlineInputBorder(),
                           icon: Icon(Icons.holiday_village),
                           hintText: msgExtraInfo,
-                          labelText: labelExtraInfo),
+                          labelText:
+                              AppLocalizations.of(gContext)!.labelExtraInfo),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return msgExtraInfo;
@@ -658,7 +665,7 @@ class _inputInfoState extends State<inputInfo> {
                           }
                         },
                         child: Text(
-                          bLabelSubmit,
+                          AppLocalizations.of(gContext)!.bLabelSubmit,
                         ),
                       ),
                     ),

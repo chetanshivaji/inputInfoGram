@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:inputgram/consts.dart';
+import 'package:inputgram/constants.dart';
 import 'package:inputgram/util.dart';
 import 'package:inputgram/myApp.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class RegistrationScreen extends StatefulWidget {
   static String id = "registerationscreen";
@@ -74,13 +75,13 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
               .doc(district)
               .update(
             {
-              taluka: FieldValue.arrayUnion([village])
+              taluka: FieldValue.arrayUnion([village + pin])
             },
           );
         } else {
           await FirebaseFirestore.instance.collection(state).doc(district).set(
             {
-              taluka: FieldValue.arrayUnion([village])
+              taluka: FieldValue.arrayUnion([village + pin])
             },
           );
         }
@@ -95,6 +96,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
 
   @override
   Widget build(BuildContext context) {
+    gContext = context;
     return Scaffold(
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
@@ -123,7 +125,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                       },
                       decoration: InputDecoration(
                         icon: Icon(Icons.person),
-                        labelText: labelName,
+                        labelText: AppLocalizations.of(gContext)!.labelName,
                         hintText: msgEnterUser,
                         contentPadding: EdgeInsets.symmetric(
                             vertical: 10.0, horizontal: 20.0),

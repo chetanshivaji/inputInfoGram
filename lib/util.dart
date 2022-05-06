@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:inputgram/consts.dart';
+import 'package:inputgram/constants.dart';
+
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
+late BuildContext gContext;
+Locale gLocale = Locale('en');
 
 String userMail = "";
 String adminVillage = "";
@@ -38,14 +43,14 @@ void popLogOutAlert(
   //shows alert dialog
   //paramaters, title, subtitle, imgRightWrong:image with right or wrong icon, popCount: how many times navigate back
   Widget cancelButton = TextButton(
-    child: Text(optCancel),
+    child: Text(AppLocalizations.of(gContext)!.optCancel),
     onPressed: () {
       Navigator.pop(context);
     },
   );
 
   Widget okButton = TextButton(
-    child: Text(optOk),
+    child: Text(AppLocalizations.of(gContext)!.optOk),
     onPressed: () {
       FirebaseAuth.instance.signOut();
       Navigator.pop(context); //main screen of app
@@ -255,7 +260,7 @@ void popAlert(BuildContext context, String title, String subtitle,
   //paramaters, title, subtitle, imgRightWrong:image with right or wrong icon, popCount: how many times navigate back
 
   Widget okButton = TextButton(
-    child: Text(optOk),
+    child: Text(AppLocalizations.of(gContext)!.optOk),
     onPressed: () {
       for (int i = 0; i < popCount; i++) {
         Navigator.pop(context);

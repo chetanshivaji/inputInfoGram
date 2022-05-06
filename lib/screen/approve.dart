@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:inputgram/approvalList.dart';
-import 'package:inputgram/consts.dart';
+import 'package:inputgram/constants.dart';
 import 'package:inputgram/util.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class approve extends StatefulWidget {
   static String id = "approvescreen";
@@ -16,6 +17,7 @@ class _approveState extends State<approve> {
 
   @override
   Widget build(BuildContext context) {
+    gContext = context;
     onPressedDrawerApprove = false;
     return Scaffold(
       appBar: AppBar(

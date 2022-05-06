@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:inputgram/consts.dart';
+import 'package:inputgram/constants.dart';
 import 'package:inputgram/util.dart';
 import 'package:flutter/gestures.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class updateInfo extends StatefulWidget {
   static String id = "updatescreen";
@@ -129,7 +130,7 @@ class _updateInfoState extends State<updateInfo> {
               //mobile uid mapping not present.
               popAlert(
                 context,
-                kTitleMobileNotPresent,
+                AppLocalizations.of(gContext)!.kTitleMobileNotPresent,
                 "",
                 getWrongIcon(),
                 1,
@@ -186,7 +187,7 @@ class _updateInfoState extends State<updateInfo> {
             } else if (mobileUids.length == 0) {
               popAlert(
                 context,
-                kTitleMobileNotPresent,
+                AppLocalizations.of(gContext)!.kTitleMobileNotPresent,
                 "",
                 getWrongIcon(),
                 1,
@@ -198,7 +199,7 @@ class _updateInfoState extends State<updateInfo> {
     } catch (e) {
       popAlert(
         context,
-        kTitleMobileNotPresent,
+        AppLocalizations.of(gContext)!.kTitleMobileNotPresent,
         "",
         getWrongIcon(),
         1,
@@ -212,6 +213,7 @@ class _updateInfoState extends State<updateInfo> {
 
   @override
   Widget build(BuildContext context) {
+    gContext = context;
     onPressedDrawerUpdatePerson = false;
     bool onPressedUpdateInfo = false;
     return Scaffold(
@@ -264,7 +266,8 @@ class _updateInfoState extends State<updateInfo> {
                         } catch (e) {
                           popAlert(
                             context,
-                            kTitleMobileNotPresent,
+                            AppLocalizations.of(gContext)!
+                                .kTitleMobileNotPresent,
                             "",
                             getWrongIcon(),
                             1,
@@ -281,14 +284,16 @@ class _updateInfoState extends State<updateInfo> {
                     decoration: InputDecoration(
                         border: OutlineInputBorder(),
                         icon: Icon(Icons.mobile_friendly),
-                        hintText: msgEnterMobileNumber,
-                        labelText: labelMobile),
+                        hintText:
+                            AppLocalizations.of(gContext)!.msgEnterMobileNumber,
+                        labelText: AppLocalizations.of(gContext)!.labelMobile),
                     validator: (value) {
                       if (value == null || value.isEmpty) {
-                        return msgEnterMobileNumber;
+                        return AppLocalizations.of(gContext)!
+                            .msgEnterMobileNumber;
                       }
                       if (value.length != 10) {
-                        return msgTenDigitNumber;
+                        return AppLocalizations.of(gContext)!.msgTenDigitNumber;
                       }
                       if (!isNumeric(value)) {
                         return msgOnlyNumber;
@@ -305,15 +310,17 @@ class _updateInfoState extends State<updateInfo> {
                     ),
                   ),
                   //getPadding(),
-                  getListTile(
-                      Icon(Icons.wb_incandescent_outlined), labelUid, uid),
+                  getListTile(Icon(Icons.wb_incandescent_outlined),
+                      AppLocalizations.of(gContext)!.labelUid, uid),
                   //getPadding(),
-                  getListTile(Icon(Icons.person), labelName, name),
+                  getListTile(Icon(Icons.person),
+                      AppLocalizations.of(gContext)!.labelName, name),
                   //getPadding(),
-                  getListTile(Icon(Icons.mail_outline), labelEmail, email),
+                  getListTile(Icon(Icons.mail_outline),
+                      AppLocalizations.of(gContext)!.labelEmail, email),
                   //getPadding(),
-                  getListTile(
-                      Icon(Icons.holiday_village), labelExtraInfo, extraInfo),
+                  getListTile(Icon(Icons.holiday_village),
+                      AppLocalizations.of(gContext)!.labelExtraInfo, extraInfo),
                   //getPadding(),
                   Expanded(
                     child: TextFormField(
@@ -337,7 +344,8 @@ class _updateInfoState extends State<updateInfo> {
                           return msgEnterNewMobileNumber;
                         }
                         if (value.length != 10) {
-                          return msgTenDigitNumber;
+                          return AppLocalizations.of(gContext)!
+                              .msgTenDigitNumber;
                         }
                         if (!isNumeric(value)) {
                           return msgOnlyNumber;
@@ -375,7 +383,8 @@ class _updateInfoState extends State<updateInfo> {
                           border: OutlineInputBorder(),
                           icon: Icon(Icons.holiday_village),
                           hintText: msgExtraInfo,
-                          labelText: labelExtraInfo),
+                          labelText:
+                              AppLocalizations.of(gContext)!.labelExtraInfo),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           newExtraInfo = "";
@@ -491,7 +500,8 @@ class _updateInfoState extends State<updateInfo> {
                               onPressedUpdateInfo = false;
                               popAlert(
                                 context,
-                                kTitleMobileNotPresent,
+                                AppLocalizations.of(gContext)!
+                                    .kTitleMobileNotPresent,
                                 "",
                                 getWrongIcon(),
                                 1,
@@ -505,7 +515,7 @@ class _updateInfoState extends State<updateInfo> {
                         }
                       },
                       child: Text(
-                        bLabelSubmit,
+                        AppLocalizations.of(gContext)!.bLabelSubmit,
                       ),
                     ),
                   ),
