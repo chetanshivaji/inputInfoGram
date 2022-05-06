@@ -38,15 +38,15 @@ class _forgotPasswordScreenState extends State<forgotPasswordScreen> {
                   keyboardType: TextInputType.emailAddress,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
-                      return msgEnterEmail;
+                      return AppLocalizations.of(gContext)!.msgEnterEmail;
                     }
                     email = value;
                     return null;
                   },
                   decoration: InputDecoration(
                     icon: Icon(Icons.email),
-                    labelText: labelAdminEmail,
-                    hintText: msgEnterEmail,
+                    labelText: AppLocalizations.of(gContext)!.labelAdminEmail,
+                    hintText: AppLocalizations.of(gContext)!.msgEnterEmail,
                     contentPadding:
                         EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
                     border: OutlineInputBorder(
@@ -87,7 +87,7 @@ class _forgotPasswordScreenState extends State<forgotPasswordScreen> {
                     minWidth: 200.0,
                     height: 42.0,
                     child: Text(
-                      labelForgotPassword,
+                      AppLocalizations.of(gContext)!.labelForgotPassword,
                     ),
                     onPressed: () async {
                       if (_formforgotPasswordKey.currentState!.validate() &&
@@ -110,7 +110,7 @@ class _forgotPasswordScreenState extends State<forgotPasswordScreen> {
                           onPressedforgotPassword = false;
                           popAlert(
                             context,
-                            kTitleFail,
+                            AppLocalizations.of(gContext)!.kTitleFail,
                             e.toString(),
                             getWrongIcon(),
                             2,

@@ -292,6 +292,120 @@
     },
 
 
+ 
+    "msgOnlyNumber":"Please enter only numbers!",
+    "@msgOnlyNumber":{
+        "description":"Please enter only numbers!"
+    },
+
+    "bLabelLogin":"Log In",
+    "@bLabelLogin":{
+        "description":"Log In"
+    },
+
+    "bLabelRegister":"Register",
+    "@bLabelRegister":{
+        "description":"Register"
+    },
+
+    "labelForgotPassword":"Forgot Password?",
+    "@labelForgotPassword":{
+        "description":"Forgot Password?"
+    },
+
+    "msgEnterUserMail":"Enter email",
+    "@msgEnterUserMail":{
+        "description":"Enter email"
+    },
+
+    "labelPassword":"Password *",
+    "@labelPassword":{
+        "description":"Password *"
+    },
+
+
+    "msgEnterPassword":"Please Enter min 6 char Password",
+    "@msgEnterPassword":{
+        "description":"Please Enter min 6 char Password"
+    },
+
+    "msgEnterUserName":"Enter name",
+    "@msgEnterUserName":{
+        "description":"Enter name"
+    },
+    "msgReEnterPassword":"Please re enter password",
+    "@msgReEnterPassword":{
+        "description":"Please re enter password"
+    },
+
+    "msgEnterVillageName":"Please enter village name",
+    "@msgEnterVillageName":{
+        "description":"Please enter village name"
+    },
+    
+    "msgEnterVillagePin":"Please enter village pin",
+    "@msgEnterVillagePin":{
+        "description":"Please enter village pin"
+    },
+
+    "labelVillage":"Village *",
+    "@labelVillage":{
+        "description":"Village *"
+    },
+
+    "labelPin":"Pin *",
+    "@labelPin":{
+        "description":"Pin *"
+    },
+
+    "kSubTitelYetToApproveByAdmin":"Try After sometime Or remind admin to approve.",
+    "@kSubTitelYetToApproveByAdmin":{
+        "description":"Try After sometime Or remind admin to approve."
+    },
+
+    "kTitleYetToApproveByAdmin":"Yet to be approved by Admin",
+    "@kTitleYetToApproveByAdmin":{
+        "description":"Yet to be approved by Admin"
+    },
+    
+    "kTitleNotPresent":"No Present",
+    "@kTitleNotPresent":{
+        "description":"No Present"
+    },
+
+    "kSubTitleEmailPresent":"Email not present",
+    "@kSubTitleEmailPresent":{
+        "description":"Email not present"
+    },
+
+    "kTitleFail":"Login/registeration failed",
+    "@kTitleFail":{
+        "description":"Login/registeration failed"
+    },
+
+
+    "kTitleRegisterationSuccess":"Registered",
+    "@kTitleRegisterationSuccess":{
+        "description":"Registered"
+    },
+    "kSubTitleRegisterationSuccess":"You are registered wait for admin to approve.",
+    "@kSubTitleRegisterationSuccess":{
+        "description":"You are registered wait for admin to approve."
+    },
+    "kTitleRegisterationFailed":"Registeration Fail",
+    "@kTitleRegisterationFailed":{
+        "description":"Registeration Fail"
+    },
+    "titlePassMismatch":"Password mismatch",
+    "@titlePassMismatch":{
+        "description":"Password mismatch"
+    },
+   "subtitlePassMismatch":"passwrod and re entered password should match",
+    "@subtitlePassMismatch":{
+        "description":"passwrod and re entered password should match"
+    },
+
+
 
 
     "dAddPerson":"AddPersonTax",
@@ -318,7 +432,116 @@
         "description":"Admin"
     },
 
+ "msgEnterUid":"Enter UID",
+    "@msgEnterUid":{
+        "description":"Enter UID"
+    },
 
+    "msgEnterHouseTax":"Enter House tax",
+    "@msgEnterHouseTax":{
+        "description":"Enter House tax"
+    },
+ 
+    "msgWaterTax":"Enter Water tax",
+    "@msgWaterTax":{
+        "description":"Enter Water tax"
+    },
+
+    "msgExtraInfo":"Enter Extra Information",
+    "@msgExtraInfo":{
+        "description":"Enter Extra Information"
+    },
+
+
+    "bLabelAdminlogin":"Admin Log In",
+    "@bLabelAdminlogin":{
+        "description":"Admin Log In"
+    },
+
+    "bLabelAdminRegiter":"Admin Register",
+    "@bLabelAdminRegiter":{
+        "description":"Admin Register'"
+    },
+
+
+    "labelAdminEmail":"AdminEmail *",
+    "@labelAdminEmail":{
+        "description":"AdminEmail *"
+    },
+    "labelAdminPassword":"AdminPassword *",
+    "@labelAdminPassword":{
+        "description":"AdminPassword *"
+    },
+    "msgNoStartZero":"Mobile not start with zero",
+    "@msgNoStartZero":{
+        "description":"Mobile not start with zero"
+    },
+    "msgEnterEmail":"Please Enter admin email",
+    "@msgEnterEmail":{
+        "description":"Please Enter admin email"
+    },
+
+    "labelHouseTax":"House Tax *",
+    "@labelHouseTax":{
+        "description":"House Tax *"
+    },
+    "labelWaterTax":"Water Tax *",
+    "@labelWaterTax":{
+        "description":"Water Tax *"
+    },
+    "labelNewMobile":"New Mobile *",
+    "@labelNewMobile":{
+        "description":"New Mobile *"
+    },
+    "msgEnterNewMobileNumber":"Enter new mobile Number",
+    "@msgEnterNewMobileNumber":{
+        "description":"NEnter new mobile Number"
+    },
+
+    "msgEnterUserNewMail":"Enter new email",
+    "@msgEnterUserNewMail":{
+        "description":"Enter new email"
+    },    
+
+    "bLabelSubmitRefresh":"Submit/Refresh",
+    "@bLabelSubmitRefresh":{
+        "description":"Submit/Refresh"
+    }, 
+
+    "tableHeading_year":"Year",
+    "@tableHeading_year":{
+        "description":"Year"
+    },       
+
+    "tableHeading_totalHouse":"TotalHouse",
+    "@tableHeading_totalHouse":{
+        "description":"TotalHouse"
+    },
+    "tableHeading_pendingHouse":"PendingHouse",
+    "@tableHeading_pendingHouse":{
+        "description":"PendingHouse"
+    },       
+    "tableHeading_collectedHouse":"CollectedHouse",
+    "@tableHeading_collectedHouse":{
+        "description":"CollectedHouse"
+    },   
+    "tableHeading_totalWater":"TotalWater",
+    "@tableHeading_totalWater":{
+        "description":"TotalWater"
+    },    
+    "tableHeading_pendingWater":"PendingWater",
+    "@tableHeading_pendingWater":{
+        "description":"PendingWater"
+    },    
+    "tableHeading_collectedWater":"CollectedWater",
+    "@tableHeading_collectedWater":{
+        "description":"CollectedWater"
+    },    
+
+    "labelNewEmail":"New Email",
+    "@labelNewEmail":{
+        "description":"New Email"
+    },    
 
     "hello":"Hello {randomString}",
     "@hello":{

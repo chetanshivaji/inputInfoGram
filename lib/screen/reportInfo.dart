@@ -200,7 +200,8 @@ class _reportInfoState extends State<reportInfo> {
                         Expanded(
                           child: ElevatedButton(
                             child: Text(
-                              bLabelSubmitRefresh,
+                              AppLocalizations.of(gContext)!
+                                  .bLabelSubmitRefresh,
                             ),
                             onPressed: pressed
                                 ? () async {
@@ -248,37 +249,43 @@ class _reportInfoState extends State<reportInfo> {
                             ),
                             DataColumn(
                               label: Text(
-                                tableHeading_totalHouse,
+                                AppLocalizations.of(gContext)!
+                                    .tableHeading_totalHouse,
                                 style: getStyle(actIn),
                               ),
                             ),
                             DataColumn(
                               label: Text(
-                                tableHeading_pendingHouse,
+                                AppLocalizations.of(gContext)!
+                                    .tableHeading_pendingHouse,
                                 style: getStyle(actIn),
                               ),
                             ),
                             DataColumn(
                               label: Text(
-                                tableHeading_collectedHouse,
+                                AppLocalizations.of(gContext)!
+                                    .tableHeading_collectedHouse,
                                 style: getStyle(actIn),
                               ),
                             ),
                             DataColumn(
                               label: Text(
-                                tableHeading_totalWater,
+                                AppLocalizations.of(gContext)!
+                                    .tableHeading_totalWater,
                                 style: getStyle(actIn),
                               ),
                             ),
                             DataColumn(
                               label: Text(
-                                tableHeading_pendingWater,
+                                AppLocalizations.of(gContext)!
+                                    .tableHeading_pendingWater,
                                 style: getStyle(actIn),
                               ),
                             ),
                             DataColumn(
                               label: Text(
-                                tableHeading_collectedWater,
+                                AppLocalizations.of(gContext)!
+                                    .tableHeading_collectedWater,
                                 style: getStyle(actIn),
                               ),
                             ),

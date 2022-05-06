@@ -435,10 +435,10 @@ class _inputInfoState extends State<inputInfo> {
                               .msgTenDigitNumber;
                         }
                         if (!isNumeric(value)) {
-                          return msgOnlyNumber;
+                          return AppLocalizations.of(gContext)!.msgOnlyNumber;
                         }
                         if (value.startsWith('0')) {
-                          return msgNoStartZero;
+                          return AppLocalizations.of(gContext)!.msgNoStartZero;
                         }
                         mobile = value;
                         return null;
@@ -459,14 +459,14 @@ class _inputInfoState extends State<inputInfo> {
                       decoration: InputDecoration(
                           border: OutlineInputBorder(),
                           icon: Icon(Icons.wb_incandescent_outlined),
-                          hintText: msgEnterUid,
+                          hintText: AppLocalizations.of(gContext)!.msgEnterUid,
                           labelText: AppLocalizations.of(gContext)!.labelUid),
                       onFieldSubmitted: (val) {
                         uid = val;
                       },
                       validator: (value) {
                         if (value == null || value.isEmpty) {
-                          return msgEnterUid;
+                          return AppLocalizations.of(gContext)!.msgEnterUid;
                         }
 
                         uid = value;
@@ -501,11 +501,13 @@ class _inputInfoState extends State<inputInfo> {
                       decoration: InputDecoration(
                           border: OutlineInputBorder(),
                           icon: Icon(Icons.email),
-                          hintText: msgEnterUserMail,
+                          hintText:
+                              AppLocalizations.of(gContext)!.msgEnterUserMail,
                           labelText: AppLocalizations.of(gContext)!.labelEmail),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
-                          return msgEnterUserMail;
+                          return AppLocalizations.of(gContext)!
+                              .msgEnterUserMail;
                         }
 
                         email = value;
@@ -521,14 +523,16 @@ class _inputInfoState extends State<inputInfo> {
                       decoration: InputDecoration(
                           border: OutlineInputBorder(),
                           icon: Icon(Icons.house),
-                          hintText: msgEnterHouseTax,
-                          labelText: labelHouseTax),
+                          hintText:
+                              AppLocalizations.of(gContext)!.msgEnterHouseTax,
+                          labelText:
+                              AppLocalizations.of(gContext)!.labelHouseTax),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return msgHouseTaxAmount;
                         }
                         if (!isNumeric(value)) {
-                          return msgOnlyNumber;
+                          return AppLocalizations.of(gContext)!.msgOnlyNumber;
                         }
                         houseTax = int.parse(value);
                         return null;
@@ -543,14 +547,15 @@ class _inputInfoState extends State<inputInfo> {
                       decoration: InputDecoration(
                           border: OutlineInputBorder(),
                           icon: Icon(Icons.water),
-                          hintText: msgWaterTax,
-                          labelText: labelWaterTax),
+                          hintText: AppLocalizations.of(gContext)!.msgWaterTax,
+                          labelText:
+                              AppLocalizations.of(gContext)!.labelWaterTax),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
-                          return msgWaterTax;
+                          return AppLocalizations.of(gContext)!.msgWaterTax;
                         }
                         if (!isNumeric(value)) {
-                          return msgOnlyNumber;
+                          return AppLocalizations.of(gContext)!.msgOnlyNumber;
                         }
                         waterTax = int.parse(value);
                         return null;
@@ -564,12 +569,12 @@ class _inputInfoState extends State<inputInfo> {
                       decoration: InputDecoration(
                           border: OutlineInputBorder(),
                           icon: Icon(Icons.holiday_village),
-                          hintText: msgExtraInfo,
+                          hintText: AppLocalizations.of(gContext)!.msgExtraInfo,
                           labelText:
                               AppLocalizations.of(gContext)!.labelExtraInfo),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
-                          return msgExtraInfo;
+                          return AppLocalizations.of(gContext)!.msgExtraInfo;
                         }
                         extraInfo = value;
                         return null;

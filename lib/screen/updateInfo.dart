@@ -296,7 +296,7 @@ class _updateInfoState extends State<updateInfo> {
                         return AppLocalizations.of(gContext)!.msgTenDigitNumber;
                       }
                       if (!isNumeric(value)) {
-                        return msgOnlyNumber;
+                        return AppLocalizations.of(gContext)!.msgOnlyNumber;
                       }
                       mobile = value;
                       return null;
@@ -337,18 +337,21 @@ class _updateInfoState extends State<updateInfo> {
                       decoration: InputDecoration(
                           border: OutlineInputBorder(),
                           icon: Icon(Icons.mobile_friendly),
-                          hintText: msgEnterNewMobileNumber,
-                          labelText: labelNewMobile),
+                          hintText: AppLocalizations.of(gContext)!
+                              .msgEnterNewMobileNumber,
+                          labelText:
+                              AppLocalizations.of(gContext)!.labelNewMobile),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
-                          return msgEnterNewMobileNumber;
+                          return AppLocalizations.of(gContext)!
+                              .msgEnterNewMobileNumber;
                         }
                         if (value.length != 10) {
                           return AppLocalizations.of(gContext)!
                               .msgTenDigitNumber;
                         }
                         if (!isNumeric(value)) {
-                          return msgOnlyNumber;
+                          return AppLocalizations.of(gContext)!.msgOnlyNumber;
                         }
                         newMobile = value;
                         return null;
@@ -363,8 +366,10 @@ class _updateInfoState extends State<updateInfo> {
                       decoration: InputDecoration(
                           border: OutlineInputBorder(),
                           icon: Icon(Icons.mail_outline),
-                          hintText: msgEnterUserNewMail,
-                          labelText: labelNewEmail),
+                          hintText: AppLocalizations.of(gContext)!
+                              .msgEnterUserNewMail,
+                          labelText:
+                              AppLocalizations.of(gContext)!.labelNewEmail),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           newEmail = "";
@@ -382,7 +387,7 @@ class _updateInfoState extends State<updateInfo> {
                       decoration: InputDecoration(
                           border: OutlineInputBorder(),
                           icon: Icon(Icons.holiday_village),
-                          hintText: msgExtraInfo,
+                          hintText: AppLocalizations.of(gContext)!.msgExtraInfo,
                           labelText:
                               AppLocalizations.of(gContext)!.labelExtraInfo),
                       validator: (value) {
