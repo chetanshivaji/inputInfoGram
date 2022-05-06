@@ -482,11 +482,13 @@ class _inputInfoState extends State<inputInfo> {
                       decoration: InputDecoration(
                           border: OutlineInputBorder(),
                           icon: Icon(Icons.person),
-                          hintText: msgEnterFullName,
+                          hintText:
+                              AppLocalizations.of(gContext)!.msgEnterFullName,
                           labelText: AppLocalizations.of(gContext)!.labelName),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
-                          return msgEnterFullName;
+                          return AppLocalizations.of(gContext)!
+                              .msgEnterFullName;
                         }
                         name = value;
                         return null;

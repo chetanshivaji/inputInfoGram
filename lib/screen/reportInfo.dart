@@ -243,7 +243,7 @@ class _reportInfoState extends State<reportInfo> {
                             ),
                             DataColumn(
                               label: Text(
-                                tableHeading_year,
+                                AppLocalizations.of(gContext)!.tableHeadingYear,
                                 style: getStyle(actIn),
                               ),
                             ),
