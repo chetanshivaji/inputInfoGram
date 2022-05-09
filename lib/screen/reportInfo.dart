@@ -174,7 +174,7 @@ class _reportInfoState extends State<reportInfo> {
       child: Scaffold(
         appBar: AppBar(
           title: Text(
-            appBarHeadingReportInfo,
+            AppLocalizations.of(gContext)!.appBarHeadingReportInfo,
             style: TextStyle(
               color: Colors.black,
             ),

@@ -219,7 +219,7 @@ class _updateInfoState extends State<updateInfo> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          appBarHeadingUpdateInfo,
+          AppLocalizations.of(gContext)!.appBarHeadingUpdateInfo,
           style: TextStyle(
             color: Colors.black,
           ),

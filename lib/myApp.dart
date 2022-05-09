@@ -94,7 +94,7 @@ class MyApp extends StatelessWidget {
           drawerOpen = isOpen;
         },
         appBar: AppBar(
-          title: Text(appBarMainAppInfo),
+          title: Text(AppLocalizations.of(gContext)!.appBarMainAppInfo),
           actions: <Widget>[
             LanguagePickerWidget(),
             IconButton(

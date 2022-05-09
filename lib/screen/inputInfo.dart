@@ -251,7 +251,7 @@ class _inputInfoState extends State<inputInfo> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          appBarHeadingInputInfo,
+          AppLocalizations.of(gContext)!.appBarHeadingInputInfo,
           style: TextStyle(
             color: Colors.black,
           ),

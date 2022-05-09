@@ -208,5 +208,23 @@
  
     "labelNewEmail":"नवीन ई-मेल",
 
+
+
+    "appBarHeadingApproveRemove":"मंजूर करा/काढून टाका",
+
+    "appBarHeadingInputInfo":"ग्राममध्ये नवीन व्यक्ती जोडा",
+    
+    "appBarHeadingRemoveInfo":"ग्राममधून व्यक्ती काढा",
+    
+    "appBarMainAppInfo":"प्रशासन, नोंदणी, मंजूरी",
+    
+    "appBarHeadingUpdateInfo":"ग्राममध्ये माहिती अपडेट करा",
+    
+    "appBarHeadingReportInfo":"ग्राममधील माहितीचा अहवाल",
+    
+
+
+
+
     "hello":"नमस्कार {randomString}"
 }

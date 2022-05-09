@@ -543,6 +543,38 @@
         "description":"New Email"
     },    
 
+    "appBarHeadingApproveRemove":"Approve/Remove",
+    "@appBarHeadingApproveRemove":{
+        "description":"Approve/Remove"
+    },   
+    "appBarHeadingInputInfo":"Add New Person to Gram",
+    "@appBarHeadingInputInfo":{
+        "description":"Add New Person to Gram"
+    },    
+
+
+    "appBarHeadingRemoveInfo":"Remove Person Gram",
+    "@appBarHeadingRemoveInfo":{
+        "description":"Remove Person Gram"
+    }, 
+
+    "appBarMainAppInfo":"Admin, Register, approve, make db",
+    "@appBarMainAppInfo":{
+        "description":"Admin, Register, approve, make db"
+    },    
+
+    "appBarHeadingUpdateInfo":"Update Info in Gram",
+    "@appBarHeadingUpdateInfo":{
+        "description":"Update Info in Gram"
+    },  
+
+        "appBarHeadingReportInfo":"Report Info in Gram",
+    "@appBarHeadingReportInfo":{
+        "description":"Report Info in Gram"
+    },   
+
+
+
     "hello":"Hello {randomString}",
     "@hello":{
         "description":"heyoo",

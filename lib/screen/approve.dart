@@ -22,7 +22,7 @@ class _approveState extends State<approve> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          appBarHeadingApproveRemove,
+          AppLocalizations.of(gContext)!.appBarHeadingApproveRemove,
           style: TextStyle(
             color: Colors.black,
           ),
