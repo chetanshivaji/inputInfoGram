@@ -88,9 +88,9 @@
     "@tableHeadingMobile":{
         "description":"Mobile"
     },    
-    "tableHeadingUid":"Uid",
+    "tableHeadingUid":"uniqueNumber",
     "@tableHeadingUid":{
-        "description":"Uid"
+        "description":"uniqueNumber"
     },    
 
     "tableHeadingAmount":"Amount",
@@ -160,9 +160,9 @@
         "description":"Search"
     },
 
-    "labelUid":"Uid *",
+    "labelUid":"Unique Number *",
     "@labelUid":{
-        "description":"Uid *"
+        "description":"Unique Number *"
     },
     
     "labelExtraInfo":"Extra_information",
@@ -432,9 +432,9 @@
         "description":"Admin"
     },
 
- "msgEnterUid":"Enter UID",
+ "msgEnterUid":"Enter unique number",
     "@msgEnterUid":{
-        "description":"Enter UID"
+        "description":"Enter unique number"
     },
 
     "msgEnterHouseTax":"Enter House tax",

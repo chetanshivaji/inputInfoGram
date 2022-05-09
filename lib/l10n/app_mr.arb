@@ -31,7 +31,7 @@
     
     "tableHeadingMobile":"मोबाईल",
     
-    "tableHeadingUid":"संख्या",
+    "tableHeadingUid":"युनिक नंबर",
 
     "tableHeadingAmount":"रक्कम",
 
@@ -58,7 +58,7 @@
     
 
     "bLabelSearch":"शोध",
-    "labelUid":"संख्या *",
+    "labelUid":"युनिक नंबर *",
     "labelExtraInfo":"अधिक_माहिती",
 
     "labelMobile":"मोबाईल *",
@@ -163,7 +163,7 @@
     "dHeading":"प्रशासक",
 
 
-    "msgEnterUid":"UID प्रविष्ट करा",
+    "msgEnterUid":"युनिक नंबर प्रविष्ट करा",
 
 
     "msgEnterHouseTax":"घर कर प्रविष्ट करा",
