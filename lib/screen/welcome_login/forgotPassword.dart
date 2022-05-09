@@ -102,8 +102,10 @@ class _forgotPasswordScreenState extends State<forgotPasswordScreen> {
                               );
                           popAlert(
                               context,
-                              kTitleForgotPasswordMailSent,
-                              kSubTitleForgotPasswordMailSent,
+                              AppLocalizations.of(gContext)!
+                                  .kTitleForgotPasswordMailSent,
+                              AppLocalizations.of(gContext)!
+                                  .kSubTitleForgotPasswordMailSent,
                               getRightIcon(),
                               2);
                         } catch (e) {

@@ -155,7 +155,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                   context,
                                   AppLocalizations.of(gContext)!
                                       .kTitleNotPresent,
-                                  kSubTitleEmailNotPresent,
+                                  AppLocalizations.of(gContext)!
+                                      .kSubTitleEmailNotPresent,
                                   getWrongIcon(),
                                   2,
                                 );

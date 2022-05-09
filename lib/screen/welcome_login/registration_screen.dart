@@ -656,7 +656,8 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                                       onPressedRegister = false;
                                       popAlert(
                                         context,
-                                        kTitleVillageAlreadyPresent,
+                                        AppLocalizations.of(gContext)!
+                                            .kTitleVillageAlreadyPresent,
                                         "",
                                         getWrongIcon(),
                                         1,

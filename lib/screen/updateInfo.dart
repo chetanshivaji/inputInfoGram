@@ -62,7 +62,7 @@ class _updateInfoState extends State<updateInfo> {
           _textController_newMobile.clear();
           popAlert(
             context,
-            kTitlePresent,
+            AppLocalizations.of(gContext)!.kTitlePresent,
             "Already Used for $nameEntry $emailEntry $uidEntry , use another number",
             Icon(Icons.no_accounts),
             1,
@@ -173,7 +173,7 @@ class _updateInfoState extends State<updateInfo> {
               //pop up message with all uids and setup hint text with uids.
               popAlert(
                 context,
-                kTitleMultiUids,
+                AppLocalizations.of(gContext)!.kTitleMultiUids,
                 uids,
                 getMultiUidIcon(50),
                 1,
@@ -499,8 +499,13 @@ class _updateInfoState extends State<updateInfo> {
                               await deleteMobileUidMapping(mobile, uid);
                               //create new mapping.
                               await createMobileUidMapping(newMobile, uid);
-                              popAlert(context, titleSuccess, subtitleSuccess,
-                                  getRightIcon(), 3);
+                              popAlert(
+                                  context,
+                                  AppLocalizations.of(gContext)!.titleSuccess,
+                                  AppLocalizations.of(gContext)!
+                                      .subtitleSuccess,
+                                  getRightIcon(),
+                                  3);
                             } else {
                               onPressedUpdateInfo = false;
                               popAlert(

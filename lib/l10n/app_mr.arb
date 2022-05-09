@@ -223,6 +223,29 @@
     "appBarHeadingReportInfo":"ग्राममधील माहितीचा अहवाल",
     
 
+     "titleSuccess":"पूर्ण",
+         "subtitleSuccess":"सादर केले",
+      "kTitleSuccess":"लॉगिन/नोंदणी अयशस्वी",
+         "kSubtitleSuccess":"योग्य वापरकर्तानाव आणि पासवर्डसह पुन्हा प्रयत्न करा",
+
+     "kSubTitleEntryAlreadyPresent":"मोबाइल/यूआयडी सादर करा, नवीन मोबाइल/यूआयडी वापरा",
+         "kTitlePresent":"उपस्थित",
+          "kTitleNotPresent":"उपस्थित नाही",
+         "kTitleMobileNotPresent":"मोबाईल उपस्थित नाही",
+          "kTitleMultiUids":"मोबाइलसाठी एकाधिक Uids, कृपया एक प्रविष्ट करा",
+
+
+         "kTitleMultiUids_AddPerson":"मागील वर्षी अनेक UID सापडले, एक प्रविष्ट करा किंवा नवीन तयार करा, सबमिट करा दाबा",
+
+             "kSubTitleEmailNotPresent":"ईमेल उपस्थित नाही",
+
+         "kTitleSignOut":"साइन आउट करा",
+
+         "kTitleVillageAlreadyPresent":"गाव आधीच हजर. वेगळे गाव वापरा",
+       "kSubtitleLogOutConfirmation":"तुम्हाला लॉग आउट करायचे आहे का?",
+         "kTitleForgotPasswordMailSent":"पासवर्ड बदलण्यासाठी मेल पाठवला",
+
+         "kSubTitleForgotPasswordMailSent":"कृपया तुमचा लॉगिन ईमेल इनबॉक्स तपासा",
 
 
 

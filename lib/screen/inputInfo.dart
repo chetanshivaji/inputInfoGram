@@ -98,8 +98,8 @@ class _inputInfoState extends State<inputInfo> {
                                   //if allready present
                                   showAlertDialog(
                                       context,
-                                      kTitlePresent,
-                                      kSubTitleEntryAlreadyPresent,
+                                      AppLocalizations.of(gContext)!.kTitlePresent,
+                                      AppLocalizations.of(gContext)!.kSubTitleEntryAlreadyPresent,
                                       Icon(Icons.person_search_rounded))
                                       */
         } else {
@@ -406,7 +406,8 @@ class _inputInfoState extends State<inputInfo> {
                                       );
                                       popAlert(
                                         context,
-                                        kTitleMultiUids_AddPerson,
+                                        AppLocalizations.of(gContext)!
+                                            .kTitleMultiUids_AddPerson,
                                         strUids,
                                         getMultiUidIcon(50),
                                         1,
@@ -616,8 +617,10 @@ class _inputInfoState extends State<inputInfo> {
                                     onPressedInputInfo = false;
                                     popAlert(
                                       context,
-                                      kTitlePresent,
-                                      kSubTitleEntryAlreadyPresent,
+                                      AppLocalizations.of(gContext)!
+                                          .kTitlePresent,
+                                      AppLocalizations.of(gContext)!
+                                          .kSubTitleEntryAlreadyPresent,
                                       Icon(Icons.person_search_rounded),
                                       1,
                                     );
@@ -658,8 +661,14 @@ class _inputInfoState extends State<inputInfo> {
                                       await updateYearWiseFormula(
                                           houseTax, waterTax);
                                       //END create Formula in each year once
-                                      popAlert(context, titleSuccess,
-                                          subtitleSuccess, getRightIcon(), 2);
+                                      popAlert(
+                                          context,
+                                          AppLocalizations.of(gContext)!
+                                              .titleSuccess,
+                                          AppLocalizations.of(gContext)!
+                                              .subtitleSuccess,
+                                          getRightIcon(),
+                                          2);
                                     }
                                   }
                                 },
