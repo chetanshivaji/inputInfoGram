@@ -2,13 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:inputgram/util.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-String mainDb = "mainDb";
+String registerSuccess = "Admin and village regsitered successfully";
+String kTitleFail = "Login/registeration failed";
+String kTitleTryCatchFail =
+    "Fail"; //dont know reason. some failure in try catch
+
+String kSubTitleOnlyAdmin = "Only Admin allowed";
+String titlePasswordMismatch = "Password mismatch";
+String subtitlePasswordMismatch =
+    "password and re entered password should match";
 
 String titleSuccess = "Success";
 String subtitleSuccess = "Submitted!";
 
-String kTitleSuccess = "Login/registeration failed";
-String kSubtitleSuccess = "Try again with correct username & password";
 String kSubTitleEntryAlreadyPresent =
     "Entry mobile/uid present, Use new mobile/uid";
 String kTitlePresent = "PRESENT";
@@ -45,7 +51,6 @@ String msgHouseTaxAmount = 'Please enter house tax amount';
 String msgWaterTax = "Enter Water tax";
 String msgExtraInfo = "Enter Extra Information";
 String msgProcessingData = 'Processing Data';
-String msgAlreadyRemoved = "Allready Removed";
 
 String msgNoExpense = "There is no expense";
 String msgLoading = "loading";
@@ -55,12 +60,10 @@ String msgNotAdmin = "notAdmin";
 String bLabelAdminlogin = 'Admin Log In';
 String bLabelAdminRegiter = 'Admin Register';
 String bLabelSubmit = 'Submit';
-String bLabelAdd = 'Add';
 String bLabelSubmitRefresh = 'Submit/Refresh';
 
 //Drawer sections
 String dAddPerson = 'AddPersonTax';
-String dRemovePerson = 'RemovePersonTax';
 String dApprove = 'Approve';
 String dReport = 'Report';
 String dUpdatePerson = 'UpdatePerson';
@@ -78,14 +81,11 @@ String actIn = "IN";
 
 //Table data column heading
 String tableHeadingEmail = 'Email';
-String tableHeadingRegisteredName = 'Name';
 String tableHeadingStatus = 'Status';
-String tableHeadingExtraInfo = 'ExtraInfo';
 
 //String tableHeading = "";
 String tableHeading_srNum = "SrNum.";
 
-String tableHeading_year = "Year";
 String tableHeading_totalHouse = "TotalHouse";
 String tableHeading_pendingHouse = "PendingHouse";
 String tableHeading_collectedHouse = "CollectedHouse";
@@ -106,8 +106,6 @@ String labelAdminPassword = "AdminPassword *";
 String labelVillage = "Village *";
 String labelPin = "Pin *";
 
-String labelRegister = 'Register';
-String labelLogin = 'Log In';
 String labelForgotPassword = 'Forgot Password?';
 
 String labelName = "Name *";
@@ -115,6 +113,7 @@ String labelName = "Name *";
 String labelHouseTax = "House Tax *";
 
 //doc strings
+String docMainDb = "mainDb";
 String docVillageInfo = "villageInfo";
 String docCalcultion = 'calculation';
 String docMobileUidMap = 'mobileUidMap';
@@ -127,15 +126,10 @@ String collFormula = 'formula';
 //app bar heading
 String appBarHeadingApproveRemove = "Approve/Remove";
 String appBarHeadingInputInfo = "Add New Person Gram";
-String appBarHeadingRemoveInfo = "Remove Person Gram";
 String appBarMainAppInfo = 'Admin, Register, approve, make db';
 String appBarHeadingUpdateInfo = 'Update Info in Gram';
 String appBarHeadingReportInfo = 'Report Info in Gram';
 
-String tableHeadingDate = 'Date';
-String txtHtoL = "H to L";
-String txtLtoH = "L to H";
-String txtTaxTypeExtraIncome = "ExtraIn";
 String msgEnterUid = "Enter UID";
 
 //keys
@@ -180,23 +174,8 @@ String scafBeginInfoApproveRemove =
     "Please approve/Disapprove selecting status";
 
 //From util oldies
-String registerSubtitleSuccess = "Register success!";
-String registerSuccess = "Admin and village regsitered successfully";
-String kTitleFail = "Login/registeration failed";
-String kTitleTryCatchFail =
-    "Fail"; //dont know reason. some failure in try catch
-String kSubtitleFail = "Try again with correct username & password";
-String kTitleLoginSuccess = "login success";
-
-String kSubTitleOnlyAdmin = "Only Admin allowed";
-String titlePasswordMismatch = "Password mismatch";
-String subtitlePasswordMismatch =
-    "password and re entered password should match";
-
-String kTitleEntryRemoved = "Entry Removed";
 
 String tableHeadingFontFamily = "RobotoMono";
-String labelYear = "Year";
 
 //Colors.
 Color clrGreen = Color(0xFFc8e6c9); //in

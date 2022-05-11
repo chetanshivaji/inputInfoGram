@@ -634,8 +634,10 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                                 onPressedRegister = false;
                                 popAlert(
                                   context,
-                                  titlePasswordMismatch,
-                                  subtitlePasswordMismatch,
+                                  AppLocalizations.of(gContext)!
+                                      .titlePasswordMismatch,
+                                  AppLocalizations.of(gContext)!
+                                      .subtitlePasswordMismatch,
                                   getWrongIcon(),
                                   1,
                                 ); //one time pop navigation
@@ -692,7 +694,8 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                                   Navigator.pushNamed(context, MyApp.id);
                                   popAlert(
                                     context,
-                                    registerSuccess,
+                                    AppLocalizations.of(gContext)!
+                                        .registerSuccess,
                                     '',
                                     getRightIcon(),
                                     1,

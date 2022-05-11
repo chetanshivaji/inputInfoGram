@@ -42,7 +42,7 @@ class _approveState extends State<approve> {
                 Padding(
                   padding: EdgeInsets.only(top: 20),
                 ),
-                Text(scafBeginInfoApproveRemove),
+                Text(AppLocalizations.of(gContext)!.scafBeginInfoApproveRemove),
                 Padding(
                   padding: EdgeInsets.only(top: 20),
                 ),

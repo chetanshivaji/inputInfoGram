@@ -87,7 +87,7 @@ class _inputInfoState extends State<inputInfo> {
     //START create Formula in each year once
     formulaRef = await FirebaseFirestore.instance
         .collection(adminVillage + adminPin)
-        .doc(mainDb)
+        .doc(docMainDb)
         .collection(collFormula)
         .doc(docCalcultion);
 
@@ -106,7 +106,7 @@ class _inputInfoState extends State<inputInfo> {
           //if entry not present in db then add
           await FirebaseFirestore.instance
               .collection(adminVillage + adminPin)
-              .doc(mainDb)
+              .doc(docMainDb)
               .collection(collFormula)
               .doc(docCalcultion)
               .set(
@@ -126,7 +126,7 @@ class _inputInfoState extends State<inputInfo> {
     //START create Formula in each year once
     formulaRef = await FirebaseFirestore.instance
         .collection(adminVillage + adminPin)
-        .doc(mainDb)
+        .doc(docMainDb)
         .collection(collFormula + dropdownValueYear)
         .doc(docCalcultion);
 
@@ -155,7 +155,7 @@ class _inputInfoState extends State<inputInfo> {
           //if entry not present in db then add
           await FirebaseFirestore.instance
               .collection(adminVillage + adminPin)
-              .doc(mainDb)
+              .doc(docMainDb)
               .collection(collFormula + dropdownValueYear)
               .doc(docCalcultion)
               .set(
@@ -196,7 +196,7 @@ class _inputInfoState extends State<inputInfo> {
               onPressedInputInfo = false;
               popAlert(
                   context,
-                  kTitleTryCatchFail,
+                  AppLocalizations.of(gContext)!.kTitleTryCatchFail,
                   "Use different uid, Uid allready present in your village for this year",
                   getWrongIcon(),
                   1);
@@ -317,8 +317,8 @@ class _inputInfoState extends State<inputInfo> {
                                       //fetch info from last year
                                       await FirebaseFirestore.instance
                                           .collection(adminVillage + adminPin)
-                                          .doc(mainDb)
-                                          .collection(mainDb +
+                                          .doc(docMainDb)
+                                          .collection(docMainDb +
                                               (int.parse(dropdownValueYear) - 1)
                                                   .toString())
                                           .doc(value.toString() + uids[0])
@@ -364,8 +364,8 @@ class _inputInfoState extends State<inputInfo> {
                                                 await FirebaseFirestore.instance
                                                     .collection(
                                                         adminVillage + adminPin)
-                                                    .doc(mainDb)
-                                                    .collection(mainDb +
+                                                    .doc(docMainDb)
+                                                    .collection(docMainDb +
                                                         (int.parse(dropdownValueYear) -
                                                                 1)
                                                             .toString())
@@ -532,7 +532,8 @@ class _inputInfoState extends State<inputInfo> {
                               AppLocalizations.of(gContext)!.labelHouseTax),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
-                          return msgHouseTaxAmount;
+                          return AppLocalizations.of(gContext)!
+                              .msgHouseTaxAmount;
                         }
                         if (!isNumeric(value)) {
                           return AppLocalizations.of(gContext)!.msgOnlyNumber;
@@ -598,16 +599,17 @@ class _inputInfoState extends State<inputInfo> {
                               // you'd often call a server or save the information in a database.
                               ScaffoldMessenger.of(context).showSnackBar(
                                 SnackBar(
-                                  content: Text(msgProcessingData),
+                                  content: Text(AppLocalizations.of(gContext)!
+                                      .msgProcessingData),
                                 ),
                               );
                               //get admin mail
                               //from users, get admin village and pin
-                              //read villagePin-> mainDb-> mainDb2020=> add
+                              //read villagePin-> docMainDb-> docMainDb2020=> add
                               var usersRef = await FirebaseFirestore.instance
                                   .collection(adminVillage + adminPin)
-                                  .doc(mainDb)
-                                  .collection(mainDb + dropdownValueYear)
+                                  .doc(docMainDb)
+                                  .collection(docMainDb + dropdownValueYear)
                                   .doc(mobile + uid);
 
                               await usersRef.get().then(
@@ -640,9 +642,9 @@ class _inputInfoState extends State<inputInfo> {
                                       //if entry not present in db then add
                                       await FirebaseFirestore.instance
                                           .collection(adminVillage + adminPin)
-                                          .doc(mainDb)
+                                          .doc(docMainDb)
                                           .collection(
-                                              mainDb + dropdownValueYear)
+                                              docMainDb + dropdownValueYear)
                                           .doc(mobile + uid)
                                           .set(
                                         {
@@ -675,8 +677,13 @@ class _inputInfoState extends State<inputInfo> {
                               );
                             } catch (e) {
                               onPressedInputInfo = false;
-                              popAlert(context, kTitleTryCatchFail,
-                                  e.toString(), getWrongIcon(), 1);
+                              popAlert(
+                                  context,
+                                  AppLocalizations.of(gContext)!
+                                      .kTitleTryCatchFail,
+                                  e.toString(),
+                                  getWrongIcon(),
+                                  1);
                             }
                           }
                         },

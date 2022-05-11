@@ -35,13 +35,10 @@
 
     "tableHeadingAmount":"रक्कम",
 
-    "tableHeadingDate":"तारीख",
-
     "tableHeadingUser":"वापरकर्ता",
 
     "tableHeadingReason":"कारण",
 
-    "tableHeadingExtraInfo":"अतिरिक्त_माहिती",
 
     "tableHeadingNotify":"सूचित_करा",
 
@@ -50,11 +47,6 @@
     "tableHeadingYear":"वर्ष",
     "tableHeadingHouse":"घर",
     "tableHeadingWater":"पाणी",
-    
-    "txtLtoH":"चढत्या",
-    
-
-    "txtHtoL":"उतरत्या",
     
 
     "bLabelSearch":"शोध",
@@ -146,15 +138,7 @@
     
    "subtitlePassMismatch":"पासवर्ड आणि पुन्हा एंटर केलेले पासवर्ड जुळले पाहिजेत",
 
-
-
-
-
-
-
    "dAddPerson":"व्यक्ती जोडा",
-
-    "dRemovePerson":"व्यक्ती कर काढा",
 
     "dApprove":"मंजूर",
    
@@ -213,8 +197,7 @@
     "appBarHeadingApproveRemove":"मंजूर करा/काढून टाका",
 
     "appBarHeadingInputInfo":"ग्राममध्ये नवीन व्यक्ती जोडा",
-    
-    "appBarHeadingRemoveInfo":"ग्राममधून व्यक्ती काढा",
+        
     
     "appBarMainAppInfo":"प्रशासन, नोंदणी, मंजूरी",
     
@@ -223,30 +206,43 @@
     "appBarHeadingReportInfo":"ग्राममधील माहितीचा अहवाल",
     
 
-     "titleSuccess":"पूर्ण",
-         "subtitleSuccess":"सादर केले",
-      "kTitleSuccess":"लॉगिन/नोंदणी अयशस्वी",
-         "kSubtitleSuccess":"योग्य वापरकर्तानाव आणि पासवर्डसह पुन्हा प्रयत्न करा",
+    "titleSuccess":"पूर्ण",
+    "subtitleSuccess":"सादर केले",
+    "msgHouseTaxAmount":"कृपया घर कराची रक्कम टाका",    
 
-     "kSubTitleEntryAlreadyPresent":"मोबाइल/यूआयडी सादर करा, नवीन मोबाइल/यूआयडी वापरा",
-         "kTitlePresent":"उपस्थित",
-          "kTitleNotPresent":"उपस्थित नाही",
-         "kTitleMobileNotPresent":"मोबाईल उपस्थित नाही",
-          "kTitleMultiUids":"मोबाइलसाठी एकाधिक Uids, कृपया एक प्रविष्ट करा",
+    "kSubTitleEntryAlreadyPresent":"मोबाइल/यूआयडी सादर करा, नवीन मोबाइल/यूआयडी वापरा",
+    "kTitlePresent":"उपस्थित",
+    "kTitleNotPresent":"उपस्थित नाही",
+    "kTitleMobileNotPresent":"मोबाईल उपस्थित नाही",
+    "kTitleMultiUids":"मोबाइलसाठी एकाधिक Uids, कृपया एक प्रविष्ट करा",
 
 
-         "kTitleMultiUids_AddPerson":"मागील वर्षी अनेक UID सापडले, एक प्रविष्ट करा किंवा नवीन तयार करा, सबमिट करा दाबा",
+    "kTitleMultiUids_AddPerson":"मागील वर्षी अनेक UID सापडले, एक प्रविष्ट करा किंवा नवीन तयार करा, सबमिट करा दाबा",
 
-             "kSubTitleEmailNotPresent":"ईमेल उपस्थित नाही",
+    "kSubTitleEmailNotPresent":"ईमेल उपस्थित नाही",
 
-         "kTitleSignOut":"साइन आउट करा",
+    "kTitleSignOut":"साइन आउट करा",
 
-         "kTitleVillageAlreadyPresent":"गाव आधीच हजर. वेगळे गाव वापरा",
-       "kSubtitleLogOutConfirmation":"तुम्हाला लॉग आउट करायचे आहे का?",
-         "kTitleForgotPasswordMailSent":"पासवर्ड बदलण्यासाठी मेल पाठवला",
+    "kTitleVillageAlreadyPresent":"गाव आधीच हजर. वेगळे गाव वापरा",
+    "kSubtitleLogOutConfirmation":"तुम्हाला लॉग आउट करायचे आहे का?",
+    "kTitleForgotPasswordMailSent":"पासवर्ड बदलण्यासाठी मेल पाठवला",
 
-         "kSubTitleForgotPasswordMailSent":"कृपया तुमचा लॉगिन ईमेल इनबॉक्स तपासा",
+    "kSubTitleForgotPasswordMailSent":"कृपया तुमचा लॉगिन ईमेल इनबॉक्स तपासा",
+    "scafBeginInfoApproveRemove":"कृपया स्थितीमधून निवड करण्यास मंजूरी/नाकार द्या",
+    "msgProcessingData":"डेटा प्रक्रिया करत आहे",
+    "msgNoExpense":"कोणताही खर्च नाही",
+    "msgLoading":"लोड होत आहे",
 
+    "msgNotAdmin":"प्रशासक नाही",
+    "registerSuccess":"प्रशासन आणि गावाची यशस्वी नोंदणी झाली",
+    "kTitleTryCatchFail":"अयशस्वी",
+
+
+    "kSubTitleOnlyAdmin":"फक्त प्रशासकाला परवानगी आहे",
+
+    "titlePasswordMismatch":"पासवर्ड जुळत नाही",
+
+    "subtitlePasswordMismatch":"पासवर्ड आणि पुन्हा एंटर केलेले पासवर्ड जुळले पाहिजेत",
 
 
     "hello":"नमस्कार {randomString}"

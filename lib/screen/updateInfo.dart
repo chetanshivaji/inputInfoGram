@@ -47,8 +47,8 @@ class _updateInfoState extends State<updateInfo> {
     try {
       await FirebaseFirestore.instance
           .collection(adminVillage + adminPin)
-          .doc(mainDb)
-          .collection(mainDb + dropdownValueYear)
+          .doc(docMainDb)
+          .collection(docMainDb + dropdownValueYear)
           .doc(text)
           .get()
           .then(
@@ -82,8 +82,8 @@ class _updateInfoState extends State<updateInfo> {
     for (var yr in items) {
       await FirebaseFirestore.instance
           .collection(adminVillage + adminPin)
-          .doc(mainDb)
-          .collection(mainDb + yr)
+          .doc(docMainDb)
+          .collection(docMainDb + yr)
           .doc(mobile + uid)
           .get()
           .then(
@@ -412,7 +412,8 @@ class _updateInfoState extends State<updateInfo> {
                             // you'd often call a server or save the information in a database.
                             ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(
-                                content: Text(msgProcessingData),
+                                content: Text(AppLocalizations.of(gContext)!
+                                    .msgProcessingData),
                               ),
                             );
                             bool mobileFound = false;
@@ -430,8 +431,8 @@ class _updateInfoState extends State<updateInfo> {
                               //START remove old entry
                               var collection = FirebaseFirestore.instance
                                   .collection(adminVillage + adminPin)
-                                  .doc(mainDb)
-                                  .collection(mainDb + yr);
+                                  .doc(docMainDb)
+                                  .collection(docMainDb + yr);
                               await collection.doc(mobile + uid).get().then(
                                 (value) async {
                                   if (value.exists) {
@@ -461,8 +462,8 @@ class _updateInfoState extends State<updateInfo> {
                                     //START delete old entry to replace
                                     await FirebaseFirestore.instance
                                         .collection(adminVillage + adminPin)
-                                        .doc(mainDb)
-                                        .collection(mainDb + yr)
+                                        .doc(docMainDb)
+                                        .collection(docMainDb + yr)
                                         .doc(mobile + uid)
                                         .delete();
 
@@ -472,8 +473,8 @@ class _updateInfoState extends State<updateInfo> {
                                     //START create new Entry
                                     await FirebaseFirestore.instance
                                         .collection(adminVillage + adminPin)
-                                        .doc(mainDb)
-                                        .collection(mainDb + yr)
+                                        .doc(docMainDb)
+                                        .collection(docMainDb + yr)
                                         .doc(newMobile + uid)
                                         .set(
                                       {
@@ -519,8 +520,13 @@ class _updateInfoState extends State<updateInfo> {
                             }
                           } catch (e) {
                             onPressedUpdateInfo = false;
-                            popAlert(context, kTitleTryCatchFail, e.toString(),
-                                getWrongIcon(), 1);
+                            popAlert(
+                                context,
+                                AppLocalizations.of(gContext)!
+                                    .kTitleTryCatchFail,
+                                e.toString(),
+                                getWrongIcon(),
+                                1);
                           }
                         }
                       },

@@ -99,11 +99,6 @@
     },    
 
 
-    "tableHeadingDate":"Date",
-    "@tableHeadingDate":{
-        "description":"Date"
-    },    
-
 
     "tableHeadingUser":"User",
     "@tableHeadingUser":{
@@ -115,11 +110,7 @@
         "description":"Reason"
     },    
 
-    "tableHeadingExtraInfo":"ExtraInfo",
-    "@tableHeadingExtraInfo":{
-        "description":"ExtraInfo"
-    },    
-
+    
     "tableHeadingNotify":"Notify",
     "@tableHeadingNotify":{
         "description":"Notify"
@@ -145,16 +136,6 @@
         "description":"Water"
     }, 
 
-    "txtLtoH":"L to H",
-    "@txtLtoH":{
-        "description":"L to H"
-    },  
-
-    "txtHtoL":"H to L",
-    "@txtHtoL":{
-        "description":"H to L"
-    },     
-    
     "bLabelSearch":"Search",
     "@bLabelSearch":{
         "description":"Search"
@@ -383,39 +364,34 @@
         "description":"Login/registeration failed"
     },
 
-
     "kTitleRegisterationSuccess":"Registered",
     "@kTitleRegisterationSuccess":{
         "description":"Registered"
     },
+
     "kSubTitleRegisterationSuccess":"You are registered wait for admin to approve.",
     "@kSubTitleRegisterationSuccess":{
         "description":"You are registered wait for admin to approve."
     },
+
     "kTitleRegisterationFailed":"Registeration Fail",
     "@kTitleRegisterationFailed":{
         "description":"Registeration Fail"
     },
+
     "titlePassMismatch":"Password mismatch",
     "@titlePassMismatch":{
         "description":"Password mismatch"
     },
+
    "subtitlePassMismatch":"passwrod and re entered password should match",
     "@subtitlePassMismatch":{
         "description":"passwrod and re entered password should match"
     },
 
-
-
-
     "dAddPerson":"AddPersonTax",
     "@dAddPerson":{
         "description":"AddPersonTax"
-    },
-
-    "dRemovePerson":"RemovePersonTax",
-    "@dRemovePerson":{
-        "description":"RemovePersonTax"
     },
 
     "dApprove":"Approve",
@@ -432,7 +408,7 @@
         "description":"Admin"
     },
 
- "msgEnterUid":"Enter unique number",
+    "msgEnterUid":"Enter unique number",
     "@msgEnterUid":{
         "description":"Enter unique number"
     },
@@ -468,14 +444,17 @@
     "@labelAdminEmail":{
         "description":"AdminEmail *"
     },
+
     "labelAdminPassword":"AdminPassword *",
     "@labelAdminPassword":{
         "description":"AdminPassword *"
     },
+    
     "msgNoStartZero":"Mobile not start with zero",
     "@msgNoStartZero":{
         "description":"Mobile not start with zero"
     },
+
     "msgEnterEmail":"Please Enter admin email",
     "@msgEnterEmail":{
         "description":"Please Enter admin email"
@@ -485,14 +464,17 @@
     "@labelHouseTax":{
         "description":"House Tax *"
     },
+
     "labelWaterTax":"Water Tax *",
     "@labelWaterTax":{
         "description":"Water Tax *"
     },
+
     "labelNewMobile":"New Mobile *",
     "@labelNewMobile":{
         "description":"New Mobile *"
     },
+
     "msgEnterNewMobileNumber":"Enter new mobile Number",
     "@msgEnterNewMobileNumber":{
         "description":"NEnter new mobile Number"
@@ -508,31 +490,31 @@
         "description":"Submit/Refresh"
     }, 
 
-    "tableHeading_year":"Year",
-    "@tableHeading_year":{
-        "description":"Year"
-    },       
-
     "tableHeading_totalHouse":"TotalHouse",
     "@tableHeading_totalHouse":{
         "description":"TotalHouse"
     },
+
     "tableHeading_pendingHouse":"PendingHouse",
     "@tableHeading_pendingHouse":{
         "description":"PendingHouse"
-    },       
+    },    
+
     "tableHeading_collectedHouse":"CollectedHouse",
     "@tableHeading_collectedHouse":{
         "description":"CollectedHouse"
-    },   
+    },  
+
     "tableHeading_totalWater":"TotalWater",
     "@tableHeading_totalWater":{
         "description":"TotalWater"
-    },    
+    }, 
+
     "tableHeading_pendingWater":"PendingWater",
     "@tableHeading_pendingWater":{
         "description":"PendingWater"
-    },    
+    },  
+
     "tableHeading_collectedWater":"CollectedWater",
     "@tableHeading_collectedWater":{
         "description":"CollectedWater"
@@ -547,16 +529,11 @@
     "@appBarHeadingApproveRemove":{
         "description":"Approve/Remove"
     },   
+
     "appBarHeadingInputInfo":"Add New Person to Gram",
     "@appBarHeadingInputInfo":{
         "description":"Add New Person to Gram"
     },    
-
-
-    "appBarHeadingRemoveInfo":"Remove Person Gram",
-    "@appBarHeadingRemoveInfo":{
-        "description":"Remove Person Gram"
-    }, 
 
     "appBarMainAppInfo":"Admin, Register, approve, make db",
     "@appBarMainAppInfo":{
@@ -568,81 +545,133 @@
         "description":"Update Info in Gram"
     },  
 
-        "appBarHeadingReportInfo":"Report Info in Gram",
+    "appBarHeadingReportInfo":"Report Info in Gram",
     "@appBarHeadingReportInfo":{
         "description":"Report Info in Gram"
     },   
 
-     "titleSuccess":"Success",
+    "titleSuccess":"Success",
     "@titleSuccess":{
         "description":"Success"
     }, 
-         "subtitleSuccess":"Submitted",
+
+    "subtitleSuccess":"Submitted",
     "@subtitleSuccess":{
         "description":"Submitted"
     },  
-      "kTitleSuccess":"Login/registeration failed",
-    "@kTitleSuccess":{
-        "description":"Login/registeration failed"
-    },
-         "kSubtitleSuccess":"Try again with correct username & password",
-    "@kSubtitleSuccess":{
-        "description":"Try again with correct username & password"
-    },    
-
-     "kSubTitleEntryAlreadyPresent":"Entry mobile/uid present, Use new mobile/uid",
+      
+    "kSubTitleEntryAlreadyPresent":"Entry mobile/uid present, Use new mobile/uid",
     "@kSubTitleEntryAlreadyPresent":{
         "description":"Entry mobile/uid present, Use new mobile/uid"
     },
-         "kTitlePresent":"PRESENT",
+
+    "kTitlePresent":"PRESENT",
     "@kTitlePresent":{
         "description":"PRESENT"
     },
-          "kTitleNotPresent":"No Present",
+
+    "kTitleNotPresent":"No Present",
     "@kTitleNotPresent":{
         "description":"No Present"
     },
-         "kTitleMobileNotPresent":"Mobile not Present",
+
+    "kTitleMobileNotPresent":"Mobile not Present",
     "@kTitleMobileNotPresent":{
         "description":"Mobile not Present"
     },
-          "kTitleMultiUids":"Multiple Uids for mobile, please enter one",
+
+    "kTitleMultiUids":"Multiple Uids for mobile, please enter one",
     "@kTitleMultiUids":{
         "description":"Multiple Uids for mobile, please enter one"
     },
 
 
-         "kTitleMultiUids_AddPerson":"Multi UIDs found last Year, Enter one Or create new one, Press SUBMIT",
+    "kTitleMultiUids_AddPerson":"Multi UIDs found last Year, Enter one Or create new one, Press SUBMIT",
     "@kTitleMultiUids_AddPerson":{
         "description":"Multi UIDs found last Year, Enter one Or create new one, Press SUBMIT"
     },
 
-             "kSubTitleEmailNotPresent":"Email not present",
+    "kSubTitleEmailNotPresent":"Email not present",
     "@kSubTitleEmailNotPresent":{
         "description":"Email not present"
     },
 
-    
 
-         "kTitleVillageAlreadyPresent":"Vilage already present. Use different village",
+    "kTitleVillageAlreadyPresent":"Vilage already present. Use different village",
     "@kTitleVillageAlreadyPresent":{
         "description":"Vilage already present. Use different village"
     },
-       "kSubtitleLogOutConfirmation":"Do you want to log out?",
+    
+    "kSubtitleLogOutConfirmation":"Do you want to log out?",
     "@kSubtitleLogOutConfirmation":{
         "description":"Do you want to log out?"
     },
-         "kTitleForgotPasswordMailSent":"Mail sent to change password",
+
+    "kTitleForgotPasswordMailSent":"Mail sent to change password",
     "@kTitleForgotPasswordMailSent":{
         "description":"Mail sent to change password"
     },
 
-         "kSubTitleForgotPasswordMailSent":"Please check your login email inbox",
+    "kSubTitleForgotPasswordMailSent":"Please check your login email inbox",
     "@kSubTitleForgotPasswordMailSent":{
         "description":"Please check your login email inbox"
     },
 
+    "scafBeginInfoApproveRemove":"Please approve/Disapprove selecting from status",
+    "@scafBeginInfoApproveRemove":{
+        "description":"Please approve/Disapprove selecting from status"
+    },
 
+    "msgProcessingData":"Processing Data",
+    "@msgProcessingData":{
+        "description":"Processing Data"
+    },
+
+    "msgNoExpense":"There is no expense",
+    "@msgNoExpense":{
+        "description":"There is no expense"
+    },
+
+    "msgLoading":"loading",
+    "@msgLoading":{
+        "description":"loading"
+    },
+
+    "msgNotAdmin":"notAdmin",
+    "@msgNotAdmin":{
+        "description":"notAdmin"
+    },
+
+    "registerSuccess":"Admin and village regsitered successfully",
+    "@registerSuccess":{
+        "description":"Admin and village regsitered successfully"
+    },
+
+    "kTitleTryCatchFail":"Fail",
+    "@kTitleTryCatchFail":{
+        "description":"Fail"
+    },
+
+    "kSubTitleOnlyAdmin":"Only Admin allowed",
+    "@kSubTitleOnlyAdmin":{
+        "description":"Only Admin allowed"
+    },
+
+    "titlePasswordMismatch":"Password mismatch",
+    "@titlePasswordMismatch":{
+        "description":"Password mismatch"
+    },
+
+    "subtitlePasswordMismatch":"password and re entered password should match",
+    "@subtitlePasswordMismatch":{
+        "description":"password and re entered password should match"
+    },
+
+    "msgHouseTaxAmount":"Please enter house tax amount",
+    "@msgHouseTaxAmount":{
+        "description":"Please enter house tax amount"
+    },
+    
 
     "hello":"Hello {randomString}",
     "@hello":{

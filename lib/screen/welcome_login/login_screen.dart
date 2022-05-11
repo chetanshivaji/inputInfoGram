@@ -171,7 +171,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                 if (y[keyIsAdmin]) {
                                   return y[keyMail];
                                 } else {
-                                  return msgNotAdmin;
+                                  return AppLocalizations.of(gContext)!
+                                      .msgNotAdmin;
                                 }
                               }
                             },
@@ -196,7 +197,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             popAlert(
                               context,
                               AppLocalizations.of(gContext)!.kTitleFail,
-                              kSubTitleOnlyAdmin,
+                              AppLocalizations.of(gContext)!.kSubTitleOnlyAdmin,
                               getWrongIcon(),
                               2,
                             );

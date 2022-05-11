@@ -70,7 +70,7 @@ class _reportInfoState extends State<reportInfo> {
       try {
         await FirebaseFirestore.instance
             .collection(adminVillage + adminPin)
-            .doc(mainDb)
+            .doc(docMainDb)
             .collection(collFormula + yr)
             .doc(docCalcultion)
             .get()
