@@ -55,7 +55,8 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
         keyVillage: village,
         keyPin: pin,
         //access level set by admin decided type of use, eg .viewer, collector, admin, spender
-        keyAccessLevel: AppLocalizations.of(gContext)!.kDropAccessSuperUser,
+        keyAccessLevel:
+            1, // AppLocalizations.of(gContext)!.kDropAccessSuperUser, //always a super user index from accessItems List.
         keyMail: email,
         keyIsAdmin: true,
         keyRegisteredName: registeredName,

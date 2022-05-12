@@ -18,14 +18,15 @@ class _approvalListState extends State<approvalList> {
 
   List<DataRow> _buildList(
       BuildContext context, List<DocumentSnapshot> docSnapshot) {
-    var accessItems = [
+    List<String> accessItems = [
       AppLocalizations.of(gContext)!.kDropAccessSelect,
+      AppLocalizations.of(gContext)!.kDropAccessSuperUser,
       AppLocalizations.of(gContext)!.kDropAccessViewer,
       AppLocalizations.of(gContext)!.kDropAccessCollector,
       AppLocalizations.of(gContext)!.kDropAccessSpender,
-      AppLocalizations.of(gContext)!.kDropAccessSuperUser,
       AppLocalizations.of(gContext)!.kDropAccessNo,
     ];
+
     List<DataRow> ldataRow = [];
     int srNo = 0;
     for (var l in docSnapshot) {
@@ -72,17 +73,20 @@ class _approvalListState extends State<approvalList> {
                   onChanged: (String? newAccessValue) async {
                     if (newAccessValue != access) {
                       //START update the access level in Db
+                      String newAccessString = newAccessValue.toString();
 
                       await FirebaseFirestore.instance
                           .collection(collUsers)
                           .doc(l.get(keyMail))
-                          .update({keyAccessLevel: newAccessValue});
+                          .update({
+                        keyAccessLevel: accessItems.indexOf(newAccessString)
+                      });
                       //END update the access level in Db
                     }
                   },
                 ),
                 Text(
-                  l.get(keyAccessLevel),
+                  accessItems[l.get(keyAccessLevel)],
                   style: TextStyle(
                       color: Colors.blue, fontWeight: FontWeight.bold),
                 ),
