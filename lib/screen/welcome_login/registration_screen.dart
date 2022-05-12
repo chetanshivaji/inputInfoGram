@@ -34,7 +34,6 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
       String taluka) async {
     adminVillage = village;
     adminPin = pin;
-    //access = accessItems[accessLevel.SuperUser.index];
     await FirebaseFirestore.instance
         .collection(village + pin)
         .doc(docVillageInfo)
@@ -56,7 +55,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
         keyVillage: village,
         keyPin: pin,
         //access level set by admin decided type of use, eg .viewer, collector, admin, spender
-        keyAccessLevel: accessItems[accessLevel.SuperUser.index],
+        keyAccessLevel: AppLocalizations.of(gContext)!.kDropAccessSuperUser,
         keyMail: email,
         keyIsAdmin: true,
         keyRegisteredName: registeredName,

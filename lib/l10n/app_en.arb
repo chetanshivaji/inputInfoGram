@@ -671,7 +671,39 @@
     "@msgHouseTaxAmount":{
         "description":"Please enter house tax amount"
     },
+
+    "kDropAccessSelect":"select",
+    "@kDropAccessSelect":{
+        "description":"select"
+    },
     
+    "kDropAccessViewer":"Viewer",
+    "@kDropAccessViewer":{
+        "description":"Viewer"
+    },
+
+    "kDropAccessCollector":"Collector",
+    "@kDropAccessCollector":{
+        "description":"Collector"
+    },
+
+    "kDropAccessSpender":"Spender",
+    "@kDropAccessSpender":{
+        "description":"Spender"
+    },
+
+
+    "kDropAccessSuperUser":"SuperUser",
+    "@kDropAccessSuperUser":{
+        "description":"SuperUser"
+    },
+
+    "kDropAccessNo":"No",
+    "@kDropAccessNo":{
+        "description":"No"
+    },
+
+   
 
     "hello":"Hello {randomString}",
     "@hello":{

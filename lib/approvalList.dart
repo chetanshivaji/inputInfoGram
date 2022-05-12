@@ -18,6 +18,14 @@ class _approvalListState extends State<approvalList> {
 
   List<DataRow> _buildList(
       BuildContext context, List<DocumentSnapshot> docSnapshot) {
+    var accessItems = [
+      AppLocalizations.of(gContext)!.kDropAccessSelect,
+      AppLocalizations.of(gContext)!.kDropAccessViewer,
+      AppLocalizations.of(gContext)!.kDropAccessCollector,
+      AppLocalizations.of(gContext)!.kDropAccessSpender,
+      AppLocalizations.of(gContext)!.kDropAccessSuperUser,
+      AppLocalizations.of(gContext)!.kDropAccessNo,
+    ];
     List<DataRow> ldataRow = [];
     int srNo = 0;
     for (var l in docSnapshot) {
@@ -135,6 +143,7 @@ class _approvalListState extends State<approvalList> {
 
   @override
   Widget build(BuildContext context) {
+    access = AppLocalizations.of(gContext)!.kDropAccessSelect;
     gContext = context;
     Stream<QuerySnapshot<Object?>> stm;
 

@@ -266,7 +266,7 @@ var formulaYears = [
   "2030",
 ];
 
-String access = "select";
+String access = AppLocalizations.of(gContext)!.kDropAccessSelect;
 enum accessLevel {
   select,
   Viewer,
@@ -275,14 +275,7 @@ enum accessLevel {
   SuperUser,
   No,
 }
-var accessItems = [
-  "select",
-  "Viewer",
-  "Collector",
-  "Spender",
-  "SuperUser",
-  "No",
-];
+
 String sState = "Maharashtra";
 String sDistrict = "Kolhapur";
 String sTaluka = "Gadhinglaj";

@@ -244,6 +244,12 @@
 
     "subtitlePasswordMismatch":"पासवर्ड आणि पुन्हा एंटर केलेले पासवर्ड जुळले पाहिजेत",
 
+    "kDropAccessSelect":"निवडा",    
+    "kDropAccessViewer":"पाहणारा",    
+    "kDropAccessCollector":"कलेक्टर",    
+    "kDropAccessSpender":"खर्च करणारा",    
+    "kDropAccessSuperUser":"सुपर वापरकर्ता",    
+    "kDropAccessNo":"नाही",
 
     "hello":"नमस्कार {randomString}"
 }
