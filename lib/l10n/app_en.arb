@@ -703,7 +703,20 @@
         "description":"No"
     },
 
-   
+    "kState":"State - ",
+    "@kDropAccessNokState":{
+        "description":"State"
+    },
+
+   "kDistrict":"District - ",
+    "@kDistrict":{
+        "description":"District"
+    },
+
+    "kTaluka":"Taluka - ",
+    "@kTaluka":{
+        "description":"Taluka"
+    },
 
     "hello":"Hello {randomString}",
     "@hello":{

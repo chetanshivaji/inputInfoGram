@@ -382,7 +382,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                     child: Row(
                       children: <Widget>[
                         Text(
-                          "State - ",
+                          AppLocalizations.of(gContext)!.kState,
                           style: TextStyle(
                               color: Colors.blue, fontWeight: FontWeight.bold),
                         ),
@@ -478,7 +478,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                     child: Row(
                       children: <Widget>[
                         Text(
-                          "District - ",
+                          AppLocalizations.of(gContext)!.kDistrict,
                           style: TextStyle(
                               color: Colors.blue, fontWeight: FontWeight.bold),
                         ),
@@ -557,7 +557,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                     child: Row(
                       children: <Widget>[
                         Text(
-                          "Taluka - ",
+                          AppLocalizations.of(gContext)!.kTaluka,
                           style: TextStyle(
                               color: Colors.blue, fontWeight: FontWeight.bold),
                         ),

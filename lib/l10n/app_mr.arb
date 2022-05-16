@@ -251,5 +251,9 @@
     "kDropAccessSuperUser":"सुपर वापरकर्ता",    
     "kDropAccessNo":"नाही",
 
+    "kState":"राज्य - ",    
+    "kDistrict":"जिल्हा - ",        
+    "kTaluka":"तालुका - ",
+
     "hello":"नमस्कार {randomString}"
 }
