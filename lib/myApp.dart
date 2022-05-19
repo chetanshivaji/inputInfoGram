@@ -74,6 +74,25 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     gContext = context;
+    void handleClick(String value) {
+      int caseNum = 0;
+
+      if (AppLocalizations.of(gContext)!.kTitleSignOut == value) {
+        caseNum = 1;
+      }
+
+      switch (1) {
+        case 1:
+          popLogOutAlert(
+            context,
+            AppLocalizations.of(gContext)!.kTitleSignOut,
+            AppLocalizations.of(gContext)!.kSubtitleLogOutConfirmation,
+            Icon(Icons.power_settings_new),
+          );
+          break;
+      }
+    }
+
     return WillPopScope(
       onWillPop: () {
         if (drawerOpen == true) {
@@ -97,19 +116,18 @@ class MyApp extends StatelessWidget {
           title: Text(AppLocalizations.of(gContext)!.appBarMainAppInfo),
           actions: <Widget>[
             LanguagePickerWidget(),
-            IconButton(
-              splashColor: clrIconSpalsh,
-              splashRadius: iconSplashRadius,
-              tooltip: AppLocalizations.of(gContext)!.kTitleSignOut,
-              onPressed: () {
-                //logout
-                popLogOutAlert(
-                    context,
-                    AppLocalizations.of(gContext)!.kTitleSignOut,
-                    AppLocalizations.of(gContext)!.kSubtitleLogOutConfirmation,
-                    Icon(Icons.power_settings_new));
+            PopupMenuButton<String>(
+              onSelected: handleClick,
+              itemBuilder: (BuildContext context) {
+                gContext = context;
+                return {AppLocalizations.of(gContext)!.kTitleSignOut}
+                    .map((String choice) {
+                  return PopupMenuItem<String>(
+                    value: choice,
+                    child: Text(choice),
+                  );
+                }).toList();
               },
-              icon: Icon(Icons.power_settings_new),
             ),
           ],
         ),
