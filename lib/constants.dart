@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:inputgram/util.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
+String txtStar = "*";
+
 String registerSuccess = "Admin and village regsitered successfully";
 String kTitleFail = "Login/registeration failed";
 String kTitleTryCatchFail =

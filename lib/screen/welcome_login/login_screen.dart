@@ -47,7 +47,8 @@ class _LoginScreenState extends State<LoginScreen> {
                   },
                   decoration: InputDecoration(
                     icon: Icon(Icons.email),
-                    labelText: AppLocalizations.of(gContext)!.labelAdminEmail,
+                    labelText: AppLocalizations.of(gContext)!.labelAdminEmail +
+                        txtStar,
                     hintText: AppLocalizations.of(gContext)!.msgEnterEmail,
                     contentPadding:
                         EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
@@ -90,7 +91,8 @@ class _LoginScreenState extends State<LoginScreen> {
                   decoration: InputDecoration(
                     icon: Icon(Icons.password),
                     labelText:
-                        AppLocalizations.of(gContext)!.labelAdminPassword,
+                        AppLocalizations.of(gContext)!.labelAdminPassword +
+                            txtStar,
                     hintText: AppLocalizations.of(gContext)!.msgEnterPassword,
                     contentPadding:
                         EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),

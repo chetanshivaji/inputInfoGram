@@ -286,7 +286,8 @@ class _updateInfoState extends State<updateInfo> {
                         icon: Icon(Icons.mobile_friendly),
                         hintText:
                             AppLocalizations.of(gContext)!.msgEnterMobileNumber,
-                        labelText: AppLocalizations.of(gContext)!.labelMobile),
+                        labelText: AppLocalizations.of(gContext)!.labelMobile +
+                            txtStar),
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return AppLocalizations.of(gContext)!
@@ -340,7 +341,8 @@ class _updateInfoState extends State<updateInfo> {
                           hintText: AppLocalizations.of(gContext)!
                               .msgEnterNewMobileNumber,
                           labelText:
-                              AppLocalizations.of(gContext)!.labelNewMobile),
+                              AppLocalizations.of(gContext)!.labelNewMobile +
+                                  txtStar),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return AppLocalizations.of(gContext)!

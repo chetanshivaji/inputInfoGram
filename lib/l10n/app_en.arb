@@ -141,9 +141,9 @@
         "description":"Search"
     },
 
-    "labelUid":"Unique Number *",
+    "labelUid":"Unique Number",
     "@labelUid":{
-        "description":"Unique Number *"
+        "description":"Unique Number"
     },
     
     "labelExtraInfo":"Extra_information",
@@ -151,29 +151,29 @@
         "description":"Extra_information"
     },
 
-    "labelMobile":"Mobile *",
+    "labelMobile":"Mobile",
     "@labelMobile":{
-        "description":"Mobile *"
+        "description":"Mobile"
     },
 
-    "labelName":"Name *",
+    "labelName":"Name",
     "@labelName":{
-        "description":"Name *"
+        "description":"Name"
     },
 
-    "labelAmount":"Amount *",
+    "labelAmount":"Amount",
     "@labelAmount":{
-        "description":"Amount *"
+        "description":"Amount"
     },
 
-    "labelEmail":"Mail *",
+    "labelEmail":"Mail",
     "@labelEmail":{
-        "description":"Mail *"
+        "description":"Mail"
     },
 
-    "labelReason":"Reason *",
+    "labelReason":"Reason",
     "@labelReason":{
-        "description":"Reason *"
+        "description":"Reason"
     },
 
     "msgExtraIncomeAmount":"Please enter Extra Income amount",
@@ -299,9 +299,9 @@
         "description":"Enter email"
     },
 
-    "labelPassword":"Password *",
+    "labelPassword":"Password",
     "@labelPassword":{
-        "description":"Password *"
+        "description":"Password"
     },
 
 
@@ -329,14 +329,14 @@
         "description":"Please enter village pin"
     },
 
-    "labelVillage":"Village *",
+    "labelVillage":"Village",
     "@labelVillage":{
-        "description":"Village *"
+        "description":"Village"
     },
 
-    "labelPin":"Pin *",
+    "labelPin":"Pin",
     "@labelPin":{
-        "description":"Pin *"
+        "description":"Pin"
     },
 
     "kSubTitelYetToApproveByAdmin":"Try After sometime Or remind admin to approve.",
@@ -440,14 +440,14 @@
     },
 
 
-    "labelAdminEmail":"AdminEmail *",
+    "labelAdminEmail":"AdminEmail",
     "@labelAdminEmail":{
-        "description":"AdminEmail *"
+        "description":"AdminEmail"
     },
 
-    "labelAdminPassword":"AdminPassword *",
+    "labelAdminPassword":"AdminPassword",
     "@labelAdminPassword":{
-        "description":"AdminPassword *"
+        "description":"AdminPassword"
     },
     
     "msgNoStartZero":"Mobile not start with zero",
@@ -460,19 +460,19 @@
         "description":"Please Enter admin email"
     },
 
-    "labelHouseTax":"House Tax *",
+    "labelHouseTax":"House Tax",
     "@labelHouseTax":{
-        "description":"House Tax *"
+        "description":"House Tax"
     },
 
-    "labelWaterTax":"Water Tax *",
+    "labelWaterTax":"Water Tax",
     "@labelWaterTax":{
-        "description":"Water Tax *"
+        "description":"Water Tax"
     },
 
-    "labelNewMobile":"New Mobile *",
+    "labelNewMobile":"New Mobile",
     "@labelNewMobile":{
-        "description":"New Mobile *"
+        "description":"New Mobile"
     },
 
     "msgEnterNewMobileNumber":"Enter new mobile Number",

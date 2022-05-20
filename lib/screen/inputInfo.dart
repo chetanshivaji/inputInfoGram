@@ -280,7 +280,8 @@ class _inputInfoState extends State<inputInfo> {
                           hintText: AppLocalizations.of(gContext)!
                               .msgEnterMobileNumber,
                           labelText:
-                              AppLocalizations.of(gContext)!.labelMobile),
+                              AppLocalizations.of(gContext)!.labelMobile +
+                                  txtStar),
                       onChanged: (value) async {
                         if ((value.length < 10) || (value.length > 10)) {
                           _textController_name.text = "";
@@ -461,7 +462,8 @@ class _inputInfoState extends State<inputInfo> {
                           border: OutlineInputBorder(),
                           icon: Icon(Icons.wb_incandescent_outlined),
                           hintText: AppLocalizations.of(gContext)!.msgEnterUid,
-                          labelText: AppLocalizations.of(gContext)!.labelUid),
+                          labelText: AppLocalizations.of(gContext)!.labelUid +
+                              txtStar),
                       onFieldSubmitted: (val) {
                         uid = val;
                       },
@@ -485,7 +487,8 @@ class _inputInfoState extends State<inputInfo> {
                           icon: Icon(Icons.person),
                           hintText:
                               AppLocalizations.of(gContext)!.msgEnterFullName,
-                          labelText: AppLocalizations.of(gContext)!.labelName),
+                          labelText: AppLocalizations.of(gContext)!.labelName +
+                              txtStar),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return AppLocalizations.of(gContext)!
@@ -506,7 +509,8 @@ class _inputInfoState extends State<inputInfo> {
                           icon: Icon(Icons.email),
                           hintText:
                               AppLocalizations.of(gContext)!.msgEnterUserMail,
-                          labelText: AppLocalizations.of(gContext)!.labelEmail),
+                          labelText: AppLocalizations.of(gContext)!.labelEmail +
+                              txtStar),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return AppLocalizations.of(gContext)!
@@ -529,7 +533,8 @@ class _inputInfoState extends State<inputInfo> {
                           hintText:
                               AppLocalizations.of(gContext)!.msgEnterHouseTax,
                           labelText:
-                              AppLocalizations.of(gContext)!.labelHouseTax),
+                              AppLocalizations.of(gContext)!.labelHouseTax +
+                                  txtStar),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return AppLocalizations.of(gContext)!
@@ -553,7 +558,8 @@ class _inputInfoState extends State<inputInfo> {
                           icon: Icon(Icons.water),
                           hintText: AppLocalizations.of(gContext)!.msgWaterTax,
                           labelText:
-                              AppLocalizations.of(gContext)!.labelWaterTax),
+                              AppLocalizations.of(gContext)!.labelWaterTax +
+                                  txtStar),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return AppLocalizations.of(gContext)!.msgWaterTax;
@@ -575,7 +581,8 @@ class _inputInfoState extends State<inputInfo> {
                           icon: Icon(Icons.holiday_village),
                           hintText: AppLocalizations.of(gContext)!.msgExtraInfo,
                           labelText:
-                              AppLocalizations.of(gContext)!.labelExtraInfo),
+                              AppLocalizations.of(gContext)!.labelExtraInfo +
+                                  txtStar),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return AppLocalizations.of(gContext)!.msgExtraInfo;

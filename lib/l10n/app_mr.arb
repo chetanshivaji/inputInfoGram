@@ -50,14 +50,14 @@
     
 
     "bLabelSearch":"शोध",
-    "labelUid":"युनिक नंबर *",
+    "labelUid":"युनिक नंबर",
     "labelExtraInfo":"अधिक_माहिती",
 
-    "labelMobile":"मोबाईल *",
-    "labelName":"नाव *",
-    "labelAmount":"रक्कम *",
-    "labelEmail":"मेल *",
-    "labelReason":"कारण *",
+    "labelMobile":"मोबाईल",
+    "labelName":"नाव",
+    "labelAmount":"रक्कम",
+    "labelEmail":"मेल",
+    "labelReason":"कारण",
 
     "msgExtraIncomeAmount":"कृपया अतिरिक्त उत्पन्नाची रक्कम प्रविष्ट करा",
     "msgExtraIncomeReasom":"कृपया अतिरिक्त उत्पन्नाचे कारण प्रविष्ट करा",
@@ -103,7 +103,7 @@
 
     "msgEnterUserMail":"ईमेल टाका",
 
-    "labelPassword":"पासवर्ड*",
+    "labelPassword":"पासवर्ड",
 
     "msgEnterPassword":"कृपया किमान 6 अक्षरांचा पासवर्ड टाका",
     "msgEnterUserName":"नाव टाका",
@@ -113,9 +113,9 @@
     
     "msgEnterVillagePin":"कृपया गाव पिन प्रविष्ट करा",
 
-    "labelVillage":"गाव *",
+    "labelVillage":"गाव",
     
-    "labelPin":"पिन *",
+    "labelPin":"पिन",
 
     "kSubTitelYetToApproveByAdmin":"काही वेळानंतर प्रयत्न करा किंवा प्रशासकाला मंजुरी देण्याची आठवण करून द्या.",
 
@@ -162,20 +162,20 @@
 
 
 
-    "labelAdminEmail":"प्रशासक ईमेल *",
+    "labelAdminEmail":"प्रशासक ईमेल",
     
-    "labelAdminPassword":"प्रशासक पासवर्ड *",
+    "labelAdminPassword":"प्रशासक पासवर्ड",
 
     "msgNoStartZero":"मोबाईल शून्याने सुरू होत नाही",
 
     "msgEnterEmail":"कृपया प्रशासक ईमेल प्रविष्ट करा",
 
 
-    "labelHouseTax":"घरपट्टी *",
+    "labelHouseTax":"घरपट्टी",
     
-    "labelWaterTax":"पाणीपट्टी *",
+    "labelWaterTax":"पाणीपट्टी",
     
-    "labelNewMobile":"नवीन मोबाईल *",
+    "labelNewMobile":"नवीन मोबाईल",
     
     "msgEnterNewMobileNumber":"नवीन मोबाईल नंबर टाका",
     
