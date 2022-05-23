@@ -31,7 +31,7 @@
     
     "tableHeadingMobile":"मोबाईल",
     
-    "tableHeadingUid":"युनिक नंबर",
+    "tableHeadingUid":"घर/युनिक नंबर",
 
     "tableHeadingAmount":"रक्कम",
 
@@ -50,7 +50,7 @@
     
 
     "bLabelSearch":"शोध",
-    "labelUid":"युनिक नंबर",
+    "labelUid":"घर/युनिक नंबर",
     "labelExtraInfo":"अधिक_माहिती",
 
     "labelMobile":"मोबाईल",
@@ -147,7 +147,7 @@
     "dHeading":"प्रशासक",
 
 
-    "msgEnterUid":"युनिक नंबर प्रविष्ट करा",
+    "msgEnterUid":"घर/युनिक नंबर प्रविष्ट करा",
 
 
     "msgEnterHouseTax":"घर कर प्रविष्ट करा",
@@ -210,14 +210,14 @@
     "subtitleSuccess":"सादर केले",
     "msgHouseTaxAmount":"कृपया घर कराची रक्कम टाका",    
 
-    "kSubTitleEntryAlreadyPresent":"मोबाइल/यूआयडी सादर करा, नवीन मोबाइल/यूआयडी वापरा",
+    "kSubTitleEntryAlreadyPresent":"दिलेला मोबाईल आणि (घर/युनिक नंबर) आधीच जोडलेले आहे, नवीन (घर/युनिक) नंबर किंवा मोबाइल वापरा",
     "kTitlePresent":"उपस्थित",
     "kTitleNotPresent":"उपस्थित नाही",
     "kTitleMobileNotPresent":"मोबाईल उपस्थित नाही",
-    "kTitleMultiUids":"मोबाइलसाठी एकाधिक Uids, कृपया एक प्रविष्ट करा",
+    "kTitleMultiUids":"मोबाइलसाठी एकाधिक घर/युनिक नंबर, कृपया एक प्रविष्ट करा",
 
 
-    "kTitleMultiUids_AddPerson":"मागील वर्षी अनेक UID सापडले, एक प्रविष्ट करा किंवा नवीन तयार करा, सबमिट करा दाबा",
+    "kTitleMultiUids_AddPerson":"मागील वर्षी अनेक घर/युनिक नंबर सापडले, एक प्रविष्ट करा किंवा नवीन तयार करा, सबमिट करा दाबा",
 
     "kSubTitleEmailNotPresent":"ईमेल उपस्थित नाही",
 
