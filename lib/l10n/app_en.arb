@@ -718,6 +718,11 @@
         "description":"Taluka"
     },
 
+    "txtUidPresentForYearForVillage":"Use different uid, Uid allready present in your village for this year",
+    "@txtUidPresentForYearForVillage":{
+        "description":"Use different uid, Uid allready present in your village for this year"
+    },
+    
     "hello":"Hello {randomString}",
     "@hello":{
         "description":"heyoo",

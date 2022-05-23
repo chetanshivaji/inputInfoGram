@@ -3,7 +3,8 @@ import 'package:inputgram/util.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 String txtStar = "*";
-
+String txtUidPresentForYearForVillage =
+    "Use different uid, Uid allready present in your village for this year";
 String registerSuccess = "Admin and village regsitered successfully";
 String kTitleFail = "Login/registeration failed";
 String kTitleTryCatchFail =

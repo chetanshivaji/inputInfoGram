@@ -254,6 +254,6 @@
     "kState":"राज्य - ",    
     "kDistrict":"जिल्हा - ",        
     "kTaluka":"तालुका - ",
-
+    "txtUidPresentForYearForVillage":"वेगळा घर/युनिक नंबर वापरा, तुमच्या गावात या वर्षासाठी आधीपासूनच हा (घर/युनिक) नंबर आहे",
     "hello":"नमस्कार {randomString}"
 }

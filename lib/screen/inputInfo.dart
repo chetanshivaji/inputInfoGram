@@ -197,7 +197,7 @@ class _inputInfoState extends State<inputInfo> {
               popAlert(
                   context,
                   AppLocalizations.of(gContext)!.kTitleTryCatchFail,
-                  "Use different uid, Uid allready present in your village for this year",
+                  AppLocalizations.of(gContext)!.txtUidPresentForYearForVillage,
                   getWrongIcon(),
                   1);
               present = true;

@@ -205,6 +205,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             );
                           }
                           if (flagCreateVillageDB) {
+                            //do it only once
                             await createDBOfVillages();
                           }
                         } catch (e) {
