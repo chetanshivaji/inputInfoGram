@@ -191,12 +191,8 @@ class _reportInfoState extends State<reportInfo> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    //getYearTile(clrRed),
-                    Padding(
-                      padding: EdgeInsets.only(top: 20),
-                    ),
                     Row(
-                      children: <Widget>[
+                      children: [
                         Expanded(
                           child: ElevatedButton(
                             child: Text(
