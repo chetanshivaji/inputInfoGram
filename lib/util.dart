@@ -346,8 +346,8 @@ Future<void> createDBOfVillages() async {
                       for (var vlg in v) {
                         if (vlg.isNotEmpty) {
                           await FirebaseFirestore.instance
-                              .collection("india")
-                              .doc("states")
+                              .collection(collIndia)
+                              .doc(collStates)
                               .collection(s)
                               .doc(dist)
                               .get()
@@ -355,8 +355,8 @@ Future<void> createDBOfVillages() async {
                             (value) async {
                               if (value.exists) {
                                 await FirebaseFirestore.instance
-                                    .collection("india")
-                                    .doc("states")
+                                    .collection(collIndia)
+                                    .doc(collStates)
                                     .collection(s)
                                     .doc(dist)
                                     .update(
@@ -366,8 +366,8 @@ Future<void> createDBOfVillages() async {
                                 );
                               } else {
                                 await FirebaseFirestore.instance
-                                    .collection("india")
-                                    .doc("states")
+                                    .collection(collIndia)
+                                    .doc(collStates)
                                     .collection(s)
                                     .doc(dist)
                                     .set(

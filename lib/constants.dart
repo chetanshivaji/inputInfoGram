@@ -124,6 +124,8 @@ String docUids = "uids";
 //collection strings
 String collUsers = 'users';
 String collFormula = 'formula';
+String collIndia = "india";
+String collStates = "states";
 
 //app bar heading
 String appBarHeadingApproveRemove = "Approve/Remove";

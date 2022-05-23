@@ -422,8 +422,8 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                               List<String> listDistricts = [];
                               //fetch districts info from state and set to list of districts.
                               var collection = await FirebaseFirestore.instance
-                                  .collection('india')
-                                  .doc("states")
+                                  .collection(collIndia)
+                                  .doc(collStates)
                                   .collection(newAccessValue.toString());
                               var querySnapshots = await collection.get();
                               for (var snapshot in querySnapshots.docs) {
@@ -437,8 +437,8 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                               List<String> listTalukas = [];
                               //fetch districts info from state and set to list of districts.
                               var cl = await FirebaseFirestore.instance
-                                  .collection('india')
-                                  .doc("states")
+                                  .collection(collIndia)
+                                  .doc(collStates)
                                   .collection(newAccessValue.toString())
                                   .doc(districts[0])
                                   .get()
@@ -517,8 +517,8 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                               List<String> listTalukas = [];
                               //fetch districts info from state and set to list of districts.
                               var collection = await FirebaseFirestore.instance
-                                  .collection('india')
-                                  .doc("states")
+                                  .collection(collIndia)
+                                  .doc(collStates)
                                   .collection(sState)
                                   .doc(newAccessValue.toString())
                                   .get()
