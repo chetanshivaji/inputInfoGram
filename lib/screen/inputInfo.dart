@@ -187,6 +187,7 @@ class _inputInfoState extends State<inputInfo> {
         .then(
       (uidDoc) async {
         if (uidDoc.exists) {
+          //uids doc present
           var y = uidDoc.data();
           if (y!.containsKey(keyUids + dropdownValueYear)) {
             //key present
@@ -304,7 +305,10 @@ class _inputInfoState extends State<inputInfo> {
 
                             await FirebaseFirestore.instance
                                 .collection(adminVillage + adminPin)
-                                .doc(docMobileUidMap)
+                                .doc(docYrsMobileUids)
+                                .collection(collYrs)
+                                .doc((int.parse(dropdownValueYear) - 1)
+                                    .toString())
                                 .get()
                                 .then(
                               (mapMobUid) async {
@@ -316,6 +320,7 @@ class _inputInfoState extends State<inputInfo> {
                                       //one uid in last year
                                       uid = uids[0];
                                       //fetch info from last year
+
                                       await FirebaseFirestore.instance
                                           .collection(adminVillage + adminPin)
                                           .doc(docMainDb)
@@ -644,7 +649,9 @@ class _inputInfoState extends State<inputInfo> {
                                         await checkIfUidPresent(mobile, uid);
                                     if (present == false) {
                                       //if uid absent in village do further
-                                      await createMobileUidMapping(mobile, uid);
+                                      //await createMobileUidMapping(mobile, uid);
+                                      await createYearMobileUidMap(
+                                          dropdownValueYear, mobile, uid);
 
                                       //if entry not present in db then add
                                       await FirebaseFirestore.instance
@@ -666,9 +673,11 @@ class _inputInfoState extends State<inputInfo> {
                                           keyExtraInfo: extraInfo,
                                         },
                                       );
-                                      await createTotalFormula();
+                                      await createTotalFormula(); //good
                                       await updateYearWiseFormula(
-                                          houseTax, waterTax);
+                                          //good
+                                          houseTax,
+                                          waterTax);
                                       //END create Formula in each year once
                                       popAlert(
                                           context,

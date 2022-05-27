@@ -120,9 +120,12 @@ String docMainDb = "mainDb";
 String docVillageInfo = "villageInfo";
 String docCalcultion = 'calculation';
 String docMobileUidMap = 'mobileUidMap';
+String docYrsMobileUids = 'yrsMobileUids';
 String docUids = "uids";
 
 //collection strings
+String collYrs = "yrs";
+
 String collUsers = 'users';
 String collFormula = 'formula';
 String collIndia = "india";

@@ -23,7 +23,7 @@ class _updateInfoState extends State<updateInfo> {
   List<TextSpan> multiUids = [];
   String uid = "";
 
-  var mobileUids;
+  //var mobileUids;
   String nameEntry = "";
   String uidEntry = "";
   String emailEntry = "";
@@ -117,85 +117,30 @@ class _updateInfoState extends State<updateInfo> {
     String uids = "";
     mobile =
         mobValue; //set here, otherewise this will be set in validator after click on submit.
+    Set<String> mobileUids = {};
     try {
-      await FirebaseFirestore.instance
-          .collection(adminVillage + adminPin)
-          .doc(docMobileUidMap)
-          .get()
-          .then(
-        (value) async {
-          if (value.exists) {
-            var y = value.data();
-            if (!y!.containsKey(mobValue)) {
-              //mobile uid mapping not present.
-              popAlert(
-                context,
-                AppLocalizations.of(gContext)!.kTitleMobileNotPresent,
-                "",
-                getWrongIcon(),
-                1,
-              );
-              return;
-            }
-            mobileUids = y[mobValue];
-            //get all uids. if only one directly display
-            if (mobileUids.length == 1) {
-              uids = mobileUids[0];
-              setState(
-                () {
-                  uid = mobileUids[0];
-                },
-              );
-              await setNameEmail(mobileUids[0]);
-            } else if (mobileUids.length > 1) {
-              //display all uids and choose one.
-              for (var id in mobileUids) {
-                uids = uids + ", " + id;
-                multiUidsTextSpan.add(
-                  TextSpan(
-                    text: id + " , ",
-                    style: TextStyle(
-                      color: Colors.red[300],
-                      backgroundColor: Colors.yellow,
-                      fontSize: 25,
-                      fontWeight: FontWeight.bold,
-                    ),
-                    recognizer: TapGestureRecognizer()
-                      ..onTap = () async {
-                        //make use of Id which has go tapped.
-                        await setNameEmail(id);
-                        uid = id;
-                      },
-                  ),
-                );
+      for (var yr in items) {
+        await FirebaseFirestore.instance
+            .collection(adminVillage + adminPin)
+            .doc(docYrsMobileUids)
+            .collection(collYrs)
+            .doc(yr)
+            .get()
+            .then(
+          (value) async {
+            if (value.exists) {
+              var y = value.data();
+              if (!y!.containsKey(mobValue)) {
+                //mobile uid mapping not present.
+                return;
               }
-
-              //pop up message with all uids and setup hint text with uids.
-              popAlert(
-                context,
-                AppLocalizations.of(gContext)!.kTitleMultiUids,
-                uids,
-                getMultiUidIcon(50),
-                1,
-              );
-
-              setState(
-                () {
-                  multiUids = multiUidsTextSpan;
-                },
-              );
-            } else if (mobileUids.length == 0) {
-              popAlert(
-                context,
-                AppLocalizations.of(gContext)!.kTitleMobileNotPresent,
-                "",
-                getWrongIcon(),
-                1,
-              );
+              for (var element in y[mobValue]) {
+                mobileUids.add(element);
+              }
             }
-          }
-        },
-      );
+          },
+        );
+      }
     } catch (e) {
       popAlert(
         context,
@@ -207,6 +152,74 @@ class _updateInfoState extends State<updateInfo> {
       _textController_newMobile.clear();
       _textController_newEmail.clear();
       _textController_extraInfo.clear();
+    }
+
+    //if no mobile found in all yrs.
+    if (mobileUids.isEmpty) {
+      popAlert(
+        context,
+        AppLocalizations.of(gContext)!.kTitleMobileNotPresent,
+        "",
+        getWrongIcon(),
+        1,
+      );
+      return;
+    }
+
+    //get all uids. if only one directly display
+    if (mobileUids.length == 1) {
+      uids = mobileUids.elementAt(0);
+      setState(
+        () {
+          uid = mobileUids.elementAt(0);
+        },
+      );
+      await setNameEmail(mobileUids.elementAt(0));
+    } else if (mobileUids.length > 1) {
+      //display all uids and choose one.
+      for (var id in mobileUids) {
+        uids = uids + ", " + id;
+        multiUidsTextSpan.add(
+          TextSpan(
+            text: id + " , ",
+            style: TextStyle(
+              color: Colors.red[300],
+              backgroundColor: Colors.yellow,
+              fontSize: 25,
+              fontWeight: FontWeight.bold,
+            ),
+            recognizer: TapGestureRecognizer()
+              ..onTap = () async {
+                //make use of Id which has go tapped.
+                await setNameEmail(id);
+                uid = id;
+              },
+          ),
+        );
+      }
+
+      //pop up message with all uids and setup hint text with uids.
+      popAlert(
+        context,
+        AppLocalizations.of(gContext)!.kTitleMultiUids,
+        uids,
+        getMultiUidIcon(50),
+        1,
+      );
+
+      setState(
+        () {
+          multiUids = multiUidsTextSpan;
+        },
+      );
+    } else if (mobileUids.length == 0) {
+      popAlert(
+        context,
+        AppLocalizations.of(gContext)!.kTitleMobileNotPresent,
+        "",
+        getWrongIcon(),
+        1,
+      );
     }
     return;
   }
@@ -492,16 +505,21 @@ class _updateInfoState extends State<updateInfo> {
                                       },
                                     );
                                     //END create new Entry
+                                    //START remove uid from yr mobile
+                                    await deleteMobileUidMapping(
+                                        yr, mobile, uid);
+                                    //create new mapping.
+                                    await createMobileUidMapping(
+                                        yr, newMobile, uid);
+                                    //END remove uid from yr mobile
                                   }
                                 },
                               );
                               //END remove old entry
+
                             }
+
                             if (mobileFound) {
-                              //remove uid from mobile to uids map
-                              await deleteMobileUidMapping(mobile, uid);
-                              //create new mapping.
-                              await createMobileUidMapping(newMobile, uid);
                               popAlert(
                                   context,
                                   AppLocalizations.of(gContext)!.titleSuccess,

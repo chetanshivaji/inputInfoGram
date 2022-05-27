@@ -91,18 +91,23 @@ TextStyle getStyle(String type) {
   }
 }
 
-Future<void> deleteMobileUidMapping(String mobile, String uid) async {
+Future<void> deleteMobileUidMapping(
+    String yr, String mobile, String uid) async {
   //START create mobile -> multi UID mapping
   await FirebaseFirestore.instance
       .collection(adminVillage + adminPin)
-      .doc(docMobileUidMap)
+      .doc(docYrsMobileUids)
+      .collection(collYrs)
+      .doc(yr)
       .get()
       .then(
     (value) async {
       if (value.exists) {
         await FirebaseFirestore.instance
             .collection(adminVillage + adminPin)
-            .doc(docMobileUidMap)
+            .doc(docYrsMobileUids)
+            .collection(collYrs)
+            .doc(yr)
             .update(
           {
             mobile: FieldValue.arrayRemove([uid])
@@ -169,27 +174,78 @@ Widget getPrefilledListTile(String LHS, String RHS) {
   );
 }
 
-Future<void> createMobileUidMapping(String mobile, String uid) async {
+Future<void> createYearMobileUidMap(
+    String dropdownValueYear, String mobile, String uid) async {
   //START create mobile -> multi UID mapping
   await FirebaseFirestore.instance
       .collection(adminVillage + adminPin)
-      .doc(docMobileUidMap)
+      .doc(docYrsMobileUids)
+      .collection(collYrs)
+      .doc(dropdownValueYear)
       .get()
       .then(
     (value) async {
       if (value.exists) {
+        //mobileUidMap present already ->
         await FirebaseFirestore.instance
             .collection(adminVillage + adminPin)
-            .doc(docMobileUidMap)
+            .doc(docYrsMobileUids)
+            .collection(collYrs)
+            .doc(dropdownValueYear)
             .update(
           {
             mobile: FieldValue.arrayUnion([uid])
           },
         );
       } else {
+        //create mobileUidMap as well as set key mobile and value.
         await FirebaseFirestore.instance
             .collection(adminVillage + adminPin)
-            .doc(docMobileUidMap)
+            .doc(docYrsMobileUids)
+            .collection(collYrs)
+            .doc(dropdownValueYear)
+            .set(
+          {
+            mobile: FieldValue.arrayUnion([uid])
+          },
+        );
+      }
+    },
+  );
+  //END create mobile -> multi UID mapping
+  return;
+}
+
+Future<void> createMobileUidMapping(
+    String yr, String mobile, String uid) async {
+  //START create mobile -> multi UID mapping
+  await FirebaseFirestore.instance
+      .collection(adminVillage + adminPin)
+      .doc(docYrsMobileUids)
+      .collection(collYrs)
+      .doc(yr)
+      .get()
+      .then(
+    (value) async {
+      if (value.exists) {
+        //mobileUidMap present already ->
+        await FirebaseFirestore.instance
+            .collection(adminVillage + adminPin)
+            .doc(docYrsMobileUids)
+            .collection(collYrs)
+            .doc(yr)
+            .update(
+          {
+            mobile: FieldValue.arrayUnion([uid])
+          },
+        );
+      } else {
+        //create mobileUidMap as well as set key mobile and value.
+        await FirebaseFirestore.instance
+            .collection(adminVillage + adminPin)
+            .doc(docYrsMobileUids)
+            .collection(collYrs)
+            .doc(yr)
             .set(
           {
             mobile: FieldValue.arrayUnion([uid])
