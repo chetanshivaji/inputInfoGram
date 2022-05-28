@@ -3,7 +3,7 @@
    <application
         android:label="inputgram"
         android:name="${applicationName}"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@mipmap/vadmin_icon">
         <activity
             android:name=".MainActivity"
             android:exported="true"
