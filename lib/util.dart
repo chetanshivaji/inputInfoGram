@@ -116,25 +116,6 @@ Future<void> deleteMobileUidMapping(
       }
     },
   );
-  /*
-  await FirebaseFirestore.instance
-      .collection(adminVillage + adminPin)
-      .doc(docMobileUidMap)
-      .get()
-      .then(
-    (value) async {
-      if (value.exists) {
-        var y = value.data();
-        if (y!.containsKey(mobile)) {
-          if (y[mobile].length == 0) {
-            y.remove(mobile); //removes key if no value present.
-          }
-        }
-      }
-    },
-  );
-  */
-  //END create mobile -> multi UID mapping
   return;
 }
 
