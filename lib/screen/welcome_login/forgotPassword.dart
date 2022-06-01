@@ -28,7 +28,6 @@ class _forgotPasswordScreenState extends State<forgotPasswordScreen> {
           key: _formforgotPasswordKey,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
               Padding(
                 padding: EdgeInsets.only(top: 60),
