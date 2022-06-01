@@ -31,6 +31,12 @@ TextStyle getTableHeadingTextStyle() {
   );
 }
 
+ShapeBorder getListTileShapeForDrawer() {
+  return RoundedRectangleBorder(
+    borderRadius: BorderRadius.circular(25.0),
+  );
+}
+
 bool isNumeric(String s) {
   if (s == null) {
     return false;

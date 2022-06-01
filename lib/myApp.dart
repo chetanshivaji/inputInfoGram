@@ -132,26 +132,28 @@ class MyApp extends StatelessWidget {
           ],
         ),
         drawer: Drawer(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20.0),
+          ),
           child: ListView(
             padding: EdgeInsets.zero,
             children: <Widget>[
               DrawerHeader(
                 decoration: BoxDecoration(
                   color: Colors.blue,
+                  borderRadius: BorderRadius.circular(15.0),
                 ),
-                child: Stack(
-                  children: <Widget>[
-                    Text(
-                      AppLocalizations.of(gContext)!.dHeading,
-                      style: TextStyle(
-                        fontSize: 30,
-                        color: Colors.yellow,
-                      ),
-                    ), //gree
-                  ],
+                child: Text(
+                  AppLocalizations.of(gContext)!.dHeading,
+                  style: TextStyle(
+                    fontSize: 30,
+                    color: Colors.yellow,
+                  ),
                 ),
               ),
               ListTile(
+                horizontalTitleGap: 0.0,
+                shape: getListTileShapeForDrawer(),
                 leading: Icon(Icons.person_add),
                 title: Text(AppLocalizations.of(gContext)!.dAddPerson),
                 tileColor: clrGreen, //green
@@ -164,6 +166,8 @@ class MyApp extends StatelessWidget {
                 },
               ),
               ListTile(
+                horizontalTitleGap: 0.0,
+                shape: getListTileShapeForDrawer(),
                 leading: Icon(Icons.update),
                 title: Text(AppLocalizations.of(gContext)!.dUpdatePerson),
                 tileColor: clrBlue, //red
@@ -176,6 +180,8 @@ class MyApp extends StatelessWidget {
                 },
               ),
               ListTile(
+                horizontalTitleGap: 0.0,
+                shape: getListTileShapeForDrawer(),
                 leading: Icon(Icons.approval),
                 title: Text(AppLocalizations.of(gContext)!.dApprove),
                 tileColor: clrAmber, //red
@@ -188,6 +194,8 @@ class MyApp extends StatelessWidget {
                 },
               ),
               ListTile(
+                horizontalTitleGap: 0.0,
+                shape: getListTileShapeForDrawer(),
                 leading: Icon(Icons.report),
                 title: Text(AppLocalizations.of(gContext)!.dReport),
                 tileColor: clrRed, //red

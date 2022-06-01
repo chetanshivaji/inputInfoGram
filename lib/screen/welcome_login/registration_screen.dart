@@ -108,7 +108,6 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
               key: _formRegKey,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: <Widget>[
                   Padding(
                     padding: EdgeInsets.only(top: 60),
@@ -622,7 +621,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                       elevation: 5.0,
                       child: MaterialButton(
                         splashColor: clrBSplash,
-                        minWidth: 200.0,
+                        minWidth: 50.0,
                         height: 42.0,
                         child: Text(
                           AppLocalizations.of(gContext)!.bLabelRegister,

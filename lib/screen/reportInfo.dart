@@ -191,32 +191,27 @@ class _reportInfoState extends State<reportInfo> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    Row(
-                      children: [
-                        Expanded(
-                          child: ElevatedButton(
-                            child: Text(
-                              AppLocalizations.of(gContext)!
-                                  .bLabelSubmitRefresh,
-                            ),
-                            onPressed: pressed
-                                ? () async {
-                                    var ldr = await _buildList();
-                                    if (ldr.isEmpty) {
-                                      gLdr = ldr;
-                                      return;
-                                    }
-                                    setState(
-                                      () {
-                                        gLdr = ldr;
-                                      },
-                                    );
-                                    pressed = false;
-                                  }
-                                : null,
-                          ),
+                    Center(
+                      child: ElevatedButton(
+                        child: Text(
+                          AppLocalizations.of(gContext)!.bLabelSubmitRefresh,
                         ),
-                      ],
+                        onPressed: pressed
+                            ? () async {
+                                var ldr = await _buildList();
+                                if (ldr.isEmpty) {
+                                  gLdr = ldr;
+                                  return;
+                                }
+                                setState(
+                                  () {
+                                    gLdr = ldr;
+                                  },
+                                );
+                                pressed = false;
+                              }
+                            : null,
+                      ),
                     ),
                     Expanded(
                         child: SingleChildScrollView(

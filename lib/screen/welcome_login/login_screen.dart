@@ -23,97 +23,91 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     gContext = context;
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Color.fromARGB(255, 236, 236, 229),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 24.0),
         child: Form(
           key: _formLoginKey,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
               Padding(
                 padding: EdgeInsets.only(top: 60),
               ),
-              Expanded(
-                child: TextFormField(
-                  keyboardType: TextInputType.emailAddress,
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return AppLocalizations.of(gContext)!.msgEnterEmail;
-                    }
-                    email = value;
-                    return null;
-                  },
-                  decoration: InputDecoration(
-                    icon: Icon(Icons.email),
-                    labelText: AppLocalizations.of(gContext)!.labelAdminEmail +
-                        txtStar,
-                    hintText: AppLocalizations.of(gContext)!.msgEnterEmail,
-                    contentPadding:
-                        EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(32.0),
-                      ),
+              TextFormField(
+                keyboardType: TextInputType.emailAddress,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return AppLocalizations.of(gContext)!.msgEnterEmail;
+                  }
+                  email = value;
+                  return null;
+                },
+                decoration: InputDecoration(
+                  icon: Icon(Icons.email),
+                  labelText:
+                      AppLocalizations.of(gContext)!.labelAdminEmail + txtStar,
+                  hintText: AppLocalizations.of(gContext)!.msgEnterEmail,
+                  contentPadding:
+                      EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(32.0),
                     ),
-                    enabledBorder: OutlineInputBorder(
-                      borderSide:
-                          BorderSide(color: Colors.lightBlueAccent, width: 1.0),
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(32.0),
-                      ),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide:
+                        BorderSide(color: Colors.lightBlueAccent, width: 1.0),
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(32.0),
                     ),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide:
-                          BorderSide(color: Colors.lightBlueAccent, width: 2.0),
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(32.0),
-                      ),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide:
+                        BorderSide(color: Colors.lightBlueAccent, width: 2.0),
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(32.0),
                     ),
                   ),
                 ),
               ),
               SizedBox(
-                height: 8.0,
+                height: 20.0,
               ),
-              Expanded(
-                child: TextFormField(
-                  obscureText: true,
-                  keyboardType: TextInputType.text,
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return AppLocalizations.of(gContext)!.msgEnterPassword;
-                    }
-                    password = value;
-                    return null;
-                  },
-                  decoration: InputDecoration(
-                    icon: Icon(Icons.password),
-                    labelText:
-                        AppLocalizations.of(gContext)!.labelAdminPassword +
-                            txtStar,
-                    hintText: AppLocalizations.of(gContext)!.msgEnterPassword,
-                    contentPadding:
-                        EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(32.0),
-                      ),
+              TextFormField(
+                obscureText: true,
+                keyboardType: TextInputType.text,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return AppLocalizations.of(gContext)!.msgEnterPassword;
+                  }
+                  password = value;
+                  return null;
+                },
+                decoration: InputDecoration(
+                  icon: Icon(Icons.password),
+                  labelText: AppLocalizations.of(gContext)!.labelAdminPassword +
+                      txtStar,
+                  hintText: AppLocalizations.of(gContext)!.msgEnterPassword,
+                  contentPadding:
+                      EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(32.0),
                     ),
-                    enabledBorder: OutlineInputBorder(
-                      borderSide:
-                          BorderSide(color: Colors.lightBlueAccent, width: 1.0),
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(32.0),
-                      ),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide:
+                        BorderSide(color: Colors.lightBlueAccent, width: 1.0),
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(32.0),
                     ),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide:
-                          BorderSide(color: Colors.lightBlueAccent, width: 2.0),
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(32.0),
-                      ),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide:
+                        BorderSide(color: Colors.lightBlueAccent, width: 2.0),
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(32.0),
                     ),
                   ),
                 ),
