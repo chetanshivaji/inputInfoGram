@@ -34,6 +34,12 @@ class _inputInfoState extends State<inputInfo> {
   var _textController_mobile = TextEditingController();
   var _textController_houseTax = TextEditingController();
   var _textController_waterTax = TextEditingController();
+
+  var _textController_ElectricityTax = TextEditingController();
+  var _textController_HealthTax = TextEditingController();
+  var _textController_ExtraLandTax = TextEditingController();
+  var _textController_OtherTax = TextEditingController();
+
   var _textController_uid = TextEditingController();
   var _textController_extraInfo = TextEditingController();
 
@@ -72,6 +78,12 @@ class _inputInfoState extends State<inputInfo> {
               _textController_mobile.clear();
               _textController_houseTax.clear();
               _textController_waterTax.clear();
+
+              _textController_ElectricityTax.clear();
+              _textController_HealthTax.clear();
+              _textController_ExtraLandTax.clear();
+              _textController_OtherTax.clear();
+
               _textController_uid.clear();
               _textController_extraInfo.clear();
               multiUids = [TextSpan()];
@@ -289,6 +301,12 @@ class _inputInfoState extends State<inputInfo> {
                           _textController_mail.text = "";
                           _textController_houseTax.text = "";
                           _textController_waterTax.text = "";
+
+                          _textController_ElectricityTax.text = "";
+                          _textController_HealthTax.text = "";
+                          _textController_ExtraLandTax.text = "";
+                          _textController_OtherTax.text = "";
+
                           _textController_uid.text = "";
                           _textController_extraInfo.text = "";
                           multiUidsTextSpan.clear();
@@ -341,6 +359,16 @@ class _inputInfoState extends State<inputInfo> {
                                               y[keyHouse].toString();
                                           _textController_waterTax.text =
                                               y[keyWater].toString();
+
+                                          _textController_ElectricityTax.text =
+                                              y[keyElectricity].toString();
+                                          _textController_HealthTax.text =
+                                              y[keyHealth].toString();
+                                          _textController_ExtraLandTax.text =
+                                              y[keyExtraLand].toString();
+                                          _textController_OtherTax.text =
+                                              y[keyOtherTax].toString();
+
                                           _textController_uid.text = y[keyUid];
                                           _textController_extraInfo.text =
                                               y[keyExtraInfo];
@@ -393,6 +421,24 @@ class _inputInfoState extends State<inputInfo> {
                                                               .text =
                                                           y[keyWater]
                                                               .toString();
+
+                                                      _textController_ElectricityTax
+                                                              .text =
+                                                          y[keyElectricity]
+                                                              .toString();
+                                                      _textController_HealthTax
+                                                              .text =
+                                                          y[keyHealth]
+                                                              .toString();
+                                                      _textController_ExtraLandTax
+                                                              .text =
+                                                          y[keyExtraLand]
+                                                              .toString();
+                                                      _textController_OtherTax
+                                                              .text =
+                                                          y[keyOtherTax]
+                                                              .toString();
+
                                                       _textController_uid.text =
                                                           y[keyUid];
                                                       _textController_extraInfo
@@ -428,7 +474,14 @@ class _inputInfoState extends State<inputInfo> {
                             //var lsUids = getMobileUidMapping(value);
 
                           } catch (e) {
-                            print(e);
+                            //print(e);
+                            popAlert(
+                                context,
+                                AppLocalizations.of(gContext)!
+                                    .kTitleTryCatchFail,
+                                e.toString(),
+                                getWrongIcon(),
+                                1);
                           }
                         }
                       },
@@ -528,56 +581,180 @@ class _inputInfoState extends State<inputInfo> {
                     ),
                   ),
                   //getPadding(),
-                  Expanded(
-                    child: TextFormField(
-                      controller: _textController_houseTax,
-                      keyboardType: TextInputType.number,
-                      decoration: InputDecoration(
-                          border: OutlineInputBorder(),
-                          icon: Icon(Icons.house),
-                          hintText:
-                              AppLocalizations.of(gContext)!.msgEnterHouseTax,
-                          labelText:
-                              AppLocalizations.of(gContext)!.labelHouseTax +
-                                  txtStar),
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return AppLocalizations.of(gContext)!
-                              .msgHouseTaxAmount;
-                        }
-                        if (!isNumeric(value)) {
-                          return AppLocalizations.of(gContext)!.msgOnlyNumber;
-                        }
-                        houseTax = int.parse(value);
-                        return null;
-                      },
-                    ),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: TextFormField(
+                          controller: _textController_houseTax,
+                          keyboardType: TextInputType.number,
+                          decoration: InputDecoration(
+                              border: OutlineInputBorder(),
+                              icon: Icon(Icons.house),
+                              hintText: AppLocalizations.of(gContext)!
+                                  .msgEnterHouseTax,
+                              labelText:
+                                  AppLocalizations.of(gContext)!.labelHouseTax +
+                                      txtStar),
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return AppLocalizations.of(gContext)!
+                                  .msgHouseTaxAmount;
+                            }
+                            if (!isNumeric(value)) {
+                              return AppLocalizations.of(gContext)!
+                                  .msgOnlyNumber;
+                            }
+                            houseTax = int.parse(value);
+                            return null;
+                          },
+                        ),
+                      ),
+                      Expanded(
+                        child: TextFormField(
+                          controller: _textController_waterTax,
+                          keyboardType: TextInputType.number,
+                          decoration: InputDecoration(
+                              border: OutlineInputBorder(),
+                              icon: Icon(Icons.water),
+                              hintText:
+                                  AppLocalizations.of(gContext)!.msgWaterTax,
+                              labelText:
+                                  AppLocalizations.of(gContext)!.labelWaterTax +
+                                      txtStar),
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return AppLocalizations.of(gContext)!.msgWaterTax;
+                            }
+                            if (!isNumeric(value)) {
+                              return AppLocalizations.of(gContext)!
+                                  .msgOnlyNumber;
+                            }
+                            waterTax = int.parse(value);
+                            return null;
+                          },
+                        ),
+                      ),
+                    ],
                   ),
-                  //getPadding(),
-                  Expanded(
-                    child: TextFormField(
-                      controller: _textController_waterTax,
-                      keyboardType: TextInputType.number,
-                      decoration: InputDecoration(
-                          border: OutlineInputBorder(),
-                          icon: Icon(Icons.water),
-                          hintText: AppLocalizations.of(gContext)!.msgWaterTax,
-                          labelText:
-                              AppLocalizations.of(gContext)!.labelWaterTax +
+                  getPadding(),
+
+                  //START electricity tax, health tax, extra land tax, other tax
+                  Row(
+                    children: [
+                      Expanded(
+                        child: TextFormField(
+                          controller: _textController_ElectricityTax,
+                          keyboardType: TextInputType.number,
+                          decoration: InputDecoration(
+                              border: OutlineInputBorder(),
+                              icon: Icon(Icons.electrical_services),
+                              hintText: AppLocalizations.of(gContext)!
+                                  .msgEnterElectricityTax,
+                              labelText: AppLocalizations.of(gContext)!
+                                      .labelElectricityTax +
                                   txtStar),
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return AppLocalizations.of(gContext)!.msgWaterTax;
-                        }
-                        if (!isNumeric(value)) {
-                          return AppLocalizations.of(gContext)!.msgOnlyNumber;
-                        }
-                        waterTax = int.parse(value);
-                        return null;
-                      },
-                    ),
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return AppLocalizations.of(gContext)!
+                                  .msgEnterElectricityTax;
+                            }
+                            if (!isNumeric(value)) {
+                              return AppLocalizations.of(gContext)!
+                                  .msgOnlyNumber;
+                            }
+                            houseTax = int.parse(value);
+                            return null;
+                          },
+                        ),
+                      ),
+                      Expanded(
+                        child: TextFormField(
+                          controller: _textController_HealthTax,
+                          keyboardType: TextInputType.number,
+                          decoration: InputDecoration(
+                              border: OutlineInputBorder(),
+                              icon: Icon(Icons.health_and_safety_outlined),
+                              hintText: AppLocalizations.of(gContext)!
+                                  .msgEnterHealthTax,
+                              labelText: AppLocalizations.of(gContext)!
+                                      .labelHealthTax +
+                                  txtStar),
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return AppLocalizations.of(gContext)!
+                                  .msgEnterHealthTax;
+                            }
+                            if (!isNumeric(value)) {
+                              return AppLocalizations.of(gContext)!
+                                  .msgOnlyNumber;
+                            }
+                            houseTax = int.parse(value);
+                            return null;
+                          },
+                        ),
+                      ),
+                    ],
                   ),
-                  //getPadding(),
+                  getPadding(),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: TextFormField(
+                          controller: _textController_ExtraLandTax,
+                          keyboardType: TextInputType.number,
+                          decoration: InputDecoration(
+                              border: OutlineInputBorder(),
+                              icon: Icon(Icons.landscape_outlined),
+                              hintText: AppLocalizations.of(gContext)!
+                                  .msgExtraLandTaxAmount,
+                              labelText: AppLocalizations.of(gContext)!
+                                      .labelExtraLandTax +
+                                  txtStar),
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return AppLocalizations.of(gContext)!
+                                  .msgExtraLandTaxAmount;
+                            }
+                            if (!isNumeric(value)) {
+                              return AppLocalizations.of(gContext)!
+                                  .msgOnlyNumber;
+                            }
+                            houseTax = int.parse(value);
+                            return null;
+                          },
+                        ),
+                      ),
+                      Expanded(
+                        child: TextFormField(
+                          controller: _textController_OtherTax,
+                          keyboardType: TextInputType.number,
+                          decoration: InputDecoration(
+                              border: OutlineInputBorder(),
+                              icon: Icon(Icons.house),
+                              hintText: AppLocalizations.of(gContext)!
+                                  .msgOtherTaxAmount,
+                              labelText:
+                                  AppLocalizations.of(gContext)!.labelOtherTax +
+                                      txtStar),
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return AppLocalizations.of(gContext)!
+                                  .msgOtherTaxAmount;
+                            }
+                            if (!isNumeric(value)) {
+                              return AppLocalizations.of(gContext)!
+                                  .msgOnlyNumber;
+                            }
+                            houseTax = int.parse(value);
+                            return null;
+                          },
+                        ),
+                      ),
+                    ],
+                  ),
+                  getPadding(),
+                  //END electricity tax, health tax, extra land tax, other tax
+
                   Expanded(
                     child: TextFormField(
                       controller: _textController_extraInfo,

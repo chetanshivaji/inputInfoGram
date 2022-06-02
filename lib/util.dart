@@ -432,6 +432,8 @@ Future<void> createDBOfVillages() async {
       }
     }
   } catch (e) {
-    print(e);
+    //print(e);
+    popAlert(gContext, AppLocalizations.of(gContext)!.kTitleTryCatchFail,
+        e.toString(), getWrongIcon(), 1);
   }
 }

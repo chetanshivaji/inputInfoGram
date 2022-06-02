@@ -255,5 +255,19 @@
     "kDistrict":"जिल्हा - ",        
     "kTaluka":"तालुका - ",
     "txtUidPresentForYearForVillage":"वेगळा घर/युनिक नंबर वापरा, तुमच्या गावात या वर्षासाठी आधीपासूनच हा (घर/युनिक) नंबर आहे",
+
+    "msgEnterElectricityTax":"वीज कर प्रविष्ट करा",    
+    "msgEnterHealthTax":"आरोग्य कर प्रविष्ट करा",    
+    "msgExtraLandTaxAmount":"पडसर कर प्रविष्ट करा",    
+    "msgOtherTaxAmount":"इतर कर प्रविष्ट करा",
+
+
+
+  "labelElectricityTax":"वीज कर",
+  "labelHealthTax":"आरोग्य कर",
+  "labelExtraLandTax":"पडसर कर",    
+  "labelOtherTax":"इतर कर",
+
+
     "hello":"नमस्कार {randomString}"
 }

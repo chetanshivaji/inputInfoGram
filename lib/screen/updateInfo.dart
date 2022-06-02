@@ -71,7 +71,9 @@ class _updateInfoState extends State<updateInfo> {
         },
       );
     } catch (e) {
-      print(e);
+      //print(e);
+      popAlert(context, AppLocalizations.of(gContext)!.kTitleTryCatchFail,
+          e.toString(), getWrongIcon(), 1);
     }
     return false;
   }

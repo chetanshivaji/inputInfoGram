@@ -722,7 +722,50 @@
     "@txtUidPresentForYearForVillage":{
         "description":"Use different uid, Uid allready present in your village for this year"
     },
-    
+
+
+    "msgEnterElectricityTax":"Enter Electricity tax",
+    "@msgEnterElectricityTax":{
+        "description":"Enter Electricity tax"
+    },
+
+
+    "msgEnterHealthTax":"Enter Health tax",
+    "@msgEnterHealthTax":{
+        "description":"Enter Health tax"
+    },
+
+
+    "msgExtraLandTaxAmount":"Enter ExtraLand tax",
+    "@msgExtraLandTaxAmount":{
+        "description":"Enter ExtraLand tax"
+    },
+
+    "msgOtherTaxAmount":"Enter Other tax",
+    "@msgOtherTaxAmount":{
+        "description":"Enter Other tax"
+    },
+
+  "labelElectricityTax":"Electricity tax",
+    "@labelElectricityTax":{
+        "description":"Electricity tax"
+    },
+
+
+  "labelHealthTax":"Health tax",
+    "@labelHealthTax":{
+        "description":"Health tax"
+    },
+
+  "labelExtraLandTax":"ExtraLand tax",
+    "@labelExtraLandTax":{
+        "description":"ExtraLand tax"
+    },
+  "labelOtherTax":"Other tax",
+    "@labelOtherTax":{
+        "description":"Other tax"
+    },
+
     "hello":"Hello {randomString}",
     "@hello":{
         "description":"heyoo",

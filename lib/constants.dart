@@ -52,6 +52,12 @@ String msgEnterFullName = "Enter Full Name";
 String msgEnterHouseTax = "Enter House tax";
 String msgHouseTaxAmount = 'Please enter house tax amount';
 String msgWaterTax = "Enter Water tax";
+
+String msgEnterElectricityTax = "Enter Electricity tax";
+String msgEnterHealthTax = "Enter Health tax";
+String msgExtraLandTaxAmount = "Enter ExtraLand tax";
+String msgOtherTaxAmount = "Enter Other tax";
+
 String msgExtraInfo = "Enter Extra Information";
 String msgProcessingData = 'Processing Data';
 
@@ -98,7 +104,13 @@ String tableHeading_collectedWater = "CollectedWater";
 
 //Form field Lable
 String labelExtraInfo = "Extra information";
-String labelWaterTax = "Water Tax *";
+String labelWaterTax = "Water Tax";
+
+String labelElectricityTax = "Electricity Tax";
+String labelHealthTax = "Health Tax";
+String labelExtraLandTax = "ExtraLand Tax";
+String labelOtherTax = "Other Tax";
+
 String labelMobile = "Mobile *";
 String labelUid = "Uid *";
 String labelNewMobile = "New Mobile *";
@@ -160,6 +172,12 @@ String keyHouse = 'house';
 String keyHouseGiven = 'houseGiven';
 String keyWater = 'water';
 String keyWaterGiven = 'waterGiven';
+
+String keyElectricity = 'electricity';
+String keyHealth = 'health';
+String keyExtraLand = 'extraLand';
+String keyOtherTax = 'otherTax';
+
 String keyUid = "uid";
 String keyMobile = "mobile";
 String keyName = "name";
