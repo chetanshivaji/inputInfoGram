@@ -98,12 +98,23 @@ class _reportInfoState extends State<reportInfo> {
 
               double percentCollectedHouse = 0.0;
 
-              percentCollectedHouse = (100 * collectedHouse) / totalHouse;
-              int intPCH = percentCollectedHouse.floor();
+              int intPCH, intPCW;
+              intPCH = intPCW = 0;
+              if (totalHouse == 0) {
+                intPCH = 100;
+              } else {
+                percentCollectedHouse = (100 * collectedHouse) / totalHouse;
+                intPCH = percentCollectedHouse.floor();
+              }
 
               double percentCollectedWater = 0.0;
-              percentCollectedWater = (100 * collectedWater) / totalWater;
-              int intPCW = percentCollectedWater.floor();
+              if (totalWater == 0) {
+                intPCW = 100;
+              } else {
+                percentCollectedWater = (100 * collectedWater) / totalWater;
+                intPCW = percentCollectedWater.floor();
+              }
+
               srNo = srNo + 1;
               ldataCell.add(DataCell(Text(
                 srNo.toString(),
@@ -151,7 +162,9 @@ class _reportInfoState extends State<reportInfo> {
           },
         );
       } catch (e) {
-        print(e);
+        //print(e);
+        popAlert(context, AppLocalizations.of(gContext)!.kTitleTryCatchFail,
+            e.toString(), getWrongIcon(), 1);
       }
     }
     return ldataRow;
