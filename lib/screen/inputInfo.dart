@@ -760,7 +760,7 @@ class _inputInfoState extends State<inputInfo> {
                       controller: _textController_extraInfo,
                       decoration: InputDecoration(
                           border: OutlineInputBorder(),
-                          icon: Icon(Icons.holiday_village),
+                          icon: Icon(Icons.movie_creation),
                           hintText: AppLocalizations.of(gContext)!.msgExtraInfo,
                           labelText:
                               AppLocalizations.of(gContext)!.labelExtraInfo +
