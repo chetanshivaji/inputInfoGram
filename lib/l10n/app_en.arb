@@ -766,6 +766,16 @@
         "description":"Other tax"
     },
 
+    "msgNewName":"Enter New Name",
+    "@msgNewName":{
+        "description":"Enter New Name"
+    },
+
+    "labelNewName":"New Name",
+    "@labelNewName":{
+        "description":"New Name"
+    },
+
     "hello":"Hello {randomString}",
     "@hello":{
         "description":"heyoo",

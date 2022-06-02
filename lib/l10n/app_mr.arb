@@ -267,7 +267,9 @@
   "labelHealthTax":"आरोग्य कर",
   "labelExtraLandTax":"पडसर कर",    
   "labelOtherTax":"इतर कर",
-
+  
+  "msgNewName":"नवीन नाव प्रविष्ट करा",
+  "labelNewName":"नवीन नाव",
 
     "hello":"नमस्कार {randomString}"
 }

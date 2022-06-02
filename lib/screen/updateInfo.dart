@@ -32,6 +32,7 @@ class _updateInfoState extends State<updateInfo> {
   String newMobile = "";
 
   String newEmail = "";
+  String newName = "";
   String newExtraInfo = "";
   int houseTax = 0;
   int waterTax = 0;
@@ -42,6 +43,7 @@ class _updateInfoState extends State<updateInfo> {
 
   var _textController_newEmail = TextEditingController();
   var _textController_extraInfo = TextEditingController();
+  var _textController_newName = TextEditingController();
 
   Future<bool> mobileAlreadyUsed(String text) async {
     try {
@@ -154,6 +156,7 @@ class _updateInfoState extends State<updateInfo> {
       _textController_newMobile.clear();
       _textController_newEmail.clear();
       _textController_extraInfo.clear();
+      _textController_newName.clear();
     }
 
     //if no mobile found in all yrs.
@@ -259,6 +262,7 @@ class _updateInfoState extends State<updateInfo> {
                         _textController_newMobile.clear();
                         _textController_newEmail.clear();
                         _textController_extraInfo.clear();
+                        _textController_newName.clear();
                         multiUidsTextSpan.clear();
 
                         setState(
@@ -290,6 +294,7 @@ class _updateInfoState extends State<updateInfo> {
                           _textController_newMobile.clear();
                           _textController_newEmail.clear();
                           _textController_extraInfo.clear();
+                          _textController_newName.clear();
                           multiUidsTextSpan.clear();
                           return;
                         }
@@ -376,6 +381,26 @@ class _updateInfoState extends State<updateInfo> {
                     ),
                   ),
                   //getPadding(),
+                  Expanded(
+                    child: TextFormField(
+                      controller: _textController_newName,
+                      decoration: InputDecoration(
+                          border: OutlineInputBorder(),
+                          icon: Icon(Icons.person_add_alt),
+                          hintText: AppLocalizations.of(gContext)!.msgNewName,
+                          labelText:
+                              AppLocalizations.of(gContext)!.labelNewName),
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          newExtraInfo = "";
+                          return null;
+                        }
+                        newExtraInfo = value;
+                        return null;
+                      },
+                    ),
+                  ),
+
                   Expanded(
                     child: TextFormField(
                       controller: _textController_newEmail,
@@ -468,6 +493,13 @@ class _updateInfoState extends State<updateInfo> {
                                     } else {
                                       newEntry_email = newEmail;
                                     }
+
+                                    if (newName == "") {
+                                      newEntry_name = y[keyName];
+                                    } else {
+                                      newEntry_name = newName;
+                                    }
+
                                     if (newExtraInfo == "") {
                                       newEntry_extraInfo = y[keyExtraInfo];
                                     } else {

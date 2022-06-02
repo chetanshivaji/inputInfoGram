@@ -59,6 +59,8 @@ String msgExtraLandTaxAmount = "Enter ExtraLand tax";
 String msgOtherTaxAmount = "Enter Other tax";
 
 String msgExtraInfo = "Enter Extra Information";
+String msgNewName = "Enter New Name";
+
 String msgProcessingData = 'Processing Data';
 
 String msgNoExpense = "There is no expense";
@@ -115,6 +117,7 @@ String labelMobile = "Mobile *";
 String labelUid = "Uid *";
 String labelNewMobile = "New Mobile *";
 String labelNewEmail = "New Email";
+String labelNewName = "New Name";
 String labelAdminEmail = "AdminEmail *";
 String labelEmail = "Mail * ";
 String labelAdminPassword = "AdminPassword *";
