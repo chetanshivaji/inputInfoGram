@@ -23,7 +23,7 @@ class _approvalListState extends State<approvalList> {
       AppLocalizations.of(gContext)!.kDropAccessSuperUser,
       AppLocalizations.of(gContext)!.kDropAccessViewer,
       AppLocalizations.of(gContext)!.kDropAccessCollector,
-      AppLocalizations.of(gContext)!.kDropAccessSpender,
+      //AppLocalizations.of(gContext)!.kDropAccessSpender, //no need of spender as of now.
       AppLocalizations.of(gContext)!.kDropAccessNo,
     ];
 
