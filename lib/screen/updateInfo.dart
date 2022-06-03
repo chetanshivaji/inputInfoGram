@@ -488,6 +488,7 @@ class _updateInfoState extends State<updateInfo> {
                               int newEntry_health = 0;
                               int newEntry_extraLand = 0;
                               int newEntry_otherTax = 0;
+                              int newEntry_totalTax = 0;
 
                               bool newEntry_houseGiven = false;
                               int newEntry_water = 0;
@@ -517,6 +518,8 @@ class _updateInfoState extends State<updateInfo> {
                                     newEntry_health = y[keyHealth];
                                     newEntry_extraLand = y[keyExtraLand];
                                     newEntry_otherTax = y[keyOtherTax];
+                                    newEntry_totalTax =
+                                        y[keyTotalTaxOtherThanWater];
 
                                     if (newEmail == "") {
                                       newEntry_email = y[keyEmail];
@@ -576,6 +579,8 @@ class _updateInfoState extends State<updateInfo> {
                                         keyHealth: newEntry_health,
                                         keyExtraLand: newEntry_extraLand,
                                         keyOtherTax: newEntry_otherTax,
+                                        keyTotalTaxOtherThanWater:
+                                            newEntry_totalTax,
                                       },
                                     );
                                     //END create new Entry
