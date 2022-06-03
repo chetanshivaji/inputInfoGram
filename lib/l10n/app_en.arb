@@ -776,6 +776,17 @@
         "description":"New Name"
     },
 
+    "kTitleNothingToUpdate":"Nothing to update",
+    "@kTitleNothingToUpdate":{
+        "description":"Nothing to update"
+    },
+
+    "kSubtitleAllFieldsEmpty":"All fields empty",
+    "@kSubtitleAllFieldsEmpty":{
+        "description":"All fields empty"
+    },
+
+
     "hello":"Hello {randomString}",
     "@hello":{
         "description":"heyoo",

@@ -458,8 +458,14 @@ class _updateInfoState extends State<updateInfo> {
                                 newName == "" &&
                                 newMobile == "") {
                               //Everything is empty. pop up message and return back;
-                              popAlert(context, "Nothing to Update",
-                                  "All fields empty", getWrongIcon(), 1);
+                              popAlert(
+                                  context,
+                                  AppLocalizations.of(gContext)!
+                                      .kTitleNothingToUpdate,
+                                  AppLocalizations.of(gContext)!
+                                      .kSubtitleAllFieldsEmpty,
+                                  getWrongIcon(),
+                                  1);
                               return;
                             }
                             // If the form is valid, display a snackbar. In the real world,

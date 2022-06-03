@@ -6,6 +6,10 @@ String txtStar = "*";
 String txtUidPresentForYearForVillage =
     "Use different uid, Uid allready present in your village for this year";
 String registerSuccess = "Admin and village regsitered successfully";
+
+String kTitleNothingToUpdate = "Nothing to update";
+String kSubtitleAllFieldsEmpty = "All fields empty";
+
 String kTitleFail = "Login/registeration failed";
 String kTitleTryCatchFail =
     "Fail"; //dont know reason. some failure in try catch

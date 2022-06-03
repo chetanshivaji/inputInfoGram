@@ -263,13 +263,16 @@
 
 
 
-  "labelElectricityTax":"वीज कर",
-  "labelHealthTax":"आरोग्य कर",
-  "labelExtraLandTax":"पडसर कर",    
-  "labelOtherTax":"इतर कर",
+    "labelElectricityTax":"वीज कर",
+    "labelHealthTax":"आरोग्य कर",
+    "labelExtraLandTax":"पडसर कर",    
+    "labelOtherTax":"इतर कर",
   
-  "msgNewName":"नवीन नाव प्रविष्ट करा",
-  "labelNewName":"नवीन नाव",
+    "msgNewName":"नवीन नाव प्रविष्ट करा",
+    "labelNewName":"नवीन नाव",
+
+    "kTitleNothingToUpdate":"अपडेट करण्यासाठी काहीही नाही",  
+    "kSubtitleAllFieldsEmpty":"सर्व फील्ड रिक्त",
 
     "hello":"नमस्कार {randomString}"
 }
