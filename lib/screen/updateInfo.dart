@@ -45,6 +45,7 @@ class _updateInfoState extends State<updateInfo> {
   var _textController_extraInfo = TextEditingController();
   var _textController_newName = TextEditingController();
 
+  /*
   Future<bool> mobileAlreadyUsed(String text) async {
     try {
       await FirebaseFirestore.instance
@@ -80,6 +81,7 @@ class _updateInfoState extends State<updateInfo> {
     return false;
   }
 
+  */
   Future<void> setNameEmail(String uid) async {
     //fecth and display user info on screen
     bool found = false;
