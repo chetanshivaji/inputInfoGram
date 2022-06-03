@@ -180,6 +180,7 @@ String keyElectricity = 'electricity';
 String keyHealth = 'health';
 String keyExtraLand = 'extraLand';
 String keyOtherTax = 'otherTax';
+String keyTotalTaxOtherThanWater = "totalTax";
 
 String keyUid = "uid";
 String keyMobile = "mobile";

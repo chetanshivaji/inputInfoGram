@@ -25,6 +25,12 @@ class _inputInfoState extends State<inputInfo> {
 
   int houseTax = 0;
   int waterTax = 0;
+
+  int electricityTax = 0;
+  int healthTax = 0;
+  int extraLandTax = 0;
+  int otherTax = 0;
+
   String extraInfo = "";
   bool houseGiven = false;
   bool waterGiven = false;
@@ -662,7 +668,7 @@ class _inputInfoState extends State<inputInfo> {
                               return AppLocalizations.of(gContext)!
                                   .msgOnlyNumber;
                             }
-                            houseTax = int.parse(value);
+                            electricityTax = int.parse(value);
                             return null;
                           },
                         ),
@@ -688,7 +694,7 @@ class _inputInfoState extends State<inputInfo> {
                               return AppLocalizations.of(gContext)!
                                   .msgOnlyNumber;
                             }
-                            houseTax = int.parse(value);
+                            healthTax = int.parse(value);
                             return null;
                           },
                         ),
@@ -719,7 +725,7 @@ class _inputInfoState extends State<inputInfo> {
                               return AppLocalizations.of(gContext)!
                                   .msgOnlyNumber;
                             }
-                            houseTax = int.parse(value);
+                            extraLandTax = int.parse(value);
                             return null;
                           },
                         ),
@@ -730,7 +736,7 @@ class _inputInfoState extends State<inputInfo> {
                           keyboardType: TextInputType.number,
                           decoration: InputDecoration(
                               border: OutlineInputBorder(),
-                              icon: Icon(Icons.house),
+                              icon: Icon(Icons.movie_creation),
                               hintText: AppLocalizations.of(gContext)!
                                   .msgOtherTaxAmount,
                               labelText:
@@ -745,7 +751,7 @@ class _inputInfoState extends State<inputInfo> {
                               return AppLocalizations.of(gContext)!
                                   .msgOnlyNumber;
                             }
-                            houseTax = int.parse(value);
+                            otherTax = int.parse(value);
                             return null;
                           },
                         ),
@@ -760,7 +766,7 @@ class _inputInfoState extends State<inputInfo> {
                       controller: _textController_extraInfo,
                       decoration: InputDecoration(
                           border: OutlineInputBorder(),
-                          icon: Icon(Icons.movie_creation),
+                          icon: Icon(Icons.holiday_village),
                           hintText: AppLocalizations.of(gContext)!.msgExtraInfo,
                           labelText:
                               AppLocalizations.of(gContext)!.labelExtraInfo +
@@ -846,6 +852,15 @@ class _inputInfoState extends State<inputInfo> {
                                           keyUid: uid,
                                           keyName: name,
                                           keyWater: waterTax,
+                                          keyElectricity: electricityTax,
+                                          keyHealth: healthTax,
+                                          keyExtraLand: extraLandTax,
+                                          keyOtherTax: otherTax,
+                                          keyTotalTaxOtherThanWater: houseTax +
+                                              electricityTax +
+                                              healthTax +
+                                              extraLandTax +
+                                              otherTax,
                                           keyWaterGiven: false,
                                           keyExtraInfo: extraInfo,
                                         },

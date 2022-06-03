@@ -346,6 +346,7 @@ class _updateInfoState extends State<updateInfo> {
                   Expanded(
                     child: TextFormField(
                       controller: _textController_newMobile,
+                      /*
                       onChanged: (text) async {
                         if (text.length == 10) {
                           var used = await mobileAlreadyUsed(text);
@@ -354,6 +355,7 @@ class _updateInfoState extends State<updateInfo> {
                           }
                         }
                       },
+                      */
                       keyboardType: TextInputType.number,
                       decoration: InputDecoration(
                           border: OutlineInputBorder(),
@@ -361,12 +363,13 @@ class _updateInfoState extends State<updateInfo> {
                           hintText: AppLocalizations.of(gContext)!
                               .msgEnterNewMobileNumber,
                           labelText:
-                              AppLocalizations.of(gContext)!.labelNewMobile +
-                                  txtStar),
+                              AppLocalizations.of(gContext)!.labelNewMobile),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
-                          return AppLocalizations.of(gContext)!
-                              .msgEnterNewMobileNumber;
+                          //return AppLocalizations.of(gContext)!
+                          //.msgEnterNewMobileNumber;
+                          newMobile = "";
+                          return null;
                         }
                         if (value.length != 10) {
                           return AppLocalizations.of(gContext)!
@@ -392,10 +395,10 @@ class _updateInfoState extends State<updateInfo> {
                               AppLocalizations.of(gContext)!.labelNewName),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
-                          newExtraInfo = "";
+                          newName = "";
                           return null;
                         }
-                        newExtraInfo = value;
+                        newName = value;
                         return null;
                       },
                     ),
@@ -450,6 +453,15 @@ class _updateInfoState extends State<updateInfo> {
                             onPressedUpdateInfo == false) {
                           try {
                             onPressedUpdateInfo = true;
+                            if (newExtraInfo == "" &&
+                                newEmail == "" &&
+                                newName == "" &&
+                                newMobile == "") {
+                              //Everything is empty. pop up message and return back;
+                              popAlert(context, "Nothing to Update",
+                                  "All fields empty", getWrongIcon(), 1);
+                              return;
+                            }
                             // If the form is valid, display a snackbar. In the real world,
                             // you'd often call a server or save the information in a database.
                             ScaffoldMessenger.of(context).showSnackBar(
@@ -465,6 +477,12 @@ class _updateInfoState extends State<updateInfo> {
                               String newEntry_mobile = "";
                               String newEntry_name = "";
                               int newEntry_house = 0;
+
+                              int newEntry_electricity = 0;
+                              int newEntry_health = 0;
+                              int newEntry_extraLand = 0;
+                              int newEntry_otherTax = 0;
+
                               bool newEntry_houseGiven = false;
                               int newEntry_water = 0;
                               String newEntry_uid = "";
@@ -487,7 +505,13 @@ class _updateInfoState extends State<updateInfo> {
                                     newEntry_water = y[keyWater];
                                     newEntry_waterGiven = y[keyWaterGiven];
                                     newEntry_uid = y[keyUid];
-                                    newEntry_mobile = newMobile;
+                                    newEntry_mobile = y[keyMobile];
+
+                                    newEntry_electricity = y[keyElectricity];
+                                    newEntry_health = y[keyHealth];
+                                    newEntry_extraLand = y[keyExtraLand];
+                                    newEntry_otherTax = y[keyOtherTax];
+
                                     if (newEmail == "") {
                                       newEntry_email = y[keyEmail];
                                     } else {
@@ -504,6 +528,12 @@ class _updateInfoState extends State<updateInfo> {
                                       newEntry_extraInfo = y[keyExtraInfo];
                                     } else {
                                       newEntry_extraInfo = newExtraInfo;
+                                    }
+
+                                    if (newMobile == "") {
+                                      newEntry_mobile = y[keyMobile];
+                                    } else {
+                                      newEntry_mobile = newMobile;
                                     }
 
                                     //END create new entry with copying field from old entry with new mobile and mail.
@@ -524,18 +554,22 @@ class _updateInfoState extends State<updateInfo> {
                                         .collection(adminVillage + adminPin)
                                         .doc(docMainDb)
                                         .collection(docMainDb + yr)
-                                        .doc(newMobile + uid)
+                                        .doc(newEntry_mobile + uid)
                                         .set(
                                       {
                                         keyHouse: newEntry_house,
                                         keyHouseGiven: newEntry_houseGiven,
                                         keyEmail: newEntry_email,
                                         keyExtraInfo: newEntry_extraInfo,
-                                        keyMobile: newMobile,
+                                        keyMobile: newEntry_mobile,
                                         keyName: newEntry_name,
                                         keyWater: newEntry_water,
                                         keyWaterGiven: newEntry_waterGiven,
-                                        keyUid: newEntry_uid
+                                        keyUid: newEntry_uid,
+                                        keyElectricity: newEntry_electricity,
+                                        keyHealth: newEntry_health,
+                                        keyExtraLand: newEntry_extraLand,
+                                        keyOtherTax: newEntry_otherTax,
                                       },
                                     );
                                     //END create new Entry
@@ -544,7 +578,7 @@ class _updateInfoState extends State<updateInfo> {
                                         yr, mobile, uid);
                                     //create new mapping.
                                     await createMobileUidMapping(
-                                        yr, newMobile, uid);
+                                        yr, newEntry_mobile, uid);
                                     //END remove uid from yr mobile
                                   }
                                 },
