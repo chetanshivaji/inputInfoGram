@@ -828,6 +828,11 @@ class _inputInfoState extends State<inputInfo> {
                                     //if yes check for same mobile it is present
                                     //if yes add.
                                     //if no failure out.
+                                    int totalTaxExceptWater = houseTax +
+                                        electricityTax +
+                                        healthTax +
+                                        extraLandTax +
+                                        otherTax;
                                     var present =
                                         await checkIfUidPresent(mobile, uid);
                                     if (present == false) {
@@ -856,20 +861,18 @@ class _inputInfoState extends State<inputInfo> {
                                           keyHealth: healthTax,
                                           keyExtraLand: extraLandTax,
                                           keyOtherTax: otherTax,
-                                          keyTotalTaxOtherThanWater: houseTax +
-                                              electricityTax +
-                                              healthTax +
-                                              extraLandTax +
-                                              otherTax,
+                                          keyTotalTaxOtherThanWater:
+                                              totalTaxExceptWater,
                                           keyWaterGiven: false,
                                           keyExtraInfo: extraInfo,
                                         },
                                       );
                                       await createTotalFormula(); //good
                                       await updateYearWiseFormula(
-                                          //good
-                                          houseTax,
-                                          waterTax);
+                                        //good
+                                        totalTaxExceptWater,
+                                        waterTax,
+                                      );
                                       //END create Formula in each year once
                                       popAlert(
                                           context,
