@@ -152,11 +152,18 @@ class _inputInfoState extends State<inputInfo> {
       (value) async {
         if (value.exists) {
           //if already present get and update.
-          int pendingHouse, totalHouse, pendingWater, totalWater;
-          pendingHouse = totalHouse = pendingWater = totalWater = 0;
+          int pendingHouse,
+              totalHouse,
+              totalHouseAfterDiscountFine,
+              pendingWater,
+              totalWater;
+
+          pendingHouse = totalHouse =
+              totalHouseAfterDiscountFine = pendingWater = totalWater = 0;
 
           var y = value.data();
           totalHouse = y![keyYfTotalHouse];
+          totalHouseAfterDiscountFine = y![keyYfTotalHouseAfterDiscountFine];
           pendingHouse = y![keyYfPendingHouse];
           totalWater = y![keyYfTotalWater];
           pendingWater = y![keyYfPendingWater];
@@ -164,6 +171,8 @@ class _inputInfoState extends State<inputInfo> {
           await formulaRef.update(
             {
               keyYfTotalHouse: totalHouse + houseTax,
+              keyYfTotalHouseAfterDiscountFine:
+                  totalHouseAfterDiscountFine + houseTax,
               keyYfPendingHouse: pendingHouse + houseTax,
               keyYfTotalWater: totalWater + waterTax,
               keyYfPendingWater: pendingWater + waterTax,
@@ -179,6 +188,7 @@ class _inputInfoState extends State<inputInfo> {
               .set(
             {
               keyYfTotalHouse: houseTax,
+              keyYfTotalHouseAfterDiscountFine: houseTax,
               keyYfCollectedHouse: 0,
               keyYfPendingHouse: houseTax,
               keyYfTotalWater: waterTax,

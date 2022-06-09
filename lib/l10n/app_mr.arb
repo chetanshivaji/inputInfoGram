@@ -185,10 +185,10 @@
     "tableHeadingYear":"वर्ष",
     "tableHeading_totalHouse":"एकूण घर",    
     "tableHeading_pendingHouse":"प्रलंबित घर",
-    "tableHeading_collectedHouse":"गोळा केलेले घर",
+    "tableHeading_collectedHouse":"जमा केलेले घर",
     "tableHeading_totalWater":"एकूण पाणी",
     "tableHeading_pendingWater":"प्रलंबित पाणी",
-    "tableHeading_collectedWater":"गोळा केलेले पाणी",
+    "tableHeading_collectedWater":"जमा केलेले पाणी",
  
     "labelNewEmail":"नवीन ई-मेल",
 
@@ -273,6 +273,9 @@
 
     "kTitleNothingToUpdate":"अपडेट करण्यासाठी काहीही नाही",  
     "kSubtitleAllFieldsEmpty":"सर्व फील्ड रिक्त",
+
+    "tableHeading_totalHouseAfterDisFine":"सवलत आणि दंडानंतर एकूण घर",
+    "tableHeading_collectedHouseAfterDisFine":"सवलत आणि दंडानंतर जमा घर",
 
     "hello":"नमस्कार {randomString}"
 }

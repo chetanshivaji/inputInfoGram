@@ -786,6 +786,17 @@
         "description":"All fields empty"
     },
 
+    "tableHeading_totalHouseAfterDisFine":"TotalHouse After Discount Fine",
+    "@tableHeading_totalHouseAfterDisFine":{
+        "description":"TotalHouse After Discount Fine"
+    },
+
+    "tableHeading_collectedHouseAfterDisFine":"CollectedHouse After Discount Fine",
+    "@tableHeading_collectedHouseAfterDisFine":{
+        "description":"CollectedHouse After Discount Fine"
+    },
+
+
 
     "hello":"Hello {randomString}",
     "@hello":{

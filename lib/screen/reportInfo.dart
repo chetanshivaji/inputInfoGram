@@ -79,16 +79,19 @@ class _reportInfoState extends State<reportInfo> {
             if (value.exists) {
               //if already present get and update.
               int totalHouse,
+                  totalHouseAfterDiscountFine,
                   pendingHouse,
                   collectedHouse,
                   totalWater,
                   pendingWater,
                   collectedWater;
-              totalHouse = pendingHouse = collectedHouse =
-                  totalWater = pendingWater = collectedWater = 0;
+              totalHouse = totalHouseAfterDiscountFine = pendingHouse =
+                  collectedHouse =
+                      totalWater = pendingWater = collectedWater = 0;
 
               var y = value.data();
               totalHouse = y![keyYfTotalHouse];
+              totalHouseAfterDiscountFine = y[keyYfTotalHouseAfterDiscountFine];
               pendingHouse = y[keyYfPendingHouse];
               collectedHouse = y[keyYfCollectedHouse];
 
@@ -97,14 +100,23 @@ class _reportInfoState extends State<reportInfo> {
               collectedWater = y[keyYfCollectedWater];
 
               double percentCollectedHouse = 0.0;
+              double percentCollectedHouseAfterDF = 0.0;
 
-              int intPCH, intPCW;
-              intPCH = intPCW = 0;
+              int intPCH, intPCW, intPCHAfterDiscountFine;
+              intPCH = intPCW = intPCHAfterDiscountFine = 0;
               if (totalHouse == 0) {
                 intPCH = 100;
               } else {
                 percentCollectedHouse = (100 * collectedHouse) / totalHouse;
                 intPCH = percentCollectedHouse.floor();
+              }
+
+              if (totalHouseAfterDiscountFine == 0) {
+                intPCHAfterDiscountFine = 100;
+              } else {
+                percentCollectedHouseAfterDF =
+                    (100 * collectedHouse) / totalHouseAfterDiscountFine;
+                intPCHAfterDiscountFine = percentCollectedHouseAfterDF.floor();
               }
 
               double percentCollectedWater = 0.0;
@@ -130,6 +142,8 @@ class _reportInfoState extends State<reportInfo> {
                 ),
               );
               ldataCell.add(DataCell(Text(totalHouse.toString())));
+              ldataCell
+                  .add(DataCell(Text(totalHouseAfterDiscountFine.toString())));
               ldataCell.add(DataCell(Text(pendingHouse.toString())));
               ldataCell.add(
                 DataCell(
@@ -138,6 +152,18 @@ class _reportInfoState extends State<reportInfo> {
                         " " +
                         " (" +
                         (intPCH).toString() +
+                        "%)",
+                  ),
+                ),
+              );
+
+              ldataCell.add(
+                DataCell(
+                  Text(
+                    collectedHouse.toString() +
+                        " " +
+                        " (" +
+                        (intPCHAfterDiscountFine).toString() +
                         "%)",
                   ),
                 ),
@@ -261,14 +287,29 @@ class _reportInfoState extends State<reportInfo> {
                             DataColumn(
                               label: Text(
                                 AppLocalizations.of(gContext)!
-                                    .tableHeading_pendingHouse,
+                                    .tableHeading_totalHouseAfterDisFine,
                                 style: getStyle(actIn),
                               ),
                             ),
                             DataColumn(
                               label: Text(
                                 AppLocalizations.of(gContext)!
+                                    .tableHeading_pendingHouse,
+                                style: getStyle(actIn),
+                              ),
+                            ),
+                            
+                            DataColumn(
+                              label: Text(
+                                AppLocalizations.of(gContext)!
                                     .tableHeading_collectedHouse,
+                                style: getStyle(actIn),
+                              ),
+                            ),
+                            DataColumn(
+                              label: Text(
+                                AppLocalizations.of(gContext)!
+                                    .tableHeading_collectedHouseAfterDisFine,
                                 style: getStyle(actIn),
                               ),
                             ),
