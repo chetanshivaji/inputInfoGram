@@ -180,6 +180,8 @@ String keyAccess = "accessLevel";
 String keyAdminMail = 'adminMail';
 String keyHouse = 'house';
 String keyHouseGiven = 'houseGiven';
+String keyHouseRemindCount = "houseRemindCount";
+String keyWaterRemindCount = "waterRemindCount";
 String keyWater = 'water';
 String keyWaterGiven = 'waterGiven';
 
@@ -310,6 +312,7 @@ String sTaluka = "Gadhinglaj";
 var states = [
   "Maharashtra",
   "Karnataka",
+  "testState",
 ];
 var districts = [
   "Kolhapur",

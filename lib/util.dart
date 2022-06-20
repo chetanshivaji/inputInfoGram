@@ -13,7 +13,7 @@ String adminVillage = "";
 String adminPin = "";
 String registerdName = "";
 
-bool flagCreateVillageDB = false;
+bool flagCreateVillageDB = true;
 
 bool onPressedDrawerAddPerson = false;
 bool onPressedDrawerReportPerson = false;
@@ -333,12 +333,17 @@ Future<void> createDBOfVillages() async {
     var states = [
       "Maharashtra",
       "Karnataka",
+      "testState",
     ];
     Map<String, List<String>> districts = {
       "Maharashtra": [
         "Kolhapur",
         "Sangali",
         "Satara",
+        "testDistrict",
+      ],
+      "testState": [
+        "testDistrict",
       ],
       "Karnataka": [
         "Belgaum",
@@ -346,19 +351,10 @@ Future<void> createDBOfVillages() async {
       ],
     };
     Map<String, List<String>> talukas = {
-      "Kolhapur": [
-        "Gadhinglaj",
-        "Ajara",
-        "Chandgad",
-      ],
-      "Sangali": [
-        "Ashta",
-        "Vita",
-      ],
-      "Satara": [
-        "Mahabaleshwar",
-        "Karad",
-      ],
+      "Kolhapur": ["Gadhinglaj", "Ajara", "Chandgad"],
+      "Sangali": ["Ashta", "Vita"],
+      "Satara": ["Mahabaleshwar", "Karad"],
+      "testDistrict": ["testTaluka"],
       "Belgaum": ["Gokak", "Hukkeri"],
       "Bagalkot": ["Badami", "Mudhol"],
     };
@@ -372,6 +368,7 @@ Future<void> createDBOfVillages() async {
       "Hukkeri": ["Nipani", "Ammangi"],
       "Badami": ["Adagal", "Gonal"],
       "Mudhol": ["Saidapur", "Bisanal"],
+      "testTaluka": ["testVillage1", "testVillage2"],
     };
 
     for (var s in states) {
