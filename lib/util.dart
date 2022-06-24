@@ -13,7 +13,7 @@ String adminVillage = "";
 String adminPin = "";
 String registerdName = "";
 
-bool flagCreateVillageDB = true;
+bool flagCreateVillageDB = false;
 
 bool onPressedDrawerAddPerson = false;
 bool onPressedDrawerReportPerson = false;
