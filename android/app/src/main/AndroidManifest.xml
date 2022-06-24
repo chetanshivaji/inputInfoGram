@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.inputgram">
    <application
-        android:label="admin_village"
+        android:label="UdayAdminGram"
         android:name="${applicationName}"
         android:icon="@mipmap/vadmin_icon">
         <activity
