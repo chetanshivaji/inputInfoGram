@@ -180,8 +180,8 @@ String keyAccess = "accessLevel";
 String keyAdminMail = 'adminMail';
 String keyHouse = 'house';
 String keyHouseGiven = 'houseGiven';
-String keyHouseRemindCount = "houseRemindCount";
-String keyWaterRemindCount = "waterRemindCount";
+String keyRemindCount = "houseRemindCount";
+
 String keyWater = 'water';
 String keyWaterGiven = 'waterGiven';
 

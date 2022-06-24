@@ -875,8 +875,7 @@ class _inputInfoState extends State<inputInfo> {
                                               totalTaxExceptWater,
                                           keyWaterGiven: false,
                                           keyExtraInfo: extraInfo,
-                                          keyHouseRemindCount: 2,
-                                          keyWaterRemindCount: 2
+                                          keyRemindCount: 2,
                                         },
                                       );
                                       await createTotalFormula(); //good
