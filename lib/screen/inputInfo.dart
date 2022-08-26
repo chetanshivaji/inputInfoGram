@@ -851,6 +851,12 @@ class _inputInfoState extends State<inputInfo> {
                                       await createYearMobileUidMap(
                                           dropdownValueYear, mobile, uid);
 
+                                      bool tempWaterGivenFlag = false;
+                                      if (waterTax == 0) {
+                                        //as water tax is zero, conisder it as given by default.
+                                        tempWaterGivenFlag = true;
+                                      }
+
                                       //if entry not present in db then add
                                       await FirebaseFirestore.instance
                                           .collection(adminVillage + adminPin)
@@ -873,7 +879,7 @@ class _inputInfoState extends State<inputInfo> {
                                           keyOtherTax: otherTax,
                                           keyTotalTaxOtherThanWater:
                                               totalTaxExceptWater,
-                                          keyWaterGiven: false,
+                                          keyWaterGiven: tempWaterGivenFlag,
                                           keyExtraInfo: extraInfo,
                                           keyRemindCount: 2,
                                         },
